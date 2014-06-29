@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="nhnb-leaflet-import.html">
 
-<polymer-element name="nhnb-leaflet-map" attributes="">
+<polymer-element name="nhnb-leaflet-map" attributes="latitude longitude zoom">
 	<template>
 		<link rel="stylesheet" href="../leaflet-bower/dist/leaflet.css" />
 		<style>
@@ -11,17 +11,21 @@
 		<div id="map"></div>
 	</template>
 	<script>
-    Polymer('nhnb-leaflet-map', {
-      domReady: function() {
-    	  var map = L.map(this.$.map, {
-              center: [51.477678,0],
-              zoom: 5
+	Polymer('nhnb-leaflet-map', {
+		latitude: 51,
+		longitude: 0,
+		zoom: 5,
+		
+		domReady: function() {
+			var map = L.map(this.$.map, {
+				center: [this.latitude, this.longitude],
+				zoom: this.zoom
             });
-    	    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    	        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    	        maxZoom: 18
-    	    }).addTo(map);
-      }
-    });
+			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+				maxZoom: 18
+			}).addTo(map);
+		}
+	});
     </script>
 </polymer-element>
