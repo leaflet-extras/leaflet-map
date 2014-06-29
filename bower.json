@@ -1,0 +1,25 @@
+{
+  "name": "nhnb-leaflet-map",
+  "version": "0.0.0",
+  "authors": [
+    "Hendrik Brummermann <nhnb@users.sourceforge.net>"
+  ],
+  "description": "Leaflet map as web-component based on polymer",
+  "main": "nhnb-leaflet-map.html",
+  "keywords": [
+    "polymer",
+    "web-components"
+  ],
+  "license": "BSD 2-Clause",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~0.3.3"
+  }
+}
