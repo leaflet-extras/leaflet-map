@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Map</title>
+		<script src="../platform/platform.js"></script>
+		<link rel="import" href="nhnb-leaflet-map.html">
+		<style>
+			body, html {
+				height: 100%;
+				margin: 0;
+			}
+			nhnb-leaflet-map {
+				display: block;
+				width: 20em;
+				height: 20em;
+				border: 1px solid #aaa;
+				margin: 1em;
+			}
+		</style>
+	</head>
+	<body>
+    	<h1>Default</h1>
+    	<nhnb-leaflet-map>xxx</nhnb-leaflet-map>
+    	
+    	<h1>Berlin</h1>
+    	<nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="10"></nhnb-leaflet-map>
+    	
+	</body>
+</html>
