@@ -20,6 +20,7 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "~0.3.3"
+    "polymer": "~0.3.3",
+    "leaflet-bower": "0.6.3-bower"
   }
 }
