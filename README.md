@@ -23,7 +23,6 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
 </leaflet-map>
 ```
 
-**Attributes**
 |Attribute|Description|
 |---------|-----------|
 |**tileServer**|*string* URL of the tile server to be used|
