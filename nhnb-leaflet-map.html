@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="nhnb-leaflet-import.html">
 
-<polymer-element name="nhnb-leaflet-marker">
+<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude title">
 	<template>
 		<style>
 			:host {
@@ -15,12 +15,14 @@
 			latitude: {value: null, reflect: true},
 			longitude: {value: null, reflect: true}
 		},
-		domReady: function() {
-			console.log("marker");
-		},
+		title: '',
+
 		mapChanged: function() {
 			if (this.map) {
-				L.marker([this.latitude, this.longitude]).addTo(this.map);
+				L.marker([this.latitude, this.longitude], {
+					title: this.title
+					
+				}).addTo(this.map);
 			}
 		}
 	});
@@ -83,7 +85,6 @@
 			}).addTo(this.map);
 			this.registerMapOnChildren();
 		},
-		
 
 		registerMapOnChildren: function() {
 			this.children = Array.prototype.slice.call(
