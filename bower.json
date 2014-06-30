@@ -1,0 +1,28 @@
+{
+  "name": "leaftlet-map-component",
+  "version": "0.0.0",
+  "authors": [
+    "Prateek Saxena <prtksxna@gmail.com>"
+  ],
+  "description": "A polymer component to show a leatlet map",
+  "main": "leaftleft-map-component.html",
+  "keywords": [
+    "polymer",
+    "web-component",
+    "osm",
+    "map",
+    "leaflet"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/prtksxna/leaflet-map-component",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~0.3.3"
+  }
+}
