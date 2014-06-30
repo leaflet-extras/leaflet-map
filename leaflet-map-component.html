@@ -1,11 +1,14 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="leaflet-marker-component.html">
 <script src="bower_components/leaflet/dist/leaflet.js"></script>
+
 
 <polymer-element name="leaflet-map" attributes="tileServer latitude longitude zoom">
   <template>
     <link rel="stylesheet" href="leaflet-map-component.css">
     <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
     <div id="map"></div>
+    <content id="markers" select="leaflet-marker"></content>
   </template>
   <script src="leaflet-map-component.js"></script>
 </polymer-element>

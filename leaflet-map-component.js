@@ -22,11 +22,12 @@ Polymer( 'leaflet-map', {
         longitude: 'updateCenter'
     },
 
-    ready: function () {
+    attached: function () {
         var baseLayer = L.tileLayer( this.tileServer );
         var lat = this.latitude;
         var lon = this.longitude;
         var zoom = this.zoom;
+
         this.map = new L.Map( this.$.map , {
             center: new L.LatLng( this.latitude, this.longitude ),
             zoom: this.zoom,
@@ -43,6 +44,7 @@ Polymer( 'leaflet-map', {
             this.longitude = center.lng;
         }.bind( this ) );
 
+        this.updateMarkers();
     },
 
     zoomChanged: function () {
@@ -54,6 +56,20 @@ Polymer( 'leaflet-map', {
     updateCenter: function () {
         if ( this.map && this.latitude && this.longitude ) {
             this.map.panTo( L.latLng( this.latitude, this.longitude ), { animate: true } );
+        }
+    },
+
+    updateMarkers: function () {
+        this.markers = Array.prototype.slice.call( this.$.markers.getDistributedNodes() );
+
+        this.onMutation( this, this.updateMarkers );
+
+        if ( this.markers.length && this.map ) {
+            for ( var i = 0, m; m = this.markers[i]; i++ ) {
+                m.map = this.map;
+            }
+
+            // Keep in view
         }
     }
 } );
