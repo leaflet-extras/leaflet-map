@@ -44,7 +44,7 @@ Polymer( 'leaflet-map', {
             this.longitude = center.lng;
         }.bind( this ) );
 
-        this.updateMarkers();
+        this.updateFeatures();
     },
 
     zoomChanged: function () {
@@ -59,17 +59,24 @@ Polymer( 'leaflet-map', {
         }
     },
 
-    updateMarkers: function () {
+    updateFeatures: function () {
         this.markers = Array.prototype.slice.call( this.$.markers.getDistributedNodes() );
+        this.circles = Array.prototype.slice.call( this.$.circles.getDistributedNodes() );
 
-        this.onMutation( this, this.updateMarkers );
+        this.onMutation( this, this.updateFeatures );
 
         if ( this.markers.length && this.map ) {
             for ( var i = 0, m; m = this.markers[i]; i++ ) {
                 m.map = this.map;
             }
-
-            // Keep in view
         }
+
+        if ( this.circles.length && this.map ) {
+            for ( var i = 0, c; c = this.circles[i]; i++ ) {
+                c.map = this.map;
+            }
+        }
+
+        // Fit to bounds
     }
 } );

@@ -1,5 +1,5 @@
-Polymer( 'leaflet-marker', {
-    marker: null,
+Polymer( 'leaflet-circle', {
+    circle: null,
     map: null,
 
     publish: {
@@ -10,12 +10,17 @@ Polymer( 'leaflet-marker', {
         latitude: {
             value: null,
             reflect: true
+        },
+        radius: {
+            value: null,
+            reflect: true
         }
     },
 
     observe: {
         latitude: 'updatePosition',
-        longitude: 'updatePosition'
+        longitude: 'updatePosition',
+        radius: 'updateRadius',
     },
 
     ready: function () {
@@ -28,21 +33,27 @@ Polymer( 'leaflet-marker', {
 
     mapReady: function () {
         if ( this.latitude && this.longitude && this.map ) {
-            this.marker = L.marker( [this.latitude, this.longitude] );
-            this.marker.addTo( this.map );
+            this.circle = L.circle( [this.latitude, this.longitude], this.radius, this.pathOptions );
+            this.circle.addTo( this.map );
             this.contentChanged();
         }
     },
 
     updatePosition: function () {
-        if ( this.marker && this.latitude != null && this.longitude != null ) {
-            this.marker.setLatLng( L.latLng( this.latitude, this.longitude ) );
+        if ( this.circle && this.latitude != null && this.longitude != null ) {
+            this.circle.setLatLng( L.latLng( this.latitude, this.longitude ) );
+        }
+    },
+
+    updateRadius: function () {
+        if ( this.circle && this.radius != null ) {
+            this.circle.setRadius( this.radius );
         }
     },
 
     contentChanged: function () {
         this.onMutation( this, this.contentChanged );
         var content = this.innerHTML;
-        this.marker.bindPopup( content );
+        this.circle.bindPopup( content );
     }
 } );
