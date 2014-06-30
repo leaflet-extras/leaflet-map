@@ -1,9 +1,20 @@
 Polymer( 'leaflet-map', {
 
     // Setting Defaults
-    latitude: 15.466736,
-    longitude: 73.808159,
-    zoom: 10,
+    publish: {
+        latitude: {
+            value: 15.466736,
+            reflect: true
+        },
+        longitude: {
+            value: 73.808159,
+            reflect: true
+        },
+        zoom: {
+            value: 10,
+            reflect: true
+        }
+    },
     tileServer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
 
     observe: {
@@ -21,6 +32,17 @@ Polymer( 'leaflet-map', {
             zoom: this.zoom,
             layers: [baseLayer]
         } );
+
+        this.map.on( 'zoomend', function ( event ) {
+            this.zoom = event.target.getZoom();
+        }.bind( this ) );
+
+        this.map.on( 'dragend', function ( event ) {
+            var center = event.target.getCenter();
+            this.latitude = center.lat;
+            this.longitude = center.lng;
+        }.bind( this ) );
+
     },
 
     zoomChanged: function () {
