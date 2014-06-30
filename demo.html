@@ -26,7 +26,7 @@
 	<body>
 
 
-<h1>Simple</h1>
+<h1 id="simple">Simple</h1>
 
 <pre>
 &lt;nhnb-leaflet-map>
@@ -39,7 +39,7 @@
 
 
  	
-<h1>Focus via attributes</h1>
+<h1 id="view">View via attributes</h1>
 
 <pre>
 &lt;nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11">
@@ -49,9 +49,25 @@
 
 
 <nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11"></nhnb-leaflet-map>
-    	
-	</body>
-</html>
+
+
+
+
+<h1 id="marker">Marker</h1>
+
+<pre>
+&lt;nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11">
+    &lt;nhnb-leaflet-marker latitude="52.5" longitude="13.4">&lt;/nhnb-leaflet-marker>
+&lt;/nhnb-leaflet-map>
+
+</pre>
+
+
+<nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11">
+	<nhnb-leaflet-marker latitude="52.5" longitude="13.4"></nhnb-leaflet-marker>
+</nhnb-leaflet-map>
+
+
 
 
 	</body>

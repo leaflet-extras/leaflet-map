@@ -1,6 +1,40 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="nhnb-leaflet-import.html">
 
+<polymer-element name="nhnb-leaflet-marker">
+	<template>
+		<style>
+			:host {
+				display: none;
+			}
+		</style>
+	</template>
+	<script>
+	Polymer('nhnb-leaflet-marker', {
+		publish: {
+			latitude: {value: null, reflect: true},
+			longitude: {value: null, reflect: true}
+		},
+		domReady: function() {
+			console.log("marker");
+		},
+		mapChanged: function() {
+			if (this.map) {
+				L.marker([this.latitude, this.longitude]).addTo(this.map);
+			}
+		}
+	});
+	</script>
+</polymer-element>
+
+
+
+
+
+
+
+
+
 <polymer-element name="nhnb-leaflet-map" attributes="latitude longitude zoom">
 	<template>
 		<link rel="stylesheet" href="../leaflet-bower/dist/leaflet.css" />
@@ -9,23 +43,15 @@
 			:host #map {height:100%; width:100%}
 		</style>
 		<div id="map"></div>
-	</template>
+		<content id="markers" select="nhnb-leaflet-marker"></content>
+  	</template>
 	<script>
 	Polymer('nhnb-leaflet-map', {
 		/** Publish attributes with reflection of values to attributes */
 		publish: {
-			latitude: {
-				value: 51,
-				reflect: true
-			},
-			longitude: {
-				value: 0,
-				reflect: true
-			},
-			zoom: {
-				value: 5,
-				reflect: true
-			}
+			latitude: {value: 51, reflect: true},
+			longitude: {value: 0, reflect: true},
+			zoom: {value: 5, reflect: true}
 		},
 
 		/** reference to the leaflet map */
@@ -45,6 +71,8 @@
 		},
 
 		domReady: function() {
+			L.Icon.Default.imagePath = "../leaflet-bower/dist/images";
+			console.log("map");
 			this.map = L.map(this.$.map, {
 				center: [this.latitude, this.longitude],
 				zoom: this.zoom
@@ -53,7 +81,19 @@
 				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
 				maxZoom: 18
 			}).addTo(this.map);
-		}
+			this.registerMapOnChildren();
+		},
+		
+
+		registerMapOnChildren: function() {
+			this.children = Array.prototype.slice.call(
+				this.$.markers.getDistributedNodes());
+
+			this.onMutation(this, this.registerMapOnChildren);
+			for (var i = 0; i < this.children.length; i++) {
+				this.children[i].map = this.map;
+			}
+		},
 	});
     </script>
 </polymer-element>
