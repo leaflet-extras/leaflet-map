@@ -5,8 +5,11 @@ Polymer( 'leaflet-map', {
     longitude: 73.808159,
     zoom: 10,
     tileServer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-    zoomControls: true,
-    staticmap: false,
+
+    observe: {
+        latitude: 'updateCenter',
+        longitude: 'updateCenter'
+    },
 
     ready: function () {
         var baseLayer = L.tileLayer( this.tileServer );
@@ -18,5 +21,17 @@ Polymer( 'leaflet-map', {
             zoom: this.zoom,
             layers: [baseLayer]
         } );
+    },
+
+    zoomChanged: function () {
+        if ( this.map ) {
+            this.map.setZoom( this.zoom );
+        }
+    },
+
+    updateCenter: function () {
+        if ( this.map && this.latitude && this.longitude ) {
+            this.map.panTo( L.latLng( this.latitude, this.longitude ), { animate: true } );
+        }
     }
 } );
