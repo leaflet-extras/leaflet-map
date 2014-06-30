@@ -12,19 +12,47 @@
 	</template>
 	<script>
 	Polymer('nhnb-leaflet-map', {
-		latitude: 51,
-		longitude: 0,
-		zoom: 5,
-		
+		/** Publish attributes with reflection of values to attributes */
+		publish: {
+			latitude: {
+				value: 51,
+				reflect: true
+			},
+			longitude: {
+				value: 0,
+				reflect: true
+			},
+			zoom: {
+				value: 5,
+				reflect: true
+			}
+		},
+
+		/** reference to the leaflet map */
+		map: undefined,
+
+		/** update view on attribute change */
+		observe: {
+			latitude: 'view',
+		    longitude: 'view',
+		    zoom: 'view'
+		},
+
+		view: function(oldValue, newValue) {
+			if (this.map) {
+				this.map.setView(L.latLng(this.latitude, this.longitude), this.zoom);
+			}
+		},
+
 		domReady: function() {
-			var map = L.map(this.$.map, {
+			this.map = L.map(this.$.map, {
 				center: [this.latitude, this.longitude],
 				zoom: this.zoom
             });
 			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
 				maxZoom: 18
-			}).addTo(map);
+			}).addTo(this.map);
 		}
 	});
     </script>

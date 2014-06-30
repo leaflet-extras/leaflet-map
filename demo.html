@@ -4,25 +4,55 @@
 		<script src="../platform/platform.js"></script>
 		<link rel="import" href="nhnb-leaflet-map.html">
 		<style>
-			body, html {
+			body {
 				height: 100%;
-				margin: 0;
+				margin: 1em;
+				font-family: Arial;
 			}
 			nhnb-leaflet-map {
 				display: block;
 				width: 20em;
 				height: 20em;
 				border: 1px solid #aaa;
-				margin: 1em;
+			}
+
+			pre {
+				padding: 1em;
+				background-color: #EEE;
+				border: 2px dashed #00A;
 			}
 		</style>
 	</head>
 	<body>
-    	<h1>Default</h1>
-    	<nhnb-leaflet-map>xxx</nhnb-leaflet-map>
+
+
+<h1>Simple</h1>
+
+<pre>
+&lt;nhnb-leaflet-map>
+
+&lt;/nhnb-leaflet-map>
+</pre>
+
+<nhnb-leaflet-map> </nhnb-leaflet-map>
+
+
+
+ 	
+<h1>Focus via attributes</h1>
+
+<pre>
+&lt;nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11">
+
+&lt;/nhnb-leaflet-map>
+</pre>
+
+
+<nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11"></nhnb-leaflet-map>
     	
-    	<h1>Berlin</h1>
-    	<nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="10"></nhnb-leaflet-map>
-    	
+	</body>
+</html>
+
+
 	</body>
 </html>
