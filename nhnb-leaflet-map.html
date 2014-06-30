@@ -16,13 +16,17 @@
 			longitude: {value: null, reflect: true}
 		},
 		title: '',
+		marker: undefined,
 
 		mapChanged: function() {
 			if (this.map) {
-				L.marker([this.latitude, this.longitude], {
+				this.marker = L.marker([this.latitude, this.longitude], {
 					title: this.title
-					
-				}).addTo(this.map);
+				});
+				if (this.innerHTML) {
+					this.marker.bindPopup(this.innerHTML);
+				}
+				this.marker.addTo(this.map);
 			}
 		}
 	});
@@ -74,7 +78,6 @@
 
 		domReady: function() {
 			L.Icon.Default.imagePath = "../leaflet-bower/dist/images";
-			console.log("map");
 			this.map = L.map(this.$.map, {
 				center: [this.latitude, this.longitude],
 				zoom: this.zoom
