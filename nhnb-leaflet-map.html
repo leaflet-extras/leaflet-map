@@ -34,7 +34,35 @@
 </polymer-element>
 
 
+<polymer-element name="nhnb-leaflet-tile-layer" attributes="src min-zoom max-zoom no-wrap">
+	<template>
+		<style>
+			:host {
+				display: none;
+			}
+		</style>
+	</template>
+	<script>
+	Polymer('nhnb-leaflet-tile-layer', {
+		src: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+		"min-zoom": 0,
+		"max-zoom": 100,
+		"no-wrap": false,
 
+		mapChanged: function() {
+			if (this.map) {
+				this.layer = L.tileLayer(this.src, {
+					attribution: this.innerHTML,
+					minZoom: this['min-zoom'],
+					maxZoom: this['max-zoom'],
+					noWrap: this['no-wrap']
+				});
+				this.layer.addTo(this.map);
+			}
+		}
+	});
+	</script>
+</polymer-element>
 
 
 
@@ -49,7 +77,7 @@
 			:host #map {height:100%; width:100%}
 		</style>
 		<div id="map"></div>
-		<content id="markers" select="nhnb-leaflet-marker"></content>
+		<content id="markers" select="nhnb-leaflet-marker nhnb-leaflet-tile-layer"></content>
   	</template>
 	<script>
 	Polymer('nhnb-leaflet-map', {
@@ -85,23 +113,29 @@
 			if (this.zoom == -1) {
 				this.map.fitWorld();
 			}
-			
-			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
-				maxZoom: 18
-			}).addTo(this.map);
+
+			var defaultLayerRequired = true;
+			for (var i = 0; i < this.children.length; i++) {
+				var localName = this.children[i].localName;
+				if (localName.indexOf("-layer", localName.length - 6) !== -1) {
+					defaultLayerRequired = false;
+				}
+			}
+			if (defaultLayerRequired) {
+				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+					attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+					maxZoom: 18
+				}).addTo(this.map);
+			}
 			
 			this.registerMapOnChildren();
 		},
 
 		registerMapOnChildren: function() {
-			this.children = Array.prototype.slice.call(
-				this.$.markers.getDistributedNodes());
-
-			this.onMutation(this, this.registerMapOnChildren);
 			for (var i = 0; i < this.children.length; i++) {
 				this.children[i].map = this.map;
 			}
+			this.onMutation(this, this.registerMapOnChildren);
 		},
 	});
     </script>
