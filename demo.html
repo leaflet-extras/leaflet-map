@@ -75,7 +75,6 @@
 
 <pre>
 &lt;nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11">
-	&lt;nhnb-leaflet-marker latitude="52.5" longitude="13.4" title="Center"> &lt;/nhnb-leaflet-marker>
 
 	&lt;nhnb-leaflet-marker latitude="52.48" longitude="13.4" title="South"> 
 		&lt;b>Bold&lt;/b>
@@ -87,7 +86,6 @@
 
 
 <nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11">
-	<nhnb-leaflet-marker latitude="52.5" longitude="13.4" title="Center"></nhnb-leaflet-marker>
 	<nhnb-leaflet-marker latitude="52.48" longitude="13.4" title="South">
 		<b>Bold</b>
 		<p>Text</p>
@@ -98,14 +96,13 @@
 <h1 id="layer">Tile layer</h1>
 
 <pre>
-&lt;nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11">
-	&lt;nhnb-leaflet-marker latitude="52.5" longitude="13.4" title="Center"> &lt;/nhnb-leaflet-marker>
+&lt;nhnb-leaflet-map latitude="79" longitude="-96" zoom="3">
 
 	&lt;nhnb-leaflet-tile-layer 
 		src="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
 		min-zoom="2" max-zoom="6" no-wrap>
 
-			&lt;a href="https://stendhalgame.org">Stendhal MMORPG&lt;/a>
+			Map source: &lt;a href="https://stendhalgame.org">Stendhal MMORPG&lt;/a>
 
 	&lt;/nhnb-leaflet-tile-layer>
 
@@ -118,7 +115,7 @@
 		src="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
 		min-zoom="2" max-zoom="6" no-wrap>
 
-			<a href="https://stendhalgame.org">Stendhal MMORPG</a>
+			Map source: <a href="https://stendhalgame.org">Stendhal MMORPG</a>
 
 	</nhnb-leaflet-tile-layer>
 
