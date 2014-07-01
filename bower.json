@@ -5,7 +5,7 @@
     "Prateek Saxena <prtksxna@gmail.com>"
   ],
   "description": "A polymer component to show a leaflet map",
-  "main": "leaftleft-map-component.html",
+  "main": "leaflet-map-component.html",
   "keywords": [
     "polymer",
     "web-component",
