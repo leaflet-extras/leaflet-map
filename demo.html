@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="../platform/platform.js"></script>
+    <link rel="import" href="leaflet-map-component.html">
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+      }
+      leaflet-map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-marker longitude="77.2" latitude="28.4">
+        Marker I
+      </leaflet-marker>
+      <leaflet-marker longitude="77.3" latitude="28.4">
+        Marker II
+      </leaflet-marker>
+      <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
+        Round
+      </leaflet-circle>
+    </leaflet-map>
+  </body>
+</html>
