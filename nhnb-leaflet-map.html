@@ -34,7 +34,7 @@
 </polymer-element>
 
 
-<polymer-element name="nhnb-leaflet-tile-layer" attributes="src min-zoom max-zoom no-wrap">
+<polymer-element name="nhnb-leaflet-tile-layer" attributes="src min-zoom max-zoom no-wrap max-native-zoom tile-size subdomains error-tile-url attribution tms continuous-world no-wrap zoom-offset zoom-reverse opacity z-index detect-retina reuse-tiles">
 	<template>
 		<style>
 			:host {
@@ -46,16 +46,42 @@
 	Polymer('nhnb-leaflet-tile-layer', {
 		src: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 		"min-zoom": 0,
-		"max-zoom": 100,
+		"max-zoom": 18,
+		"max-native-zoom": null,
+		"tile-size": 256,
+		"subdomains": "abc",
+		"error-tile-url": "",
+		"attribution": "",
+		"tms": false,
+		"continuous-world": false,
 		"no-wrap": false,
-
+		"zoom-offset": 0,
+		"zoom-reverse": false,
+		"opacity": 1.0,
+		"z-index": null,
+		"detect-retina": false,
+		"reuse-tiles": false,
+		// unloadInvisibleTiles updateWhenIdle bounds
+		
 		mapChanged: function() {
 			if (this.map) {
 				this.layer = L.tileLayer(this.src, {
-					attribution: this.innerHTML,
+					attribution: this.innerHTML + this['attribution'],
 					minZoom: this['min-zoom'],
 					maxZoom: this['max-zoom'],
-					noWrap: this['no-wrap']
+					maxNativeZoom: this['max-native-zoom'],
+					tileSize: this['tile-size'],
+					subdomains: this['subdomains'],
+					errorTileUrl: this['error-tile-url'],
+					tms: this['tms'],
+					continuousWorld: this['continuous-world'],
+					noWrap: this['no-wrap'],
+					zoomOffset: this['zoom-offset'],
+					zoomReverse: this['zoom-reverse'],
+					opacity: this['opacity'],
+					zIndex: this['z-index'],
+					detectRetina: this['detect-retina'],
+					reuseTiles: this['reuse-tiles'],
 				});
 				this.layer.addTo(this.map);
 			}
