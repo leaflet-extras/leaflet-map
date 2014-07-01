@@ -57,7 +57,7 @@
 		publish: {
 			latitude: {value: 51, reflect: true},
 			longitude: {value: 0, reflect: true},
-			zoom: {value: 5, reflect: true}
+			zoom: {value: -1, reflect: true}
 		},
 
 		/** reference to the leaflet map */
@@ -82,10 +82,15 @@
 				center: [this.latitude, this.longitude],
 				zoom: this.zoom
             });
+			if (this.zoom == -1) {
+				this.map.fitWorld();
+			}
+			
 			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
 				maxZoom: 18
 			}).addTo(this.map);
+			
 			this.registerMapOnChildren();
 		},
 
