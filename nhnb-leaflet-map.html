@@ -34,7 +34,7 @@
 </polymer-element>
 
 
-<polymer-element name="nhnb-leaflet-tile-layer" attributes="src min-zoom max-zoom no-wrap max-native-zoom tile-size subdomains error-tile-url attribution tms continuous-world no-wrap zoom-offset zoom-reverse opacity z-index detect-retina reuse-tiles">
+<polymer-element name="nhnb-leaflet-tile-layer" attributes="url min-zoom max-zoom no-wrap max-native-zoom tile-size subdomains error-tile-url attribution tms continuous-world no-wrap zoom-offset zoom-reverse opacity z-index detect-retina reuse-tiles">
 	<template>
 		<style>
 			:host {
@@ -44,7 +44,7 @@
 	</template>
 	<script>
 	Polymer('nhnb-leaflet-tile-layer', {
-		src: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+		url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 		"min-zoom": 0,
 		"max-zoom": 18,
 		"max-native-zoom": null,
@@ -65,7 +65,7 @@
 		
 		mapChanged: function() {
 			if (this.map) {
-				this.layer = L.tileLayer(this.src, {
+				this.layer = L.tileLayer(this.url, {
 					attribution: this.innerHTML + this['attribution'],
 					minZoom: this['min-zoom'],
 					maxZoom: this['max-zoom'],
@@ -84,6 +84,22 @@
 					reuseTiles: this['reuse-tiles'],
 				});
 				this.layer.addTo(this.map);
+			}
+		},
+
+		opacityChanged: function() {
+			if (this.layer) {
+				this.layer.setOpacity(this.opacity);
+			}
+		},
+		"z-indexChanged": function() {
+			if (this.layer) {
+				this.layer.setZIndex(this['z-index']);
+			}
+		},
+		urlChanged: function() {
+			if (this.layer) {
+				this.layer.setUrl(this.url);
 			}
 		}
 	});
