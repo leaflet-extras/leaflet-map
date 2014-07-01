@@ -17,9 +17,6 @@
   "homepage": "http://github.com/prtksxna/leaflet-map-component",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
     "tests"
   ],
   "dependencies": {
