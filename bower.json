@@ -1,10 +1,10 @@
 {
   "name": "leaftlet-map-component",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "authors": [
     "Prateek Saxena <prtksxna@gmail.com>"
   ],
-  "description": "A polymer component to show a leatlet map",
+  "description": "A polymer component to show a leaflet map",
   "main": "leaftleft-map-component.html",
   "keywords": [
     "polymer",
@@ -14,7 +14,7 @@
     "leaflet"
   ],
   "license": "MIT",
-  "homepage": "http://github.com/prtksxna/leaflet-map-component",
+  "homepage": "http://github.io/prtksxna/leaflet-map-component",
   "ignore": [
     "**/.*",
     "tests"
