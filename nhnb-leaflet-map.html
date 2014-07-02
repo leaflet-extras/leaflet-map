@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="nhnb-leaflet-import.html">
 
-<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude title">
+<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude clickable dragable title alt zindexoffset opacity riseonhover riseoffset">
 	<template>
 		<style>
 			:host {
@@ -15,26 +15,69 @@
 			latitude: {value: null, reflect: true},
 			longitude: {value: null, reflect: true}
 		},
+		// icon
+		clickable: true,
+		dragable: false,
 		title: '',
+		alt: '',
+		zindexoffset: 0,
+		opacity: 1.0,
+		riseonhover: false,
+		riseoffset: 250,
 		marker: undefined,
+
+		observe: {
+			latitude: 'positionChanged',
+		    longitude: 'positionChanged',
+		},
 
 		mapChanged: function() {
 			if (this.map) {
 				this.marker = L.marker([this.latitude, this.longitude], {
-					title: this.title
+					clickable: this.clickable,
+					dragable: this.dragable,
+					title: this.title,
+					alt: this.alt,
+					zindexoffset: this.zindexoffset,
+					opacity: this.opacity,
+					riseonhover: this.riseonhover,
+					riseoffset: this.riseoffset,
 				});
 				if (this.innerHTML) {
 					this.marker.bindPopup(this.innerHTML);
 				}
 				this.marker.addTo(this.map);
 			}
-		}
+		},
+
+		positionChanged: function() {
+			if (this.marker) {
+				this.marker.setLatLng(L.LatLng(this.latitude, this.longitude));
+			}
+		},
+
+		zindexoffsetChanged: function() {
+			if (this.marker) {
+				this.marker.setZIndexOffset(this.zindex);
+			}
+		},
+
+		opacityChanged: function() {
+			if (this.marker) {
+				this.marker.setOpacity(this.opacity);
+			}
+		},
+
+// setIcon( <Icon> icon ) 	this 	Changes the marker icon.
+// setPopupContent( <String> html | <HTMLElement> el, <Popup options> options? ) 	this 	Sets an HTML content of the popup of this marker.
+		
 	});
 	</script>
 </polymer-element>
 
 
-<polymer-element name="nhnb-leaflet-tile-layer" attributes="url min-zoom max-zoom no-wrap max-native-zoom tile-size subdomains error-tile-url attribution tms continuous-world no-wrap zoom-offset zoom-reverse opacity z-index detect-retina reuse-tiles">
+
+<polymer-element name="nhnb-leaflet-tile-layer" attributes="url minzoom maxzoom nowrap maxnativezoom tilesize subdomains errortileurl attribution tms continuous-world nowrap zoomoffset zoomreverse opacity zindex detectretina reusetiles">
 	<template>
 		<style>
 			:host {
@@ -45,43 +88,43 @@
 	<script>
 	Polymer('nhnb-leaflet-tile-layer', {
 		url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-		"min-zoom": 0,
-		"max-zoom": 18,
-		"max-native-zoom": null,
-		"tile-size": 256,
-		"subdomains": "abc",
-		"error-tile-url": "",
-		"attribution": "",
-		"tms": false,
-		"continuous-world": false,
-		"no-wrap": false,
-		"zoom-offset": 0,
-		"zoom-reverse": false,
-		"opacity": 1.0,
-		"z-index": null,
-		"detect-retina": false,
-		"reuse-tiles": false,
+		minzoom: 0,
+		maxzoom: 18,
+		maxnativezoom: null,
+		tilesize: 256,
+		subdomains: "abc",
+		errortileurl: "",
+		attribution: "",
+		tms: false,
+		continuousworld: false,
+		nowrap: false,
+		zoomoffset: 0,
+		zoomreverse: false,
+		opacity: 1.0,
+		zindex: null,
+		detectretina: false,
+		reusetiles: false,
 		// unloadInvisibleTiles updateWhenIdle bounds
 		
 		mapChanged: function() {
 			if (this.map) {
 				this.layer = L.tileLayer(this.url, {
-					attribution: this.innerHTML + this['attribution'],
-					minZoom: this['min-zoom'],
-					maxZoom: this['max-zoom'],
-					maxNativeZoom: this['max-native-zoom'],
-					tileSize: this['tile-size'],
-					subdomains: this['subdomains'],
-					errorTileUrl: this['error-tile-url'],
-					tms: this['tms'],
-					continuousWorld: this['continuous-world'],
-					noWrap: this['no-wrap'],
-					zoomOffset: this['zoom-offset'],
-					zoomReverse: this['zoom-reverse'],
-					opacity: this['opacity'],
-					zIndex: this['z-index'],
-					detectRetina: this['detect-retina'],
-					reuseTiles: this['reuse-tiles'],
+					attribution: this.innerHTML + this.attribution,
+					minZoom: this.minzoom,
+					maxZoom: this.maxzoom,
+					maxNativeZoom: this.maxnativezoom,
+					tileSize: this.tilesize,
+					subdomains: this.subdomains,
+					errorTileUrl: this.errortileurl,
+					tms: this.tms,
+					continuousWorld: this.continuousworld,
+					noWrap: this.nowrap,
+					zoomOffset: this.zoomoffset,
+					zoomReverse: this.zoomreverse,
+					opacity: this.opacity,
+					zIndex: this.zindex,
+					detectRetina: this.detectretina,
+					reuseTiles: this.reusetiles,
 				});
 				this.layer.addTo(this.map);
 			}
@@ -92,9 +135,9 @@
 				this.layer.setOpacity(this.opacity);
 			}
 		},
-		"z-indexChanged": function() {
+		zindexChanged: function() {
 			if (this.layer) {
-				this.layer.setZIndex(this['z-index']);
+				this.layer.setZIndex(this.zindex);
 			}
 		},
 		urlChanged: function() {
