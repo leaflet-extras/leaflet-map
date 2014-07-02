@@ -154,7 +154,7 @@
 
 
 
-<polymer-element name="nhnb-leaflet-map" attributes="latitude longitude zoom">
+<polymer-element name="nhnb-leaflet-map" attributes="latitude longitude zoom minzoom maxzoom dragging touchzoom scrollwheelzoom doubleclickzoom boxzoom tap taptolerance trackresize worldcopyjump closepopuponclick bounceatzoomlimits keyboard keyboardpanoffset keyboardzoomoffset inertia inertiadeceleration inertiamaxspeed zoomcontrol attributioncontrol zoomanimationthreshold">
 	<template>
 		<link rel="stylesheet" href="../leaflet-bower/dist/leaflet.css" />
 		<style>
@@ -172,6 +172,28 @@
 			longitude: {value: 0, reflect: true},
 			zoom: {value: -1, reflect: true}
 		},
+		minzoom: 0,
+		maxzoom: 9007199254740992,
+		dragging: true,
+		touchzoom: true,
+		scrollwheelzoom: true,
+		doubleclickzoom: true,
+		boxzoom: true,
+		tap: true,
+		taptolerance: 15,
+		trackresize: true,
+		worldcopyjump: false,
+		closepopuponclick: true,
+		bounceatzoomlimits: true,
+		keyboard: true,
+		keyboardpanoffset: 80,
+		keyboardzoomoffset: 1,
+		inertia: true,
+		inertiadeceleration: 3000,
+		inertiamaxspeed: 1500,
+		zoomcontrol: true,
+		attributioncontrol: true,
+		zoomanimationthreshold: 4,
 
 		/** reference to the leaflet map */
 		map: undefined,
@@ -183,17 +205,33 @@
 		    zoom: 'view'
 		},
 
-		view: function(oldValue, newValue) {
-			if (this.map) {
-				this.map.setView(L.latLng(this.latitude, this.longitude), this.zoom);
-			}
-		},
-
 		domReady: function() {
 			L.Icon.Default.imagePath = "../leaflet-bower/dist/images";
 			this.map = L.map(this.$.map, {
 				center: [this.latitude, this.longitude],
-				zoom: this.zoom
+				zoom: this.zoom,
+				minZoom: this.minzoom,
+				maxZoom: this.maxzoom,
+				dragging: this.dragging,
+				touchZoom: this.touchzoom,
+				scrollWheelZoom: this.scrollwheelzoom,
+				doubleClickZoom: this.doubleclickzoom,
+				boxZoom: this.boxzoom,
+				tap: this.tap,
+				tapTolerance: this.taptolerance,
+				trackResize: this.trackresize,
+				worldCopyJump: this.worldcopyjump,
+				closePopupOnClick: this.closepopuponclick,
+				bounceAtZoomLimits: this.bounceatzoomlimits,
+				keyboard: this.keyboard,
+				keyboardPanOffset: this.keyboardpanoffset,
+				keyboardZoomOffset: this.keyboardzoomoffset,
+				inertia: this.inertia,
+				inertiaDeceleration: this.inertiadeceleration,
+				inertiaMaxSpeed: this.inertiamaxspeed,
+				zoomControl: this.zoomcontrol,
+				attributionControl: this.attributioncontrol,
+				zoomAnimationThreshold: this.zoomanimationthreshold
             });
 			if (this.zoom == -1) {
 				this.map.fitWorld();
@@ -216,6 +254,22 @@
 			this.registerMapOnChildren();
 		},
 
+//		center 	LatLng 	null 	Initial geographical center of the map.
+//		layers 	ILayer[] 	null 	Layers that will be added to the map initially.
+//		maxBounds 	LatLngBounds 	null 	When this option is set, the map restricts the view to the given geographical bounds, bouncing the user back when he tries to pan outside the view. To set the restriction dynamically, use setMaxBounds method
+//		crs 	CRS 	L.CRS.		EPSG3857 	Coordinate Reference System to use. Don't change this if you're not sure what it means.
+//		inertiaThreshold 	Number 	depends 	Number of milliseconds that should pass between stopping the movement and releasing the mouse or touch to prevent inertial movement. 32 for touch devices and 14 for the rest by default.
+//		fadeAnimation 	Boolean 	depends 	Whether the tile fade animation is enabled. By default it's enabled in all browsers that support CSS3 Transitions except Android.
+//		zoomAnimation 	Boolean 	depends 	Whether the tile zoom animation is enabled. By default it's enabled in all browsers that support CSS3 Transitions except Android.
+//		markerZoomAnimation 	Boolean 	depends 	Whether markers animate their zoom with the zoom animation, if disabled they will disappear for the length of the animation. By default it's enabled in all browsers that support CSS3 Transitions except Android.
+
+		view: function(oldValue, newValue) {
+			if (this.map) {
+				this.map.setView(L.latLng(this.latitude, this.longitude), this.zoom);
+			}
+		},
+
+		
 		registerMapOnChildren: function() {
 			for (var i = 0; i < this.children.length; i++) {
 				this.children[i].map = this.map;
