@@ -4,7 +4,6 @@
 		<script src="../platform/platform.js"></script>
 		<link rel="import" href="nhnb-leaflet-map.html">
 
-		<link rel="stylesheet" href="../highlightjs/styles/default.css">
 		<style>
 			body {
 				height: 100%;
@@ -18,7 +17,19 @@
 				border: 1px solid #aaa;
 			}
 			pre {
+				font-size: large;
 				border: 2px dashed #00A;
+				padding: 0.5em 1em;
+				background-color: #DDD;
+			}
+			.i {
+				color: #00D
+			}
+			.a {
+				color: #008;
+			}
+			.v {
+				color: #800;
 			}
 		</style>
 	</head>
@@ -28,7 +39,7 @@
 <h1 id="simple">Simple</h1>
 
 <pre class="html"><code>
-&lt;nhnb-leaflet-map> &lt;/nhnb-leaflet-map>
+&lt;<span class="i">nhnb-leaflet-map</span>&gt; &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
 </code></pre>
 
@@ -40,9 +51,9 @@
 <h1 id="view">Initial View</h1>
 
 <pre class="html"><code>
-&lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13">
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
 
-&lt;/nhnb-leaflet-map>
+&lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 </code></pre>
 
 <nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13"> </nhnb-leaflet-map>
@@ -53,17 +64,17 @@
 <h1 id="marker">Marker</h1>
 
 <pre class="html"><code>
-&lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13">
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
 
-	&lt;nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Transparent" opacity="0.6">
-	&lt;/nhnb-leaflet-marker>
+	&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Transparent</span>" <span class="a">opacity</span>="<span class="v">0.6</span>"&gt;
+	&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
 
-	&lt;nhnb-leaflet-marker latitude="51.5" longitude="-0.09" title="Popup Demo"> 
-		&lt;b>Bold&lt;/b>
-		&lt;p>Text&lt;/p>
-	&lt;/nhnb-leaflet-marker>
+	&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Popup Demo</span>"&gt; 
+		&lt;<span class="i">b</span>&gt;Bold&lt;/<span class="i">b</span>&gt;
+		&lt;<span class="i">p</span>&gt;Text&lt;/<span class="i">p</span>&gt;
+	&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
 
-&lt;/nhnb-leaflet-map>
+&lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
 </code></pre>
 
@@ -80,45 +91,21 @@
 
 
 
-<!-- 
-<h1 id="popup">Popups</h1>
-
-<pre class="html"><code>
-&lt;nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11">
-
-	&lt;nhnb-leaflet-marker latitude="52.48" longitude="13.4" title="South"> 
-		&lt;b>Bold&lt;/b>
-		&lt;p>Text&lt;/p>
-	&lt;/nhnb-leaflet-marker>
-
-&lt;/nhnb-leaflet-map>
-</code></pre>
-
-
-<nhnb-leaflet-map latitude="52.5" longitude="13.4" zoom="11">
-	<nhnb-leaflet-marker latitude="52.48" longitude="13.4" title="South">
-		<b>Bold</b>
-		<p>Text</p>
-	</nhnb-leaflet-marker>
-</nhnb-leaflet-map>
- -->
-
-
 
 <h1 id="layer">Tile layer</h1>
 
 <pre class="html"><code>
-&lt;nhnb-leaflet-map latitude="78.8" longitude="-96" zoom="5">
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>"&gt;
 
-	&lt;nhnb-leaflet-tile-layer 
-		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
-		minzoom="2" maxzoom="6" nowrap>
+	&lt;<span class="i">nhnb-leaflet-tile-layer</span> 
+		<span class="a">url</span>="<span class="v">https://stendhalgame.org/map/3/{z}-{x}-{y}.png</span>"
+		<span class="a">minzoom</span>="<span class="v">2</span>" <span class="a">maxzoom</span>="<span class="v">6</span>" <span class="a">nowrap</span>&gt;
 
-			Map source: &lt;a href="https://stendhalgame.org">Stendhal MMORPG&lt;/a>
+			Map source: &lt;<span class="i">a</span> <span class="a">href</span>="<span class="v">https://stendhalgame.org</span>"&gt;Stendhal MMORPG&lt;/<span class="i">a</span>&gt;
 
-	&lt;/nhnb-leaflet-tile-layer>
+	&lt;/<span class="i">nhnb-leaflet-tile-layer</span>&gt;
 
-&lt;/nhnb-leaflet-map>
+&lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
 </code></pre>
 
@@ -141,16 +128,16 @@
 <h1 id="event">Events</h1>
 
 <pre class="html"><code>
-&lt;div id="eventout">.&lt;/div>
-&lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13"> &lt;/nhnb-leaflet-map>
+&lt;<span class="i">div</span> <span class="a">id</span>="<span class="v">eventout</span>"&gt;.&lt;/<span class="i">div</span>&gt;
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt; &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
-&lt;script>
+&lt;<span class="i">script</span>>
 	var map = document.getElementById("eventmap");
 	map.addEventListener("moveend", function(e) {
 		var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
 		document.getElementById("eventout").innerText = text; 
 	});
-&lt;/script>
+&lt;/<span class="i">script</span>>
 
 </code></pre>
 
@@ -169,8 +156,5 @@ map.addEventListener("moveend", function(e) {
 });
 </script>
 
-
-<script src="../highlightjs/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
 	</body>
 </html>
