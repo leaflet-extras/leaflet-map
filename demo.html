@@ -70,7 +70,7 @@
 
 <h1 id="marker">Marker</h1>
 
-<p>Markers can be defined using html tags as well. The following examples creates a semi transparent marker and a second marker with a popup window on click.</p>
+<p>Markers can be defined using html tags as well. The following examples creates a semi transparent marker on the left hand side. And a second marker with a popup on click.</p>
 
 <pre class="html"><code>
 &lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
@@ -141,14 +141,14 @@
 <p>Leaflet events are converted into html events which originate from the component.</p> 
 
 <pre class="html"><code>
-&lt;<span class="i">div</span> <span class="a">id</span>="<span class="v">eventout</span>"&gt;.&lt;/<span class="i">div</span>&gt;
+&lt;<span class="i">div</span> <span class="a">id</span>="<span class="v">eventout</span>"&gt;Center: 51.505, -0.09&lt;/<span class="i">div</span>&gt;
 &lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt; &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
 &lt;<span class="i">script</span>>
 	var map = document.getElementById("eventmap");
 	map.addEventListener("moveend", function(e) {
 		var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
-		document.getElementById("eventout").innerText = text; 
+		document.getElementById("eventout").textContent = text; 
 	});
 &lt;/<span class="i">script</span>>
 
@@ -158,7 +158,7 @@
 TODO: Better use click event as example: And sliders with bidirectional value-bindings for movement and zoom
 -->
  
-<div id="eventout">.</div>
+<div id="eventout">Center: 51.505, -0.09</div>
 <nhnb-leaflet-map id="eventmap" latitude="51.505" longitude="-0.09" zoom="13"> </nhnb-leaflet-map>
 
 <script>
