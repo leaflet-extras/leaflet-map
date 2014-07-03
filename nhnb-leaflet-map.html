@@ -49,7 +49,7 @@
 					this.fire(e.type, e);
 				}, this);
 
-				if (this.innerHTML) {
+				if (this.innerHTML.trim()) {
 					this.marker.bindPopup(this.innerHTML);
 				}
 				this.marker.addTo(this.map);
