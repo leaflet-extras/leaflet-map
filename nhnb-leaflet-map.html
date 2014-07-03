@@ -33,7 +33,7 @@
 
 		mapChanged: function() {
 			if (this.map) {
-				this.marker = L.marker([this.latitude, this.longitude], {
+				var marker = L.marker([this.latitude, this.longitude], {
 					clickable: this.clickable,
 					dragable: this.dragable,
 					title: this.title,
@@ -43,6 +43,12 @@
 					riseonhover: this.riseonhover,
 					riseoffset: this.riseoffset,
 				});
+				this.marker = marker;
+				// forward events
+				marker.on('loading load tileloadstart tileload tileunload', function(e) {
+					this.fire(e.type, e);
+				}, this);
+
 				if (this.innerHTML) {
 					this.marker.bindPopup(this.innerHTML);
 				}
@@ -108,7 +114,7 @@
 		
 		mapChanged: function() {
 			if (this.map) {
-				this.layer = L.tileLayer(this.url, {
+				var layer = L.tileLayer(this.url, {
 					attribution: this.innerHTML + this.attribution,
 					minZoom: this.minzoom,
 					maxZoom: this.maxzoom,
@@ -126,6 +132,12 @@
 					detectRetina: this.detectretina,
 					reuseTiles: this.reusetiles,
 				});
+				this.layer = layer
+
+				// forward events
+				layer.on('loading load tileloadstart tileload tileunload', function(e) {
+					this.fire(e.type, e);
+				}, this);
 				this.layer.addTo(this.map);
 			}
 		},
@@ -235,18 +247,25 @@
             });
 			this.map = map;
 
+			// forward events
+			map.on('click dblclick mousedown mouseup mouseover mouseout mousemove contextmenu focus blur preclick load unload viewreset movestart move moveend dragstart drag dragend zoomstart zoomend zoomlevelschange resize autopanstart layeradd layerremove baselayerchange overlayadd overlayremove locationfound locationerror popupopen popupclose', function(e) {
+				this.fire(e.type, e);
+			}, this);
+
+			// update attributes
 			map.on('moveend', function(e) {
 			    this.latitude = map.getCenter().lat;
 			    this.longitude = map.getCenter().lng;
-			});
+			}, this);
 			map.on('zoomend', function(e) {
 			    this.zoom = map.getZoom();
-			});
+			}, this);
 
 			if (this.zoom == -1) {
 				this.map.fitWorld();
 			}
 
+			// add a default layer if there are no layers defined
 			var defaultLayerRequired = true;
 			for (var i = 0; i < this.children.length; i++) {
 				var localName = this.children[i].localName;
@@ -278,6 +297,7 @@
 				this.map.setView(L.latLng(this.latitude, this.longitude), this.zoom);
 			}
 		},
+
 
 		
 		registerMapOnChildren: function() {
