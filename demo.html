@@ -136,6 +136,40 @@
 
 
 
+
+ 	
+<h1 id="event">Events</h1>
+
+<pre class="html"><code>
+&lt;div id="eventout">.&lt;/div>
+&lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13"> &lt;/nhnb-leaflet-map>
+
+&lt;script>
+	var map = document.getElementById("eventmap");
+	map.addEventListener("moveend", function(e) {
+		var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
+		document.getElementById("eventout").innerText = text; 
+	});
+&lt;/script>
+
+</code></pre>
+
+<!-- 
+TODO: Better use click event as example: And sliders with bidirectional value-bindings for movement and zoom
+-->
+ 
+<div id="eventout">.</div>
+<nhnb-leaflet-map id="eventmap" latitude="51.505" longitude="-0.09" zoom="13"> </nhnb-leaflet-map>
+
+<script>
+var map = document.getElementById("eventmap");
+map.addEventListener("moveend", function(e) {
+	var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
+	document.getElementById("eventout").textContent = text; 
+});
+</script>
+
+
 <script src="../highlightjs/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 	</body>
