@@ -73,6 +73,12 @@
 				this.marker.setOpacity(this.opacity);
 			}
 		},
+		
+		detached: function() {
+			if (this.map && this.marker) {
+				this.map.removeLayer(this.marker);
+			}
+		}
 
 // setIcon( <Icon> icon ) 	this 	Changes the marker icon.
 // setPopupContent( <String> html | <HTMLElement> el, <Popup options> options? ) 	this 	Sets an HTML content of the popup of this marker.
@@ -155,6 +161,12 @@
 		urlChanged: function() {
 			if (this.layer) {
 				this.layer.setUrl(this.url);
+			}
+		},
+
+		detached: function() {
+			if (this.map && this.layer) {
+				this.map.removeLayer(this.layer);
 			}
 		}
 	});
