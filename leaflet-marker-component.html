@@ -2,9 +2,18 @@
 The `leaflet-marker` element represents a marker on the map and is used as
 a child element of the `leaflet-map` element.
 
+
+##### Example: Add markers & circles
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-marker longitude="77.2" latitude="28.4">
+        Marker
+      </leaflet-marker>
+    </leaflet-map>
+
 @element leaflet-marker
 @blurb Element for putting a marker on the map
 @status alpha
+@homepage http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/
 -->
 
 <link rel="import" href="leaflet-import.html">
@@ -17,18 +26,42 @@ a child element of the `leaflet-map` element.
   </template>
   <script>
    Polymer( 'leaflet-marker', {
+     /**
+      * A Leaflet marker object
+      *
+      * @property marker
+      * @type L.marker
+      * @default null
+      */
      marker: null,
+
+     /**
+      * A Leaflet map object
+      *
+      * @property map
+      * @type L.map
+      * @default null
+      */
      map: null,
 
      publish: {
-       longitude: {
-         value: null,
-         reflect: true
-       },
-       latitude: {
-         value: null,
-         reflect: true
-       }
+       /**
+	* The marker's longitude coordinate
+	*
+	* @attribute longitude
+	* @type number
+	* @default null
+	*/
+       longitude: { value: null, reflect: true },
+
+       /**
+	* The marker's latitude coordinate
+	*
+	* @attribute latitude
+	* @type number
+	* @default null
+	*/
+       latitude: { value: null, reflect: true }
      },
 
      observe: {
