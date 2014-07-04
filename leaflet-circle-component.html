@@ -1,3 +1,21 @@
+<!--
+The `leaflet-circle` element represents a circle on the map and is used as
+a child element of the `leaflet-map` element.
+
+
+##### Example: Add circles
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
+        Circle
+      </leaflet-circle>
+    </leaflet-map>
+
+@element leaflet-circle
+@blurb Element for putting a circle on the map
+@status alpha
+@homepage http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/
+-->
+
 <link rel="import" href="leaflet-import.html">
 
 <polymer-element name="leaflet-circle" attributes="latitude longitude radius">
@@ -8,22 +26,51 @@
   </template>
   <script>
    Polymer( 'leaflet-circle', {
+     /**
+      * A Leaflet circle object
+      *
+      * @property circle
+      * @type L.circle
+      * @default null
+      */
      circle: null,
+
+     /**
+      * A Leaflet map object
+      *
+      * @property map
+      * @type L.map
+      * @default null
+      */
      map: null,
 
      publish: {
-       longitude: {
-         value: null,
-         reflect: true
-       },
-       latitude: {
-         value: null,
-         reflect: true
-       },
-       radius: {
-         value: null,
-         reflect: true
-       }
+       /**
+	* The circle's longitude coordinate
+	*
+	* @attribute longitude
+	* @type number
+	* @default null
+	*/
+       longitude: { value: null, reflect: true },
+
+       /**
+	* The circle's latitude coordinate
+	*
+	* @attribute latitude
+	* @type number
+	* @default null
+	*/
+       latitude: { value: null, reflect: true },
+
+       /**
+	* The circle's radius is metres
+	*
+	* @attribute radius
+	* @type number
+	* @default 100
+	*/
+       radius: { value: 100, reflect: true }
      },
 
      observe: {
