@@ -1,9 +1,24 @@
 <!--
-Element for rendering a leaflet map
+The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
 
 ##### Example
+    <style>
+      leaflet-map {
+        height: 100%;
+      }
+    </style>
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12"></leaflet-map>
 
-    <leaflet-map></leaflet-map>
+##### Example: Add markers & circles
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-marker longitude="77.2" latitude="28.4">
+        Marker
+      </leaflet-marker>
+      <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
+        Circle
+      </leaflet-circle>
+    </leaflet-map>
+
 
 @element leaflet-map
 @blurb Element for rendering a leaflet map
