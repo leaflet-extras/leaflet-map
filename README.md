@@ -1,6 +1,6 @@
 # leaflet-map-component
 
-Make leaflet maps using declarative [Polymer](polymer-project.org) web components.
+Make leaflet maps using declarative [Polymer](http://polymer-project.org) web components.
 To get started read the [documentation](http://prtksxna.github.io/leaflet-map-component/)
 or checkout the [demo](http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/demo.html).
 
