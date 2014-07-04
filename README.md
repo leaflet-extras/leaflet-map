@@ -1,48 +1,45 @@
 # leaflet-map-component
-The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
 
-**Example:**
-```html
-<style>
-  leaflet-map {
-    height: 100%;
-  }
-</style>
-<leaflet-map longitude="77.2" latitude="28.4" zoom="12"></leaflet-map>
+Make leaflet maps using declarative [Polymer](polymer-project.org) web components.
+To get started read the [documentation](http://prtksxna.github.io/leaflet-map-component/)
+or checkout the [demo](http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/demo.html).
+
+## Quickstart Guide
+
+Install this web component using [Bower](http://bower.io):
+
+```
+bower install leaflet-map-component
 ```
 
-**Example:** Add markers & circles
+Import the main component and start creating your map:
+
 ```html
-<leaflet-map longitude="77.2" latitude="28.4" zoom="12">
-  <leaflet-marker longitude="77.2" latitude="28.4">
-    Marker
-  </leaflet-marker>
-  <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
-    Circle
-  </leaflet-circle>
-</leaflet-map>
+  <head>
+    <script src="../platform/platform.js"></script>
+    <link rel="import" href="leaflet-map-component.html">
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+      }
+      leaflet-map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-marker longitude="77.2" latitude="28.4">
+        Marker I
+      </leaflet-marker>
+      <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
+        Round
+      </leaflet-circle>
+    </leaflet-map>
+  </body>
 ```
 
-## leaflet-map
+##License
 
-|Attribute|Description|
-|---------|-----------|
-|**tileServer**|*string* URL of the tile server to be used|
-|**latitude**|*number* A latitude to center on the map|
-|**longitude**|*number* A longitude to center on the map|
-|**zoom**|*number* A zoom level to set to the map|
-
-## leaflet-marker
-
-|Attribute|Description|
-|---------|-----------|
-|**latitude**|*number* A latitude to position the marker|
-|**longitude**|*number* A longitude to position the marker|
-
-## leaflet-circle
-
-|Attribute|Description|
-|---------|-----------|
-|**latitude**|*number* A latitude to position the marker|
-|**longitude**|*number* A longitude to position the marker|
-|**radius**|*number*: Radius of circle in meters|
+MIT license - [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
