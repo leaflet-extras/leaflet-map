@@ -1,5 +1,6 @@
 <html>
 	<head>
+		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Map</title>
 		<script src="../platform/platform.js"></script>
 		<link rel="import" href="nhnb-leaflet-map.html">
@@ -177,38 +178,6 @@ document.addEventListener("load", function() {
 &lt;/<span class="i">script</span>&gt;
 
 </code></pre>
-
-
-<!--
-<pre class="html"><code>
-&lt;<span class="i">nhnb-leaflet-icon</span> <span class="a">id</span>="<span class="v">myicon</span>" <span class="a">iconurl</span>="<span class="v">https://stendhalgame.org/images/mapmarker/me.png</span>"&gt; &lt;<span class="i">/nhnb-leaflet-icon</span>&gt;
-
-&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
-
-	&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Icon element reference</span>" <span class="a">icon</span>="<span class="v">myicon</span>"&gt;
-	&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
-
-	&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Icon json</span>" 
-		<span class="a">icon</span>='<span class="v">{"iconUrl": "https://stendhalgame.org/images/mapmarker/dungeon.png"}</span>'&gt; 
-	&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
-
-	&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">id</span>="<span class="v">icon-reference</span>" <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.8</span>" <span class="a">title</span>="<span class="v">Icon L.icon()</span>"&gt;
-	&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
-
-&lt;/<span class="i">nhnb-leaflet-map</span>&gt;
-
-&lt;<span class="i">script</span>&gt;
-	document.addEventListener("load", function() {
-		document.getElementById("icon-reference").icon = L.icon({
-			"iconUrl": "https://stendhalgame.org/images/mapmarker/npc.png",
-			"iconSize": L.point(26, 25),
-			"iconAnchor": L.point(0, 0)
-		});
-	});
-&lt;/<span class="i">script</span>&gt;
-
-</code></pre>
--->
 
 
 <h2 id="layer">Tile layer</h2>

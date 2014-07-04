@@ -2,6 +2,18 @@
 <link rel="import" href="nhnb-leaflet-import.html">
 
 
+<!--
+element which defines an icon template for markers.
+
+##### Example
+
+    <<nhnb-leaflet-icon id="myicon" iconurl="https://stendhalgame.org/images/mapmarker/me.png"></nhnb-leaflet-icon>>
+
+@element nhnb-leaflet-icon
+@blurb element which defines an icon template for markers.
+@status beta
+@homepage http://polymerlabs.github.io/seed-element
+-->
 <polymer-element name="nhnb-leaflet-icon" attributes="iconurl iconretinaurl iconwith iconheight iconanchorx iconanchory shadowurl shadowretinaurl shadowwidth shadowheight shadowanchorx shadowanchory popupanchorx popupanchory classname">
 	<template>
 		<style>
@@ -14,21 +26,126 @@
 	"use strict";
 
 	Polymer('nhnb-leaflet-icon', {
+
+		/**
+		 * The `` attribute sets the URL to the icon image (absolute or relative to your script path).
+		 * 
+		 * @attribute iconurl
+		 * @type string 
+		 */
 		iconurl: undefined,
+
+		/**
+		 * The `` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.
+		 * 
+		 * @attribute iconretinaurl
+		 * @type string
+		 */
 		iconretinaurl: undefined,
+
+		/**
+		 * The `iconwith` attribute sets the size of the icon image in pixels. 
+		 * 
+		 * @attribute iconwidth
+		 * @type number
+		 */
 		iconwith: undefined,
-		iconheight: undefined,
+
+		/**
+		 * The `` attribute sets the size of the icon image in pixels.
+		 * 
+		 * @attribute iconheight
+		 * @type number
+		 */
+
+		/**
+		 * The `iconanchorx` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * 
+		 * @attribute iconanchorx
+		 * @type number
+		 */
 		iconanchorx: undefined,
+
+		/**
+		 * The `iconanchory` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * 
+		 * @attribute iconanchory
+		 * @type number
+		 */
 		iconanchory: undefined,
+
+		/**
+		 * The `shadowurl` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.
+		 * 
+		 * @attribute shadowurl
+		 * @type string
+		 */
 		shadowurl: undefined,
+
+		/**
+		 * The `shadowretinaurl` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.
+		 * 
+		 * @attribute shadowretinaurl
+		 * @type string
+		 */
 		shadowretinaurl: undefined,
+
+		/**
+		 * The `shadowwidth` attribute sets the size of the shadow image in pixels.
+		 * 
+		 * @attribute shadowwidth
+		 * @type number
+		 */
 		shadowwidth: undefined,
+
+		/**
+		 * The `shadowheight` attribute sets the size of the shadow image in pixels.
+		 * 
+		 * @attribute shadowheight
+		 * @type number
+		 */
 		shadowheight: undefined,
+
+		/**
+		 * The `shadowanchorx` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
+		 * 
+		 * @attribute shadowanchorx
+		 * @type number
+		 */
 		shadowanchorx: undefined,
+
+		/**
+		 * The `shadowanchory` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
+		 * 
+		 * @attribute shadowanchory
+		 * @type number
+		 */
 		shadowanchory: undefined,
+
+		/**
+		 * The `popupanchorx` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
+		 * 
+		 * @attribute popupanchorx
+		 * @type number
+		 */
 		popupanchorx: undefined,
+
+		/**
+		 * The `popupanchory` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
+		 * 
+		 * @attribute popupanchory
+		 * @type number
+		 */
 		popupanchory: undefined,
+
+		/**
+		 * The `` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+		 * 
+		 * @attribute classname
+		 * @type string
+		 */
 		classname: "",
+		
 
 		icon_: null,
 
@@ -70,8 +187,21 @@
 	</script>
 </polymer-element>
 
+<!--
+element which defines a maker
 
-<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude icon clickable dragable title alt zindexoffset opacity riseonhover riseoffset">
+##### Example
+
+	<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
+		<b>Popup text</b>
+	</nhnb-leaflet-marker>
+
+@element nhnb-leaflet-marker
+@blurb element which defines a marker. The content is used as popup window, unless it is empty.
+@status beta
+@homepage http://polymerlabs.github.io/seed-element
+-->
+<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude icon clickable dragable keyboard title alt zindexoffset opacity riseonhover riseoffset">
 	<template>
 		<style>
 			:host {
@@ -87,15 +217,90 @@
 			latitude: {value: null, reflect: true},
 			longitude: {value: null, reflect: true}
 		},
+
+		/**
+		 * The `icon` attribute sets the Icon class to use for rendering the marker. 
+		 * This attribute may be refer to an id-attribute of an nhnb-leaflet-icon-element,
+		 * contain json syntax or it be assigned an instance of L.icon.
+		 * See Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.
+		 * 
+		 * @attribute icon
+		 * @type string, json or L.icon
+		 */
 		icon: undefined,
+
+		/**
+		 * If `clickable` attribute is set to false, the marker will not emit mouse events and will act as a part of the underlying map.
+		 * 
+		 * @attribute clickable
+		 * @type bool
+		 */
 		clickable: true,
+
+		/**
+		 * The `dragable` attribute sets the whether the marker is draggable with mouse/touch or not.
+		 * 
+		 * @attribute dragable
+		 * @type bool
+		 */
 		dragable: false,
+
+		/**
+		 * The `keyboard` attribute sets the whether the marker is draggable with mouse/touch or not.
+		 * 
+		 * @attribute dragable
+		 * @type bool
+		 */
+		 keyboard: true,
+
+		/**
+		 * The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).
+		 * 
+		 * @attribute title
+		 * @type string
+		 */
 		title: '',
+
+		/**
+		 * The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).
+		 * 
+		 * @attribute alt
+		 * @type string
+		 */
 		alt: '',
+
+		/**
+		 * The `zindexoffset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude
+		 * 
+		 * @attribute zindexoffset
+		 * @type number
+		 */
 		zindexoffset: 0,
+
+		/**
+		 * The `opacity` attribute sets the opacity of the marker.
+		 * 
+		 * @attribute opacity
+		 * @type number
+		 */
 		opacity: 1.0,
+
+		/**
+		 * The `riseonhover` attribute sets the whether the marker will get on top of others when you hover the mouse over it. 
+		 * 
+		 * @attribute riseonhover
+		 * @type bool
+		 */
 		riseonhover: false,
+
+		/**
+		 * The `riseoffset` attribute sets the z-index offset used for the riseOnHover feature.
+		 * 
+		 * @attribute riseoffset
+		 * @type number
+		 */
 		riseoffset: 250,
+
 		marker: undefined,
 
 		observe: {
@@ -109,6 +314,7 @@
 				var marker = L.marker([this.latitude, this.longitude], {
 					clickable: this.clickable,
 					dragable: this.dragable,
+					keyboard: this.keyboard,
 					title: this.title,
 					alt: this.alt,
 					zindexoffset: this.zindexoffset,
@@ -183,15 +389,30 @@
 				this.map.removeLayer(this.marker);
 			}
 		}
-
-// setIcon( <Icon> icon ) 	this 	Changes the marker icon.
-// setPopupContent( <String> html | <HTMLElement> el, <Popup options> options? ) 	this 	Sets an HTML content of the popup of this marker.
-		
 	});
 	</script>
 </polymer-element>
 
 
+
+<!--
+element which defines a tile layer
+
+##### Example
+
+	<nhnb-leaflet-tilelayer 
+		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
+		minzoom="2" maxzoom="6" nowrap>
+
+			Map source: <a href="https://stendhalgame.org">Stendhal MMORPG</a>
+
+	</nhnb-leaflet-tilelayer>
+
+@element nhnb-leaflet-tilelayer
+@blurb element which defines a tile layer. The content of the nhnb-leaflet-tilelayer is used as attribution. 
+@status beta
+@homepage http://polymerlabs.github.io/seed-element
+-->
 
 <polymer-element name="nhnb-leaflet-tilelayer" attributes="url minzoom maxzoom nowrap maxnativezoom tilesize subdomains errortileurl attribution tms continuous-world nowrap zoomoffset zoomreverse opacity zindex detectretina reusetiles">
 	<template>
@@ -205,23 +426,150 @@
 	"use strict";
 
 	Polymer('nhnb-leaflet-tilelayer', {
+
+		/**
+		 * The `url` attribute sets the address template for tilesets.
+		 *
+		 *	 'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'
+		 *
+		 * {s} means one of the available subdomains (used sequentially to help with 
+		 * browser parallel requests per domain limitation; subdomain values are specified
+		 * in options; a, b or c by default, can be omitted), {z} — zoom level, {x} and {y}
+		 * — tile coordinates. 
+		 * 
+		 * @attribute url
+		 * @type string
+		 */
 		url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+		/**
+		 * The `minzoom` attribute sets the minimum zoom number.
+		 * 
+		 * @attribute minzoom
+		 * @type number
+		 */
 		minzoom: 0,
+
+		/**
+		 * The `maxzoom` attribute sets the maximum zoom number.
+		 * 
+		 * @attribute maxzoom
+		 * @type number
+		 */
 		maxzoom: 18,
+
+		/**
+		 * The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled. 
+		 * 
+		 * @attribute maxnativezoom
+		 * @type number
+		 */
 		maxnativezoom: null,
+
+		/**
+		 * The `tilesize` attribute sets the tile size (width and height in pixels, assuming tiles are square).
+		 * 
+		 * @attribute tilesize
+		 * @type number
+		 */
 		tilesize: 256,
+
+		/**
+		 * The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.
+		 * 
+		 * @attribute subdomains
+		 * @type string or string[]
+		 */
 		subdomains: "abc",
+
+		/**
+		 * The `errortileurl` attribute sets the URL to the tile image to show in place of the tile that failed to load.
+		 * 
+		 * @attribute errortileurl
+		 * @type string
+		 */
 		errortileurl: "",
+
+		/**
+		 * The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.
+		 * 
+		 * @attribute attribution
+		 * @type 
+		 */
 		attribution: "",
+
+		/**
+		 * The `tms` attribute sets wether inverses Y axis numbering for tiles should be used (turn this on for TMS services).
+		 * 
+		 * @attribute tms
+		 * @type bool
+		 */
 		tms: false,
+
+		/**
+		 * The `continuousworld` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
+		 * 
+		 * @attribute continuousworld
+		 * @type bool
+		 */
 		continuousworld: false,
+
+		/**
+		 * The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.
+		 * 
+		 * @attribute nowrap
+		 * @type bool
+		 */
 		nowrap: false,
+
+		/**
+		 * The `zoomoffset` attribute sets the zoom number used in tile URLs will be offset with this value.
+		 * 
+		 * @attribute zoomoffset
+		 * @type number
+		 */
 		zoomoffset: 0,
+
+		/**
+		 * The `zoomreverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
+		 * 
+		 * @attribute zoomreverse
+		 * @type bool
+		 */
 		zoomreverse: false,
+
+		/**
+		 * The `opacity` attribute sets the opacity of the tile layer.
+		 * 
+		 * @attribute opacity
+		 * @type number
+		 */
 		opacity: 1.0,
+
+		/**
+		 * The `zindex` attribute sets the explicit zIndex of the tile layer. Not set by default.
+		 * 
+		 * @attribute zindex
+		 * @type number
+		 */
 		zindex: null,
+
+		/**
+		 * The `detectretina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution. 
+		 * 
+		 * @attribute detectretina
+		 * @type bool
+		 */
 		detectretina: false,
+
+		/**
+		 * The `reusetiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
+		 * 
+		 * @attribute reusetiles
+		 * @type bool
+		 */
 		reusetiles: false,
+
 		// unloadInvisibleTiles updateWhenIdle bounds
 		
 		mapChanged: function() {
@@ -284,6 +632,23 @@
 
 
 
+<!--
+element which defines a leadlet map
+
+##### Example
+
+	<nhnb-leaflet-map> </nhnb-leaflet-map>
+	
+	or 
+	
+	<nhnb-leaflet-map latitude="78.8" longitude="-96" zoom="5">
+	</nhnb-leaflet-map>  
+
+@element nhnb-leaflet-map
+@blurb element which defines a leaflet map. Most options are supported as attributes. 
+@status beta
+@homepage http://polymerlabs.github.io/seed-element
+-->
 <polymer-element name="nhnb-leaflet-map" attributes="minzoom maxzoom dragging touchzoom scrollwheelzoom doubleclickzoom boxzoom tap taptolerance trackresize worldcopyjump closepopuponclick bounceatzoomlimits keyboard keyboardpanoffset keyboardzoomoffset inertia inertiadeceleration inertiamaxspeed zoomcontrol attributioncontrol zoomanimationthreshold">
 	<template>
 		<link rel="stylesheet" href="../leaflet-bower/dist/leaflet.css" />
@@ -298,33 +663,208 @@
 	"use strict";
 
 	Polymer('nhnb-leaflet-map', {
-		/** Publish attributes with reflection of values to attributes */
+
 		publish: {
+
+			/**
+			 * The `latitude` attribute sets the map center.
+			 * 
+			 * @attribute latitude
+			 * @type number
+			 */
 			latitude: {value: 51, reflect: true},
+
+			/**
+			 * The `longitude` attribute sets the map center.
+			 * 
+			 * @attribute longitude
+			 * @type number
+			 */
 			longitude: {value: 0, reflect: true},
+
+			/**
+			 * The `zoom` attribute sets the map zoom.
+			 * 
+			 * @attribute zoom
+			 * @type number
+			 */
 			zoom: {value: -1, reflect: true}
 		},
+
+		/**
+		 * The `minzoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.
+		 * 
+		 * @attribute minzoom
+		 * @type number
+		 */
 		minzoom: 0,
+
+		/**
+		 * The `maxzoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.
+		 * 
+		 * @attribute maxzoom
+		 * @type number
+		 */
 		maxzoom: 9007199254740992,
+
+		/**
+		 * The `dragging` attribute sets whether  when he tries to pan outside the view.
+		 * 
+		 * @attribute dragging
+		 * @type bool
+		 */
 		dragging: true,
+
+		/**
+		 * The `touchzoom` attribute sets whether the map can be zoomed by touch-dragging with two fingers. 
+		 * 
+		 * @attribute touchzoom
+		 * @type bool
+		 */
 		touchzoom: true,
+
+		/**
+		 * The `scrollwheelzoom` attribute sets the whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.
+		 * 
+		 * @attribute scrollwheelzoom
+		 * @type bool
+		 */
 		scrollwheelzoom: true,
+
+		/**
+		 * The `doubleclickzoom` attribute sets the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
+		 * 
+		 * @attribute doubleclickzoom
+		 * @type bool
+		 */
 		doubleclickzoom: true,
+
+		/**
+		 * The `boxzoom` attribute sets the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
+		 * 
+		 * @attribute boxzoom
+		 * @type bool
+		 */
 		boxzoom: true,
+
+		/**
+		 * The `tap` attribute enables mobile hacks for supporting instant taps (fixing 200ms click delay on iOS/Android) and touch holds (fired as contextmenu events).
+		 * 
+		 * @attribute tap
+		 * @type bool
+		 */
 		tap: true,
+
+		/**
+		 * The `taptolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap. 
+		 * 
+		 * @attribute taptolerance
+		 * @type number
+		 */
 		taptolerance: 15,
+
+		/**
+		 * The `trackresize` attribute sets whether the map automatically handles browser window resize to update itself.
+		 * 
+		 * @attribute trackresize
+		 * @type bool
+		 */
 		trackresize: true,
+
+		/**
+		 * The `worldcopyjump` attribute sets whether the map tracks when you pan to another "copy" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.
+		 * 
+		 * @attribute worldcopyjump
+		 * @type bool
+		 */
 		worldcopyjump: false,
+
+		/**
+		 * The `closepopuponclick` attribute sets whether popups are closed when user clicks the map.
+		 * 
+		 * @attribute closepopuponclick
+		 * @type bool
+		 */
 		closepopuponclick: true,
+
+		/**
+		 * The `bounceatzoomlimits` attribute sets whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
+		 * 
+		 * @attribute bounceatzoomlimits
+		 * @type bool
+		 */
 		bounceatzoomlimits: true,
+
+		/**
+		 * The `keyboard` attribute sets whether the map is focusable and allows users to navigate the map with keyboard arrows and +/- keys.
+		 * 
+		 * @attribute keyboard
+		 * @type bool
+		 */
 		keyboard: true,
+
+		/**
+		 * The `keyboardpanoffset` attribute sets the amount of pixels to pan when pressing an arrow key.
+		 * 
+		 * @attribute keyboardpanoffset
+		 * @type number
+		 */
 		keyboardpanoffset: 80,
+
+		/**
+		 * The `keyboardzoomoffset` attribute sets the number of zoom levels to change when pressing + or - key.
+		 * 
+		 * @attribute keyboardzoomoffset
+		 * @type number
+		 */
 		keyboardzoomoffset: 1,
+
+		/**
+		 * The `inertia` attribute sets whether panning of the map will have an inertia effect where the map builds momentum while dragging and continues moving in the same direction for some time. Feels especially nice on touch devices.
+		 * 
+		 * @attribute inertia
+		 * @type 
+		 */
 		inertia: true,
+
+		/**
+		 * The `inertiadeceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.
+		 * 
+		 * @attribute inertiadeceleration
+		 * @type number
+		 */
 		inertiadeceleration: 3000,
+
+		/**
+		 * The `inertiamaxspeed` attribute sets the max speed of the inertial movement, in pixels/second.
+		 * 
+		 * @attribute inertiamaxspeed
+		 * @type number
+		 */
 		inertiamaxspeed: 1500,
+
+		/**
+		 * The `zoomcontrol` attribute sets whether the zoom control is added to the map by default.
+		 * 
+		 * @attribute zoomcontrol
+		 * @type bool
+		 */
 		zoomcontrol: true,
+
+		/**
+		 * The `attributioncontrol` attribute sets whether the attribution control is added to the map by default.
+		 * 
+		 * @attribute attributioncontrol
+		 * @type bool
+		 */
 		attributioncontrol: true,
+
+		/**
+		 * The `zoomanimationthreshold` attribute sets the maximum number of zoom level differences that still use animation
+		 * 
+		 * @attribute zoomanimationthreshold
+		 * @type number
+		 */
 		zoomanimationthreshold: 4,
 
 		/** reference to the leaflet map */
@@ -403,23 +943,12 @@
 			this.registerMapOnChildren();
 		},
 
-//		center 	LatLng 	null 	Initial geographical center of the map.
-//		layers 	ILayer[] 	null 	Layers that will be added to the map initially.
-//		maxBounds 	LatLngBounds 	null 	When this option is set, the map restricts the view to the given geographical bounds, bouncing the user back when he tries to pan outside the view. To set the restriction dynamically, use setMaxBounds method
-//		crs 	CRS 	L.CRS.		EPSG3857 	Coordinate Reference System to use. Don't change this if you're not sure what it means.
-//		inertiaThreshold 	Number 	depends 	Number of milliseconds that should pass between stopping the movement and releasing the mouse or touch to prevent inertial movement. 32 for touch devices and 14 for the rest by default.
-//		fadeAnimation 	Boolean 	depends 	Whether the tile fade animation is enabled. By default it's enabled in all browsers that support CSS3 Transitions except Android.
-//		zoomAnimation 	Boolean 	depends 	Whether the tile zoom animation is enabled. By default it's enabled in all browsers that support CSS3 Transitions except Android.
-//		markerZoomAnimation 	Boolean 	depends 	Whether markers animate their zoom with the zoom animation, if disabled they will disappear for the length of the animation. By default it's enabled in all browsers that support CSS3 Transitions except Android.
-
 		view: function(oldValue, newValue) {
 			if (this.map) {
 				this.map.setView(L.latLng(this.latitude, this.longitude), this.zoom);
 			}
 		},
 
-
-		
 		registerMapOnChildren: function() {
 			for (var i = 0; i < this.children.length; i++) {
 				this.children[i].map = this.map;
