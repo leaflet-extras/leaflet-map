@@ -1,7 +1,8 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="nhnb-leaflet-import.html">
 
-<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude clickable dragable title alt zindexoffset opacity riseonhover riseoffset">
+
+<polymer-element name="nhnb-leaflet-icon" attributes="iconurl iconretinaurl iconwith iconheight iconanchorx iconanchory shadowurl shadowretinaurl shadowwidth shadowheight shadowanchorx shadowanchory popupanchorx popupanchory classname">
 	<template>
 		<style>
 			:host {
@@ -10,12 +11,83 @@
 		</style>
 	</template>
 	<script>
+	"use strict";
+
+	Polymer('nhnb-leaflet-icon', {
+		iconurl: undefined,
+		iconretinaurl: undefined,
+		iconwith: undefined,
+		iconheight: undefined,
+		iconanchorx: undefined,
+		iconanchory: undefined,
+		shadowurl: undefined,
+		shadowretinaurl: undefined,
+		shadowwidth: undefined,
+		shadowheight: undefined,
+		shadowanchorx: undefined,
+		shadowanchory: undefined,
+		popupanchorx: undefined,
+		popupanchory: undefined,
+		classname: "",
+
+		icon_: null,
+
+		getIcon: function() {
+			if (this.icon_) {
+				return this.icon_;
+			}
+			var icon = {
+				iconUrl: this.iconurl,
+				iconRetinaUrl: this.iconretinaurl,
+				shadowUrl: this.shadowurl,
+				shadowRetinaUrl: this.shadowretinaurl,
+				className: this.classname	
+			};
+			if (this.iconwidth && this.iconheight) {
+				icon.iconSize = L.point(this.iconwith, this.iconheight);
+			}
+			if (this.iconanchorx && this.iconanchory) {
+				icon.iconAnchor = L.point(this.iconanchorx, this.iconanchory);
+			}
+			if (this.shadowwidth && this.shadowheight) {
+				icon.shadowSize = L.point(this.shadowwith, this.shadowheight);
+			}
+			if (this.shadowanchorx && this.shadowanchory) {
+				icon.shadowAnchor = L.point(this.shadowanchorx, this.shadowanchory);
+			}
+			if (this.popupanchorx && this.popupanchory) {
+				icon.popupAnchor = L.point(this.popupanchorx, this.popupanchory);
+			}
+			
+			this.icon_ = L.icon(icon);
+			return this.icon_;
+		},
+		
+		attributeChanged: function() {
+			this.icon_ = null;
+		}
+	});
+	</script>
+</polymer-element>
+
+
+<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude icon clickable dragable title alt zindexoffset opacity riseonhover riseoffset">
+	<template>
+		<style>
+			:host {
+				display: none;
+			}
+		</style>
+	</template>
+	<script>
+	"use strict";
+
 	Polymer('nhnb-leaflet-marker', {
 		publish: {
 			latitude: {value: null, reflect: true},
 			longitude: {value: null, reflect: true}
 		},
-		// icon
+		icon: undefined,
 		clickable: true,
 		dragable: false,
 		title: '',
@@ -33,6 +105,7 @@
 
 		mapChanged: function() {
 			if (this.map) {
+
 				var marker = L.marker([this.latitude, this.longitude], {
 					clickable: this.clickable,
 					dragable: this.dragable,
@@ -44,6 +117,8 @@
 					riseoffset: this.riseoffset,
 				});
 				this.marker = marker;
+				this.iconChanged();
+
 				// forward events
 				marker.on('loading load tileloadstart tileload tileunload', function(e) {
 					this.fire(e.type, e);
@@ -53,6 +128,35 @@
 					this.marker.bindPopup(this.innerHTML);
 				}
 				this.marker.addTo(this.map);
+			}
+		},
+
+		iconChanged: function() {
+			// icon support
+			var iconOption;
+			if (this.icon) {
+				if (typeof this.icon == "string") {
+					var iconElement = document.getElementById(this.icon);
+					if (iconElement != null) {
+						if (iconElement.getIcon) {
+							iconOption = iconElement.getIcon();
+						}
+					} else {
+						try {
+							iconOption = L.icon(JSON.parse(this.icon));
+						} catch (e) {
+							iconOption = new L.Icon.Default();
+						}
+					}
+				} else {
+					iconOption = this.icon;
+				}
+			}
+			if (!iconOption) {
+				iconOption = new L.Icon.Default();
+			}
+			if (this.marker) {
+				this.marker.setIcon(iconOption);
 			}
 		},
 
@@ -98,6 +202,8 @@
 		</style>
 	</template>
 	<script>
+	"use strict";
+
 	Polymer('nhnb-leaflet-tile-layer', {
 		url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 		minzoom: 0,
@@ -186,9 +292,11 @@
 			:host #map {height:100%; width:100%}
 		</style>
 		<div id="map"></div>
-		<content id="markers" select="nhnb-leaflet-marker nhnb-leaflet-tile-layer"></content>
+		<content id="markers" select="*"></content>
   	</template>
 	<script>
+	"use strict";
+
 	Polymer('nhnb-leaflet-map', {
 		/** Publish attributes with reflection of values to attributes */
 		publish: {
