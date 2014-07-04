@@ -168,18 +168,18 @@ document.addEventListener("load", function() {
 
 <h2 id="layer">Tile layer</h2>
 
-<p>Custom tile layers, for example from online games can be defined using the nhnb-leaflet-tile-layer element. If there is no explicit tile-layer defined, a default one will be used as shown in previous examples.</p>
+<p>Custom tile layers, for example from online games can be defined using the nhnb-leaflet-tilelayer element. If there is no explicit tilelayer defined, a default one will be used as shown in previous examples.</p>
 
 <pre class="html"><code>
 &lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>"&gt;
 
-	&lt;<span class="i">nhnb-leaflet-tile-layer</span> 
+	&lt;<span class="i">nhnb-leaflet-tilelayer</span> 
 		<span class="a">url</span>="<span class="v">https://stendhalgame.org/map/3/{z}-{x}-{y}.png</span>"
 		<span class="a">minzoom</span>="<span class="v">2</span>" <span class="a">maxzoom</span>="<span class="v">6</span>" <span class="a">nowrap</span>&gt;
 
 			Map source: &lt;<span class="i">a</span> <span class="a">href</span>="<span class="v">https://stendhalgame.org</span>"&gt;Stendhal MMORPG&lt;/<span class="i">a</span>&gt;
 
-	&lt;/<span class="i">nhnb-leaflet-tile-layer</span>&gt;
+	&lt;/<span class="i">nhnb-leaflet-tilelayer</span>&gt;
 
 &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
@@ -187,13 +187,13 @@ document.addEventListener("load", function() {
 
 
 <nhnb-leaflet-map latitude="78.8" longitude="-96" zoom="5">
-	<nhnb-leaflet-tile-layer 
+	<nhnb-leaflet-tilelayer 
 		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
 		minzoom="2" maxzoom="6" nowrap>
 
 			Map source: <a href="https://stendhalgame.org">Stendhal MMORPG</a>
 
-	</nhnb-leaflet-tile-layer>
+	</nhnb-leaflet-tilelayer>
 
 </nhnb-leaflet-map>
 

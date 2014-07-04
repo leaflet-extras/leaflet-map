@@ -193,7 +193,7 @@
 
 
 
-<polymer-element name="nhnb-leaflet-tile-layer" attributes="url minzoom maxzoom nowrap maxnativezoom tilesize subdomains errortileurl attribution tms continuous-world nowrap zoomoffset zoomreverse opacity zindex detectretina reusetiles">
+<polymer-element name="nhnb-leaflet-tilelayer" attributes="url minzoom maxzoom nowrap maxnativezoom tilesize subdomains errortileurl attribution tms continuous-world nowrap zoomoffset zoomreverse opacity zindex detectretina reusetiles">
 	<template>
 		<style>
 			:host {
@@ -204,7 +204,7 @@
 	<script>
 	"use strict";
 
-	Polymer('nhnb-leaflet-tile-layer', {
+	Polymer('nhnb-leaflet-tilelayer', {
 		url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 		minzoom: 0,
 		maxzoom: 18,

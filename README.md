@@ -21,7 +21,8 @@ At this time the following custom elements are defined:
 
 * nhnb-leaflet-map (L.map)
 * nhnb-leaflet-marker (L.marker)
-* nhnb-leaflet-tile-layer (L.tileLayer)
+* nhnb-leaflet-icon
+* nhnb-leaflet-tilelayer (L.tileLayer)
 
 Most of the options documented in the [Leaflet reference](http://leafletjs.com/reference.html) for those objects are exported as html attributes. 
 For example use &lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13"&gt; &lt;/nhnb-leaflet-map&gt; to define the view and zoom level.
