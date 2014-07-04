@@ -26,21 +26,42 @@ Element for rendering a leaflet map
   </template>
   <script>
    Polymer( 'leaflet-map', {
-
      publish: {
-       latitude: {
-         value: 15.466736,
-         reflect: true
-       },
-       longitude: {
-         value: 73.808159,
-         reflect: true
-       },
-       zoom: {
-         value: 10,
-         reflect: true
-       }
+       /**
+        * The map's latitude coordinate.
+	*
+        * @attribute latitude
+        * @type number
+	* @default null
+        */
+       latitude: { value: null, reflect: true },
+
+       /**
+        * The map's longitude coordinate.
+	*
+        * @attribute longitude
+        * @type number
+        * @default null
+        */
+       longitude: { value: null, reflect: true },
+
+       /**
+        * The map's zoom level
+	*
+        * @attribute zoom
+        * @type number
+        * @default 10
+        */
+       zoom: { value: 10, reflect: true }
      },
+
+      /**
+       * The map's tile server URL
+       *
+       * @attribute tileServer
+       * @type string
+       * @default http://{s}.tile.osm.org/{z}/{x}/{y}.png
+       */
      tileServer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
 
      observe: {
