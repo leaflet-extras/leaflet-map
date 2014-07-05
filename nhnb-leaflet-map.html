@@ -552,6 +552,44 @@ element which defines a tile layer
 	"use strict";
 
 	Polymer('nhnb-leaflet-tilelayer', {
+		/**
+		 * Fired when the tile layer starts loading tiles.
+		 * 
+		 * @event loading
+		 */
+
+		/**
+		 * Fired when the tile layer loaded all visible tiles.
+		 * 
+		 * @event load
+		 */
+
+		/**
+		 * Fired when a tile is requested and starts loading.
+		 * 
+		 * @event tileloadstart
+		 * @type TileEvent
+		 * @param {HTMLElement} tile The tile element (image).
+		 * @param {string} url The source URL of the tile.
+		 */
+
+		/**
+		 * Fired when a tile loads.
+		 * 
+		 * @event tileload
+		 * @type TileEvent
+		 * @param {HTMLElement} tile The tile element (image).
+		 * @param {string} url The source URL of the tile.
+		 */
+
+		/**
+		 * Fired when a tile is removed (e.g. when you have unloadInvisibleTiles on).
+		 * 
+		 * @event tileunload
+		 * @type TileEvent
+		 * @param {HTMLElement} tile The tile element (image).
+		 * @param {string} url The source URL of the tile.
+		 */
 
 		/**
 		 * The `url` attribute sets the address template for tilesets.
