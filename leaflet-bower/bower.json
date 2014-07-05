@@ -1,0 +1,12 @@
+{
+  "name": "leaflet-maps-bower",
+  "description": "Bower consumable Leaflet maps",
+  "version": "0.6.3",
+  "keywords":[
+  	"library"
+  ],
+  "main": [
+  	"dist/leaflet.js",
+  	"dist/leaflet.css"
+  ]
+}

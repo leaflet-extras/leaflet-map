@@ -1,0 +1,250 @@
+<html>
+	<head>
+		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Map</title>
+		<script src="/platform/platform.js"></script>
+		<link rel="import" href="nhnb-leaflet-map/nhnb-leaflet-map.html">
+
+		<style>
+			body {
+				height: 100%;
+				margin: 1em;
+				font-family: Arial;
+			}
+			
+			h2 {
+				margin-top: 2em;
+			}
+			
+			nhnb-leaflet-map {
+				width: 20em;
+				height: 20em;
+				border: 1px solid #aaa;
+			}
+			pre {
+				font-size: large;
+				border: 2px dashed #00A;
+				padding: 0.5em 1em;
+				background-color: #DDD;
+			}
+			.i {
+				color: #00D
+			}
+			.a {
+				color: #008;
+			}
+			.v {
+				color: #800;
+			}
+		</style>
+	</head>
+	<body>
+
+<h1>Demo of Leaflet web-component</h1>
+
+<p>This is a demo page for the web-component wrapper of <a href="http://leafletjs.com">leaflet</a>.</p>
+
+
+<h2 id="simple">Simple</h2>
+
+<p>Creating a leaflet based map is as simple as adding a &lt;nhnb-leaflet-map&gt; tag after two lines of boilerplate code to load the web component platform and import the nhnb-leaflet-map component.</p>
+
+<nhnb-leaflet-map> </nhnb-leaflet-map>
+
+<pre class="html"><code>
+&lt;<span class="i">script</span> <span class="a">src</span>="<span class="v">../platform/platform.js</span>"&gt;&lt;/<span class="i">script</span>&gt;
+&lt;<span class="i">link</span> <span class="a">rel</span>="<span class="v">import</span>" <span class="a">href</span>="<span class="v">nhnb-leaflet-map.html</span>"&gt;
+
+&lt;<span class="i">nhnb-leaflet-map</span>&gt; &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
+
+</code></pre>
+
+
+
+
+ 	
+<h2 id="view">Initial View</h2>
+
+<p>Like normal html elements, the map is configurable with attributes. Those attributes correspond to the option parameter of L.map as defined in the <a href="http://leafletjs.com/reference.html">leaflet documentation</a>. For example the initial view is defined as follows:</p>
+
+<nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13"> </nhnb-leaflet-map>
+
+
+<pre class="html"><code>
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
+
+&lt;/<span class="i">nhnb-leaflet-map</span>&gt;
+</code></pre>
+
+
+
+<h2 id="marker">Marker</h2>
+
+<p>Markers can be defined using html tags as well. The following examples creates a semi transparent marker on the left hand side. And a second marker with a popup on click.</p>
+
+<nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13">
+	<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Transparent" opacity="0.6">
+	</nhnb-leaflet-marker>
+	
+	<nhnb-leaflet-marker latitude="51.5" longitude="-0.09" title="Popup Demo">
+		<b>Bold</b>
+		<p>Text</p>
+	</nhnb-leaflet-marker>
+</nhnb-leaflet-map>
+
+<pre class="html"><code>
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
+
+	&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Transparent</span>" <span class="a">opacity</span>="<span class="v">0.6</span>"&gt;
+	&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
+
+	&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Popup Demo</span>"&gt; 
+		&lt;<span class="i">b</span>&gt;Bold&lt;/<span class="i">b</span>&gt;
+		&lt;<span class="i">p</span>&gt;Text&lt;/<span class="i">p</span>&gt;
+	&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
+
+&lt;/<span class="i">nhnb-leaflet-map</span>&gt;
+
+</code></pre>
+
+
+
+
+<h2 id="icon">Marker with custom icons</h2>
+
+<p>Markers are based on formating templates called "icons". There are three ways to reference such an icon definition:</p> 
+
+
+<nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13">
+
+	<nhnb-leaflet-icon id="myicon" iconurl="https://stendhalgame.org/images/mapmarker/me.png"></nhnb-leaflet-icon>
+
+	<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Icon element reference" icon="myicon">
+	</nhnb-leaflet-marker>
+	
+	<nhnb-leaflet-marker latitude="51.5" longitude="-0.09" title="Icon json" icon='{"iconUrl": "https://stendhalgame.org/images/mapmarker/dungeon.png"}'> 
+	</nhnb-leaflet-marker>
+
+	<nhnb-leaflet-marker id="icon-reference" latitude="51.5" longitude="-0.08" title="Icon L.icon()"> 
+	</nhnb-leaflet-marker>
+
+</nhnb-leaflet-map>
+
+<script>
+document.addEventListener("load", function() {
+	var marker = document.getElementById("icon-reference");
+	marker.icon = L.icon({
+		"iconUrl": "https://stendhalgame.org/images/mapmarker/npc.png",
+		"iconSize": L.point(26, 25),
+		"iconAnchor": L.point(0, 0)
+	});
+});
+</script>
+
+<p>The template icon may be defined using &lt;nhnb-leaflet-icon&gt; elements. This is the prefered way. Please note that iconSize is mapped to the attributes iconwidth and iconheight. iconAnchor is mapped to iconanchorx and iconanchory and so on:</p>
+
+<pre class="html"><code>&lt;<span class="i">nhnb-leaflet-icon</span> <span class="a">id</span>="<span class="v">myicon</span>" <span class="a">iconurl</span>="<span class="v">https://stendhalgame.org/images/mapmarker/me.png</span>"&gt; &lt;<span class="i">/nhnb-leaflet-icon</span>&gt;
+
+&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Icon element reference</span>" <span class="a">icon</span>="<span class="v">myicon</span>"&gt;
+&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
+	
+</code></pre>
+
+<p>Alternatively plain json is understood, too:</p>
+
+<pre class="html"><code>
+&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Icon json</span>" 
+	<span class="a">icon</span>='<span class="v">{"iconUrl": "https://stendhalgame.org/images/mapmarker/dungeon.png"}</span>'&gt; 
+&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
+
+</code></pre>
+
+<p>Last but not least, an instance of L.icon may be assigned:</p>
+
+<pre class="html"><code>
+
+&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">id</span>="<span class="v">icon-reference</span>" <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.8</span>" <span class="a">title</span>="<span class="v">Icon L.icon()</span>"&gt;
+&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
+
+&lt;<span class="i">script</span>&gt;
+	document.addEventListener("load", function() {
+		var marker = document.getElementById("icon-reference");
+		marker.icon = L.icon({
+			"iconUrl": "https://stendhalgame.org/images/mapmarker/npc.png",
+			"iconSize": L.point(26, 25),
+			"iconAnchor": L.point(0, 0)
+		});
+	});
+&lt;/<span class="i">script</span>&gt;
+
+</code></pre>
+
+
+<h2 id="layer">Tile layer</h2>
+
+<p>Custom tile layers, for example from online games can be defined using the nhnb-leaflet-tilelayer element. If there is no explicit tilelayer defined, a default one will be used as shown in previous examples.</p>
+
+
+<nhnb-leaflet-map latitude="78.8" longitude="-96" zoom="5">
+	<nhnb-leaflet-tilelayer 
+		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
+		minzoom="2" maxzoom="6" nowrap>
+
+			Map source: <a href="https://stendhalgame.org">Stendhal MMORPG</a>
+
+	</nhnb-leaflet-tilelayer>
+
+</nhnb-leaflet-map>
+
+
+<pre class="html"><code>
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>"&gt;
+
+	&lt;<span class="i">nhnb-leaflet-tilelayer</span> 
+		<span class="a">url</span>="<span class="v">https://stendhalgame.org/map/3/{z}-{x}-{y}.png</span>"
+		<span class="a">minzoom</span>="<span class="v">2</span>" <span class="a">maxzoom</span>="<span class="v">6</span>" <span class="a">nowrap</span>&gt;
+
+			Map source: &lt;<span class="i">a</span> <span class="a">href</span>="<span class="v">https://stendhalgame.org</span>"&gt;Stendhal MMORPG&lt;/<span class="i">a</span>&gt;
+
+	&lt;/<span class="i">nhnb-leaflet-tilelayer</span>&gt;
+
+&lt;/<span class="i">nhnb-leaflet-map</span>&gt;
+
+</code></pre>
+
+
+ 	
+<h2 id="event">Events</h2>
+
+<p>Leaflet events are converted into html events which originate from the component.</p> 
+
+ 
+<div id="eventout">Center: 51.505, -0.09</div>
+<nhnb-leaflet-map id="eventmap" latitude="51.505" longitude="-0.09" zoom="13"> </nhnb-leaflet-map>
+
+<script>
+var map = document.getElementById("eventmap");
+map.addEventListener("moveend", function(e) {
+	var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
+	document.getElementById("eventout").textContent = text; 
+});
+</script>
+
+
+<pre class="html"><code>
+&lt;<span class="i">div</span> <span class="a">id</span>="<span class="v">eventout</span>"&gt;Center: 51.505, -0.09&lt;/<span class="i">div</span>&gt;
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt; &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
+
+&lt;<span class="i">script</span>>
+	var map = document.getElementById("eventmap");
+	map.addEventListener("moveend", function(e) {
+		var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
+		document.getElementById("eventout").textContent = text; 
+	});
+&lt;/<span class="i">script</span>>
+
+</code></pre>
+
+
+	</body>
+</html>

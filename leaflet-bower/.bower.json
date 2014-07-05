@@ -1,0 +1,22 @@
+{
+  "name": "leaflet-maps-bower",
+  "description": "Bower consumable Leaflet maps",
+  "version": "0.6.3-bower",
+  "keywords": [
+    "library"
+  ],
+  "main": [
+    "dist/leaflet.js",
+    "dist/leaflet.css"
+  ],
+  "homepage": "https://github.com/pennyfx/Leaflet",
+  "_release": "0.6.3-bower",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.6.3-bower",
+    "commit": "ca951d81062beda4d7f165301aee1999f6d9acc6"
+  },
+  "_source": "git://github.com/pennyfx/Leaflet.git",
+  "_target": "0.6.3-bower",
+  "_originalSource": "leaflet-bower"
+}
