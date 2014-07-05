@@ -52,11 +52,12 @@ element which defines an icon template for markers.
 		iconwith: undefined,
 
 		/**
-		 * The `` attribute sets the size of the icon image in pixels.
+		 * The `iconheight` attribute sets the size of the icon image in pixels.
 		 * 
 		 * @attribute iconheight
 		 * @type number
 		 */
+		iconheight: undefined,
 
 		/**
 		 * The `iconanchorx` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
@@ -187,6 +188,115 @@ element which defines an icon template for markers.
 	</script>
 </polymer-element>
 
+
+
+
+
+
+<!--
+element which defines an divicon template for markers.
+
+##### Example
+
+    <nhnb-leaflet-divicon id="myicon" classname="name">
+    	html code
+    </nhnb-leaflet-icon>>
+
+@element nhnb-leaflet-divicon
+@blurb element which defines an divicon template for markers.
+@status beta
+@homepage https://nhnb.github.io/nhnb-leaflet-map/
+-->
+<polymer-element name="nhnb-leaflet-divicon" attributes="iconwith iconheight iconanchorx iconanchory classname">
+	<template>
+		<style>
+			:host {
+				display: none;
+			}
+		</style>
+	</template>
+	<script>
+	"use strict";
+
+	Polymer('nhnb-leaflet-divicon', {
+
+		/**
+		 * The `iconwith` attribute sets the size of the icon image in pixels. 
+		 * 
+		 * @attribute iconwidth
+		 * @type number
+		 */
+		iconwith: undefined,
+
+		/**
+		 * The `iconheight` attribute sets the size of the icon image in pixels. 
+		 * 
+		 * @attribute iconheight
+		 * @type number
+		 */
+		iconheight: undefined,
+
+		/**
+		 * The `iconanchorx` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * 
+		 * @attribute iconanchorx
+		 * @type number
+		 */
+		iconanchorx: undefined,
+
+		/**
+		 * The `iconanchory` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * 
+		 * @attribute iconanchory
+		 * @type number
+		 */
+		iconanchory: undefined,
+
+		/**
+		 * The `` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+		 * 
+		 * @attribute classname
+		 * @type string
+		 */
+		classname: "",
+
+
+		icon_: null,
+
+		getIcon: function() {
+			if (this.icon_) {
+				return this.icon_;
+			}
+			var icon = {
+				className: this.classname,
+				html: this.innerHTML
+			};
+			if (this.iconwidth && this.iconheight) {
+				icon.iconSize = L.point(this.iconwith, this.iconheight);
+			}
+			if (this.iconanchorx && this.iconanchory) {
+				icon.iconAnchor = L.point(this.iconanchorx, this.iconanchory);
+			}
+			
+			this.icon_ = L.divicon(icon);
+			return this.icon_;
+		},
+
+		attributeChanged: function() {
+			this.icon_ = null;
+		}
+	});
+	</script>
+</polymer-element>
+
+
+
+
+
+
+
+
+
 <!--
 element which defines a maker
 
@@ -302,6 +412,8 @@ element which defines a maker
 		riseoffset: 250,
 
 		marker: undefined,
+		
+		observer_: undefined,
 
 		observe: {
 			latitude: 'positionChanged',
@@ -330,8 +442,11 @@ element which defines a maker
 					this.fire(e.type, e);
 				}, this);
 
-				if (this.innerHTML.trim()) {
-					this.marker.bindPopup(this.innerHTML);
+				// update popup on content changes
+				this.childrenMutated();
+				if (MutationObserver && !this.observer_) {
+				    this.observer_ = new MutationObserver(this.childrenMutated.bind(this));
+				    this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
 				}
 				this.marker.addTo(this.map);
 			}
@@ -384,11 +499,22 @@ element which defines a maker
 			}
 		},
 		
+		childrenMutated: function() {
+			this.marker.unbindPopup();
+			if (this.innerHTML.trim()) {
+				this.marker.bindPopup(this.innerHTML);
+			}
+		},
+		
 		detached: function() {
 			if (this.map && this.marker) {
 				this.map.removeLayer(this.marker);
 			}
+			if (observer_) {
+				observer.disconnect();
+			}
 		}
+
 	});
 	</script>
 </polymer-element>
