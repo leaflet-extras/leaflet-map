@@ -36,21 +36,33 @@
 			.v {
 				color: #800;
 			}
-			.downloadbutton {
+			.rightbuttons {
+				float:right;
+				margin-left: 1em;
+			}
+			.downloadbutton,
+			.gitbutton {
 				display: block;
-				float: right;
 				background-color: #070;
 				color: #FFF;
 				padding: 1em 2em;
 				border: 1px solid black;
 			}
+			.gitbutton {
+				margin-top: .2em;
+				background-color: #FFF;
+				color: #000;
+			}
 		</style>
 	</head>
 	<body>
 
-<h1>Demo of Leaflet web-component</h1>
-
+<div class="rightbuttons">
 <a class="downloadbutton" href="https://github.com/nhnb/nhnb-leaflet-map/releases/download/r0.0.0/nhnb-leaflet-map__with_dependencies.zip">Download</a>
+<a class="gitbutton" href="https://github.com/nhnb/nhnb-leaflet-map/">Github</a>
+</div>
+
+<h1>Demo of Leaflet web-component</h1>
 
 <p>This is a demo page for the <a href="https://github.com/nhnb/nhnb-leaflet-map">web-component wrapper</a> of <a href="http://leafletjs.com">leaflet</a>.</p>
 
