@@ -36,11 +36,21 @@
 			.v {
 				color: #800;
 			}
+			.downloadbutton {
+				display: block;
+				float: right;
+				background-color: #070;
+				color: #FFF;
+				padding: 1em 2em;
+				border: 1px solid black;
+			}
 		</style>
 	</head>
 	<body>
 
 <h1>Demo of Leaflet web-component</h1>
+
+<a class="downloadbutton" href="https://github.com/nhnb/nhnb-leaflet-map/releases/download/r0.0.0/nhnb-leaflet-map__with_dependencies.zip">Download</a>
 
 <p>This is a demo page for the <a href="https://github.com/nhnb/nhnb-leaflet-map">web-component wrapper</a> of <a href="http://leafletjs.com">leaflet</a>.</p>
 
@@ -50,7 +60,7 @@
 <li> nhnb-leaflet-marker (L.marker)
 <li> nhnb-leaflet-icon
 <li> nhnb-leaflet-tilelayer (L.tileLayer)
-</li>
+</ul>
 <p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference]</a> for those objects are exported as html attributes. 
 For example use &lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13"&gt; &lt;/nhnb-leaflet-map&gt; to define the view and zoom level.</p>
 <p>All events are mapped into html events of the same name.</p>
