@@ -417,7 +417,7 @@ element which defines a maker
 
 		observe: {
 			latitude: 'positionChanged',
-		    longitude: 'positionChanged',
+			longitude: 'positionChanged',
 		},
 
 		mapChanged: function() {
@@ -438,7 +438,7 @@ element which defines a maker
 				this.iconChanged();
 
 				// forward events
-				marker.on('loading load tileloadstart tileload tileunload', function(e) {
+				marker.on('click dblclick mousedown mouseover mouseout contextmenu dragstart drag dragend move add remove popupopen popupclose', function(e) {
 					this.fire(e.type, e);
 				}, this);
 
@@ -1030,7 +1030,7 @@ element which defines a leadlet map
 				zoomControl: this.zoomcontrol,
 				attributionControl: this.attributioncontrol,
 				zoomAnimationThreshold: this.zoomanimationthreshold
-            });
+			});
 			this.map = map;
 
 			// forward events
