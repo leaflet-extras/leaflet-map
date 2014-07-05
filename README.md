@@ -1,7 +1,7 @@
 nhnb-leaflet-map
 ================
 
-[Leaflet](http://leafletjs.com/reference.html) is a modern open-source JavaScript library for **mobile-friendly interactive maps**.
+[Leaflet](http://leafletjs.com/reference.html) is a modern open-source JavaScript library for mobile-friendly interactive maps.
 
 nhnb-leaflet-map makes Leaflet available as web-component: &lt;nhnb-leaflet-map&gt; &lt;/nhnb-leaflet-map&gt;
 Please have a look at the [demo page](https://nhnb.github.io/nhnb-leaflet-map/nhnb-leaflet-map/demo.html) or the [api documentation](https://nhnb.github.io/nhnb-leaflet-map/doc.html)
