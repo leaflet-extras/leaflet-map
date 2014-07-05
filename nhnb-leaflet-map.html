@@ -2,8 +2,6 @@
 <link rel="import" href="nhnb-leaflet-import.html">
 
 
-
-
 <!--
 element which defines an icon template for markers.
 
@@ -189,11 +187,6 @@ element which defines an icon template for markers.
 	</script>
 </polymer-element>
 
-
-
-
-
-
 <!--
 element which defines a maker
 
@@ -340,9 +333,9 @@ element which defines a maker
 				}, this);
 
 				// update popup on content changes
-				this.childrenChanged();
-				if (MutationObserver) {
-				    this.observer_ = new MutationObserver(this.childrenChanged.bind(this));
+				this.childrenMutated();
+				if (MutationObserver && !this.observer_) {
+				    this.observer_ = new MutationObserver(this.childrenMutated.bind(this));
 				    this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
 				}
 				this.marker.addTo(this.map);
@@ -395,8 +388,8 @@ element which defines a maker
 				this.marker.setOpacity(this.opacity);
 			}
 		},
-
-		childrenChanged: function() {
+		
+		childrenMutated: function() {
 			this.marker.unbindPopup();
 			if (this.innerHTML.trim()) {
 				this.marker.bindPopup(this.innerHTML);
@@ -411,12 +404,10 @@ element which defines a maker
 				observer.disconnect();
 			}
 		}
+
 	});
 	</script>
 </polymer-element>
-
-
-
 
 
 
