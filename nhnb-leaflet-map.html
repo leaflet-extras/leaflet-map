@@ -323,6 +323,130 @@ element which defines a maker
 	"use strict";
 
 	Polymer('nhnb-leaflet-marker', {
+		/**
+		 * Fired when the user clicks (or taps) the marker.
+		 * 
+		 * @event click
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+
+		/**
+		 * Fired when the user double-clicks (or double-taps) the marker.
+		 * 
+		 * @event dblclick
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+
+		  	 	
+		  	 	
+		  	MouseEvent 	
+		  	MouseEvent 	
+		  	MouseEvent 	
+
+		/**
+		 * Fired when the user pushes the mouse button on the marker.
+		 * 
+		 * @event mousedown
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+
+		/**
+		 * Fired when the mouse enters the marker.
+		 * 
+		 * @event mouseover
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+		
+		/**
+		 * Fired when the mouse leaves the marker.
+		 * 
+		 * @event mouseout
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+		
+		/**
+		 * Fired when the user right-clicks on the marker.
+		 * 
+		 * @event contextmenu
+		 * @type MouseEvent
+		 */
+
+		/**
+		 * Fired when the user starts dragging the marker.
+		 * 
+		 * @event dragstart
+		 */
+
+		/**
+		 * Fired repeatedly while the user drags the marker.
+		 * 
+		 * @event drag
+		 */
+
+		/**
+		 * Fired when the user stops dragging the marker.
+		 * 
+		 * @event dragend
+		 * @type DragEndEvent
+		 * @param {number} distance The distance in pixels the draggable element was moved by.
+		 */
+
+		/**
+		 * Fired when the marker is moved via setLatLng. New coordinate include in event arguments.
+		 * 
+		 * @event move
+		 * @type 
+		 */
+
+		/**
+		 * Fired when the marker is added to the map.
+		 * 
+		 * @event add
+		 * @type 
+		 */
+
+		/**
+		 * Fired when the marker is removed from the map.
+		 * 
+		 * @event remove
+		 */
+
+		/**
+		 * Fired when a popup bound to the marker is open.
+		 * 
+		 * @event popupopen
+		 * @type PopupEvent
+		 * @param {Popup} popup The popup that was opened or closed.
+		 */
+
+		 /**
+		 * Fired when a popup bound to the marker is closed.
+		 * 
+		 * @event popupclose
+		 * @type PopupEvent
+		 * @param {Popup} popup The popup that was opened or closed.
+		 */
+
 		publish: {
 			/**
 			 * The `latitude` attribute sets the positions of the marker.
