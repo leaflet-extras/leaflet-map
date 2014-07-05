@@ -21,7 +21,7 @@ At this time the following elements are defined:
 
 * nhnb-leaflet-map (L.map)
 * nhnb-leaflet-marker (L.marker)
-* nhnb-leaflet-icon
+* nhnb-leaflet-icon (L.icon)
 * nhnb-leaflet-tilelayer (L.tileLayer)
 
 Most of the options documented in the [Leaflet reference](http://leafletjs.com/reference.html) for those objects are exported as html attributes. 
