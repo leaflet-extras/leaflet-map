@@ -17,7 +17,7 @@ Status
 
 nhnb-leaflet-map is a prove of concept. It already supports the most important features of leaflet. 
 
-At this time the following custom elements are defined:
+At this time the following elements are defined:
 
 * nhnb-leaflet-map (L.map)
 * nhnb-leaflet-marker (L.marker)
