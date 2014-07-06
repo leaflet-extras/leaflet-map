@@ -193,6 +193,24 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
          this.map.removeLayer( f.feature );
          f.map = null;
        }
+     },
+
+     /**
+      * Returns a GeoJSON including all the features of the map
+      *
+      * @method toGeoJSON
+      */
+     toGeoJSON: function () {
+       var geoJSON = {
+         "type": "FeatureCollection",
+         "features": []
+       };
+
+       for( var i = 0, f; f = this.features[i]; i++ ) {
+         geoJSON.features.push( f.feature.toGeoJSON() );
+       }
+
+       return geoJSON;
      }
    } );
   </script>
