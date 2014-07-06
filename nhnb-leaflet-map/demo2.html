@@ -293,10 +293,19 @@ map.addEventListener("moveend", function(e) {
 
 <polymer-element name="geolocation-watch-sample" noscript>
 	<template>
+
 		<nhnb-leaflet-map latitude="{{latitude}}" longitude="{{longitude}}" zoom="10">
-			<nhnb-leaflet-geolocation watch enableHighAccuracy latitude="{{latitude}}" longitude="{{longitude}}"></nhnb-leaflet-geolocation>
-			<nhnb-leaflet-marker latitude="{{latitude}}" longitude="{{longitude}}"></nhnb-leaflet-marker>
+
+			<nhnb-leaflet-geolocation watch enableHighAccuracy 
+				latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
+			</nhnb-leaflet-geolocation>
+
+			<nhnb-leaflet-marker latitude="{{latitude}}" longitude="{{longitude}}">
+				I am within {{accuracy}} meters of this location.
+			</nhnb-leaflet-marker>
+
 		</nhnb-leaflet-map>
+
 	</template>
 </polymer-element>
 
