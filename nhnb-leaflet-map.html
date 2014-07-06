@@ -1157,7 +1157,7 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-map" attributes="minzoom maxzoom dragging touchzoom scrollwheelzoom doubleclickzoom boxzoom tap taptolerance trackresize worldcopyjump closepopuponclick bounceatzoomlimits keyboard keyboardpanoffset keyboardzoomoffset inertia inertiadeceleration inertiamaxspeed zoomcontrol attributioncontrol zoomanimationthreshold">
+<polymer-element name="nhnb-leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold">
 	<template>
 		<link rel="stylesheet" href="../leaflet-bower/dist/leaflet.css" />
 		<style>
@@ -1458,20 +1458,20 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		},
 
 		/**
-		 * The `minzoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.
+		 * The `minZoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.
 		 * 
-		 * @attribute minzoom
+		 * @attribute minZoom
 		 * @type number
 		 */
-		minzoom: 0,
+		minZoom: 0,
 
 		/**
-		 * The `maxzoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.
+		 * The `maxZoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.
 		 * 
-		 * @attribute maxzoom
+		 * @attribute maxZoom
 		 * @type number
 		 */
-		maxzoom: 9007199254740992,
+		maxZoom: 9007199254740992,
 
 		/**
 		 * The `dragging` attribute sets whether  when he tries to pan outside the view.
@@ -1482,36 +1482,36 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		dragging: true,
 
 		/**
-		 * The `touchzoom` attribute sets whether the map can be zoomed by touch-dragging with two fingers. 
+		 * The `touchZoom` attribute sets whether the map can be zoomed by touch-dragging with two fingers. 
 		 * 
-		 * @attribute touchzoom
+		 * @attribute touchZoom
 		 * @type bool
 		 */
-		touchzoom: true,
+		touchZoom: true,
 
 		/**
-		 * The `scrollwheelzoom` attribute sets the whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.
+		 * The `scrollWheelZoom` attribute sets the whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.
 		 * 
-		 * @attribute scrollwheelzoom
+		 * @attribute scrollWheelZoom
 		 * @type bool
 		 */
-		scrollwheelzoom: true,
+		scrollWheelZoom: true,
 
 		/**
-		 * The `doubleclickzoom` attribute sets the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
+		 * The `doubleClickZoom` attribute sets the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
 		 * 
-		 * @attribute doubleclickzoom
+		 * @attribute doubleClickZoom
 		 * @type bool
 		 */
-		doubleclickzoom: true,
+		doubleClickZoom: true,
 
 		/**
-		 * The `boxzoom` attribute sets the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
+		 * The `boxZoom` attribute sets the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
 		 * 
-		 * @attribute boxzoom
+		 * @attribute boxZoom
 		 * @type bool
 		 */
-		boxzoom: true,
+		boxZoom: true,
 
 		/**
 		 * The `tap` attribute enables mobile hacks for supporting instant taps (fixing 200ms click delay on iOS/Android) and touch holds (fired as contextmenu events).
@@ -1522,44 +1522,44 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		tap: true,
 
 		/**
-		 * The `taptolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap. 
+		 * The `tapTolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap. 
 		 * 
-		 * @attribute taptolerance
+		 * @attribute tapTolerance
 		 * @type number
 		 */
-		taptolerance: 15,
+		tapTolerance: 15,
 
 		/**
-		 * The `trackresize` attribute sets whether the map automatically handles browser window resize to update itself.
+		 * The `trackResize` attribute sets whether the map automatically handles browser window resize to update itself.
 		 * 
-		 * @attribute trackresize
+		 * @attribute trackResize
 		 * @type bool
 		 */
-		trackresize: true,
+		trackResize: true,
 
 		/**
-		 * The `worldcopyjump` attribute sets whether the map tracks when you pan to another "copy" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.
+		 * The `worldCopyJump` attribute sets whether the map tracks when you pan to another "copy" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.
 		 * 
-		 * @attribute worldcopyjump
+		 * @attribute worldCopyJump
 		 * @type bool
 		 */
-		worldcopyjump: false,
+		worldCopyJump: false,
 
 		/**
-		 * The `closepopuponclick` attribute sets whether popups are closed when user clicks the map.
+		 * The `closePopupOnClick` attribute sets whether popups are closed when user clicks the map.
 		 * 
-		 * @attribute closepopuponclick
+		 * @attribute closePopupOnClick
 		 * @type bool
 		 */
-		closepopuponclick: true,
+		closePopupOnClick: true,
 
 		/**
-		 * The `bounceatzoomlimits` attribute sets whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
+		 * The `bounceAtZoomLimits` attribute sets whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
 		 * 
-		 * @attribute bounceatzoomlimits
+		 * @attribute bounceAtZoomLimits
 		 * @type bool
 		 */
-		bounceatzoomlimits: true,
+		bounceAtZoomLimits: true,
 
 		/**
 		 * The `keyboard` attribute sets whether the map is focusable and allows users to navigate the map with keyboard arrows and +/- keys.
@@ -1570,20 +1570,20 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		keyboard: true,
 
 		/**
-		 * The `keyboardpanoffset` attribute sets the amount of pixels to pan when pressing an arrow key.
+		 * The `keyboardPanOffset` attribute sets the amount of pixels to pan when pressing an arrow key.
 		 * 
-		 * @attribute keyboardpanoffset
+		 * @attribute keyboardPanOffset
 		 * @type number
 		 */
-		keyboardpanoffset: 80,
+		keyboardPanOffset: 80,
 
 		/**
-		 * The `keyboardzoomoffset` attribute sets the number of zoom levels to change when pressing + or - key.
+		 * The `keyboardZoomOffset` attribute sets the number of zoom levels to change when pressing + or - key.
 		 * 
-		 * @attribute keyboardzoomoffset
+		 * @attribute keyboardZoomOffset
 		 * @type number
 		 */
-		keyboardzoomoffset: 1,
+		keyboardZoomOffset: 1,
 
 		/**
 		 * The `inertia` attribute sets whether panning of the map will have an inertia effect where the map builds momentum while dragging and continues moving in the same direction for some time. Feels especially nice on touch devices.
@@ -1594,44 +1594,44 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		inertia: true,
 
 		/**
-		 * The `inertiadeceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.
+		 * The `inertiaDeceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.
 		 * 
-		 * @attribute inertiadeceleration
+		 * @attribute inertiaDeceleration
 		 * @type number
 		 */
-		inertiadeceleration: 3000,
+		inertiaDeceleration: 3000,
 
 		/**
-		 * The `inertiamaxspeed` attribute sets the max speed of the inertial movement, in pixels/second.
+		 * The `inertiaMaxSpeed` attribute sets the max speed of the inertial movement, in pixels/second.
 		 * 
-		 * @attribute inertiamaxspeed
+		 * @attribute inertiaMaxSpeed
 		 * @type number
 		 */
-		inertiamaxspeed: 1500,
+		inertiaMaxSpeed: 1500,
 
 		/**
-		 * The `zoomcontrol` attribute sets whether the zoom control is added to the map by default.
+		 * The `zoomControl` attribute sets whether the zoom control is added to the map by default.
 		 * 
-		 * @attribute zoomcontrol
+		 * @attribute zoomControl
 		 * @type bool
 		 */
-		zoomcontrol: true,
+		zoomControl: true,
 
 		/**
-		 * The `attributioncontrol` attribute sets whether the attribution control is added to the map by default.
+		 * The `attributionControl` attribute sets whether the attribution control is added to the map by default.
 		 * 
-		 * @attribute attributioncontrol
+		 * @attribute attributionControl
 		 * @type bool
 		 */
-		attributioncontrol: true,
+		attributionControl: true,
 
 		/**
-		 * The `zoomanimationthreshold` attribute sets the maximum number of zoom level differences that still use animation
+		 * The `zoomAnimationThreshold` attribute sets the maximum number of zoom level differences that still use animation
 		 * 
-		 * @attribute zoomanimationthreshold
+		 * @attribute zoomAnimationThreshold
 		 * @type number
 		 */
-		zoomanimationthreshold: 4,
+		zoomAnimationThreshold: 4,
 
 		/** 
 		 * reference to the leaflet map
@@ -1653,28 +1653,28 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 			var map = L.map(this.$.map, {
 				center: [this.latitude, this.longitude],
 				zoom: this.zoom,
-				minZoom: this.minzoom,
-				maxZoom: this.maxzoom,
+				minZoom: this.minZoom,
+				maxZoom: this.maxZoom,
 				dragging: this.dragging,
-				touchZoom: this.touchzoom,
-				scrollWheelZoom: this.scrollwheelzoom,
-				doubleClickZoom: this.doubleclickzoom,
-				boxZoom: this.boxzoom,
+				touchZoom: this.touchZoom,
+				scrollWheelZoom: this.scrollWheelZoom,
+				doubleClickZoom: this.doubleClickZoom,
+				boxZoom: this.boxZoom,
 				tap: this.tap,
-				tapTolerance: this.taptolerance,
-				trackResize: this.trackresize,
-				worldCopyJump: this.worldcopyjump,
-				closePopupOnClick: this.closepopuponclick,
-				bounceAtZoomLimits: this.bounceatzoomlimits,
+				tapTolerance: this.tapTolerance,
+				trackResize: this.trackResize,
+				worldCopyJump: this.worldCopyJump,
+				closePopupOnClick: this.closePopupOnClick,
+				bounceAtZoomLimits: this.bounceAtZoomLimits,
 				keyboard: this.keyboard,
-				keyboardPanOffset: this.keyboardpanoffset,
-				keyboardZoomOffset: this.keyboardzoomoffset,
+				keyboardPanOffset: this.keyboardPanOffset,
+				keyboardZoomOffset: this.keyboardZoomOffset,
 				inertia: this.inertia,
-				inertiaDeceleration: this.inertiadeceleration,
-				inertiaMaxSpeed: this.inertiamaxspeed,
+				inertiaDeceleration: this.inertiaDeceleration,
+				inertiaMaxSpeed: this.inertiaMaxSpeed,
 				zoomControl: this.zoomcontrol,
-				attributionControl: this.attributioncontrol,
-				zoomAnimationThreshold: this.zoomanimationthreshold
+				attributionControl: this.attributionControl,
+				zoomAnimationThreshold: this.zoomAnimationThreshold
 			});
 			this.map = map;
 
@@ -1685,11 +1685,11 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 
 			// update attributes
 			map.on('moveend', function(e) {
-			    this.latitude = map.getCenter().lat;
-			    this.longitude = map.getCenter().lng;
+				this.latitude = map.getCenter().lat;
+				this.longitude = map.getCenter().lng;
 			}, this);
 			map.on('zoomend', function(e) {
-			    this.zoom = map.getZoom();
+				this.zoom = map.getZoom();
 			}, this);
 
 			if (this.zoom == -1) {
@@ -1700,7 +1700,7 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 			var defaultLayerRequired = true;
 			for (var i = 0; i < this.children.length; i++) {
 				var localName = this.children[i].localName;
-				if (localName.indexOf("-layer", localName.length - 6) !== -1) {
+				if (localName.indexOf("layer", localName.length - 6) !== -1) {
 					defaultLayerRequired = false;
 				}
 			}
