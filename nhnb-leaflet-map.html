@@ -679,7 +679,7 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
 
-<polymer-element name="nhnb-leaflet-tilelayer" attributes="url minzoom maxzoom nowrap maxnativezoom tilesize subdomains errortileurl attribution tms continuous-world nowrap zoomoffset zoomreverse opacity zindex detectretina reusetiles">
+<polymer-element name="nhnb-leaflet-tilelayer" attributes="url minZoom maxZoom maxNativeZoom tileSize subdomains errorTileUrl attribution tms continuousWorld noWrap zoomOffset zoomReverse opacity zIndex detectRetina reuseTiles">
 	<template>
 		<style>
 			:host {
@@ -746,20 +746,20 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 
 		/**
-		 * The `minzoom` attribute sets the minimum zoom number.
+		 * The `minZoom` attribute sets the minimum zoom number.
 		 * 
-		 * @attribute minzoom
+		 * @attribute minZoom
 		 * @type number
 		 */
-		minzoom: 0,
+		minZoom: 0,
 
 		/**
-		 * The `maxzoom` attribute sets the maximum zoom number.
+		 * The `maxZoom` attribute sets the maximum zoom number.
 		 * 
-		 * @attribute maxzoom
+		 * @attribute maxZoom
 		 * @type number
 		 */
-		maxzoom: 18,
+		maxZoom: 18,
 
 		/**
 		 * The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled. 
@@ -767,15 +767,15 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		 * @attribute maxnativezoom
 		 * @type number
 		 */
-		maxnativezoom: null,
+		maxNativeZoom: null,
 
 		/**
-		 * The `tilesize` attribute sets the tile size (width and height in pixels, assuming tiles are square).
+		 * The `tileSize` attribute sets the tile size (width and height in pixels, assuming tiles are square).
 		 * 
-		 * @attribute tilesize
+		 * @attribute tileSize
 		 * @type number
 		 */
-		tilesize: 256,
+		tileSize: 256,
 
 		/**
 		 * The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.
@@ -786,12 +786,12 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		subdomains: "abc",
 
 		/**
-		 * The `errortileurl` attribute sets the URL to the tile image to show in place of the tile that failed to load.
+		 * The `errorTileUrl` attribute sets the URL to the tile image to show in place of the tile that failed to load.
 		 * 
-		 * @attribute errortileurl
+		 * @attribute errorTileUrl
 		 * @type string
 		 */
-		errortileurl: "",
+		errorTileUrl: "",
 
 		/**
 		 * The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.
@@ -810,12 +810,12 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		tms: false,
 
 		/**
-		 * The `continuousworld` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
+		 * The `continuousWorld` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
 		 * 
-		 * @attribute continuousworld
+		 * @attribute continuousWorld
 		 * @type bool
 		 */
-		continuousworld: false,
+		continuousWorld: false,
 
 		/**
 		 * The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.
@@ -823,23 +823,23 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		 * @attribute nowrap
 		 * @type bool
 		 */
-		nowrap: false,
+		noWrap: false,
 
 		/**
-		 * The `zoomoffset` attribute sets the zoom number used in tile URLs will be offset with this value.
+		 * The `zoomOffset` attribute sets the zoom number used in tile URLs will be offset with this value.
 		 * 
-		 * @attribute zoomoffset
+		 * @attribute zoomOffset
 		 * @type number
 		 */
-		zoomoffset: 0,
+		zoomOffset: 0,
 
 		/**
-		 * The `zoomreverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
+		 * The `zoomReverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
 		 * 
-		 * @attribute zoomreverse
+		 * @attribute zoomReverse
 		 * @type bool
 		 */
-		zoomreverse: false,
+		zoomReverse: false,
 
 		/**
 		 * The `opacity` attribute sets the opacity of the tile layer.
@@ -850,12 +850,12 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		opacity: 1.0,
 
 		/**
-		 * The `zindex` attribute sets the explicit zIndex of the tile layer. Not set by default.
+		 * The `zIndex` attribute sets the explicit zIndex of the tile layer. Not set by default.
 		 * 
-		 * @attribute zindex
+		 * @attribute zIndex
 		 * @type number
 		 */
-		zindex: null,
+		zIndex: null,
 
 		/**
 		 * The `detectretina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution. 
@@ -863,15 +863,15 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		 * @attribute detectretina
 		 * @type bool
 		 */
-		detectretina: false,
+		detectRetina: false,
 
 		/**
-		 * The `reusetiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
+		 * The `reuseTiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
 		 * 
-		 * @attribute reusetiles
+		 * @attribute reuseTiles
 		 * @type bool
 		 */
-		reusetiles: false,
+		reuseTiles: false,
 
 		// unloadInvisibleTiles updateWhenIdle bounds
 		
@@ -879,21 +879,21 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 			if (this.map) {
 				var layer = L.tileLayer(this.url, {
 					attribution: this.innerHTML + this.attribution,
-					minZoom: this.minzoom,
-					maxZoom: this.maxzoom,
-					maxNativeZoom: this.maxnativezoom,
-					tileSize: this.tilesize,
+					minZoom: this.minZoom,
+					maxZoom: this.maxZoom,
+					maxNativeZoom: this.maxNativeZoom,
+					tileSize: this.tileSize,
 					subdomains: this.subdomains,
-					errorTileUrl: this.errortileurl,
+					errorTileUrl: this.errorTileUrl,
 					tms: this.tms,
-					continuousWorld: this.continuousworld,
-					noWrap: this.nowrap,
-					zoomOffset: this.zoomoffset,
-					zoomReverse: this.zoomreverse,
+					continuousWorld: this.continuousWorld,
+					noWrap: this.noWrap,
+					zoomOffset: this.zoomOffset,
+					zoomReverse: this.zoomReverse,
 					opacity: this.opacity,
-					zIndex: this.zindex,
-					detectRetina: this.detectretina,
-					reuseTiles: this.reusetiles,
+					zIndex: this.zIndex,
+					detectRetina: this.detectRetina,
+					reuseTiles: this.reuseTiles,
 				});
 				this.layer = layer
 
@@ -910,9 +910,9 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 				this.layer.setOpacity(this.opacity);
 			}
 		},
-		zindexChanged: function() {
+		zIndexChanged: function() {
 			if (this.layer) {
-				this.layer.setZIndex(this.zindex);
+				this.layer.setZIndex(this.zIndex);
 			}
 		},
 		urlChanged: function() {
