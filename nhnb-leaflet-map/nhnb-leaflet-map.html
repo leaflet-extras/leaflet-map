@@ -3,11 +3,13 @@
 
 
 <!--
-element which defines an icon template for markers.
+Element which defines an icon template for markers (<a href="http://leafletjs.com/reference.html#icon">Leaflet Reference</a>).
 
 ##### Example
 
-    <<nhnb-leaflet-icon id="myicon" iconurl="https://stendhalgame.org/images/mapmarker/me.png"></nhnb-leaflet-icon>>
+    <nhnb-leaflet-icon id="myicon"
+    	iconurl="https://stendhalgame.org/images/mapmarker/me.png">
+    </nhnb-leaflet-icon>
 
 @element nhnb-leaflet-icon
 @blurb element which defines an icon template for markers.
@@ -28,7 +30,7 @@ element which defines an icon template for markers.
 	Polymer('nhnb-leaflet-icon', {
 
 		/**
-		 * The `` attribute sets the URL to the icon image (absolute or relative to your script path).
+		 * The `iconurl` attribute sets the URL to the icon image (absolute or relative to your script path).
 		 * 
 		 * @attribute iconurl
 		 * @type string 
@@ -36,7 +38,7 @@ element which defines an icon template for markers.
 		iconurl: undefined,
 
 		/**
-		 * The `` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.
+		 * The `iconretunaurl` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.
 		 * 
 		 * @attribute iconretinaurl
 		 * @type string
@@ -140,7 +142,7 @@ element which defines an icon template for markers.
 		popupanchory: undefined,
 
 		/**
-		 * The `` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+		 * The `classname` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
 		 * 
 		 * @attribute classname
 		 * @type string
@@ -194,13 +196,13 @@ element which defines an icon template for markers.
 
 
 <!--
-element which defines an divicon template for markers.
+Element which defines an divicon template for markers (<a href="http://leafletjs.com/reference.html#divicon">Leaflet Reference</a>).
 
 ##### Example
 
     <nhnb-leaflet-divicon id="myicon" classname="name">
-    	html code
-    </nhnb-leaflet-icon>>
+    	<a href="https://nhnb.github.io/nhnb-leaflet-map/demo.html">Demo</a>
+    </nhnb-leaflet-icon>
 
 @element nhnb-leaflet-divicon
 @blurb element which defines an divicon template for markers.
@@ -253,7 +255,7 @@ element which defines an divicon template for markers.
 		iconanchory: undefined,
 
 		/**
-		 * The `` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+		 * The `classname` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
 		 * 
 		 * @attribute classname
 		 * @type string
@@ -298,12 +300,19 @@ element which defines an divicon template for markers.
 
 
 <!--
-element which defines a maker
+Element which defines a maker  (<a href="http://leafletjs.com/reference.html#marker">Leaflet Reference</a>).
 
 ##### Example
 
 	<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
 		<b>Popup text</b>
+	</nhnb-leaflet-marker>
+
+##### Example
+
+	<nhnb-leaflet-icon id="myicon" iconurl="https://stendhalgame.org/images/mapmarker/me.png"></nhnb-leaflet-icon>
+
+	<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Some title" icon="myicon">
 	</nhnb-leaflet-marker>
 
 @element nhnb-leaflet-marker
@@ -653,7 +662,7 @@ element which defines a maker
 
 
 <!--
-element which defines a tile layer
+element which defines a tile layer (<a href="http://leafletjs.com/reference.html#tileLayer">Leaflet Reference</a>).
 
 ##### Example
 
@@ -925,18 +934,202 @@ element which defines a tile layer
 
 
 
+<!--
+element which controls geo location (<a href="http://leafletjs.com/reference.html#map">Leaflet Reference</a>).
+
+##### Example
+
+	<nhnb-leaflet-geolocation watch latitude="{{latitude}}" longitude="{{longitude}}"> </nhnb-leaflet-geolocation>
+
+@element nhnb-leaflet-geolocation
+@blurb element which controls geo location. 
+@status beta
+@homepage https://nhnb.github.io/nhnb-leaflet-map/
+-->
+
+<polymer-element name="nhnb-leaflet-geolocation" attributes="watch setView maxZoom timeout maximumAge enableHighAccuracy latitude longitude bounds accuracy altitude altitudeAccuracy heading speed timestamp">
+	<template>
+		<style>
+			:host { display: none; } 
+		</style>
+  	</template>
+	<script>
+	"use strict";
+   
+	Polymer('nhnb-leaflet-geolocation', {
+
+		/**
+		 * The `watch` attribute sets wether location changes should be continous watching (instead of detecting it once) using W3C watchPosition method. You can later stop watching using map.stopLocate() method. 
+		 * 
+		 * @attribute watch
+		 * @type bool
+		 */
+		watch: false, 
+
+		/**
+		 * The `setView` attribute sets whether the map view to the user location with respect to detection accuracy, or to world view if geolocation failed.
+		 * 
+		 * @attribute setView
+		 * @type bool
+		 */
+		setView: false, 
+
+		/**
+		 * The `maxZoom` attribute sets the maximum zoom for automatic view setting when using `setView` option. 
+		 * 
+		 * @attribute maxZoom
+		 * @type number
+		 */
+		maxZoom: Infinity,
+
+		/**
+		 * The `timeout` attribute sets the number of milliseconds to wait for a response from geolocation before firing a locationerror event. 
+		 * 
+		 * @attribute timeout
+		 * @type number
+		 */
+		timeout: 10000,
+
+		/**
+		 * The `maximumAge` attribute sets maximum age of detected location. If less than this amount of milliseconds passed since last geolocation response, locate will return a cached location. 
+		 * 
+		 * @attribute maximumAge
+		 * @type number
+		 */
+		maximumAge:	0,
+
+		/**
+		 * The `enableHighAccuracy` attribute sets whether high accuracy is enabled, see description in the W3C spec.
+		 * 
+		 * @attribute enableHighAccuracy
+		 * @type bool
+		 */
+		enableHighAccuracy: false,
+
+		publish: {
+
+			/**
+			 * The `latitude` attribute returns the detected geographical location of the user.
+			 * 
+			 * @attribute latitude
+			 * @type number
+			 */
+			latitude: {value: null, reflect: true},
+
+			/**
+			 * The `longitude` attribute returns the detected geographical location of the user.
+			 * 
+			 * @attribute longitude
+			 * @type number
+			 */
+			longitude: {value: null, reflect: true},
+
+			/**
+			 * The `bounds` attribute returns the geographical bounds of the area user is located in (with respect to the accuracy of location).
+			 * 
+			 * @attribute bounds
+			 * @type number
+			 */
+			bounds: {value: null, reflect: true},
+
+			/**
+			 * The `accuracy` attribute returns the accuracy of location in meters.
+			 * 
+			 * @attribute accuracy
+			 * @type number
+			 */
+			accuracy: {value: null, reflect: true},
+
+			/**
+			 * The `altitude` attribute returns the height of the position above the WGS84 ellipsoid in meters.
+			 * 
+			 * @attribute altitude
+			 * @type number
+			 */
+			altitude: {value: null, reflect: true},
+
+			/**
+			 * The `altitudeAccuracy` attribute returns the accuracy of altitude in meters.
+			 * 
+			 * @attribute altitudeAccuracy
+			 * @type number
+			 */
+			altitudeAccuracy: {value: null, reflect: true},
+
+			/**
+			 * The `heading` attribute returns the direction of travel in degrees counting clockwise from true North.
+			 * 
+			 * @attribute heading
+			 * @type number
+			 */
+			heading: {value: null, reflect: true},
+
+			/**
+			 * The `speed` attribute returns the current velocity in meters per second.   
+			 * 
+			 * @attribute speed
+			 * @type number
+			 */
+			speed: {value: null, reflect: true},
+
+			/**
+			 * The `timestamp` attribute returns the time when the position was acquired.
+			 * 
+			 * @attribute timestamp
+			 * @type number
+			 */
+			timestamp: {value: null, reflect: true}
+		},
+
+		mapChanged: function() {
+			if (this.map) {
+				this.map.on('locationfound locationerror', function(e) {
+					this.fire(e.type, e);
+				}, this);
+
+				this.map.on('locationfound', function(e) {				
+					this.latitude = e.latlng.lat;
+					this.longitude = e.latlng.lng;
+					this.bounds = e.bounds;
+					this.accuracy = e.accuracy;
+					this.altitude = e.altitude;
+					this.altitudeAccuracy = e.altitudeAccuracy;
+					this.heading = e.heading;
+					this.speed = e.speed;
+					this.timestamp = e.timestamp;
+				}, this);
+
+				this.map.locate({
+					watch: this.watch, 
+					setView: this.setView, 
+					maxZoom: this.maxZoom,
+					timeout: this.timeout,
+					maximumAge:	this.maximumAge,
+					enableHighAccuracy: this.enableHighAccuracy,
+				});
+			}
+		}
+	});
+	</script>
+</polymer-element>
+
+
 
 
 <!--
-element which defines a leadlet map
+element which defines a leadlet map (<a href="http://leafletjs.com/reference.html#map">Leaflet Reference</a>).
 
 ##### Example
 
 	<nhnb-leaflet-map> </nhnb-leaflet-map>
 	
-	or 
+##### Example
 	
 	<nhnb-leaflet-map latitude="78.8" longitude="-96" zoom="5">
+		<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
+			<b>Popup text</b>
+		</nhnb-leaflet-marker>
+	
 	</nhnb-leaflet-map>  
 
 @element nhnb-leaflet-map
@@ -1420,7 +1613,12 @@ element which defines a leadlet map
 		 */
 		zoomanimationthreshold: 4,
 
-		/** reference to the leaflet map */
+		/** 
+		 * reference to the leaflet map
+		 *
+		 * @property map
+		 * @type L.map
+		 */
 		map: undefined,
 
 		/** update view on attribute change */
