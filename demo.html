@@ -16,7 +16,8 @@
 				margin-top: 2em;
 			}
 			
-			nhnb-leaflet-map {
+			nhnb-leaflet-map,
+			geolocation-watch-sample {
 				max-width: 20em;
 				height: 20em;
 				border: 1px solid #aaa;
@@ -272,15 +273,16 @@ map.addEventListener("moveend", function(e) {
 &lt;<span class="i">div</span> <span class="a">id</span>="<span class="v">eventout</span>"&gt;Center: 51.505, -0.09&lt;/<span class="i">div</span>&gt;
 &lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt; &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
-&lt;<span class="i">script</span>>
+&lt;<span class="i">script</span>&gt;
 	var map = document.getElementById("eventmap");
 	map.addEventListener("moveend", function(e) {
 		var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
 		document.getElementById("eventout").textContent = text; 
 	});
-&lt;/<span class="i">script</span>>
+&lt;/<span class="i">script</span>&gt;
 
 </code></pre>
+
 
 
 	</body>
