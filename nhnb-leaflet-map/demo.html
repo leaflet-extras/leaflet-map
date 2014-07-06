@@ -37,6 +37,9 @@
 			.v {
 				color: #800;
 			}
+			.c {
+				color: #080;
+			}
 			.downloadbutton,
 			.apidocbutton,
 			.gitbutton {
@@ -251,7 +254,10 @@ document.addEventListener("load", function() {
 </code></pre>
 
 
- 	
+
+
+
+
 <h2 id="event">Events</h2>
 
 <p>Leaflet events are converted into html events which originate from the component.</p> 
@@ -284,6 +290,83 @@ map.addEventListener("moveend", function(e) {
 </code></pre>
 
 
+
+
+<h2 id="databinding">Data binding and custom components</h2>
+
+<p>Data binding can be used to create markers based on dynamic information, e. g. from the rows of a spreadsheet. In this example a new component is created which listens for location tracking information and sets a marker accordingly.</p>
+
+
+<polymer-element name="geolocation-sample" noscript>
+	<template>
+
+		<template if="{{!latitude}}">
+			Location Unknown.
+		</template>
+		<template if="{{latitude}}">
+			lat: {{latitude}}, lng: {{longitude}}, accuracy: {{accuracy}} meter
+		</template>
+
+
+		<nhnb-leaflet-map>
+
+			<nhnb-leaflet-geolocation enableHighAccuracy
+				latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
+			</nhnb-leaflet-geolocation>
+
+			<template if="{{latitude}}">
+				<nhnb-leaflet-marker latitude="{{latitude}}" longitude="{{longitude}}">
+					I am within {{accuracy}} meters of this location.
+				</nhnb-leaflet-marker>
+			</template>
+		</nhnb-leaflet-map>
+
+	</template>
+</polymer-element>
+
+
+<geolocation-sample> </geolocation-sample>
+
+
+<pre class="html"><code>
+<span class="c">&lt;-- define geolocation-sample component --&gt;</span>
+&lt;<span class="i">polymer-element</span> <span class="a">name</span>="<span class="v">geolocation-sample</span>" <span class="a">noscript</span>&gt;
+  &lt;<span class="i">template</span>&gt;
+
+    <span class="c">&lt;-- information text above the map --&gt;</span>
+    &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{!latitude}}</span>"&gt;
+        Location Unknown.
+    &lt;/<span class="i">template</span>&gt;
+
+    &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{latitude}}</span>"&gt;
+        lat: {{latitude}}, lng: {{longitude}}, accuracy: {{accuracy}} meter
+    &lt;/<span class="i">template</span>&gt;
+
+
+    &lt;<span class="i">nhnb-leaflet-map</span>&gt;
+
+      <span class="c">&lt;-- request geo-location information --&gt;</span>
+      &lt;<span class="i">nhnb-leaflet-geolocation</span> <span class="a">enableHighAccuracy</span>
+        <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>" <span class="a">accuracy</span>="<span class="v">{{accuracy}}</span>"
+      &lt;/<span class="i">nhnb-leaflet-geolocation</span>&gt;
+
+
+      <span class="c">&lt;-- add marker, if location information is available --&gt;</span>
+      &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{latitude}}</span>"&gt;
+        &lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>"&gt;
+            I am within {{accuracy}} meters of this location.
+        &lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
+      &lt;/<span class="i">template</span>&gt;
+
+    &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
+
+  &lt;/<span class="i">template</span>&gt;
+&lt;/<span class="i">polymer-element</span>&gt;
+
+<span class="c">&lt;-- use our component --&gt;</span>
+&lt;<span class="i">geolocation-sample</span>&gt; &lt;/<span class="i">geolocation-sample</span>&gt;
+
+</code></pre>
 
 	</body>
 </html>
