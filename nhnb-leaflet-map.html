@@ -16,7 +16,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-icon" attributes="iconUrl iconRetinaUrl iconWidth iconHeight iconAnchorX iconAnchorY shadowUrl shadowRetinaUrl shadowWidth shadowHeight shadowAnchorX shadowAnchorY popupAnchorX popupAnchorY classname">
+<polymer-element name="nhnb-leaflet-icon" attributes="iconUrl iconRetinaUrl iconWidth iconHeight iconAnchorX iconAnchorY shadowUrl shadowRetinaUrl shadowWidth shadowHeight shadowAnchorX shadowAnchorY popupAnchorX popupAnchorY className">
 	<template>
 		<style>
 			:host {
@@ -142,12 +142,12 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 		popupAnchorY: undefined,
 
 		/**
-		 * The `classname` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+		 * The `className` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
 		 * 
-		 * @attribute classname
+		 * @attribute className
 		 * @type string
 		 */
-		classname: "",
+		 className: "",
 		
 
 		icon_: null,
@@ -161,7 +161,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				iconRetinaUrl: this.iconRetinaUrl,
 				shadowUrl: this.shadowUrl,
 				shadowRetinaUrl: this.shadowRetinaUrl,
-				className: this.classname	
+				className: this.className
 			};
 			if (this.iconWidth && this.iconHeight) {
 				icon.iconSize = L.point(this.iconWidth, this.iconHeight);
@@ -209,7 +209,7 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-divicon" attributes="iconwith iconheight iconanchorx iconanchory classname">
+<polymer-element name="nhnb-leaflet-divicon" attributes="iconWidth iconHeight iconAnchorX iconAnchorY className">
 	<template>
 		<style>
 			:host {
@@ -223,44 +223,44 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 	Polymer('nhnb-leaflet-divicon', {
 
 		/**
-		 * The `iconwith` attribute sets the size of the icon image in pixels. 
+		 * The `iconWidth` attribute sets the size of the icon image in pixels. 
 		 * 
-		 * @attribute iconwidth
+		 * @attribute iconWidth
 		 * @type number
 		 */
-		iconwith: undefined,
+		iconWidth: undefined,
 
 		/**
-		 * The `iconheight` attribute sets the size of the icon image in pixels. 
+		 * The `iconHeight` attribute sets the size of the icon image in pixels.
 		 * 
-		 * @attribute iconheight
+		 * @attribute iconHeight
 		 * @type number
 		 */
-		iconheight: undefined,
+		iconHeight: undefined,
 
 		/**
-		 * The `iconanchorx` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * The `iconAnchorX` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 		 * 
-		 * @attribute iconanchorx
+		 * @attribute iconAnchorX
 		 * @type number
 		 */
-		iconanchorx: undefined,
+		iconAnchorX: undefined,
 
 		/**
-		 * The `iconanchory` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * The `iconAnchorY` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 		 * 
-		 * @attribute iconanchory
+		 * @attribute iconAnchorY
 		 * @type number
 		 */
-		iconanchory: undefined,
+		iconAnchorY: undefined,
 
 		/**
-		 * The `classname` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+		 * The `className` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
 		 * 
-		 * @attribute classname
+		 * @attribute className
 		 * @type string
 		 */
-		classname: "",
+		className: "",
 
 
 		icon_: null,
@@ -270,16 +270,15 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 				return this.icon_;
 			}
 			var icon = {
-				className: this.classname,
+				className: this.className,
 				html: this.innerHTML
 			};
-			if (this.iconwidth && this.iconheight) {
-				icon.iconSize = L.point(this.iconwith, this.iconheight);
+			if (this.iconWidth && this.iconHeight) {
+				icon.iconSize = L.point(this.iconWidth, this.iconHeight);
 			}
-			if (this.iconanchorx && this.iconanchory) {
-				icon.iconAnchor = L.point(this.iconanchorx, this.iconanchory);
+			if (this.iconAnchorX && this.iconAnchorY) {
+				icon.iconAnchor = L.point(this.iconAnchorX, this.iconAnchorY);
 			}
-			
 			this.icon_ = L.divicon(icon);
 			return this.icon_;
 		},
