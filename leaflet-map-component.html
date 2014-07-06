@@ -111,6 +111,13 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
 
        this.map.on( 'zoomend', function ( event ) {
          this.zoom = event.target.getZoom();
+
+         /**
+          * Fired when the map has stopped [zooming](http://leafletjs.com/reference.html#map-zoomend)
+          *
+          * @event zoomened
+          */
+          this.fire( 'zoomend' );
        }.bind( this ) );
 
        this.map.on( 'moveend', function ( event ) {
@@ -119,7 +126,7 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
          this.longitude = center.lng;
 
          /**
-          * Fired when the map has stopped moving
+          * Fired when the map has stopped [moving](http://leafletjs.com/reference.html#map-moveend)
           *
           * @event moveend
           */
