@@ -16,7 +16,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-icon" attributes="iconurl iconretinaurl iconwith iconheight iconanchorx iconanchory shadowurl shadowretinaurl shadowwidth shadowheight shadowanchorx shadowanchory popupanchorx popupanchory classname">
+<polymer-element name="nhnb-leaflet-icon" attributes="iconUrl iconRetinaUrl iconWidth iconHeight iconAnchorX iconAnchorY shadowUrl shadowRetinaUrl shadowWidth shadowHeight shadowAnchorX shadowAnchorY popupAnchorX popupAnchorY classname">
 	<template>
 		<style>
 			:host {
@@ -30,116 +30,116 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 	Polymer('nhnb-leaflet-icon', {
 
 		/**
-		 * The `iconurl` attribute sets the URL to the icon image (absolute or relative to your script path).
+		 * The `iconUrl` attribute sets the URL to the icon image (absolute or relative to your script path).
 		 * 
-		 * @attribute iconurl
+		 * @attribute iconUrl
 		 * @type string 
 		 */
-		iconurl: undefined,
+		iconUrl: undefined,
 
 		/**
-		 * The `iconretunaurl` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.
+		 * The `iconRetinaUrl` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.
 		 * 
-		 * @attribute iconretinaurl
+		 * @attribute iconRetinaUrl
 		 * @type string
 		 */
-		iconretinaurl: undefined,
+		iconRetinaUrl: undefined,
 
 		/**
-		 * The `iconwith` attribute sets the size of the icon image in pixels. 
+		 * The `iconWidth` attribute sets the size of the icon image in pixels. 
 		 * 
-		 * @attribute iconwidth
+		 * @attribute iconWidth
 		 * @type number
 		 */
-		iconwith: undefined,
+		iconWidth: undefined,
 
 		/**
-		 * The `iconheight` attribute sets the size of the icon image in pixels.
+		 * The `iconHeight` attribute sets the size of the icon image in pixels.
 		 * 
-		 * @attribute iconheight
+		 * @attribute iconHeight
 		 * @type number
 		 */
-		iconheight: undefined,
+		iconHeight: undefined,
 
 		/**
-		 * The `iconanchorx` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * The `iconAnchorX` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 		 * 
-		 * @attribute iconanchorx
+		 * @attribute iconAnchorX
 		 * @type number
 		 */
-		iconanchorx: undefined,
+		iconAnchorX: undefined,
 
 		/**
-		 * The `iconanchory` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * The `iconAnchorY` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 		 * 
-		 * @attribute iconanchory
+		 * @attribute iconAnchorY
 		 * @type number
 		 */
-		iconanchory: undefined,
+		iconAnchorY: undefined,
 
 		/**
-		 * The `shadowurl` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.
+		 * The `shadowUrl` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.
 		 * 
-		 * @attribute shadowurl
+		 * @attribute shadowUrl
 		 * @type string
 		 */
-		shadowurl: undefined,
+		shadowUrl: undefined,
 
 		/**
-		 * The `shadowretinaurl` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.
+		 * The `shadowRetinaUrl` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.
 		 * 
-		 * @attribute shadowretinaurl
+		 * @attribute shadowRetinaUrl
 		 * @type string
 		 */
-		shadowretinaurl: undefined,
+		shadowRetinaUrl: undefined,
 
 		/**
-		 * The `shadowwidth` attribute sets the size of the shadow image in pixels.
+		 * The `shadowWidth` attribute sets the size of the shadow image in pixels.
 		 * 
-		 * @attribute shadowwidth
+		 * @attribute shadowWidth
 		 * @type number
 		 */
-		shadowwidth: undefined,
+		shadowWidth: undefined,
 
 		/**
-		 * The `shadowheight` attribute sets the size of the shadow image in pixels.
+		 * The `shadowHeight` attribute sets the size of the shadow image in pixels.
 		 * 
-		 * @attribute shadowheight
+		 * @attribute shadowHeight
 		 * @type number
 		 */
-		shadowheight: undefined,
+		shadowHeight: undefined,
 
 		/**
-		 * The `shadowanchorx` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
+		 * The `shadowAnchorX` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
 		 * 
-		 * @attribute shadowanchorx
+		 * @attribute shadowAnchorX
 		 * @type number
 		 */
-		shadowanchorx: undefined,
+		shadowAnchorX: undefined,
 
 		/**
-		 * The `shadowanchory` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
+		 * The `shadowAnchorY` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
 		 * 
-		 * @attribute shadowanchory
+		 * @attribute shadowAnchorY
 		 * @type number
 		 */
-		shadowanchory: undefined,
+		shadowAnchorY: undefined,
 
 		/**
-		 * The `popupanchorx` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
+		 * The `popupAnchorX` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
 		 * 
-		 * @attribute popupanchorx
+		 * @attribute popupAnchorX
 		 * @type number
 		 */
-		popupanchorx: undefined,
+		popupAnchorX: undefined,
 
 		/**
 		 * The `popupanchory` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
 		 * 
-		 * @attribute popupanchory
+		 * @attribute popupAnchorY
 		 * @type number
 		 */
-		popupanchory: undefined,
+		popupAnchorY: undefined,
 
 		/**
 		 * The `classname` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
@@ -157,26 +157,26 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				return this.icon_;
 			}
 			var icon = {
-				iconUrl: this.iconurl,
-				iconRetinaUrl: this.iconretinaurl,
-				shadowUrl: this.shadowurl,
-				shadowRetinaUrl: this.shadowretinaurl,
+				iconUrl: this.iconUrl,
+				iconRetinaUrl: this.iconRetinaUrl,
+				shadowUrl: this.shadowUrl,
+				shadowRetinaUrl: this.shadowRetinaUrl,
 				className: this.classname	
 			};
-			if (this.iconwidth && this.iconheight) {
-				icon.iconSize = L.point(this.iconwith, this.iconheight);
+			if (this.iconWidth && this.iconHeight) {
+				icon.iconSize = L.point(this.iconWidth, this.iconHeight);
 			}
-			if (this.iconanchorx && this.iconanchory) {
-				icon.iconAnchor = L.point(this.iconanchorx, this.iconanchory);
+			if (this.iconAnchorX && this.iconAnchorY) {
+				icon.iconAnchor = L.point(this.iconAnchorX, this.iconAnchorY);
 			}
-			if (this.shadowwidth && this.shadowheight) {
-				icon.shadowSize = L.point(this.shadowwith, this.shadowheight);
+			if (this.shadowWidth && this.shadowHeight) {
+				icon.shadowSize = L.point(this.shadowWidth, this.shadowHeight);
 			}
-			if (this.shadowanchorx && this.shadowanchory) {
-				icon.shadowAnchor = L.point(this.shadowanchorx, this.shadowanchory);
+			if (this.shadowAnchorX && this.shadowAnchorY) {
+				icon.shadowAnchor = L.point(this.shadowAnchorX, this.shadowAnchorY);
 			}
-			if (this.popupanchorx && this.popupanchory) {
-				icon.popupAnchor = L.point(this.popupanchorx, this.popupanchory);
+			if (this.popupAnchorX && this.popupAnchorY) {
+				icon.popupAnchor = L.point(this.popupAnchorX, this.popupAnchorY);
 			}
 			
 			this.icon_ = L.icon(icon);
