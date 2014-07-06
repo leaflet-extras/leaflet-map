@@ -57,16 +57,16 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
      publish: {
        /**
         * The map's latitude coordinate.
-	*
+        *
         * @attribute latitude
         * @type number
-	* @default null
+        * @default null
         */
        latitude: { value: null, reflect: true },
 
        /**
         * The map's longitude coordinate.
-	*
+        *
         * @attribute longitude
         * @type number
         * @default null
@@ -75,7 +75,7 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
 
        /**
         * The map's zoom level
-	*
+        *
         * @attribute zoom
         * @type number
         * @default 10
@@ -83,13 +83,13 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
        zoom: { value: 10, reflect: true }
      },
 
-      /**
-       * The map's tile server URL
-       *
-       * @attribute tileServer
-       * @type string
-       * @default http://{s}.tile.osm.org/{z}/{x}/{y}.png
-       */
+     /**
+      * The map's tile server URL
+      *
+      * @attribute tileServer
+      * @type string
+      * @default http://{s}.tile.osm.org/{z}/{x}/{y}.png
+      */
      tileServer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
 
      observe: {
@@ -117,7 +117,7 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
           *
           * @event zoomened
           */
-          this.fire( 'zoomend' );
+         this.fire( 'zoomend' );
        }.bind( this ) );
 
        this.map.on( 'moveend', function ( event ) {
@@ -130,7 +130,7 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
           *
           * @event moveend
           */
-          this.fire( 'moveend' );
+         this.fire( 'moveend' );
        }.bind( this ) );
 
        this.updateFeatures();
