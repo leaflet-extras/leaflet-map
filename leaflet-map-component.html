@@ -113,10 +113,17 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
          this.zoom = event.target.getZoom();
        }.bind( this ) );
 
-       this.map.on( 'dragend', function ( event ) {
+       this.map.on( 'moveend', function ( event ) {
          var center = event.target.getCenter();
          this.latitude = center.lat;
          this.longitude = center.lng;
+
+         /**
+          * Fired when the map has stopped moving
+          *
+          * @event moveend
+          */
+          this.fire( 'moveend' );
        }.bind( this ) );
 
        this.updateFeatures();
