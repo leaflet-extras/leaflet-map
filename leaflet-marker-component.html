@@ -29,11 +29,11 @@ a child element of the `leaflet-map` element.
      /**
       * A Leaflet marker object
       *
-      * @property marker
+      * @property feature
       * @type L.marker
       * @default null
       */
-     marker: null,
+     feature: null,
 
      /**
       * A Leaflet map object
@@ -92,24 +92,24 @@ a child element of the `leaflet-map` element.
      mapReady: function () {
        if ( this.latitude && this.longitude && this.map ) {
          var hasIcon = ( Object.keys( this.icon ).length === 0 );
-         this.marker = L.marker( [this.latitude, this.longitude], {
+         this.feature = L.marker( [this.latitude, this.longitude], {
            icon: ( hasIcon ) ? new L.Icon.Default() : new L.icon( this.icon )
          } );
-         this.marker.addTo( this.map );
+         this.feature.addTo( this.map );
          this.contentChanged();
        }
      },
 
      updatePosition: function () {
-       if ( this.marker && this.latitude != null && this.longitude != null ) {
-         this.marker.setLatLng( L.latLng( this.latitude, this.longitude ) );
+       if ( this.feature && this.latitude != null && this.longitude != null ) {
+         this.feature.setLatLng( L.latLng( this.latitude, this.longitude ) );
        }
      },
 
      contentChanged: function () {
        this.onMutation( this, this.contentChanged );
        var content = this.innerHTML;
-       this.marker.bindPopup( content );
+       this.feature.bindPopup( content );
      }
    } );
   </script>

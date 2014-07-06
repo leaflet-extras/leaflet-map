@@ -190,8 +190,7 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
       */
      clear: function () {
        for( var i = 0, f; f = this.features[i]; i++ ) {
-         if ( f.marker ) this.map.removeLayer( f.marker );
-         if ( f.circle ) this.map.removeLayer( f.circle );
+         this.map.removeLayer( f.feature );
          f.map = null;
        }
      }
