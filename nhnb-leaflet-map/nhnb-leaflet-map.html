@@ -939,7 +939,7 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 
 ##### Example
 
-	<nhnb-leaflet-geolocation watch latitude="{{latitude}}" longitude="{{longitude}}"> </nhnb-leaflet-geolocation>
+	<nhnb-leaflet-geolocation watch enableHighAccuracy latitude="{{latitude}}" longitude="{{longitude}}"> </nhnb-leaflet-geolocation>
 
 @element nhnb-leaflet-geolocation
 @blurb element which controls geo location. 
@@ -957,6 +957,27 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 	"use strict";
    
 	Polymer('nhnb-leaflet-geolocation', {
+		/**
+		 * Fired when location information becomes avaialable.
+		 *
+		 * @event LocationEvent
+		 * @param {LatLng} latlng 	Detected geographical location of the user.
+		 * @param {LatLngBounds} LatLngBounds 	Geographical bounds of the area user is located in (with respect to the accuracy of location).
+		 * @param {number} accuracy 	Accuracy of location in meters.
+		 * @param {number} altitude 	Height of the position above the WGS84 ellipsoid in meters.
+		 * @param {number} altitudeAccuracy 	Accuracy of altitude in meters.
+		 * @param {number} heading 	The direction of travel in degrees counting clockwise from true North.
+		 * @param {number} speed 	Current velocity in meters per second.
+		 * @param {number} timestamp 	The time when the position was acquired.
+		 */
+
+		/**
+		 * Fired when location cannot be tracked
+		 *
+		 * @event ErrorEvent
+		 * @param {string} message Error message.
+		 * @param {number} code Error code (if applicable).
+		 */
 
 		/**
 		 * The `watch` attribute sets wether location changes should be continous watching (instead of detecting it once) using W3C watchPosition method. You can later stop watching using map.stopLocate() method. 
