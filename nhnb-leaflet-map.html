@@ -319,7 +319,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude icon clickable dragable keyboard title alt zindexoffset opacity riseonhover riseoffset">
+<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude icon clickable dragable keyboard title alt zIndexOffset opacity riseOnHover riseOffset">
 	<template>
 		<style>
 			:host {
@@ -500,7 +500,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		 * @attribute dragable
 		 * @type bool
 		 */
-		 keyboard: true,
+		keyboard: true,
 
 		/**
 		 * The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).
@@ -519,12 +519,12 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		alt: '',
 
 		/**
-		 * The `zindexoffset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude
+		 * The `zIndexOffset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude
 		 * 
-		 * @attribute zindexoffset
+		 * @attribute zIndexOffset
 		 * @type number
 		 */
-		zindexoffset: 0,
+		zIndexOffset: 0,
 
 		/**
 		 * The `opacity` attribute sets the opacity of the marker.
@@ -535,17 +535,17 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		opacity: 1.0,
 
 		/**
-		 * The `riseonhover` attribute sets the whether the marker will get on top of others when you hover the mouse over it. 
+		 * The `riseOnHover` attribute sets the whether the marker will get on top of others when you hover the mouse over it. 
 		 * 
-		 * @attribute riseonhover
+		 * @attribute riseOnHover
 		 * @type bool
 		 */
-		riseonhover: false,
+		riseOnHover: false,
 
 		/**
-		 * The `riseoffset` attribute sets the z-index offset used for the riseOnHover feature.
+		 * The `riseOffset` attribute sets the z-index offset used for the riseOnHover feature.
 		 * 
-		 * @attribute riseoffset
+		 * @attribute riseOffset
 		 * @type number
 		 */
 		riseoffset: 250,
@@ -568,10 +568,10 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 					keyboard: this.keyboard,
 					title: this.title,
 					alt: this.alt,
-					zindexoffset: this.zindexoffset,
+					zindexOffset: this.zIndexOffset,
 					opacity: this.opacity,
-					riseonhover: this.riseonhover,
-					riseoffset: this.riseoffset,
+					riseOnHover: this.riseOnHover,
+					riseOffset: this.riseOffset,
 				});
 				this.marker = marker;
 				this.iconChanged();
@@ -584,8 +584,8 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				// update popup on content changes
 				this.childrenMutated();
 				if (MutationObserver && !this.observer_) {
-				    this.observer_ = new MutationObserver(this.childrenMutated.bind(this));
-				    this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
+					this.observer_ = new MutationObserver(this.childrenMutated.bind(this));
+					this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
 				}
 				this.marker.addTo(this.map);
 			}
@@ -626,9 +626,9 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			}
 		},
 
-		zindexoffsetChanged: function() {
+		zIndexOffsetChanged: function() {
 			if (this.marker) {
-				this.marker.setZIndexOffset(this.zindex);
+				this.marker.setZIndexOffset(this.zIndexOffset);
 			}
 		},
 
