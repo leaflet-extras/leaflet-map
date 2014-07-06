@@ -18,7 +18,7 @@ a child element of the `leaflet-map` element.
 
 <link rel="import" href="leaflet-import.html">
 
-<polymer-element name="leaflet-marker" attributes="latitude longitude">
+<polymer-element name="leaflet-marker" attributes="latitude longitude icon">
   <template>
     <style>
       :host{ display: none; }
@@ -43,6 +43,18 @@ a child element of the `leaflet-map` element.
       * @default null
       */
      map: null,
+
+     /**
+      * The marker's icon. If nothing is defined the default
+      * leaflet icon is used by default. This is required to
+      * follow the [L.icon](http://leafletjs.com/reference.html#icon)
+      * options format.
+      *
+      * @attribute icon
+      * @type object
+      * @default null
+      */
+     icon: {},
 
      publish: {
        /**
@@ -79,7 +91,10 @@ a child element of the `leaflet-map` element.
 
      mapReady: function () {
        if ( this.latitude && this.longitude && this.map ) {
-         this.marker = L.marker( [this.latitude, this.longitude] );
+         var hasIcon = ( Object.keys( this.icon ).length === 0 );
+         this.marker = L.marker( [this.latitude, this.longitude], {
+           icon: ( hasIcon ) ? new L.Icon.Default() : new L.icon( this.icon )
+         } );
          this.marker.addTo( this.map );
          this.contentChanged();
        }
