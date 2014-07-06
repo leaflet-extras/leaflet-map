@@ -16,7 +16,8 @@
 				margin-top: 2em;
 			}
 			
-			nhnb-leaflet-map {
+			nhnb-leaflet-map,
+			geolocation-watch-sample {
 				max-width: 20em;
 				height: 20em;
 				border: 1px solid #aaa;
@@ -154,7 +155,7 @@ For example use &lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="1
 
 <nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13">
 
-	<nhnb-leaflet-icon id="myicon" iconurl="https://stendhalgame.org/images/mapmarker/me.png"></nhnb-leaflet-icon>
+	<nhnb-leaflet-icon id="myicon" iconUrl="https://stendhalgame.org/images/mapmarker/me.png"></nhnb-leaflet-icon>
 
 	<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Icon element reference" icon="myicon">
 	</nhnb-leaflet-marker>
@@ -225,7 +226,7 @@ document.addEventListener("load", function() {
 <nhnb-leaflet-map latitude="78.8" longitude="-96" zoom="5">
 	<nhnb-leaflet-tilelayer 
 		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
-		minzoom="2" maxzoom="6" nowrap>
+		minZoom="2" maxZoom="6" noWrap>
 
 			Map source: <a href="https://stendhalgame.org">Stendhal MMORPG</a>
 
@@ -239,7 +240,7 @@ document.addEventListener("load", function() {
 
 	&lt;<span class="i">nhnb-leaflet-tilelayer</span> 
 		<span class="a">url</span>="<span class="v">https://stendhalgame.org/map/3/{z}-{x}-{y}.png</span>"
-		<span class="a">minzoom</span>="<span class="v">2</span>" <span class="a">maxzoom</span>="<span class="v">6</span>" <span class="a">nowrap</span>&gt;
+		<span class="a">minZoom</span>="<span class="v">2</span>" <span class="a">maxZoom</span>="<span class="v">6</span>" <span class="a">noWrap</span>&gt;
 
 			Map source: &lt;<span class="i">a</span> <span class="a">href</span>="<span class="v">https://stendhalgame.org</span>"&gt;Stendhal MMORPG&lt;/<span class="i">a</span>&gt;
 
@@ -272,15 +273,16 @@ map.addEventListener("moveend", function(e) {
 &lt;<span class="i">div</span> <span class="a">id</span>="<span class="v">eventout</span>"&gt;Center: 51.505, -0.09&lt;/<span class="i">div</span>&gt;
 &lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt; &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
-&lt;<span class="i">script</span>>
+&lt;<span class="i">script</span>&gt;
 	var map = document.getElementById("eventmap");
 	map.addEventListener("moveend", function(e) {
 		var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
 		document.getElementById("eventout").textContent = text; 
 	});
-&lt;/<span class="i">script</span>>
+&lt;/<span class="i">script</span>&gt;
 
 </code></pre>
+
 
 
 	</body>

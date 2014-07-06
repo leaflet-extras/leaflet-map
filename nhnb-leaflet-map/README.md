@@ -19,6 +19,7 @@ nhnb-leaflet-map is a prove of concept. It already supports the most important f
 
 At this time the following elements are defined:
 
+* nhnb-leaflet-geolocation (part of L.map)
 * nhnb-leaflet-map (L.map)
 * nhnb-leaflet-marker (L.marker)
 * nhnb-leaflet-icon (L.icon)

@@ -16,7 +16,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-icon" attributes="iconurl iconretinaurl iconwith iconheight iconanchorx iconanchory shadowurl shadowretinaurl shadowwidth shadowheight shadowanchorx shadowanchory popupanchorx popupanchory classname">
+<polymer-element name="nhnb-leaflet-icon" attributes="iconUrl iconRetinaUrl iconWidth iconHeight iconAnchorX iconAnchorY shadowUrl shadowRetinaUrl shadowWidth shadowHeight shadowAnchorX shadowAnchorY popupAnchorX popupAnchorY className">
 	<template>
 		<style>
 			:host {
@@ -30,124 +30,124 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 	Polymer('nhnb-leaflet-icon', {
 
 		/**
-		 * The `iconurl` attribute sets the URL to the icon image (absolute or relative to your script path).
+		 * The `iconUrl` attribute sets the URL to the icon image (absolute or relative to your script path).
 		 * 
-		 * @attribute iconurl
+		 * @attribute iconUrl
 		 * @type string 
 		 */
-		iconurl: undefined,
+		iconUrl: undefined,
 
 		/**
-		 * The `iconretunaurl` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.
+		 * The `iconRetinaUrl` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.
 		 * 
-		 * @attribute iconretinaurl
+		 * @attribute iconRetinaUrl
 		 * @type string
 		 */
-		iconretinaurl: undefined,
+		iconRetinaUrl: undefined,
 
 		/**
-		 * The `iconwith` attribute sets the size of the icon image in pixels. 
+		 * The `iconWidth` attribute sets the size of the icon image in pixels. 
 		 * 
-		 * @attribute iconwidth
+		 * @attribute iconWidth
 		 * @type number
 		 */
-		iconwith: undefined,
+		iconWidth: undefined,
 
 		/**
-		 * The `iconheight` attribute sets the size of the icon image in pixels.
+		 * The `iconHeight` attribute sets the size of the icon image in pixels.
 		 * 
-		 * @attribute iconheight
+		 * @attribute iconHeight
 		 * @type number
 		 */
-		iconheight: undefined,
+		iconHeight: undefined,
 
 		/**
-		 * The `iconanchorx` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * The `iconAnchorX` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 		 * 
-		 * @attribute iconanchorx
+		 * @attribute iconAnchorX
 		 * @type number
 		 */
-		iconanchorx: undefined,
+		iconAnchorX: undefined,
 
 		/**
-		 * The `iconanchory` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * The `iconAnchorY` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 		 * 
-		 * @attribute iconanchory
+		 * @attribute iconAnchorY
 		 * @type number
 		 */
-		iconanchory: undefined,
+		iconAnchorY: undefined,
 
 		/**
-		 * The `shadowurl` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.
+		 * The `shadowUrl` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.
 		 * 
-		 * @attribute shadowurl
+		 * @attribute shadowUrl
 		 * @type string
 		 */
-		shadowurl: undefined,
+		shadowUrl: undefined,
 
 		/**
-		 * The `shadowretinaurl` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.
+		 * The `shadowRetinaUrl` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.
 		 * 
-		 * @attribute shadowretinaurl
+		 * @attribute shadowRetinaUrl
 		 * @type string
 		 */
-		shadowretinaurl: undefined,
+		shadowRetinaUrl: undefined,
 
 		/**
-		 * The `shadowwidth` attribute sets the size of the shadow image in pixels.
+		 * The `shadowWidth` attribute sets the size of the shadow image in pixels.
 		 * 
-		 * @attribute shadowwidth
+		 * @attribute shadowWidth
 		 * @type number
 		 */
-		shadowwidth: undefined,
+		shadowWidth: undefined,
 
 		/**
-		 * The `shadowheight` attribute sets the size of the shadow image in pixels.
+		 * The `shadowHeight` attribute sets the size of the shadow image in pixels.
 		 * 
-		 * @attribute shadowheight
+		 * @attribute shadowHeight
 		 * @type number
 		 */
-		shadowheight: undefined,
+		shadowHeight: undefined,
 
 		/**
-		 * The `shadowanchorx` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
+		 * The `shadowAnchorX` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
 		 * 
-		 * @attribute shadowanchorx
+		 * @attribute shadowAnchorX
 		 * @type number
 		 */
-		shadowanchorx: undefined,
+		shadowAnchorX: undefined,
 
 		/**
-		 * The `shadowanchory` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
+		 * The `shadowAnchorY` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
 		 * 
-		 * @attribute shadowanchory
+		 * @attribute shadowAnchorY
 		 * @type number
 		 */
-		shadowanchory: undefined,
+		shadowAnchorY: undefined,
 
 		/**
-		 * The `popupanchorx` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
+		 * The `popupAnchorX` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
 		 * 
-		 * @attribute popupanchorx
+		 * @attribute popupAnchorX
 		 * @type number
 		 */
-		popupanchorx: undefined,
+		popupAnchorX: undefined,
 
 		/**
 		 * The `popupanchory` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
 		 * 
-		 * @attribute popupanchory
+		 * @attribute popupAnchorY
 		 * @type number
 		 */
-		popupanchory: undefined,
+		popupAnchorY: undefined,
 
 		/**
-		 * The `classname` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+		 * The `className` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
 		 * 
-		 * @attribute classname
+		 * @attribute className
 		 * @type string
 		 */
-		classname: "",
+		 className: "",
 		
 
 		icon_: null,
@@ -157,26 +157,26 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				return this.icon_;
 			}
 			var icon = {
-				iconUrl: this.iconurl,
-				iconRetinaUrl: this.iconretinaurl,
-				shadowUrl: this.shadowurl,
-				shadowRetinaUrl: this.shadowretinaurl,
-				className: this.classname	
+				iconUrl: this.iconUrl,
+				iconRetinaUrl: this.iconRetinaUrl,
+				shadowUrl: this.shadowUrl,
+				shadowRetinaUrl: this.shadowRetinaUrl,
+				className: this.className
 			};
-			if (this.iconwidth && this.iconheight) {
-				icon.iconSize = L.point(this.iconwith, this.iconheight);
+			if (this.iconWidth && this.iconHeight) {
+				icon.iconSize = L.point(this.iconWidth, this.iconHeight);
 			}
-			if (this.iconanchorx && this.iconanchory) {
-				icon.iconAnchor = L.point(this.iconanchorx, this.iconanchory);
+			if (this.iconAnchorX && this.iconAnchorY) {
+				icon.iconAnchor = L.point(this.iconAnchorX, this.iconAnchorY);
 			}
-			if (this.shadowwidth && this.shadowheight) {
-				icon.shadowSize = L.point(this.shadowwith, this.shadowheight);
+			if (this.shadowWidth && this.shadowHeight) {
+				icon.shadowSize = L.point(this.shadowWidth, this.shadowHeight);
 			}
-			if (this.shadowanchorx && this.shadowanchory) {
-				icon.shadowAnchor = L.point(this.shadowanchorx, this.shadowanchory);
+			if (this.shadowAnchorX && this.shadowAnchorY) {
+				icon.shadowAnchor = L.point(this.shadowAnchorX, this.shadowAnchorY);
 			}
-			if (this.popupanchorx && this.popupanchory) {
-				icon.popupAnchor = L.point(this.popupanchorx, this.popupanchory);
+			if (this.popupAnchorX && this.popupAnchorY) {
+				icon.popupAnchor = L.point(this.popupAnchorX, this.popupAnchorY);
 			}
 			
 			this.icon_ = L.icon(icon);
@@ -209,7 +209,7 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-divicon" attributes="iconwith iconheight iconanchorx iconanchory classname">
+<polymer-element name="nhnb-leaflet-divicon" attributes="iconWidth iconHeight iconAnchorX iconAnchorY className">
 	<template>
 		<style>
 			:host {
@@ -223,44 +223,44 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 	Polymer('nhnb-leaflet-divicon', {
 
 		/**
-		 * The `iconwith` attribute sets the size of the icon image in pixels. 
+		 * The `iconWidth` attribute sets the size of the icon image in pixels. 
 		 * 
-		 * @attribute iconwidth
+		 * @attribute iconWidth
 		 * @type number
 		 */
-		iconwith: undefined,
+		iconWidth: undefined,
 
 		/**
-		 * The `iconheight` attribute sets the size of the icon image in pixels. 
+		 * The `iconHeight` attribute sets the size of the icon image in pixels.
 		 * 
-		 * @attribute iconheight
+		 * @attribute iconHeight
 		 * @type number
 		 */
-		iconheight: undefined,
+		iconHeight: undefined,
 
 		/**
-		 * The `iconanchorx` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * The `iconAnchorX` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 		 * 
-		 * @attribute iconanchorx
+		 * @attribute iconAnchorX
 		 * @type number
 		 */
-		iconanchorx: undefined,
+		iconAnchorX: undefined,
 
 		/**
-		 * The `iconanchory` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+		 * The `iconAnchorY` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 		 * 
-		 * @attribute iconanchory
+		 * @attribute iconAnchorY
 		 * @type number
 		 */
-		iconanchory: undefined,
+		iconAnchorY: undefined,
 
 		/**
-		 * The `classname` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+		 * The `className` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
 		 * 
-		 * @attribute classname
+		 * @attribute className
 		 * @type string
 		 */
-		classname: "",
+		className: "",
 
 
 		icon_: null,
@@ -270,16 +270,15 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 				return this.icon_;
 			}
 			var icon = {
-				className: this.classname,
+				className: this.className,
 				html: this.innerHTML
 			};
-			if (this.iconwidth && this.iconheight) {
-				icon.iconSize = L.point(this.iconwith, this.iconheight);
+			if (this.iconWidth && this.iconHeight) {
+				icon.iconSize = L.point(this.iconWidth, this.iconHeight);
 			}
-			if (this.iconanchorx && this.iconanchory) {
-				icon.iconAnchor = L.point(this.iconanchorx, this.iconanchory);
+			if (this.iconAnchorX && this.iconAnchorY) {
+				icon.iconAnchor = L.point(this.iconAnchorX, this.iconAnchorY);
 			}
-			
 			this.icon_ = L.divicon(icon);
 			return this.icon_;
 		},
@@ -320,7 +319,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude icon clickable dragable keyboard title alt zindexoffset opacity riseonhover riseoffset">
+<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude icon clickable dragable keyboard title alt zIndexOffset opacity riseOnHover riseOffset">
 	<template>
 		<style>
 			:host {
@@ -501,7 +500,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		 * @attribute dragable
 		 * @type bool
 		 */
-		 keyboard: true,
+		keyboard: true,
 
 		/**
 		 * The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).
@@ -520,12 +519,12 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		alt: '',
 
 		/**
-		 * The `zindexoffset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude
+		 * The `zIndexOffset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude
 		 * 
-		 * @attribute zindexoffset
+		 * @attribute zIndexOffset
 		 * @type number
 		 */
-		zindexoffset: 0,
+		zIndexOffset: 0,
 
 		/**
 		 * The `opacity` attribute sets the opacity of the marker.
@@ -536,17 +535,17 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		opacity: 1.0,
 
 		/**
-		 * The `riseonhover` attribute sets the whether the marker will get on top of others when you hover the mouse over it. 
+		 * The `riseOnHover` attribute sets the whether the marker will get on top of others when you hover the mouse over it. 
 		 * 
-		 * @attribute riseonhover
+		 * @attribute riseOnHover
 		 * @type bool
 		 */
-		riseonhover: false,
+		riseOnHover: false,
 
 		/**
-		 * The `riseoffset` attribute sets the z-index offset used for the riseOnHover feature.
+		 * The `riseOffset` attribute sets the z-index offset used for the riseOnHover feature.
 		 * 
-		 * @attribute riseoffset
+		 * @attribute riseOffset
 		 * @type number
 		 */
 		riseoffset: 250,
@@ -569,10 +568,10 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 					keyboard: this.keyboard,
 					title: this.title,
 					alt: this.alt,
-					zindexoffset: this.zindexoffset,
+					zindexOffset: this.zIndexOffset,
 					opacity: this.opacity,
-					riseonhover: this.riseonhover,
-					riseoffset: this.riseoffset,
+					riseOnHover: this.riseOnHover,
+					riseOffset: this.riseOffset,
 				});
 				this.marker = marker;
 				this.iconChanged();
@@ -585,8 +584,8 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				// update popup on content changes
 				this.childrenMutated();
 				if (MutationObserver && !this.observer_) {
-				    this.observer_ = new MutationObserver(this.childrenMutated.bind(this));
-				    this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
+					this.observer_ = new MutationObserver(this.childrenMutated.bind(this));
+					this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
 				}
 				this.marker.addTo(this.map);
 			}
@@ -627,9 +626,9 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			}
 		},
 
-		zindexoffsetChanged: function() {
+		zIndexOffsetChanged: function() {
 			if (this.marker) {
-				this.marker.setZIndexOffset(this.zindex);
+				this.marker.setZIndexOffset(this.zIndexOffset);
 			}
 		},
 
@@ -680,7 +679,7 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
 
-<polymer-element name="nhnb-leaflet-tilelayer" attributes="url minzoom maxzoom nowrap maxnativezoom tilesize subdomains errortileurl attribution tms continuous-world nowrap zoomoffset zoomreverse opacity zindex detectretina reusetiles">
+<polymer-element name="nhnb-leaflet-tilelayer" attributes="url minZoom maxZoom maxNativeZoom tileSize subdomains errorTileUrl attribution tms continuousWorld noWrap zoomOffset zoomReverse opacity zIndex detectRetina reuseTiles">
 	<template>
 		<style>
 			:host {
@@ -747,20 +746,20 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 
 		/**
-		 * The `minzoom` attribute sets the minimum zoom number.
+		 * The `minZoom` attribute sets the minimum zoom number.
 		 * 
-		 * @attribute minzoom
+		 * @attribute minZoom
 		 * @type number
 		 */
-		minzoom: 0,
+		minZoom: 0,
 
 		/**
-		 * The `maxzoom` attribute sets the maximum zoom number.
+		 * The `maxZoom` attribute sets the maximum zoom number.
 		 * 
-		 * @attribute maxzoom
+		 * @attribute maxZoom
 		 * @type number
 		 */
-		maxzoom: 18,
+		maxZoom: 18,
 
 		/**
 		 * The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled. 
@@ -768,15 +767,15 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		 * @attribute maxnativezoom
 		 * @type number
 		 */
-		maxnativezoom: null,
+		maxNativeZoom: null,
 
 		/**
-		 * The `tilesize` attribute sets the tile size (width and height in pixels, assuming tiles are square).
+		 * The `tileSize` attribute sets the tile size (width and height in pixels, assuming tiles are square).
 		 * 
-		 * @attribute tilesize
+		 * @attribute tileSize
 		 * @type number
 		 */
-		tilesize: 256,
+		tileSize: 256,
 
 		/**
 		 * The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.
@@ -787,12 +786,12 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		subdomains: "abc",
 
 		/**
-		 * The `errortileurl` attribute sets the URL to the tile image to show in place of the tile that failed to load.
+		 * The `errorTileUrl` attribute sets the URL to the tile image to show in place of the tile that failed to load.
 		 * 
-		 * @attribute errortileurl
+		 * @attribute errorTileUrl
 		 * @type string
 		 */
-		errortileurl: "",
+		errorTileUrl: "",
 
 		/**
 		 * The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.
@@ -811,12 +810,12 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		tms: false,
 
 		/**
-		 * The `continuousworld` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
+		 * The `continuousWorld` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
 		 * 
-		 * @attribute continuousworld
+		 * @attribute continuousWorld
 		 * @type bool
 		 */
-		continuousworld: false,
+		continuousWorld: false,
 
 		/**
 		 * The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.
@@ -824,23 +823,23 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		 * @attribute nowrap
 		 * @type bool
 		 */
-		nowrap: false,
+		noWrap: false,
 
 		/**
-		 * The `zoomoffset` attribute sets the zoom number used in tile URLs will be offset with this value.
+		 * The `zoomOffset` attribute sets the zoom number used in tile URLs will be offset with this value.
 		 * 
-		 * @attribute zoomoffset
+		 * @attribute zoomOffset
 		 * @type number
 		 */
-		zoomoffset: 0,
+		zoomOffset: 0,
 
 		/**
-		 * The `zoomreverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
+		 * The `zoomReverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
 		 * 
-		 * @attribute zoomreverse
+		 * @attribute zoomReverse
 		 * @type bool
 		 */
-		zoomreverse: false,
+		zoomReverse: false,
 
 		/**
 		 * The `opacity` attribute sets the opacity of the tile layer.
@@ -851,12 +850,12 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		opacity: 1.0,
 
 		/**
-		 * The `zindex` attribute sets the explicit zIndex of the tile layer. Not set by default.
+		 * The `zIndex` attribute sets the explicit zIndex of the tile layer. Not set by default.
 		 * 
-		 * @attribute zindex
+		 * @attribute zIndex
 		 * @type number
 		 */
-		zindex: null,
+		zIndex: null,
 
 		/**
 		 * The `detectretina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution. 
@@ -864,15 +863,15 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		 * @attribute detectretina
 		 * @type bool
 		 */
-		detectretina: false,
+		detectRetina: false,
 
 		/**
-		 * The `reusetiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
+		 * The `reuseTiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
 		 * 
-		 * @attribute reusetiles
+		 * @attribute reuseTiles
 		 * @type bool
 		 */
-		reusetiles: false,
+		reuseTiles: false,
 
 		// unloadInvisibleTiles updateWhenIdle bounds
 		
@@ -880,21 +879,21 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 			if (this.map) {
 				var layer = L.tileLayer(this.url, {
 					attribution: this.innerHTML + this.attribution,
-					minZoom: this.minzoom,
-					maxZoom: this.maxzoom,
-					maxNativeZoom: this.maxnativezoom,
-					tileSize: this.tilesize,
+					minZoom: this.minZoom,
+					maxZoom: this.maxZoom,
+					maxNativeZoom: this.maxNativeZoom,
+					tileSize: this.tileSize,
 					subdomains: this.subdomains,
-					errorTileUrl: this.errortileurl,
+					errorTileUrl: this.errorTileUrl,
 					tms: this.tms,
-					continuousWorld: this.continuousworld,
-					noWrap: this.nowrap,
-					zoomOffset: this.zoomoffset,
-					zoomReverse: this.zoomreverse,
+					continuousWorld: this.continuousWorld,
+					noWrap: this.noWrap,
+					zoomOffset: this.zoomOffset,
+					zoomReverse: this.zoomReverse,
 					opacity: this.opacity,
-					zIndex: this.zindex,
-					detectRetina: this.detectretina,
-					reuseTiles: this.reusetiles,
+					zIndex: this.zIndex,
+					detectRetina: this.detectRetina,
+					reuseTiles: this.reuseTiles,
 				});
 				this.layer = layer
 
@@ -911,9 +910,9 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 				this.layer.setOpacity(this.opacity);
 			}
 		},
-		zindexChanged: function() {
+		zIndexChanged: function() {
 			if (this.layer) {
-				this.layer.setZIndex(this.zindex);
+				this.layer.setZIndex(this.zIndex);
 			}
 		},
 		urlChanged: function() {
@@ -1158,7 +1157,7 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-map" attributes="minzoom maxzoom dragging touchzoom scrollwheelzoom doubleclickzoom boxzoom tap taptolerance trackresize worldcopyjump closepopuponclick bounceatzoomlimits keyboard keyboardpanoffset keyboardzoomoffset inertia inertiadeceleration inertiamaxspeed zoomcontrol attributioncontrol zoomanimationthreshold">
+<polymer-element name="nhnb-leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold">
 	<template>
 		<link rel="stylesheet" href="../leaflet-bower/dist/leaflet.css" />
 		<style>
@@ -1459,20 +1458,20 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		},
 
 		/**
-		 * The `minzoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.
+		 * The `minZoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.
 		 * 
-		 * @attribute minzoom
+		 * @attribute minZoom
 		 * @type number
 		 */
-		minzoom: 0,
+		minZoom: 0,
 
 		/**
-		 * The `maxzoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.
+		 * The `maxZoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.
 		 * 
-		 * @attribute maxzoom
+		 * @attribute maxZoom
 		 * @type number
 		 */
-		maxzoom: 9007199254740992,
+		maxZoom: 9007199254740992,
 
 		/**
 		 * The `dragging` attribute sets whether  when he tries to pan outside the view.
@@ -1483,36 +1482,36 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		dragging: true,
 
 		/**
-		 * The `touchzoom` attribute sets whether the map can be zoomed by touch-dragging with two fingers. 
+		 * The `touchZoom` attribute sets whether the map can be zoomed by touch-dragging with two fingers. 
 		 * 
-		 * @attribute touchzoom
+		 * @attribute touchZoom
 		 * @type bool
 		 */
-		touchzoom: true,
+		touchZoom: true,
 
 		/**
-		 * The `scrollwheelzoom` attribute sets the whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.
+		 * The `scrollWheelZoom` attribute sets the whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.
 		 * 
-		 * @attribute scrollwheelzoom
+		 * @attribute scrollWheelZoom
 		 * @type bool
 		 */
-		scrollwheelzoom: true,
+		scrollWheelZoom: true,
 
 		/**
-		 * The `doubleclickzoom` attribute sets the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
+		 * The `doubleClickZoom` attribute sets the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
 		 * 
-		 * @attribute doubleclickzoom
+		 * @attribute doubleClickZoom
 		 * @type bool
 		 */
-		doubleclickzoom: true,
+		doubleClickZoom: true,
 
 		/**
-		 * The `boxzoom` attribute sets the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
+		 * The `boxZoom` attribute sets the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
 		 * 
-		 * @attribute boxzoom
+		 * @attribute boxZoom
 		 * @type bool
 		 */
-		boxzoom: true,
+		boxZoom: true,
 
 		/**
 		 * The `tap` attribute enables mobile hacks for supporting instant taps (fixing 200ms click delay on iOS/Android) and touch holds (fired as contextmenu events).
@@ -1523,44 +1522,44 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		tap: true,
 
 		/**
-		 * The `taptolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap. 
+		 * The `tapTolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap. 
 		 * 
-		 * @attribute taptolerance
+		 * @attribute tapTolerance
 		 * @type number
 		 */
-		taptolerance: 15,
+		tapTolerance: 15,
 
 		/**
-		 * The `trackresize` attribute sets whether the map automatically handles browser window resize to update itself.
+		 * The `trackResize` attribute sets whether the map automatically handles browser window resize to update itself.
 		 * 
-		 * @attribute trackresize
+		 * @attribute trackResize
 		 * @type bool
 		 */
-		trackresize: true,
+		trackResize: true,
 
 		/**
-		 * The `worldcopyjump` attribute sets whether the map tracks when you pan to another "copy" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.
+		 * The `worldCopyJump` attribute sets whether the map tracks when you pan to another "copy" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.
 		 * 
-		 * @attribute worldcopyjump
+		 * @attribute worldCopyJump
 		 * @type bool
 		 */
-		worldcopyjump: false,
+		worldCopyJump: false,
 
 		/**
-		 * The `closepopuponclick` attribute sets whether popups are closed when user clicks the map.
+		 * The `closePopupOnClick` attribute sets whether popups are closed when user clicks the map.
 		 * 
-		 * @attribute closepopuponclick
+		 * @attribute closePopupOnClick
 		 * @type bool
 		 */
-		closepopuponclick: true,
+		closePopupOnClick: true,
 
 		/**
-		 * The `bounceatzoomlimits` attribute sets whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
+		 * The `bounceAtZoomLimits` attribute sets whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
 		 * 
-		 * @attribute bounceatzoomlimits
+		 * @attribute bounceAtZoomLimits
 		 * @type bool
 		 */
-		bounceatzoomlimits: true,
+		bounceAtZoomLimits: true,
 
 		/**
 		 * The `keyboard` attribute sets whether the map is focusable and allows users to navigate the map with keyboard arrows and +/- keys.
@@ -1571,20 +1570,20 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		keyboard: true,
 
 		/**
-		 * The `keyboardpanoffset` attribute sets the amount of pixels to pan when pressing an arrow key.
+		 * The `keyboardPanOffset` attribute sets the amount of pixels to pan when pressing an arrow key.
 		 * 
-		 * @attribute keyboardpanoffset
+		 * @attribute keyboardPanOffset
 		 * @type number
 		 */
-		keyboardpanoffset: 80,
+		keyboardPanOffset: 80,
 
 		/**
-		 * The `keyboardzoomoffset` attribute sets the number of zoom levels to change when pressing + or - key.
+		 * The `keyboardZoomOffset` attribute sets the number of zoom levels to change when pressing + or - key.
 		 * 
-		 * @attribute keyboardzoomoffset
+		 * @attribute keyboardZoomOffset
 		 * @type number
 		 */
-		keyboardzoomoffset: 1,
+		keyboardZoomOffset: 1,
 
 		/**
 		 * The `inertia` attribute sets whether panning of the map will have an inertia effect where the map builds momentum while dragging and continues moving in the same direction for some time. Feels especially nice on touch devices.
@@ -1595,44 +1594,44 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		inertia: true,
 
 		/**
-		 * The `inertiadeceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.
+		 * The `inertiaDeceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.
 		 * 
-		 * @attribute inertiadeceleration
+		 * @attribute inertiaDeceleration
 		 * @type number
 		 */
-		inertiadeceleration: 3000,
+		inertiaDeceleration: 3000,
 
 		/**
-		 * The `inertiamaxspeed` attribute sets the max speed of the inertial movement, in pixels/second.
+		 * The `inertiaMaxSpeed` attribute sets the max speed of the inertial movement, in pixels/second.
 		 * 
-		 * @attribute inertiamaxspeed
+		 * @attribute inertiaMaxSpeed
 		 * @type number
 		 */
-		inertiamaxspeed: 1500,
+		inertiaMaxSpeed: 1500,
 
 		/**
-		 * The `zoomcontrol` attribute sets whether the zoom control is added to the map by default.
+		 * The `zoomControl` attribute sets whether the zoom control is added to the map by default.
 		 * 
-		 * @attribute zoomcontrol
+		 * @attribute zoomControl
 		 * @type bool
 		 */
-		zoomcontrol: true,
+		zoomControl: true,
 
 		/**
-		 * The `attributioncontrol` attribute sets whether the attribution control is added to the map by default.
+		 * The `attributionControl` attribute sets whether the attribution control is added to the map by default.
 		 * 
-		 * @attribute attributioncontrol
+		 * @attribute attributionControl
 		 * @type bool
 		 */
-		attributioncontrol: true,
+		attributionControl: true,
 
 		/**
-		 * The `zoomanimationthreshold` attribute sets the maximum number of zoom level differences that still use animation
+		 * The `zoomAnimationThreshold` attribute sets the maximum number of zoom level differences that still use animation
 		 * 
-		 * @attribute zoomanimationthreshold
+		 * @attribute zoomAnimationThreshold
 		 * @type number
 		 */
-		zoomanimationthreshold: 4,
+		zoomAnimationThreshold: 4,
 
 		/** 
 		 * reference to the leaflet map
@@ -1654,28 +1653,28 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 			var map = L.map(this.$.map, {
 				center: [this.latitude, this.longitude],
 				zoom: this.zoom,
-				minZoom: this.minzoom,
-				maxZoom: this.maxzoom,
+				minZoom: this.minZoom,
+				maxZoom: this.maxZoom,
 				dragging: this.dragging,
-				touchZoom: this.touchzoom,
-				scrollWheelZoom: this.scrollwheelzoom,
-				doubleClickZoom: this.doubleclickzoom,
-				boxZoom: this.boxzoom,
+				touchZoom: this.touchZoom,
+				scrollWheelZoom: this.scrollWheelZoom,
+				doubleClickZoom: this.doubleClickZoom,
+				boxZoom: this.boxZoom,
 				tap: this.tap,
-				tapTolerance: this.taptolerance,
-				trackResize: this.trackresize,
-				worldCopyJump: this.worldcopyjump,
-				closePopupOnClick: this.closepopuponclick,
-				bounceAtZoomLimits: this.bounceatzoomlimits,
+				tapTolerance: this.tapTolerance,
+				trackResize: this.trackResize,
+				worldCopyJump: this.worldCopyJump,
+				closePopupOnClick: this.closePopupOnClick,
+				bounceAtZoomLimits: this.bounceAtZoomLimits,
 				keyboard: this.keyboard,
-				keyboardPanOffset: this.keyboardpanoffset,
-				keyboardZoomOffset: this.keyboardzoomoffset,
+				keyboardPanOffset: this.keyboardPanOffset,
+				keyboardZoomOffset: this.keyboardZoomOffset,
 				inertia: this.inertia,
-				inertiaDeceleration: this.inertiadeceleration,
-				inertiaMaxSpeed: this.inertiamaxspeed,
+				inertiaDeceleration: this.inertiaDeceleration,
+				inertiaMaxSpeed: this.inertiaMaxSpeed,
 				zoomControl: this.zoomcontrol,
-				attributionControl: this.attributioncontrol,
-				zoomAnimationThreshold: this.zoomanimationthreshold
+				attributionControl: this.attributionControl,
+				zoomAnimationThreshold: this.zoomAnimationThreshold
 			});
 			this.map = map;
 
@@ -1686,11 +1685,11 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 
 			// update attributes
 			map.on('moveend', function(e) {
-			    this.latitude = map.getCenter().lat;
-			    this.longitude = map.getCenter().lng;
+				this.latitude = map.getCenter().lat;
+				this.longitude = map.getCenter().lng;
 			}, this);
 			map.on('zoomend', function(e) {
-			    this.zoom = map.getZoom();
+				this.zoom = map.getZoom();
 			}, this);
 
 			if (this.zoom == -1) {
@@ -1701,7 +1700,7 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 			var defaultLayerRequired = true;
 			for (var i = 0; i < this.children.length; i++) {
 				var localName = this.children[i].localName;
-				if (localName.indexOf("-layer", localName.length - 6) !== -1) {
+				if (localName.indexOf("layer", localName.length - 6) !== -1) {
 					defaultLayerRequired = false;
 				}
 			}
