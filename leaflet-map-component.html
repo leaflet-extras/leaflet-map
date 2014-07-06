@@ -49,8 +49,7 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
     </style>
     <link rel="stylesheet" href="../leaflet/dist/leaflet.css">
     <div id="map"></div>
-    <content id="markers" select="leaflet-marker"></content>
-    <content id="circles" select="leaflet-circle"></content>
+    <content id="features" select="leaflet-marker, leaflet-circle"></content>
   </template>
   <script>
    Polymer( 'leaflet-map', {
@@ -158,42 +157,25 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
      },
 
      updateFeatures: function () {
-       this.markers = Array.prototype.slice.call( this.$.markers.getDistributedNodes() );
-       this.circles = Array.prototype.slice.call( this.$.circles.getDistributedNodes() );
+       this.features = Array.prototype.slice.call( this.$.features.getDistributedNodes() );
 
        this.onMutation( this, this.updateFeatures );
 
-       if ( this.markers.length && this.map ) {
-         for ( var i = 0, m; m = this.markers[i]; i++ ) {
-           m.map = this.map;
-         }
-       }
-
-       if ( this.circles.length && this.map ) {
-         for ( var i = 0, c; c = this.circles[i]; i++ ) {
-           c.map = this.map;
+       if ( this.features.length && this.map ) {
+         for ( var i = 0, f; f = this.features[i]; i++ ) {
+           f.map = this.map;
          }
        }
      },
 
      fitToMarkersChanged: function () {
-       console.log( 'changed' );
        if ( this.map && this.fitToMarkers) {
          var bounds = [];
-         // Remove markers
-         for( var i = 0, m; m = this.markers[i]; i++ ) {
-           if ( m.latitude && m.longitude ) {
-             bounds.push( [ m.latitude, m.longitude ] );
+         for( var i = 0, f; f = this.features[i]; i++ ) {
+           if ( f.latitude && f.longitude ) {
+             bounds.push( [ f.latitude, f.longitude ] );
            }
          }
-
-         // Remove circcles
-         for( var i = 0, c; c = this.circles[i]; i++ ) {
-           if( c.latitude && c.longitude ) {
-             bounds.push( [ c.latitude, c.longitude ] );
-           }
-         }
-
          if ( bounds.length > 0 ) {
            this.map.fitBounds( bounds );
            this.map.invalidateSize();
@@ -207,16 +189,10 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
       * @method clear
       */
      clear: function () {
-       // Remove markers
-       for( var i = 0, m; m = this.markers[i]; i++ ) {
-         this.map.removeLayer( m.marker );
-         m.map = null;
-       }
-
-       // Remove circcles
-       for( var i = 0, c; c = this.circles[i]; i++ ) {
-         this.map.removeLayer( c.circle );
-         c.map = null;
+       for( var i = 0, f; f = this.features[i]; i++ ) {
+         if ( f.marker ) this.map.removeLayer( f.marker );
+         if ( f.circle ) this.map.removeLayer( f.circle );
+         f.map = null;
        }
      }
    } );
