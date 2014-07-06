@@ -31,7 +31,7 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
 <link rel="import" href="leaflet-marker-component.html">
 <link rel="import" href="leaflet-circle-component.html">
 
-<polymer-element name="leaflet-map" attributes="tileServer latitude longitude zoom">
+<polymer-element name="leaflet-map" attributes="tileServer latitude longitude zoom fitToMarkers">
   <template>
     <style>
      :host {
@@ -91,6 +91,15 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
       * @default http://{s}.tile.osm.org/{z}/{x}/{y}.png
       */
      tileServer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+
+     /**
+      * If set, the map is zoomed such that all elements in it are visible
+      *
+      * @attribute fitToMarkers
+      * @type boolean
+      * @default false
+      */
+     fitToMarkers: false,
 
      observe: {
        latitude: 'updateCenter',
@@ -165,8 +174,31 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
            c.map = this.map;
          }
        }
+     },
 
-       // Fit to bounds
+     fitToMarkersChanged: function () {
+       console.log( 'changed' );
+       if ( this.map && this.fitToMarkers) {
+         var bounds = [];
+         // Remove markers
+         for( var i = 0, m; m = this.markers[i]; i++ ) {
+           if ( m.latitude && m.longitude ) {
+             bounds.push( [ m.latitude, m.longitude ] );
+           }
+         }
+
+         // Remove circcles
+         for( var i = 0, c; c = this.circles[i]; i++ ) {
+           if( c.latitude && c.longitude ) {
+             bounds.push( [ c.latitude, c.longitude ] );
+           }
+         }
+
+         if ( bounds.length > 0 ) {
+           this.map.fitBounds( bounds );
+           this.map.invalidateSize();
+         }
+       }
      },
 
      /**
