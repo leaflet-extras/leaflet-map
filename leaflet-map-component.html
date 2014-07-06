@@ -167,6 +167,25 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
        }
 
        // Fit to bounds
+     },
+
+     /**
+      * Clears all elements from the map
+      *
+      * @method clear
+      */
+     clear: function () {
+       // Remove markers
+       for( var i = 0, m; m = this.markers[i]; i++ ) {
+         this.map.removeLayer( m.marker );
+         m.map = null;
+       }
+
+       // Remove circcles
+       for( var i = 0, c; c = this.circles[i]; i++ ) {
+         this.map.removeLayer( c.circle );
+         c.map = null;
+       }
      }
    } );
   </script>
