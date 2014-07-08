@@ -25,6 +25,7 @@ At this time the following elements are defined:
 * nhnb-leaflet-icon (L.icon)
 * nhnb-leaflet-divicon (L.divicon)
 * nhnb-leaflet-tilelayer (L.tileLayer)
+* nhnb-leaflet-tilelayer-wms (L.tileLayer.wms)  (since 0.0.2)
 
 Most of the options documented in the [Leaflet reference](http://leafletjs.com/reference.html) for those objects are exported as html attributes. 
 For example use &lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13"&gt; &lt;/nhnb-leaflet-map&gt; to define the view and zoom level.

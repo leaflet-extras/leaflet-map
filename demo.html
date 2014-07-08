@@ -75,11 +75,13 @@
 
 <p>At this time the following elements are defined:</p>
 <ul>
+<li> nhnb-leaflet-geolocation (part of L.map) (since 0.0.2)
 <li> nhnb-leaflet-map (L.map)
 <li> nhnb-leaflet-marker (L.marker)
 <li> nhnb-leaflet-icon (L.icon)
-<li> nhnb-leaflet-divicon (L.icon)
+<li> nhnb-leaflet-divicon (L.icon) (since 0.0.1)
 <li> nhnb-leaflet-tilelayer (L.tileLayer)
+<li> nhnb-leaflet-tilelayer-wms (L.tileLayer.wms)  (since 0.0.2)
 </ul>
 <p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference</a> for those objects are exported as html attributes. 
 For example use &lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="13"&gt; &lt;/nhnb-leaflet-map&gt; to define the view and zoom level.</p>
@@ -253,6 +255,41 @@ document.addEventListener("load", function() {
 
 </code></pre>
 
+
+
+
+<h2 id="layerwms">Tile layer WMS</h2>
+
+<p>It is possible to display data from external WMS services as tile layers on the map.</p>
+
+
+<nhnb-leaflet-map latitude="40" longitude="-85" zoom="4">
+
+	<nhnb-leaflet-tilelayer-wms 
+		url="http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi"
+	    layers="nexrad-n0r-900913" format="image/png" transparent opacity="0.5">
+
+			Weather data &copy; 2012 IEM Nexrad
+
+	</nhnb-leaflet-tilelayer-wms>
+
+</nhnb-leaflet-map>
+
+
+<pre class="html"><code>
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">40</span>" <span class="a">longitude</span>="<span class="v">-85</span>" <span class="a">zoom</span>="<span class="v">4</span>"&gt;
+
+	&lt;<span class="i">nhnb-leaflet-tilelayer-wms</span> 
+		<span class="a">url</span>="<span class="v">http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi</span>"
+		<span class="a">layers</span>="<span class="v">nexrad-n0r-900913</span>" <span class="a">format</span>="<span class="v">image/png</span>" <span class="a">transparent</span> <span class="a">opacity</span>="<span class="v">0.5</span>"&gt;
+
+			Weather data &copy; 2012 IEM Nexrad
+
+	&lt;/<span class="i">nhnb-leaflet-tilelayer-wms</span>&gt;
+
+&lt;/<span class="i">nhnb-leaflet-map</span>&gt;
+
+</code></pre>
 
 
 
