@@ -28,6 +28,7 @@
 				border: 2px dashed #00A;
 				padding: 0.5em 1em;
 				background-color: #DDD;
+				clear: all;
 			}
 			.i {
 				color: #00D
@@ -139,13 +140,13 @@ For example use &lt;nhnb-leaflet-map latitude="51.505" longitude="-0.09" zoom="1
 <pre class="html"><code>
 &lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
 
-	&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Transparent</span>" <span class="a">opacity</span>="<span class="v">0.6</span>"&gt;
-	&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
+    &lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Transparent</span>" <span class="a">opacity</span>="<span class="v">0.6</span>"&gt;
+    &lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
 
-	&lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Popup Demo</span>"&gt; 
-		&lt;<span class="i">b</span>&gt;Bold&lt;/<span class="i">b</span>&gt;
-		&lt;<span class="i">p</span>&gt;Text&lt;/<span class="i">p</span>&gt;
-	&lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
+    &lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Popup Demo</span>"&gt; 
+        &lt;<span class="i">b</span>&gt;Bold&lt;/<span class="i">b</span>&gt;
+        &lt;<span class="i">p</span>&gt;Text&lt;/<span class="i">p</span>&gt;
+    &lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
 
 &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
@@ -187,7 +188,8 @@ document.addEventListener("load", function() {
 
 <p>The template icon may be defined using &lt;nhnb-leaflet-icon&gt; elements. This is the prefered way. Please note that iconSize is mapped to the attributes iconwidth and iconheight. iconAnchor is mapped to iconanchorx and iconanchory and so on:</p>
 
-<pre class="html"><code>&lt;<span class="i">nhnb-leaflet-icon</span> <span class="a">id</span>="<span class="v">myicon</span>" <span class="a">iconurl</span>="<span class="v">https://stendhalgame.org/images/mapmarker/me.png</span>"&gt; &lt;<span class="i">/nhnb-leaflet-icon</span>&gt;
+<pre class="html"><code>
+&lt;<span class="i">nhnb-leaflet-icon</span> <span class="a">id</span>="<span class="v">myicon</span>" <span class="a">iconurl</span>="<span class="v">https://stendhalgame.org/images/mapmarker/me.png</span>"&gt; &lt;<span class="i">/nhnb-leaflet-icon</span>&gt;
 
 &lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Icon element reference</span>" <span class="a">icon</span>="<span class="v">myicon</span>"&gt;
 &lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
@@ -198,7 +200,7 @@ document.addEventListener("load", function() {
 
 <pre class="html"><code>
 &lt;<span class="i">nhnb-leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Icon json</span>" 
-	<span class="a">icon</span>='<span class="v">{"iconUrl": "https://stendhalgame.org/images/mapmarker/dungeon.png"}</span>'&gt; 
+    <span class="a">icon</span>='<span class="v">{"iconUrl": "https://stendhalgame.org/images/mapmarker/dungeon.png"}</span>'&gt; 
 &lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
 
 </code></pre>
@@ -211,14 +213,14 @@ document.addEventListener("load", function() {
 &lt;/<span class="i">nhnb-leaflet-marker</span>&gt;
 
 &lt;<span class="i">script</span>&gt;
-	document.addEventListener("load", function() {
-		var marker = document.getElementById("icon-reference");
-		marker.icon = L.icon({
-			"iconUrl": "https://stendhalgame.org/images/mapmarker/npc.png",
-			"iconSize": L.point(26, 25),
-			"iconAnchor": L.point(0, 0)
-		});
-	});
+    document.addEventListener("load", function() {
+        var marker = document.getElementById("icon-reference");
+        marker.icon = L.icon({
+            "iconUrl": "https://stendhalgame.org/images/mapmarker/npc.png",
+            "iconSize": L.point(26, 25),
+            "iconAnchor": L.point(0, 0)
+        });
+    });
 &lt;/<span class="i">script</span>&gt;
 
 </code></pre>
@@ -244,13 +246,13 @@ document.addEventListener("load", function() {
 <pre class="html"><code>
 &lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>" <span class="a">maxZoom</span>="<span class="v">6</span>"&gt;
 
-	&lt;<span class="i">nhnb-leaflet-tilelayer</span> 
-		<span class="a">url</span>="<span class="v">https://stendhalgame.org/map/3/{z}-{x}-{y}.png</span>"
-		<span class="a">minZoom</span>="<span class="v">2</span>" <span class="a">maxZoom</span>="<span class="v">6</span>" <span class="a">noWrap</span>&gt;
+    &lt;<span class="i">nhnb-leaflet-tilelayer</span> 
+        <span class="a">url</span>="<span class="v">https://stendhalgame.org/map/3/{z}-{x}-{y}.png</span>"
+        <span class="a">minZoom</span>="<span class="v">2</span>" <span class="a">maxZoom</span>="<span class="v">6</span>" <span class="a">noWrap</span>&gt;
 
-			Map source: &lt;<span class="i">a</span> <span class="a">href</span>="<span class="v">https://stendhalgame.org</span>"&gt;Stendhal MMORPG&lt;/<span class="i">a</span>&gt;
+            Map source: &lt;<span class="i">a</span> <span class="a">href</span>="<span class="v">https://stendhalgame.org</span>"&gt;Stendhal MMORPG&lt;/<span class="i">a</span>&gt;
 
-	&lt;/<span class="i">nhnb-leaflet-tilelayer</span>&gt;
+    &lt;/<span class="i">nhnb-leaflet-tilelayer</span>&gt;
 
 &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
@@ -315,28 +317,28 @@ document.addEventListener("load", function() {
 <p>Leaflet events are converted into html events which originate from the component.</p> 
 
  
-<div id="eventout">Center: 51.505, -0.09</div>
-<nhnb-leaflet-map id="eventmap" latitude="51.505" longitude="-0.09" zoom="13"> </nhnb-leaflet-map>
+<div id="eventout">Center: 51.505, -0.091</div>
+<nhnb-leaflet-map id="eventmap" latitude="51.505" longitude="-0.091" zoom="13"> </nhnb-leaflet-map>
 
 <script>
 var map = document.getElementById("eventmap");
 map.addEventListener("moveend", function(e) {
-	var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
+	var text = "Center: " + this.latitude.toFixed(3) + ", " + this.longitude.toFixed(3);
 	document.getElementById("eventout").textContent = text; 
 });
 </script>
 
 
 <pre class="html"><code>
-&lt;<span class="i">div</span> <span class="a">id</span>="<span class="v">eventout</span>"&gt;Center: 51.505, -0.09&lt;/<span class="i">div</span>&gt;
-&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt; &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
+&lt;<span class="i">div</span> <span class="a">id</span>="<span class="v">eventout</span>"&gt;Center: 51.505, -0.091&lt;/<span class="i">div</span>&gt;
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.091</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt; &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
 &lt;<span class="i">script</span>&gt;
-	var map = document.getElementById("eventmap");
-	map.addEventListener("moveend", function(e) {
-		var text = "Center: " + this.latitude.toFixed(2) + ", " + this.longitude.toFixed(2);
-		document.getElementById("eventout").textContent = text; 
-	});
+    var map = document.getElementById("eventmap");
+    map.addEventListener("moveend", function(e) {
+        var text = "Center: " + this.latitude.toFixed(3) + ", " + this.longitude.toFixed(3);
+        document.getElementById("eventout").textContent = text; 
+    });
 &lt;/<span class="i">script</span>&gt;
 
 </code></pre>
