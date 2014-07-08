@@ -714,6 +714,7 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 @blurb element which defines a tile layer. The content of the nhnb-leaflet-tilelayer is used as attribution. 
 @status beta
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
+@extends nhnb-leaflet-ilayer
 -->
 
 <polymer-element name="nhnb-leaflet-tilelayer" extends="nhnb-leaflet-ilayer" attributes="url minZoom maxZoom maxNativeZoom tileSize subdomains errorTileUrl attribution tms continuousWorld noWrap zoomOffset zoomReverse opacity zIndex detectRetina reuseTiles">
@@ -1133,23 +1134,25 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
    
 	Polymer('nhnb-leaflet-geolocation', {
 		/**
-		 * Fired when location information becomes avaialable.
-		 *
-		 * @event LocationEvent
-		 * @param {LatLng} latlng 	Detected geographical location of the user.
-		 * @param {LatLngBounds} LatLngBounds 	Geographical bounds of the area user is located in (with respect to the accuracy of location).
-		 * @param {number} accuracy 	Accuracy of location in meters.
-		 * @param {number} altitude 	Height of the position above the WGS84 ellipsoid in meters.
-		 * @param {number} altitudeAccuracy 	Accuracy of altitude in meters.
-		 * @param {number} heading 	The direction of travel in degrees counting clockwise from true North.
-		 * @param {number} speed 	Current velocity in meters per second.
-		 * @param {number} timestamp 	The time when the position was acquired.
+		 * Fired when geolocation (using the locate method) went successfully.
+		 * 
+		 * @event locationfound
+		 * @type LocationEvent
+		 * @param {LatLng} latlng Detected geographical location of the user.
+		 * @param {LatLngBounds} bounds Geographical bounds of the area user is located in (with respect to the accuracy of location).
+		 * @param {Number} accuracy Accuracy of location in meters.
+		 * @param {Number} altitude Height of the position above the WGS84 ellipsoid in meters.
+		 * @param {Number} altitudeAccuracy Accuracy of altitude in meters.
+		 * @param {Number} heading The direction of travel in degrees counting clockwise from true North.
+		 * @param {Number} speed Current velocity in meters per second.
+		 * @param {Number} timestamp The time when the position was acquired.
 		 */
 
 		/**
-		 * Fired when location cannot be tracked
-		 *
-		 * @event ErrorEvent
+		 * Fired when geolocation (using the locate method) failed.
+		 * 
+		 * @event locationerror
+		 * @type ErrorEvent
 		 * @param {string} message Error message.
 		 * @param {number} code Error code (if applicable).
 		 */
