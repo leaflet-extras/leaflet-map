@@ -934,6 +934,145 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 
 
 <!--
+element which defines a tile layer for wms (<a href="http://leafletjs.com/reference.html#tilelayer-wms">Leaflet Reference</a>).
+
+##### Example
+
+	<nhnb-leaflet-tilelayer-wms
+		url="http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi"
+	    layers="nexrad-n0r-900913" format="image/png" transparent="true">
+
+			Weather data &copy; 2012 IEM Nexrad
+
+	</nhnb-leaflet-tilelayer-wms>
+
+@element nhnb-leaflet-tilelayer-wms
+@blurb Element which defines a tile layer for wms. The content of the nhnb-leaflet-tilelayer-wms is used as attribution. It inherits attributes and events from &lt;nhnb-leaflet-tilelayer&gt; 
+@status beta
+@homepage https://nhnb.github.io/nhnb-leaflet-map/
+@since 0.0.2
+@extends nhnb-leaflet-tilelayer
+-->
+<polymer-element name="nhnb-leaflet-tilelayer-wms" extends="nhnb-leaflet-tilelayer" attributes="layers styles format transparent version crs">
+	<template>
+		<style>
+			:host {
+				display: none;
+			}
+		</style>
+	</template>
+	<script>
+	"use strict";
+
+	Polymer('nhnb-leaflet-tilelayer-wms', {
+
+
+		/**
+		 * The `layers` attribute sets the comma-separated list of WMS layers to show (required).
+		 * 
+		 * @attribute layers
+		 * @type string
+		 */
+		layers: "",
+
+		/**
+		 * The `styles` attribute sets the comma-separated list of WMS styles.
+		 * 
+		 * @attribute styles
+		 * @type string
+		 */
+		styles: "",
+
+		/**
+		 * The `format` attribute sets the WMS image format (use 'image/png' for layers with transparency).
+		 * 
+		 * @attribute format
+		 * @type string
+		 */
+		format: "image/jpeg",
+
+		/**
+		 * The `transparent` attribute whether the WMS service will return images with transparency.
+		 * 
+		 * @attribute transparent
+		 * @type string
+		 */
+		transparent: false,
+
+		/**
+		 * The `version` attribute sets the version of the WMS service to use.
+		 * 
+		 * @attribute version
+		 * @type string
+		 */
+		version: "1.1.1" ,
+
+		/**
+		 * The `crs` attribute sets the coordinate Reference System to use for the WMS requests, defaults to map CRS. Don't change this if you're not sure what it means.
+		 * 
+		 * @attribute crs
+		 * @type string
+		 */
+		crs: null,
+		
+		mapChanged: function() {
+			if (this.map) {
+				// TODO: use factory method design-pattern.
+				// TODO: is it a good idea, to just pass "this" as second parameter to constructor?
+				var layer = L.tileLayer.wms(this.url, {
+					attribution: this.innerHTML + this.attribution,
+					minZoom: this.minZoom,
+					maxZoom: this.maxZoom,
+					maxNativeZoom: this.maxNativeZoom,
+					tileSize: this.tileSize,
+					subdomains: this.subdomains,
+					errorTileUrl: this.errorTileUrl,
+					tms: this.tms,
+					continuousWorld: this.continuousWorld,
+					noWrap: this.noWrap,
+					zoomOffset: this.zoomOffset,
+					zoomReverse: this.zoomReverse,
+					opacity: this.opacity,
+					zIndex: this.zIndex,
+					detectRetina: this.detectRetina,
+					reuseTiles: this.reuseTiles,
+					
+					layers: this.layers,
+					styles: this.styles,
+					format: this.format,
+					transparent: this.transparent,
+					version: this.version,
+					crs: this.crs,
+				});
+				this.layer = layer
+
+				// forward events
+				layer.on('loading load tileloadstart tileload tileunload', function(e) {
+					this.fire(e.type, e);
+				}, this);
+				this.layer.addTo(this.map);
+			}
+		},
+
+		urlChanged: function() {
+			if (this.layer) {
+				this.layer.setUrl(this.url);
+			}
+		},
+
+		detached: function() {
+			if (this.map && this.layer) {
+				this.map.removeLayer(this.layer);
+			}
+		}
+	});
+	</script>
+</polymer-element>
+
+
+
+
+<!--
 element which controls geo location (<a href="http://leafletjs.com/reference.html#map">Leaflet Reference</a>).
 
 ##### Example
@@ -1672,7 +1811,7 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 				inertia: this.inertia,
 				inertiaDeceleration: this.inertiaDeceleration,
 				inertiaMaxSpeed: this.inertiaMaxSpeed,
-				zoomControl: this.zoomcontrol,
+				zoomControl: this.zoomControl,
 				attributionControl: this.attributionControl,
 				zoomAnimationThreshold: this.zoomAnimationThreshold
 			});
