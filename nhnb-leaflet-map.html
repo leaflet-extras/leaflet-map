@@ -147,8 +147,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 		 * @attribute className
 		 * @type string
 		 */
-		 className: "",
-		
+		className: "",
 
 		icon_: null,
 
@@ -660,8 +659,46 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 
 
 
+
 <!--
-element which defines a tile layer (<a href="http://leafletjs.com/reference.html#tileLayer">Leaflet Reference</a>).
+Abstract element representing ILayer (<a href="http://leafletjs.com/reference.html#ilayer">Leaflet Reference</a>).
+
+##### Example
+
+	<nhnb-leaflet-ilayer>
+	</nhnb-leaflet-ilayer>
+
+Do not use, this is just an interface element.
+
+@element nhnb-leaflet-ilayer
+@blurb abstract element representing ILayer 
+@status beta
+@homepage https://nhnb.github.io/nhnb-leaflet-map/
+-->
+
+<polymer-element name="nhnb-leaflet-ilayer">
+	<template>
+	</template>
+	<script>
+	"use strict";
+
+	Polymer('nhnb-leaflet-ilayer', {
+		/**
+		 * returns true.
+		 *
+		 * @method isLayer
+		 */
+		isLayer: function() {
+			return true;
+		}
+	});
+	</script>
+</polymer-element>
+
+
+
+<!--
+element which defines a tile layer (<a href="http://leafletjs.com/reference.html#tilelayer">Leaflet Reference</a>).
 
 ##### Example
 
@@ -679,7 +716,7 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 @homepage https://nhnb.github.io/nhnb-leaflet-map/
 -->
 
-<polymer-element name="nhnb-leaflet-tilelayer" attributes="url minZoom maxZoom maxNativeZoom tileSize subdomains errorTileUrl attribution tms continuousWorld noWrap zoomOffset zoomReverse opacity zIndex detectRetina reuseTiles">
+<polymer-element name="nhnb-leaflet-tilelayer" extends="nhnb-leaflet-ilayer" attributes="url minZoom maxZoom maxNativeZoom tileSize subdomains errorTileUrl attribution tms continuousWorld noWrap zoomOffset zoomReverse opacity zIndex detectRetina reuseTiles">
 	<template>
 		<style>
 			:host {
@@ -1838,8 +1875,8 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 			// add a default layer if there are no layers defined
 			var defaultLayerRequired = true;
 			for (var i = 0; i < this.children.length; i++) {
-				var localName = this.children[i].localName;
-				if (localName.indexOf("layer", localName.length - 6) !== -1) {
+				var e = this.children[i];
+				if (e.isLayer && e.isLayer()) {
 					defaultLayerRequired = false;
 				}
 			}

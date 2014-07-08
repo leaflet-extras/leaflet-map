@@ -229,7 +229,7 @@ document.addEventListener("load", function() {
 <p>Custom tile layers, for example from online games can be defined using the nhnb-leaflet-tilelayer element. If there is no explicit tilelayer defined, a default one will be used as shown in previous examples.</p>
 
 
-<nhnb-leaflet-map latitude="78.8" longitude="-96" zoom="5">
+<nhnb-leaflet-map latitude="78.8" longitude="-96" zoom="5" maxZoom="6">
 	<nhnb-leaflet-tilelayer 
 		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
 		minZoom="2" maxZoom="6" noWrap>
@@ -242,7 +242,7 @@ document.addEventListener("load", function() {
 
 
 <pre class="html"><code>
-&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>"&gt;
+&lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>" <span class="a">maxZoom</span>="<span class="v">6</span>"&gt;
 
 	&lt;<span class="i">nhnb-leaflet-tilelayer</span> 
 		<span class="a">url</span>="<span class="v">https://stendhalgame.org/map/3/{z}-{x}-{y}.png</span>"
@@ -266,6 +266,13 @@ document.addEventListener("load", function() {
 
 <nhnb-leaflet-map latitude="40" longitude="-85" zoom="4">
 
+	<nhnb-leaflet-tilelayer 
+		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom="18">
+			Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, 
+			<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
+			Imagery &copy; <a href="http://mapbox.com">Mapbox</a>
+	</nhnb-leaflet-tilelayer>
+
 	<nhnb-leaflet-tilelayer-wms 
 		url="https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi"
 	    layers="nexrad-n0r-900913" format="image/png" transparent opacity="0.5">
@@ -280,13 +287,20 @@ document.addEventListener("load", function() {
 <pre class="html"><code>
 &lt;<span class="i">nhnb-leaflet-map</span> <span class="a">latitude</span>="<span class="v">40</span>" <span class="a">longitude</span>="<span class="v">-85</span>" <span class="a">zoom</span>="<span class="v">4</span>"&gt;
 
-	&lt;<span class="i">nhnb-leaflet-tilelayer-wms</span> 
-		<span class="a">url</span>="<span class="v">https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi</span>"
-		<span class="a">layers</span>="<span class="v">nexrad-n0r-900913</span>" <span class="a">format</span>="<span class="v">image/png</span>" <span class="a">transparent</span> <span class="a">opacity</span>="<span class="v">0.5</span>"&gt;
+    &lt;<span class="i">nhnb-leaflet-tilelayer</span> 
+        <span class="a">url</span>="<span class="v">https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</span>" <span class="a">maxZoom</span>="<span class="v">19</span>"&gt;
+            Map data &copy; &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt; contributors, 
+            &lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;CC-BY-SA&lt;/a&gt;, 
+            Imagery &copy; &lt;a href="http://mapbox.com">Mapbox&lt;/a&gt;
+    &lt;/<span class="i">nhnb-leaflet-tilelayer</span>&gt;
 
-			Weather data &copy; 2012 IEM Nexrad
+    &lt;<span class="i">nhnb-leaflet-tilelayer-wms</span> 
+        <span class="a">url</span>="<span class="v">https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi</span>"
+        <span class="a">layers</span>="<span class="v">nexrad-n0r-900913</span>" <span class="a">format</span>="<span class="v">image/png</span>" <span class="a">transparent</span> <span class="a">opacity</span>="<span class="v">0.5</span>"&gt;
 
-	&lt;/<span class="i">nhnb-leaflet-tilelayer-wms</span>&gt;
+            Weather data &copy; 2012 IEM Nexrad
+
+    &lt;/<span class="i">nhnb-leaflet-tilelayer-wms</span>&gt;
 
 &lt;/<span class="i">nhnb-leaflet-map</span>&gt;
 
