@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="nhnb-leaflet-import.html">
+<link rel="import" href="leaflet-import.html">
 
 
 <!--
@@ -7,16 +7,16 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 
 ##### Example
 
-    <nhnb-leaflet-icon id="myicon"
+    <leaflet-icon id="myicon"
     	iconurl="https://stendhalgame.org/images/mapmarker/me.png">
-    </nhnb-leaflet-icon>
+    </leaflet-icon>
 
-@element nhnb-leaflet-icon
+@element leaflet-icon
 @blurb element which defines an icon template for markers.
 @status beta
-@homepage https://nhnb.github.io/nhnb-leaflet-map/
+@homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-icon" attributes="iconUrl iconRetinaUrl iconWidth iconHeight iconAnchorX iconAnchorY shadowUrl shadowRetinaUrl shadowWidth shadowHeight shadowAnchorX shadowAnchorY popupAnchorX popupAnchorY className">
+<polymer-element name="leaflet-icon" attributes="iconUrl iconRetinaUrl iconWidth iconHeight iconAnchorX iconAnchorY shadowUrl shadowRetinaUrl shadowWidth shadowHeight shadowAnchorX shadowAnchorY popupAnchorX popupAnchorY className">
 	<template>
 		<style>
 			:host {
@@ -27,7 +27,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 	<script>
 	"use strict";
 
-	Polymer('nhnb-leaflet-icon', {
+	Polymer('leaflet-icon', {
 
 		/**
 		 * The `iconUrl` attribute sets the URL to the icon image (absolute or relative to your script path).
@@ -199,16 +199,16 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 
 ##### Example
 
-    <nhnb-leaflet-divicon id="myicon" classname="name">
-    	<a href="https://nhnb.github.io/nhnb-leaflet-map/demo.html">Demo</a>
-    </nhnb-leaflet-icon>
+    <leaflet-divicon id="myicon" classname="name">
+    	<a href="https://nhnb.github.io/leaflet-map/demo.html">Demo</a>
+    </leaflet-icon>
 
-@element nhnb-leaflet-divicon
+@element leaflet-divicon
 @blurb element which defines an divicon template for markers.
 @status beta
-@homepage https://nhnb.github.io/nhnb-leaflet-map/
+@homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-divicon" attributes="iconWidth iconHeight iconAnchorX iconAnchorY className">
+<polymer-element name="leaflet-divicon" attributes="iconWidth iconHeight iconAnchorX iconAnchorY className">
 	<template>
 		<style>
 			:host {
@@ -219,7 +219,7 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 	<script>
 	"use strict";
 
-	Polymer('nhnb-leaflet-divicon', {
+	Polymer('leaflet-divicon', {
 
 		/**
 		 * The `iconWidth` attribute sets the size of the icon image in pixels. 
@@ -302,23 +302,23 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 
 ##### Example
 
-	<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
+	<leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
 		<b>Popup text</b>
-	</nhnb-leaflet-marker>
+	</leaflet-marker>
 
 ##### Example
 
-	<nhnb-leaflet-icon id="myicon" iconurl="https://stendhalgame.org/images/mapmarker/me.png"></nhnb-leaflet-icon>
+	<leaflet-icon id="myicon" iconurl="https://stendhalgame.org/images/mapmarker/me.png"></leaflet-icon>
 
-	<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Some title" icon="myicon">
-	</nhnb-leaflet-marker>
+	<leaflet-marker latitude="51.5" longitude="-0.10" title="Some title" icon="myicon">
+	</leaflet-marker>
 
-@element nhnb-leaflet-marker
+@element leaflet-marker
 @blurb element which defines a marker. The content is used as popup window, unless it is empty.
 @status beta
-@homepage https://nhnb.github.io/nhnb-leaflet-map/
+@homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-marker" attributes="latitude longitude icon clickable dragable keyboard title alt zIndexOffset opacity riseOnHover riseOffset">
+<polymer-element name="leaflet-marker" attributes="latitude longitude icon clickable dragable keyboard title alt zIndexOffset opacity riseOnHover riseOffset">
 	<template>
 		<style>
 			:host {
@@ -329,7 +329,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 	<script>
 	"use strict";
 
-	Polymer('nhnb-leaflet-marker', {
+	Polymer('leaflet-marker', {
 		/**
 		 * Fired when the user clicks (or taps) the marker.
 		 * 
@@ -468,7 +468,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 
 		/**
 		 * The `icon` attribute sets the Icon class to use for rendering the marker. 
-		 * This attribute may be refer to an id-attribute of an nhnb-leaflet-icon-element,
+		 * This attribute may be refer to an id-attribute of an leaflet-icon-element,
 		 * contain json syntax or it be assigned an instance of L.icon.
 		 * See Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.
 		 * 
@@ -665,24 +665,24 @@ Abstract element representing ILayer (<a href="http://leafletjs.com/reference.ht
 
 ##### Example
 
-	<nhnb-leaflet-ilayer>
-	</nhnb-leaflet-ilayer>
+	<leaflet-ilayer>
+	</leaflet-ilayer>
 
 Do not use, this is just an interface element.
 
-@element nhnb-leaflet-ilayer
+@element leaflet-ilayer
 @blurb abstract element representing ILayer 
 @status beta
-@homepage https://nhnb.github.io/nhnb-leaflet-map/
+@homepage https://nhnb.github.io/leaflet-map/
 -->
 
-<polymer-element name="nhnb-leaflet-ilayer">
+<polymer-element name="leaflet-ilayer">
 	<template>
 	</template>
 	<script>
 	"use strict";
 
-	Polymer('nhnb-leaflet-ilayer', {
+	Polymer('leaflet-ilayer', {
 		/**
 		 * returns true.
 		 *
@@ -702,22 +702,22 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 
 ##### Example
 
-	<nhnb-leaflet-tilelayer 
+	<leaflet-tilelayer 
 		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
 		minzoom="2" maxzoom="6" nowrap>
 
 			Map source: <a href="https://stendhalgame.org">Stendhal MMORPG</a>
 
-	</nhnb-leaflet-tilelayer>
+	</leaflet-tilelayer>
 
-@element nhnb-leaflet-tilelayer
-@blurb element which defines a tile layer. The content of the nhnb-leaflet-tilelayer is used as attribution. 
+@element leaflet-tilelayer
+@blurb element which defines a tile layer. The content of the leaflet-tilelayer is used as attribution. 
 @status beta
-@homepage https://nhnb.github.io/nhnb-leaflet-map/
-@extends nhnb-leaflet-ilayer
+@homepage https://nhnb.github.io/leaflet-map/
+@extends leaflet-ilayer
 -->
 
-<polymer-element name="nhnb-leaflet-tilelayer" extends="nhnb-leaflet-ilayer" attributes="url minZoom maxZoom maxNativeZoom tileSize subdomains errorTileUrl attribution tms continuousWorld noWrap zoomOffset zoomReverse opacity zIndex detectRetina reuseTiles">
+<polymer-element name="leaflet-tilelayer" extends="leaflet-ilayer" attributes="url minZoom maxZoom maxNativeZoom tileSize subdomains errorTileUrl attribution tms continuousWorld noWrap zoomOffset zoomReverse opacity zIndex detectRetina reuseTiles">
 	<template>
 		<style>
 			:host {
@@ -728,7 +728,7 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 	<script>
 	"use strict";
 
-	Polymer('nhnb-leaflet-tilelayer', {
+	Polymer('leaflet-tilelayer', {
 		/**
 		 * Fired when the tile layer starts loading tiles.
 		 * 
@@ -976,22 +976,22 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 
 ##### Example
 
-	<nhnb-leaflet-tilelayer-wms
+	<leaflet-tilelayer-wms
 		url="https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi"
 	    layers="nexrad-n0r-900913" format="image/png" transparent>
 
 			Weather data &copy; 2012 IEM Nexrad
 
-	</nhnb-leaflet-tilelayer-wms>
+	</leaflet-tilelayer-wms>
 
-@element nhnb-leaflet-tilelayer-wms
-@blurb Element which defines a tile layer for wms. The content of the nhnb-leaflet-tilelayer-wms is used as attribution. It inherits attributes and events from &lt;nhnb-leaflet-tilelayer&gt; 
+@element leaflet-tilelayer-wms
+@blurb Element which defines a tile layer for wms. The content of the leaflet-tilelayer-wms is used as attribution. It inherits attributes and events from &lt;leaflet-tilelayer&gt; 
 @status beta
-@homepage https://nhnb.github.io/nhnb-leaflet-map/
+@homepage https://nhnb.github.io/leaflet-map/
 @since 0.0.2
-@extends nhnb-leaflet-tilelayer
+@extends leaflet-tilelayer
 -->
-<polymer-element name="nhnb-leaflet-tilelayer-wms" extends="nhnb-leaflet-tilelayer" attributes="layers styles format transparent version crs">
+<polymer-element name="leaflet-tilelayer-wms" extends="leaflet-tilelayer" attributes="layers styles format transparent version crs">
 	<template>
 		<style>
 			:host {
@@ -1002,7 +1002,7 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 	<script>
 	"use strict";
 
-	Polymer('nhnb-leaflet-tilelayer-wms', {
+	Polymer('leaflet-tilelayer-wms', {
 
 
 		/**
@@ -1115,15 +1115,15 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 
 ##### Example
 
-	<nhnb-leaflet-geolocation watch enableHighAccuracy latitude="{{latitude}}" longitude="{{longitude}}"> </nhnb-leaflet-geolocation>
+	<leaflet-geolocation watch enableHighAccuracy latitude="{{latitude}}" longitude="{{longitude}}"> </leaflet-geolocation>
 
-@element nhnb-leaflet-geolocation
+@element leaflet-geolocation
 @blurb element which controls geo location. 
 @status beta
-@homepage https://nhnb.github.io/nhnb-leaflet-map/
+@homepage https://nhnb.github.io/leaflet-map/
 -->
 
-<polymer-element name="nhnb-leaflet-geolocation" attributes="watch setView maxZoom timeout maximumAge enableHighAccuracy latitude longitude bounds accuracy altitude altitudeAccuracy heading speed timestamp">
+<polymer-element name="leaflet-geolocation" attributes="watch setView maxZoom timeout maximumAge enableHighAccuracy latitude longitude bounds accuracy altitude altitudeAccuracy heading speed timestamp">
 	<template>
 		<style>
 			:host { display: none; } 
@@ -1132,7 +1132,7 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 	<script>
 	"use strict";
    
-	Polymer('nhnb-leaflet-geolocation', {
+	Polymer('leaflet-geolocation', {
 		/**
 		 * Fired when geolocation (using the locate method) went successfully.
 		 * 
@@ -1320,23 +1320,23 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 
 ##### Example
 
-	<nhnb-leaflet-map> </nhnb-leaflet-map>
+	<leaflet-map> </leaflet-map>
 	
 ##### Example
 	
-	<nhnb-leaflet-map latitude="78.8" longitude="-96" zoom="5">
-		<nhnb-leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
+	<leaflet-map latitude="78.8" longitude="-96" zoom="5">
+		<leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
 			<b>Popup text</b>
-		</nhnb-leaflet-marker>
+		</leaflet-marker>
 	
-	</nhnb-leaflet-map>  
+	</leaflet-map>  
 
-@element nhnb-leaflet-map
+@element leaflet-map
 @blurb element which defines a leaflet map. Most options are supported as attributes. 
 @status beta
-@homepage https://nhnb.github.io/nhnb-leaflet-map/
+@homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="nhnb-leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold">
+<polymer-element name="leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold">
 	<template>
 		<link rel="stylesheet" href="../leaflet-bower/dist/leaflet.css" />
 		<style>
@@ -1349,7 +1349,7 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 	<script>
 	"use strict";
 
-	Polymer('nhnb-leaflet-map', {
+	Polymer('leaflet-map', {
 		/**
 		 * Fired when the user clicks (or taps) the marker.
 		 * 

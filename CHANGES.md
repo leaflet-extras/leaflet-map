@@ -1,3 +1,7 @@
+r0.1.0
+======
+* dropped nhnb- prefix
+
 r0.0.2
 ======
 * added support for nhnb-leaflet-geolocation
