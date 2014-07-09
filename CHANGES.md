@@ -1,4 +1,4 @@
-r0.1.0
+v0.1.0
 ======
 * dropped nhnb- prefix
 
