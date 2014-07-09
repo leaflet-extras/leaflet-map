@@ -18,10 +18,12 @@
 			
 			leaflet-map,
 			geolocation-sample {
-				display: block;
 				max-width: 20em;
 				height: 20em;
 				border: 1px solid #aaa;
+			}
+			geolocation-sample {
+				height: 21em;
 			}
 			pre {
 				font-size: large;
@@ -353,6 +355,10 @@ map.addEventListener("moveend", function(e) {
 
 <polymer-element name="geolocation-sample" noscript>
 	<template>
+		<style>
+			:host { display: block; overflow: hidden} 
+			:host leaflet-map {height:18em; width:99%; border: none}
+		</style>
 
 		<template if="{{!latitude}}">
 			Location Unknown.
@@ -360,7 +366,6 @@ map.addEventListener("moveend", function(e) {
 		<template if="{{latitude}}">
 			lat: {{latitude}}, lng: {{longitude}}, accuracy: {{accuracy}} meter
 		</template>
-
 
 		<leaflet-map>
 
@@ -386,6 +391,10 @@ map.addEventListener("moveend", function(e) {
 <span class="c">&lt;-- define geolocation-sample component --&gt;</span>
 &lt;<span class="i">polymer-element</span> <span class="a">name</span>="<span class="v">geolocation-sample</span>" <span class="a">noscript</span>&gt;
   &lt;<span class="i">template</span>&gt;
+    &lt;<span class="i">style</span>&gt;
+       :host { display: block; overflow: hidden} 
+       :host leaflet-map {height:18em; width:99%; border: none}
+    &lt;/<span class="i">style</span>&gt;
 
     <span class="c">&lt;-- information text above the map --&gt;</span>
     &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{!latitude}}</span>"&gt;
