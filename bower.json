@@ -6,13 +6,15 @@
   ],
   "description": "Leaflet map as web-component based on polymer",
   "main": "leaflet-map.html",
+  "homepage": "https://nhnb.github.io/leaflet-map/",
   "keywords": [
     "polymer",
     "web-components",
-    "leaflet"
+    "leaflet",
+    "leafletjs",
+    "map"
   ],
   "license": "BSD 2-Clause",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
