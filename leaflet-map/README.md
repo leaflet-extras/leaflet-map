@@ -34,7 +34,7 @@ Dependencies
 ============
 
 leaflet-map depends on Polymer in ../platform and ../polymer and it expects an installation of leaflet in ../leaflet-bower.
-All dependencies are bundled in the [download](https://github.com/nhnb/leaflet-map/releases/download/r0.0.2/leaflet-map__with_dependencies-0.0.2.zip).
+All dependencies are bundled in the [download](https://github.com/nhnb/leaflet-map/releases/download/v0.1.0/leaflet-map-0.1.0.zip).
 
 Please note that the pages have to be accessed via a webserver. file://-urls are not supported.
 
