@@ -1,3 +1,8 @@
+
+v0.1.1
+======
+* registered on bower
+
 v0.1.0
 ======
 * dropped nhnb- prefix
