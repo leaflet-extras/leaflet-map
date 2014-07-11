@@ -2,29 +2,133 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="demo_files/master.css">
     <script src="../platform/platform.js"></script>
     <link rel="import" href="leaflet-map-component.html">
-    <style>
-      html, body {
-        margin: 0;
-        height: 100%;
-      }
-      leaflet-map {
-        height: 100%;
-      }
-    </style>
+    <title>Web Component for Leaflet</title>
   </head>
   <body unresolved>
-    <leaflet-map longitude="77.2" latitude="28.4" zoom="12" fitToMarkers>
-      <leaflet-marker longitude="77.2" latitude="28.4">
-        Marker I
-      </leaflet-marker>
-      <leaflet-marker longitude="77.3" latitude="28.4">
-        Marker II
-      </leaflet-marker>
-      <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
-        Round
-      </leaflet-circle>
-    </leaflet-map>
+    <header>
+      <div class="container">
+        <img src="demo_files/leaflet.svg" id="logo">
+        <h1>&lt;leaflet-map&gt;&lt;/leaflet-map&gt;</h1>
+        <p>
+          Make leaflet maps quickly using web components
+        </p>
+        <iframe src="http://ghbtns.com/github-btn.html?user=prtksxna&repo=leaflet-map-component&type=watch&count=true"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+        <iframe src="http://ghbtns.com/github-btn.html?user=prtksxna&repo=leaflet-map-component&type=fork&count=true"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+
+      </div>
+    </header>
+		<div id="content">
+      <section id="install">
+        <div class="container">
+          <h2>Install</h2>
+          <p>Install the component using bower:</p>
+          <pre><code>
+$ bower install leaflet-map-component
+          </code></pre>
+        </div>
+      </section>
+
+      <section id="getting_started_text">
+        <div class="container">
+          <h2>Getting Started</h2>
+          <p>To get started you need to import the web components polyfill, then the web component itself.</p>
+          <pre><code>
+&lt;head&gt;
+  &lt;script src="../platform/platform.js"&gt;&lt;/script&gt;
+  &lt;link rel="import" href="../leaflet-map-component/leaflet-map-component.html"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;leaflet-map longitude="72.82150268554686" latitude="18.92926454727215" zoom="14"&gt;
+  &lt;/leaflet-map&gt;
+&lt;/body&gt;
+          </code></pre>
+        </div>
+      </section>
+      <leaflet-map id="getting_started" longitude="72.82150268554686" latitude="18.92926454727215" zoom="14"></leaflet-map>
+
+      <section id="adding_markers_text">
+        <div class="container">
+          <h2>Adding markers</h2>
+          <p>Adding markers, circles and other features is easy. Use the required feature tag within your map element. </p>
+          <pre><code>
+&lt;leaflet-map fitToMarkers&gt;
+  &lt;leaflet-marker longitude="77.2293" latitude="28.6129"&gt;
+    I am a marker
+  &lt;/leaflet-marker&gt;
+  &lt;leaflet-circle longitude="77.2197" latitude="28.6328" radius="300"&gt;
+    I am a circle
+  &lt;/leaflet-circle&gt;
+&lt;/leaflet-map&gt;
+          </code></pre>
+        </div>
+      </section>
+
+      <leaflet-map id="adding_markers" fitToMarkers>
+        <leaflet-marker longitude="77.2293" latitude="28.6129">
+          I am a marker
+        </leaflet-marker>
+        <leaflet-circle longitude="77.2197" latitude="28.6328" radius="300">
+          I am a circle
+        </leaflet-circle>
+      </leaflet-map>
+
+      <section id="tiles_text">
+        <div class="container">
+          <h2>Tiles</h2>
+          <p>Change the look of your map easily by switching to a different tile server.</p>
+          <pre><code>
+&lt;leaflet-map
+  longitude="73.8278"
+  latitude="15.4989"
+  tileServer="http://b.tile.thunderforest.com/cycle/{z}/{x}/{y}.png"&gt;
+&lt;/leaflet-map&gt;
+          </code></pre>
+        </div>
+      </section>
+
+      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989" tileServer="http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg">
+      </leaflet-map>
+      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989" tileServer="http://b.tile.thunderforest.com/cycle/{z}/{x}/{y}.png">
+      </leaflet-map>
+      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989" tileServer="http://a.tile.stamen.com/toner/{z}/{x}/{y}.jpg">
+      </leaflet-map>
+
+      <section id="dive_deeper">
+        <div class="container">
+          <h2>Dive Deeper</h2>
+          <p>Take a deeper look at the web component by reading its documentation and cloning the code. Contribute by raising issues for features and bugs or by sending pull requests.</p>
+          <ul>
+            <li><a href="https://github.com/prtksxna/leaflet-map-component" target="_blank">Github</a></li>
+            <li><a href="https://github.com/prtksxna/leaflet-map-component/issues/" target="_blank">Issues</a></li>
+            <li><a href="http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/" target="_blank">Documentation</a></li>
+            <li><a href="https://github.com/prtksxna/leaflet-map-component/blob/master/CONTRIBUTING.md" target="_blank">Contribution Guide</a></li>
+          </ul>
+          <br><br><br>
+        </div>
+      </section>
+
+
+      <footer>
+        <p>
+          Made by <a href="http://twitter.com/prtksxna/" target="_blank">@prtksxna</a>
+          using <a href="http://leafletjs.com" target="_blank">Leaflet</a> &
+          <a href="http://polymer-project.org" target="_blank">Polymer</a>
+      </footer>
+    </div>
+    <script>
+     window.onload = function() {
+       var maps = document.querySelectorAll("leaflet-map");
+			 for ( var i = 0; i < maps.length; i++ ) {
+         maps[i].map.scrollWheelZoom.disable()
+       }
+     };
+    </script>
   </body>
 </html>
