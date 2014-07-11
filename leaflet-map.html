@@ -1338,7 +1338,7 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 -->
 <polymer-element name="leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold">
 	<template>
-		<link rel="stylesheet" href="../leaflet-bower/dist/leaflet.css" />
+		<link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
 		<style>
 			:host { display: block; } 
 			:host #map {height:100%; width:100%}
@@ -1828,7 +1828,7 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 		},
 
 		domReady: function() {
-			L.Icon.Default.imagePath = "../leaflet-bower/dist/images";
+			L.Icon.Default.imagePath = "../leaflet/dist/images";
 			var map = L.map(this.$.map, {
 				center: [this.latitude, this.longitude],
 				zoom: this.zoom,

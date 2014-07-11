@@ -33,8 +33,7 @@ For example use &lt;leaflet-map latitude="51.505" longitude="-0.09" zoom="13"&gt
 Dependencies
 ============
 
-leaflet-map depends on Polymer in ../platform and ../polymer and it expects an installation of leaflet in ../leaflet-bower.
-All dependencies are bundled in the [download](https://github.com/nhnb/leaflet-map/releases/download/v0.1.0/leaflet-map-0.1.0.zip).
+leaflet-map depends on Polymer in ../platform and ../polymer and it expects an installation of leaflet in ../leaflet.
 
 Please note that the pages have to be accessed via a webserver. file://-urls are not supported.
 
