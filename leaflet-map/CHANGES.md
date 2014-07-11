@@ -1,3 +1,11 @@
+v0.2.0
+======
+* changed dependency from leaflet_bower to leaflet (which is available on bower, too)
+
+v0.1.1
+======
+* registered on bower
+
 v0.1.0
 ======
 * dropped nhnb- prefix
