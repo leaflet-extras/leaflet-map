@@ -47,7 +47,7 @@ code {
     background: #efefef;
     border-radius: 6px;
     padding: 0 15px;
-    font-size: 10px;
+    font-size: 12px;
     margin-bottom: 60px;
 }
 
@@ -58,6 +58,7 @@ footer {
 a {
     color: #3887be;
 }
+
 
 header p {
     font-size: 12px;
@@ -70,7 +71,13 @@ h1 {
 
 h2 {
     margin-top: 60px;
+    margin-bottom: 0;
     color: #3887BE;
+    font-weight: 700;
+}
+
+p {
+    margin-top: 5px;
 }
 
 #adding_markers, #getting_started {
@@ -78,7 +85,7 @@ h2 {
 }
 
 #dive_deeper {
-    margin-top: 350px;
+    margin-top: 400px;
 }
 
 .tiles {
