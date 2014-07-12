@@ -1,0 +1,180 @@
+<html>
+	<head>
+		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>leaflet-map Demo</title>
+		<script src="../platform/platform.js"></script>
+		<link rel="import" href="leaflet-map.html">
+
+		<style>
+			body {
+				height: 100%;
+				margin: 1em;
+				font-family: Arial;
+			}
+			
+			h2 {
+				margin-top: 2em;
+			}
+
+			.nav {
+				color: #000;
+				text-decoration: none;
+				border-bottom: 1px dashed #000;
+				display: inline-block;
+				padding: 3px;
+			}
+			.nav:hover {
+				background-color: #DDF;
+			}
+			
+			leaflet-map,
+			geolocation-sample {
+				max-width: 20em;
+				height: 20em;
+				border: 1px solid #aaa;
+			}
+			geolocation-sample {
+				height: 21em;
+			}
+			pre {
+				font-size: large;
+				border: 2px dashed #00A;
+				padding: 0.5em 1em;
+				background-color: #DDD;
+				clear: all;
+			}
+			.i {
+				color: #00D
+			}
+			.a {
+				color: #008;
+			}
+			.v {
+				color: #800;
+			}
+			.c {
+				color: #080;
+			}
+			.downloadbutton,
+			.apidocbutton,
+			.gitbutton {
+				float:right;
+				margin-left: 1em;
+				display: block;
+				background-color: #070;
+				color: #FFF;
+				padding: 1em 2em;
+				border: 1px solid black;
+			}
+			.apidocbutton {
+				background-color: #E91E63;
+				color: #FFF;
+			}
+			.gitbutton {
+				background-color: #FFF;
+				color: #000;
+			}
+		</style>
+	</head>
+	<body>
+
+<div class="rightbuttons">
+<a class="apidocbutton" href="https://nhnb.github.io/leaflet-map/doc.html">Documentation</a>
+<a class="downloadbutton" href="https://github.com/nhnb/leaflet-map/releases/download/v0.1.0/leaflet-map-0.1.0.zip">Download</a>
+<a class="gitbutton" href="https://github.com/nhnb/leaflet-map/">Github</a>
+</div>
+
+<h1>Demo of Leaflet web-component</h1>
+
+<p>&lt;leaflet-map&gt; is a web-component which provides access to the <a href="http://leafletjs.com">leaflet</a> JavaScript library via html elements.</p>
+
+<p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference</a> are exported as html attributes. All events are mapped into html events of the same name.</p>
+
+<p>Please see the simple <a href="demo.html">demo page</a> for example of common use cases. This advanced demo page demonstrates the creation of a custom component based on &lt;leaflet-map&gt;.
+
+
+<h2 id="databinding">Data binding and custom components</h2>
+
+<p>Data binding can be used to create markers based on dynamic information, e. g. from the rows of a spreadsheet. In this example a new component is created which listens for location tracking information and sets a marker accordingly.</p>
+
+
+<polymer-element name="geolocation-sample" noscript>
+	<template>
+		<style>
+			:host { display: block; overflow: hidden} 
+			:host leaflet-map {height:18em; width:99%; border: none}
+		</style>
+
+		<template if="{{!latitude}}">
+			Location Unknown.
+		</template>
+		<template if="{{latitude}}">
+			lat: {{latitude}}, lng: {{longitude}}, accuracy: {{accuracy}} meter
+		</template>
+
+		<leaflet-map>
+
+			<leaflet-geolocation enableHighAccuracy
+				latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
+			</leaflet-geolocation>
+
+			<template if="{{latitude}}">
+				<leaflet-marker latitude="{{latitude}}" longitude="{{longitude}}">
+					I am within {{accuracy}} meters of this location.
+				</leaflet-marker>
+			</template>
+		</leaflet-map>
+
+	</template>
+</polymer-element>
+
+
+<geolocation-sample> </geolocation-sample>
+
+
+<pre class="html"><code>
+<span class="c">&lt;-- define geolocation-sample component --&gt;</span>
+&lt;<span class="i">polymer-element</span> <span class="a">name</span>="<span class="v">geolocation-sample</span>" <span class="a">noscript</span>&gt;
+  &lt;<span class="i">template</span>&gt;
+    &lt;<span class="i">style</span>&gt;
+       :host { display: block; overflow: hidden} 
+       :host leaflet-map {height:18em; width:99%; border: none}
+    &lt;/<span class="i">style</span>&gt;
+
+    <span class="c">&lt;-- information text above the map --&gt;</span>
+    &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{!latitude}}</span>"&gt;
+        Location Unknown.
+    &lt;/<span class="i">template</span>&gt;
+
+    &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{latitude}}</span>"&gt;
+        lat: {{latitude}}, lng: {{longitude}}, accuracy: {{accuracy}} meter
+    &lt;/<span class="i">template</span>&gt;
+
+
+    &lt;<span class="i">leaflet-map</span>&gt;
+
+      <span class="c">&lt;-- request geo-location information --&gt;</span>
+      &lt;<span class="i">leaflet-geolocation</span> <span class="a">enableHighAccuracy</span>
+        <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>" <span class="a">accuracy</span>="<span class="v">{{accuracy}}</span>"
+      &lt;/<span class="i">leaflet-geolocation</span>&gt;
+
+
+      <span class="c">&lt;-- add marker, if location information is available --&gt;</span>
+      &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{latitude}}</span>"&gt;
+        &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>"&gt;
+            I am within {{accuracy}} meters of this location.
+        &lt;/<span class="i">leaflet-marker</span>&gt;
+      &lt;/<span class="i">template</span>&gt;
+
+    &lt;/<span class="i">leaflet-map</span>&gt;
+
+  &lt;/<span class="i">template</span>&gt;
+&lt;/<span class="i">polymer-element</span>&gt;
+
+<span class="c">&lt;-- use our component --&gt;</span>
+&lt;<span class="i">geolocation-sample</span>&gt; &lt;/<span class="i">geolocation-sample</span>&gt;
+
+</code></pre>
+
+	</body>
+</html>
