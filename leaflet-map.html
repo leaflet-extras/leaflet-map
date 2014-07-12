@@ -558,8 +558,8 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			longitude: 'positionChanged',
 		},
 
-		mapChanged: function() {
-			if (this.map) {
+		containerChanged: function() {
+			if (this.container) {
 
 				var marker = L.marker([this.latitude, this.longitude], {
 					clickable: this.clickable,
@@ -586,7 +586,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 					this.observer_ = new MutationObserver(this.childrenMutated.bind(this));
 					this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
 				}
-				this.marker.addTo(this.map);
+				this.marker.addTo(this.container);
 			}
 		},
 
@@ -645,8 +645,8 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		},
 		
 		detached: function() {
-			if (this.map && this.marker) {
-				this.map.removeLayer(this.marker);
+			if (this.container && this.marker) {
+				this.container.removeLayer(this.marker);
 			}
 			if (observer_) {
 				observer.disconnect();
@@ -730,8 +730,8 @@ Scale control that shows the scale of the current center of screen in metric (m/
 		 */
 		updateWhenIdle: false,
 
-		mapChanged: function() {
-			if (this.map) {
+		containerChanged: function() {
+			if (this.container) {
 				var control = L.control.scale({
 					 position: this.position,
 					 maxWidth: this.maxWidth,
@@ -740,13 +740,13 @@ Scale control that shows the scale of the current center of screen in metric (m/
 					 updateWhenIdle: this.updateWhenIdle,
 				});
 				this.control = control;
-				this.control.addTo(this.map);
+				this.control.addTo(this.container);
 			}
 		},
 
 		detached: function() {
-			if (this.map && this.control) {
-				this.map.removeControl(this.control);
+			if (this.container && this.control) {
+				this.container.removeControl(this.control);
 			}
 		}
 	});
@@ -1011,8 +1011,8 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 
 		// unloadInvisibleTiles updateWhenIdle bounds
 		
-		mapChanged: function() {
-			if (this.map) {
+		containerChanged: function() {
+			if (this.container) {
 				var layer = L.tileLayer(this.url, {
 					attribution: this.innerHTML + this.attribution,
 					minZoom: this.minZoom,
@@ -1037,7 +1037,7 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 				layer.on('loading load tileloadstart tileload tileunload', function(e) {
 					this.fire(e.type, e);
 				}, this);
-				this.layer.addTo(this.map);
+				this.layer.addTo(this.container);
 			}
 		},
 
@@ -1058,8 +1058,8 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 		},
 
 		detached: function() {
-			if (this.map && this.layer) {
-				this.map.removeLayer(this.layer);
+			if (this.container && this.layer) {
+				this.container.removeLayer(this.layer);
 			}
 		}
 	});
@@ -1151,8 +1151,8 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 		 */
 		crs: null,
 		
-		mapChanged: function() {
-			if (this.map) {
+		containerChanged: function() {
+			if (this.container) {
 				// TODO: use factory method design-pattern.
 				// TODO: is it a good idea, to just pass "this" as second parameter to constructor?
 				var layer = L.tileLayer.wms(this.url, {
@@ -1186,7 +1186,7 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 				layer.on('loading load tileloadstart tileload tileunload', function(e) {
 					this.fire(e.type, e);
 				}, this);
-				this.layer.addTo(this.map);
+				this.layer.addTo(this.container);
 			}
 		},
 
@@ -1197,8 +1197,8 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 		},
 
 		detached: function() {
-			if (this.map && this.layer) {
-				this.map.removeLayer(this.layer);
+			if (this.container && this.layer) {
+				this.container.removeLayer(this.layer);
 			}
 		}
 	});
@@ -1378,13 +1378,13 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 			timestamp: {value: null, reflect: true}
 		},
 
-		mapChanged: function() {
-			if (this.map) {
-				this.map.on('locationfound locationerror', function(e) {
+		containerChanged: function() {
+			if (this.container) {
+				this.container.on('locationfound locationerror', function(e) {
 					this.fire(e.type, e);
 				}, this);
 
-				this.map.on('locationfound', function(e) {				
+				this.container.on('locationfound', function(e) {				
 					this.latitude = e.latlng.lat;
 					this.longitude = e.latlng.lng;
 					this.bounds = e.bounds;
@@ -1396,7 +1396,7 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 					this.timestamp = e.timestamp;
 				}, this);
 
-				this.map.locate({
+				this.container.locate({
 					watch: this.watch, 
 					setView: this.setView, 
 					maxZoom: this.maxZoom,
@@ -1994,7 +1994,7 @@ add a marker with a popup text.
 					maxZoom: 18
 				}).addTo(this.map);
 			}
-			
+
 			this.registerMapOnChildren();
 		},
 
@@ -2006,7 +2006,7 @@ add a marker with a popup text.
 
 		registerMapOnChildren: function() {
 			for (var i = 0; i < this.children.length; i++) {
-				this.children[i].map = this.map;
+				this.children[i].container = this.map;
 			}
 			this.onMutation(this, this.registerMapOnChildren);
 		},

@@ -45,8 +45,9 @@ Please note that the pages have to be accessed via a webserver. file://-urls are
 Notes for implementing child elements
 =====================================
 
-Child elements like markers or layers will be initialized by the surrounding map by setting a "map" javascript property.
-Therefore the child element should define a mapChanged method and use that as initializer. 
+Child elements like markers or layers will be initialized by the surrounding container (the map or a layer)
+by setting a "container" javascript property.
+Therefore the child element should define a containerChanged method and use that as initializer. 
 Don't forget to define a detached method to support removal of elements. The leaflet-marker element is a good template.  
 
 
