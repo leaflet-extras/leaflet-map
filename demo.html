@@ -6,15 +6,15 @@
 
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="demo_files/master.css">
+    <link rel="stylesheet" href="../leaflet-map-component/demo_files/master.css">
     <script src="../platform/platform.js"></script>
-    <link rel="import" href="leaflet-map-component.html">
+    <link rel="import" href="../leaflet-map-component/leaflet-map-component.html">
     <title>Web Component for Leaflet</title>
   </head>
   <body unresolved>
     <header>
       <div class="container">
-        <img src="demo_files/leaflet.svg" id="logo">
+        <img src="../leaflet-map-component/demo_files/leaflet.svg" id="logo">
         <h1>&lt;leaflet-map&gt;&lt;/leaflet-map&gt;</h1>
         <p>
           Make leaflet maps quickly using web components
@@ -43,10 +43,10 @@ $ bower install leaflet-map-component
           <p>To get started you need to import the web components polyfill, then the web component itself.</p>
           <pre><code>
 &lt;head&gt;
-  &lt;script src="../platform/platform.js"&gt;&lt;/script&gt;
+  &lt;script src="path_to_bower/platform/platform.js"&gt;&lt;/script&gt;
   &lt;link
     rel="import"
-    href="../leaflet-map-component/leaflet-map-component.html"&gt;
+    href="path_to_bower/leaflet-map-component/leaflet-map-component.html"&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;leaflet-map
@@ -130,12 +130,12 @@ $ bower install leaflet-map-component
       </footer>
     </div>
     <script>
-     window.onload = function() {
+     document.addEventListener( 'polymer-ready', function() {
        var maps = document.querySelectorAll("leaflet-map");
 			 for ( var i = 0; i < maps.length; i++ ) {
          maps[i].map.scrollWheelZoom.disable()
        }
-     };
+     } );
     </script>
   </body>
 </html>
