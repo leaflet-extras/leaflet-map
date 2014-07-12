@@ -1,0 +1,450 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="leaflet-import.html">
+
+
+<!--
+Abstract element representing ILayer (<a href="http://leafletjs.com/reference.html#ilayer">Leaflet Reference</a>).
+
+##### Example
+
+	<leaflet-ilayer>
+	</leaflet-ilayer>
+
+Do not use, this is just an interface element.
+
+@element leaflet-ilayer
+@blurb abstract element representing ILayer 
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+-->
+
+<polymer-element name="leaflet-ilayer">
+	<template>
+	</template>
+	<script>
+	"use strict";
+
+	Polymer('leaflet-ilayer', {
+		/**
+		 * returns true.
+		 *
+		 * @method isLayer
+		 */
+		isLayer: function() {
+			return true;
+		}
+	});
+	</script>
+</polymer-element>
+
+
+
+<!--
+element which defines a tile layer (<a href="http://leafletjs.com/reference.html#tilelayer">Leaflet Reference</a>).
+
+##### Example
+
+	<leaflet-tilelayer 
+		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
+		minzoom="2" maxzoom="6" nowrap>
+
+			Map source: <a href="https://stendhalgame.org">Stendhal MMORPG</a>
+
+	</leaflet-tilelayer>
+
+@element leaflet-tilelayer
+@blurb element which defines a tile layer. The content of the leaflet-tilelayer is used as attribution. 
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+@extends leaflet-ilayer
+-->
+
+<polymer-element name="leaflet-tilelayer" extends="leaflet-ilayer" attributes="url minZoom maxZoom maxNativeZoom tileSize subdomains errorTileUrl attribution tms continuousWorld noWrap zoomOffset zoomReverse opacity zIndex detectRetina reuseTiles">
+	<template>
+		<style>
+			:host {
+				display: none;
+			}
+		</style>
+	</template>
+	<script>
+	"use strict";
+
+	Polymer('leaflet-tilelayer', {
+		/**
+		 * Fired when the tile layer starts loading tiles.
+		 * 
+		 * @event loading
+		 */
+
+		/**
+		 * Fired when the tile layer loaded all visible tiles.
+		 * 
+		 * @event load
+		 */
+
+		/**
+		 * Fired when a tile is requested and starts loading.
+		 * 
+		 * @event tileloadstart
+		 * @type TileEvent
+		 * @param {HTMLElement} tile The tile element (image).
+		 * @param {string} url The source URL of the tile.
+		 */
+
+		/**
+		 * Fired when a tile loads.
+		 * 
+		 * @event tileload
+		 * @type TileEvent
+		 * @param {HTMLElement} tile The tile element (image).
+		 * @param {string} url The source URL of the tile.
+		 */
+
+		/**
+		 * Fired when a tile is removed (e.g. when you have unloadInvisibleTiles on).
+		 * 
+		 * @event tileunload
+		 * @type TileEvent
+		 * @param {HTMLElement} tile The tile element (image).
+		 * @param {string} url The source URL of the tile.
+		 */
+
+		/**
+		 * The `url` attribute sets the address template for tilesets.
+		 *
+		 *	 'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'
+		 *
+		 * {s} means one of the available subdomains (used sequentially to help with 
+		 * browser parallel requests per domain limitation; subdomain values are specified
+		 * in options; a, b or c by default, can be omitted), {z} — zoom level, {x} and {y}
+		 * — tile coordinates. 
+		 * 
+		 * @attribute url
+		 * @type string
+		 */
+		url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+		/**
+		 * The `minZoom` attribute sets the minimum zoom number.
+		 * 
+		 * @attribute minZoom
+		 * @type number
+		 */
+		minZoom: 0,
+
+		/**
+		 * The `maxZoom` attribute sets the maximum zoom number.
+		 * 
+		 * @attribute maxZoom
+		 * @type number
+		 */
+		maxZoom: 18,
+
+		/**
+		 * The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled. 
+		 * 
+		 * @attribute maxnativezoom
+		 * @type number
+		 */
+		maxNativeZoom: null,
+
+		/**
+		 * The `tileSize` attribute sets the tile size (width and height in pixels, assuming tiles are square).
+		 * 
+		 * @attribute tileSize
+		 * @type number
+		 */
+		tileSize: 256,
+
+		/**
+		 * The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.
+		 * 
+		 * @attribute subdomains
+		 * @type string or string[]
+		 */
+		subdomains: "abc",
+
+		/**
+		 * The `errorTileUrl` attribute sets the URL to the tile image to show in place of the tile that failed to load.
+		 * 
+		 * @attribute errorTileUrl
+		 * @type string
+		 */
+		errorTileUrl: "",
+
+		/**
+		 * The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.
+		 * 
+		 * @attribute attribution
+		 * @type 
+		 */
+		attribution: "",
+
+		/**
+		 * The `tms` attribute sets wether inverses Y axis numbering for tiles should be used (turn this on for TMS services).
+		 * 
+		 * @attribute tms
+		 * @type bool
+		 */
+		tms: false,
+
+		/**
+		 * The `continuousWorld` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
+		 * 
+		 * @attribute continuousWorld
+		 * @type bool
+		 */
+		continuousWorld: false,
+
+		/**
+		 * The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.
+		 * 
+		 * @attribute nowrap
+		 * @type bool
+		 */
+		noWrap: false,
+
+		/**
+		 * The `zoomOffset` attribute sets the zoom number used in tile URLs will be offset with this value.
+		 * 
+		 * @attribute zoomOffset
+		 * @type number
+		 */
+		zoomOffset: 0,
+
+		/**
+		 * The `zoomReverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
+		 * 
+		 * @attribute zoomReverse
+		 * @type bool
+		 */
+		zoomReverse: false,
+
+		/**
+		 * The `opacity` attribute sets the opacity of the tile layer.
+		 * 
+		 * @attribute opacity
+		 * @type number
+		 */
+		opacity: 1.0,
+
+		/**
+		 * The `zIndex` attribute sets the explicit zIndex of the tile layer. Not set by default.
+		 * 
+		 * @attribute zIndex
+		 * @type number
+		 */
+		zIndex: null,
+
+		/**
+		 * The `detectretina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution. 
+		 * 
+		 * @attribute detectretina
+		 * @type bool
+		 */
+		detectRetina: false,
+
+		/**
+		 * The `reuseTiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
+		 * 
+		 * @attribute reuseTiles
+		 * @type bool
+		 */
+		reuseTiles: false,
+
+		// unloadInvisibleTiles updateWhenIdle bounds
+		
+		containerChanged: function() {
+			if (this.container) {
+				var layer = L.tileLayer(this.url, {
+					attribution: this.innerHTML + this.attribution,
+					minZoom: this.minZoom,
+					maxZoom: this.maxZoom,
+					maxNativeZoom: this.maxNativeZoom,
+					tileSize: this.tileSize,
+					subdomains: this.subdomains,
+					errorTileUrl: this.errorTileUrl,
+					tms: this.tms,
+					continuousWorld: this.continuousWorld,
+					noWrap: this.noWrap,
+					zoomOffset: this.zoomOffset,
+					zoomReverse: this.zoomReverse,
+					opacity: this.opacity,
+					zIndex: this.zIndex,
+					detectRetina: this.detectRetina,
+					reuseTiles: this.reuseTiles,
+				});
+				this.layer = layer
+
+				// forward events
+				layer.on('loading load tileloadstart tileload tileunload', function(e) {
+					this.fire(e.type, e);
+				}, this);
+				this.layer.addTo(this.container);
+			}
+		},
+
+		opacityChanged: function() {
+			if (this.layer) {
+				this.layer.setOpacity(this.opacity);
+			}
+		},
+		zIndexChanged: function() {
+			if (this.layer) {
+				this.layer.setZIndex(this.zIndex);
+			}
+		},
+		urlChanged: function() {
+			if (this.layer) {
+				this.layer.setUrl(this.url);
+			}
+		},
+
+		detached: function() {
+			if (this.container && this.layer) {
+				this.container.removeLayer(this.layer);
+			}
+		}
+	});
+	</script>
+</polymer-element>
+
+
+
+
+<!--
+element which defines a tile layer for wms (<a href="http://leafletjs.com/reference.html#tilelayer-wms">Leaflet Reference</a>).
+
+##### Example
+
+	<leaflet-tilelayer-wms
+		url="https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi"
+	    layers="nexrad-n0r-900913" format="image/png" transparent>
+
+			Weather data &copy; 2012 IEM Nexrad
+
+	</leaflet-tilelayer-wms>
+
+@element leaflet-tilelayer-wms
+@blurb Element which defines a tile layer for wms. The content of the leaflet-tilelayer-wms is used as attribution. It inherits attributes and events from &lt;leaflet-tilelayer&gt; 
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+@since 0.0.2
+@extends leaflet-tilelayer
+-->
+<polymer-element name="leaflet-tilelayer-wms" extends="leaflet-tilelayer" attributes="layers styles format transparent version crs">
+	<template>
+		<style>
+			:host {
+				display: none;
+			}
+		</style>
+	</template>
+	<script>
+	"use strict";
+
+	Polymer('leaflet-tilelayer-wms', {
+
+
+		/**
+		 * The `layers` attribute sets the comma-separated list of WMS layers to show (required).
+		 * 
+		 * @attribute layers
+		 * @type string
+		 */
+		layers: "",
+
+		/**
+		 * The `styles` attribute sets the comma-separated list of WMS styles.
+		 * 
+		 * @attribute styles
+		 * @type string
+		 */
+		styles: "",
+
+		/**
+		 * The `format` attribute sets the WMS image format (use 'image/png' for layers with transparency).
+		 * 
+		 * @attribute format
+		 * @type string
+		 */
+		format: "image/jpeg",
+
+		/**
+		 * The `transparent` attribute whether the WMS service will return images with transparency.
+		 * 
+		 * @attribute transparent
+		 * @type string
+		 */
+		transparent: false,
+
+		/**
+		 * The `version` attribute sets the version of the WMS service to use.
+		 * 
+		 * @attribute version
+		 * @type string
+		 */
+		version: "1.1.1" ,
+
+		/**
+		 * The `crs` attribute sets the coordinate Reference System to use for the WMS requests, defaults to map CRS. Don't change this if you're not sure what it means.
+		 * 
+		 * @attribute crs
+		 * @type string
+		 */
+		crs: null,
+		
+		containerChanged: function() {
+			if (this.container) {
+				// TODO: use factory method design-pattern.
+				// TODO: is it a good idea, to just pass "this" as second parameter to constructor?
+				var layer = L.tileLayer.wms(this.url, {
+					attribution: this.innerHTML + this.attribution,
+					minZoom: this.minZoom,
+					maxZoom: this.maxZoom,
+					maxNativeZoom: this.maxNativeZoom,
+					tileSize: this.tileSize,
+					subdomains: this.subdomains,
+					errorTileUrl: this.errorTileUrl,
+					tms: this.tms,
+					continuousWorld: this.continuousWorld,
+					noWrap: this.noWrap,
+					zoomOffset: this.zoomOffset,
+					zoomReverse: this.zoomReverse,
+					opacity: this.opacity,
+					zIndex: this.zIndex,
+					detectRetina: this.detectRetina,
+					reuseTiles: this.reuseTiles,
+					
+					layers: this.layers,
+					styles: this.styles,
+					format: this.format,
+					transparent: this.transparent,
+					version: this.version,
+					crs: this.crs,
+				});
+				this.layer = layer
+
+				// forward events
+				layer.on('loading load tileloadstart tileload tileunload', function(e) {
+					this.fire(e.type, e);
+				}, this);
+				this.layer.addTo(this.container);
+			}
+		},
+
+		urlChanged: function() {
+			if (this.layer) {
+				this.layer.setUrl(this.url);
+			}
+		},
+
+		detached: function() {
+			if (this.container && this.layer) {
+				this.container.removeLayer(this.layer);
+			}
+		}
+	});
+	</script>
+</polymer-element>
