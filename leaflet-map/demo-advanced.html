@@ -55,16 +55,22 @@
 			.c {
 				color: #080;
 			}
-			.downloadbutton,
-			.apidocbutton,
-			.gitbutton {
+			.rightbuttons {
 				float:right;
+				width: 12em;
 				margin-left: 1em;
+			}
+			.menubutton {
 				display: block;
+				padding: 1em 2em;
+				margin-bottom: 0.3em;
+				border: 1px solid black;
+				text-decoration: none;
+			}
+			
+			.downloadbutton {
 				background-color: #070;
 				color: #FFF;
-				padding: 1em 2em;
-				border: 1px solid black;
 			}
 			.apidocbutton {
 				background-color: #E91E63;
@@ -79,18 +85,29 @@
 	<body>
 
 <div class="rightbuttons">
-<a class="apidocbutton" href="https://nhnb.github.io/leaflet-map/doc.html">Documentation</a>
-<a class="downloadbutton" href="https://github.com/nhnb/leaflet-map/releases/download/v0.1.0/leaflet-map-0.1.0.zip">Download</a>
-<a class="gitbutton" href="https://github.com/nhnb/leaflet-map/">Github</a>
+<a class="menubutton apidocbutton" href="https://nhnb.github.io/leaflet-map/doc.html">Documentation</a>
+<a class="menubutton downloadbutton" href="https://github.com/nhnb/leaflet-map/releases/download/v0.1.0/leaflet-map-0.1.0.zip">Download</a>
+<a class="menubutton gitbutton" href="https://github.com/nhnb/leaflet-map/">Github</a>
 </div>
 
-<h1>Demo of Leaflet web-component</h1>
+
+<h1>Advanced demo of Leaflet web-component</h1>
 
 <p>&lt;leaflet-map&gt; is a web-component which provides access to the <a href="http://leafletjs.com">leaflet</a> JavaScript library via html elements.</p>
 
 <p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference</a> are exported as html attributes. All events are mapped into html events of the same name.</p>
 
-<p>Please see the simple <a href="demo.html">demo page</a> for example of common use cases. This advanced demo page demonstrates the creation of a custom component based on &lt;leaflet-map&gt;.
+
+<p>List of demos:</p>
+<ul>
+<li> <a class="nav" href="demo-advanced.html#databinding">leaflet-geolocation</a> (part of L.map)
+<li> <a class="nav" href="demo.html#view">leaflet-map</a> (L.map)
+<li> <a class="nav" href="demo.html#marker">leaflet-marker</a> (L.marker)
+<li> <a class="nav" href="demo.html#icon">leaflet-icon</a> (L.icon)
+<li> <a class="nav" href="demo.html#icon">leaflet-divicon</a> (L.divIcon)
+<li> <a class="nav" href="demo.html#tilelayer">leaflet-tilelayer</a> (L.tileLayer)
+<li> <a class="nav" href="demo.html#layerwms">leaflet-tilelayer-wms</a> (L.tileLayer.wms)
+</ul>
 
 
 <h2 id="databinding">Data binding and custom components</h2>

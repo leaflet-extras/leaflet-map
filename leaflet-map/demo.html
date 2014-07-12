@@ -55,16 +55,22 @@
 			.c {
 				color: #080;
 			}
-			.downloadbutton,
-			.apidocbutton,
-			.gitbutton {
+			.rightbuttons {
 				float:right;
+				width: 12em;
 				margin-left: 1em;
+			}
+			.menubutton {
 				display: block;
+				padding: 1em 2em;
+				margin-bottom: 0.3em;
+				border: 1px solid black;
+				text-decoration: none;
+			}
+			
+			.downloadbutton {
 				background-color: #070;
 				color: #FFF;
-				padding: 1em 2em;
-				border: 1px solid black;
 			}
 			.apidocbutton {
 				background-color: #E91E63;
@@ -79,9 +85,9 @@
 	<body>
 
 <div class="rightbuttons">
-<a class="apidocbutton" href="https://nhnb.github.io/leaflet-map/doc.html">Documentation</a>
-<a class="downloadbutton" href="https://github.com/nhnb/leaflet-map/releases/download/v0.1.0/leaflet-map-0.1.0.zip">Download</a>
-<a class="gitbutton" href="https://github.com/nhnb/leaflet-map/">Github</a>
+<a class="menubutton apidocbutton" href="https://nhnb.github.io/leaflet-map/doc.html">Documentation</a>
+<a class="menubutton downloadbutton" href="https://github.com/nhnb/leaflet-map/releases/download/v0.1.0/leaflet-map-0.1.0.zip">Download</a>
+<a class="menubutton gitbutton" href="https://github.com/nhnb/leaflet-map/">Github</a>
 </div>
 
 <h1>Demo of Leaflet web-component</h1>
@@ -93,12 +99,12 @@
 <p>List of demos:</p>
 <ul>
 <li> <a class="nav" href="demo-advanced.html#databinding">leaflet-geolocation</a> (part of L.map)
-<li> <a class="nav" href="#view">leaflet-map</a> (L.map)
-<li> <a class="nav" href="#marker">leaflet-marker</a> (L.marker)
-<li> <a class="nav" href="#icon">leaflet-icon</a> (L.icon)
-<li> <a class="nav" href="#icon">leaflet-divicon</a> (L.divIcon)
-<li> <a class="nav" href="#tilelayer">leaflet-tilelayer</a> (L.tileLayer)
-<li> <a class="nav" href="#layerwms">leaflet-tilelayer-wms</a> (L.tileLayer.wms)
+<li> <a class="nav" href="demo.html#view">leaflet-map</a> (L.map)
+<li> <a class="nav" href="demo.html#marker">leaflet-marker</a> (L.marker)
+<li> <a class="nav" href="demo.html#icon">leaflet-icon</a> (L.icon)
+<li> <a class="nav" href="demo.html#icon">leaflet-divicon</a> (L.divIcon)
+<li> <a class="nav" href="demo.html#tilelayer">leaflet-tilelayer</a> (L.tileLayer)
+<li> <a class="nav" href="demo.html#layerwms">leaflet-tilelayer-wms</a> (L.tileLayer.wms)
 </ul>
 
 
