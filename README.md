@@ -4,7 +4,7 @@ leaflet-map
 *leaflet-map* is a web-component which provides access to the [leaflet map](http://leafletjs.com) 
 JavaScript library via html elements.
 
-Please have a look at the [demo page](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html) or the [api documentation](https://nhnb.github.io/leaflet-map/doc.html).
+Please have a look at the [demo page](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html) or the [api documentation](https://nhnb.github.io/leaflet-map/doc.html#leaflet-map).
 
 Most of the options documented in the Leaflet reference are exported as html attributes. 
 All events are mapped into html events of the same name.</p>
