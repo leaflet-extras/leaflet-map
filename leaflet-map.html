@@ -1419,15 +1419,22 @@ element which defines a leadlet map (<a href="http://leafletjs.com/reference.htm
 ##### Example
 
 	<leaflet-map> </leaflet-map>
+
+This simple example will show a map of the world. It is pan and zoomable.
 	
 ##### Example
 	
 	<leaflet-map latitude="78.8" longitude="-96" zoom="5">
+
 		<leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
 			<b>Popup text</b>
 		</leaflet-marker>
 	
-	</leaflet-map>  
+	</leaflet-map>
+
+This code will zoom in on the specified latitude and longitude coordinates. Further, it will
+add a marker with a popup text. 
+
 
 @element leaflet-map
 @blurb element which defines a leaflet map. Most options are supported as attributes. 
