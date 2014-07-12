@@ -1,11 +1,16 @@
 leaflet-map
 ===========
 
-[Leaflet](http://leafletjs.com/reference.html) is a modern open-source JavaScript library for mobile-friendly interactive maps.
+*leaflet-map* is a web-component which provides access to the [leaflet map](http://leafletjs.com) 
+JavaScript library via html elements.
 
-leaflet-map makes Leaflet available as web-component: &lt;leaflet-map&gt; &lt;/leaflet-map&gt;
-Please have a look at the [demo page](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html) or the [api documentation](https://nhnb.github.io/leaflet-map/doc.html)
- 
+Please have a look at the [demo page](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html) or the [api documentation](https://nhnb.github.io/leaflet-map/doc.html).
+
+Most of the options documented in the Leaflet reference are exported as html attributes. 
+All events are mapped into html events of the same name.</p>
+For example use &lt;leaflet-map latitude="51.505" longitude="-0.09" zoom="13"&gt; &lt;/leaflet-map&gt; 
+to define the view and zoom level.
+
 
 Web-components are an emerging standard which is based on Custom Elements, Shadow DOM, HTML Imports and Web Animations.
 [Polymer](http://www.polymer-project.org/docs/start/tutorial/intro.html) is a library which simplifies working with web-components. It includes a compatibility layer for browsers which
@@ -15,21 +20,19 @@ do not yet support web-components natively, yet.
 Status
 ======
 
-leaflet-map is a prove of concept. It already supports the most important features of leaflet. 
+Although leaflet-map is still under heavy development, it is already fully usable.
 
-At this time the following elements are defined:
+Lists of demos: 
 
-* leaflet-geolocation (part of L.map) (since 0.0.2)
-* leaflet-map (L.map)
-* leaflet-marker (L.marker)
-* leaflet-icon (L.icon)
-* leaflet-divicon (L.divicon) (since 0.0.1)
-* leaflet-scale-control (L.control.scale) (since 0.2.0)
-* leaflet-tilelayer (L.tileLayer)
-* leaflet-tilelayer-wms (L.tileLayer.wms)  (since 0.0.2)
+* [leaflet-map](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#view) (L.map)
+* [leaflet-marker](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#marker) (L.marker)
+* [leaflet-icon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.icon)
+* [leaflet-divicon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.divicon) (since 0.0.1)
+* [leaflet-scale-control](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#scale) (L.control.scale) (since 0.2.0)
+* [leaflet-tilelayer](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#tilelayer) (L.tileLayer)
+* [leaflet-tilelayer-wms](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#layerwms) (L.tileLayer.wms)  (since 0.0.2)
+* [leaflet-geolocation(https://nhnb.github.io/leaflet-map/leaflet-map/demo-advanced.html#databinding) (part of L.map) (since 0.0.2)
 
-Most of the options documented in the [Leaflet reference](http://leafletjs.com/reference.html) for those objects are exported as html attributes. 
-For example use &lt;leaflet-map latitude="51.505" longitude="-0.09" zoom="13"&gt; &lt;/leaflet-map&gt; to define the view and zoom level.
 
 Dependencies
 ============
@@ -45,6 +48,7 @@ Notes for implementing child elements
 Child elements like markers or layers will be initialized by the surrounding map by setting a "map" javascript property.
 Therefore the child element should define a mapChanged method and use that as initializer. 
 Don't forget to define a detached method to support removal of elements. The leaflet-marker element is a good template.  
+
 
 License
 =======
