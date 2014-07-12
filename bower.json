@@ -18,7 +18,11 @@
   "homepage": "http://github.io/prtksxna/leaflet-map-component",
   "ignore": [
     "**/.*",
-    "tests"
+    "tests",
+    "demo_files",
+    "demo.html",
+    "index.html",
+    "CONTRIBUTING.md"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#~0.3.3",
