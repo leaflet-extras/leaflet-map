@@ -24,6 +24,7 @@ At this time the following elements are defined:
 * leaflet-marker (L.marker)
 * leaflet-icon (L.icon)
 * leaflet-divicon (L.divicon) (since 0.0.1)
+* leaflet-scale-control (L.control.scale) (since 0.2.0)
 * leaflet-tilelayer (L.tileLayer)
 * leaflet-tilelayer-wms (L.tileLayer.wms)  (since 0.0.2)
 

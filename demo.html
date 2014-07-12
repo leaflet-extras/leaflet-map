@@ -103,6 +103,7 @@
 <li> <a class="nav" href="demo.html#marker">leaflet-marker</a> (L.marker)
 <li> <a class="nav" href="demo.html#icon">leaflet-icon</a> (L.icon)
 <li> <a class="nav" href="demo.html#icon">leaflet-divicon</a> (L.divIcon)
+<li> <a class="nav" href="demo.html#scale">leaflet-scale-control</a> (L.control.scale)
 <li> <a class="nav" href="demo.html#tilelayer">leaflet-tilelayer</a> (L.tileLayer)
 <li> <a class="nav" href="demo.html#layerwms">leaflet-tilelayer-wms</a> (L.tileLayer.wms)
 </ul>
@@ -360,6 +361,38 @@ map.addEventListener("moveend", function(e) {
 &lt;/<span class="i">script</span>&gt;
 
 </code></pre>
+
+
+
+
+
+<h2 id="scale">Scale control</h2>
+
+<p>A scale control can be added and configured using &lt;leaflet-scale-control&gt; By default it displays both
+metric and imperial units.</p>
+
+<leaflet-map latitude="51.505" longitude="-0.09" zoom="13">
+	<leaflet-scale-control position="topright" metric="true">
+	</leaflet-scale-control>
+</leaflet-map>
+
+<pre class="html"><code>
+&lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
+
+    &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Transparent</span>" <span class="a">opacity</span>="<span class="v">0.6</span>"&gt;
+    &lt;/<span class="i">leaflet-marker</span>&gt;
+
+    &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Popup Demo</span>"&gt; 
+        &lt;<span class="i">b</span>&gt;Bold&lt;/<span class="i">b</span>&gt;
+        &lt;<span class="i">p</span>&gt;Text&lt;/<span class="i">p</span>&gt;
+    &lt;/<span class="i">leaflet-marker</span>&gt;
+
+&lt;/<span class="i">leaflet-map</span>&gt;
+
+</code></pre>
+
+
+
 
 
 
