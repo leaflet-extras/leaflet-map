@@ -4,7 +4,7 @@ leaflet-map
 *leaflet-map* is a web-component which provides access to the [leaflet map](http://leafletjs.com) 
 JavaScript library via html elements.
 
-Please have a look at the [demo page](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html) or the [api documentation](https://nhnb.github.io/leaflet-map/doc.html).
+Please have a look at the [demo page](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html) or the [api documentation](https://nhnb.github.io/leaflet-map/doc.html#leaflet-map).
 
 Most of the options documented in the Leaflet reference are exported as html attributes. 
 All events are mapped into html events of the same name.</p>
@@ -31,7 +31,7 @@ Lists of demos:
 * [leaflet-scale-control](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#scale) (L.control.scale) (since 0.2.0)
 * [leaflet-tilelayer](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#tilelayer) (L.tileLayer)
 * [leaflet-tilelayer-wms](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#layerwms) (L.tileLayer.wms)  (since 0.0.2)
-* [leaflet-geolocation(https://nhnb.github.io/leaflet-map/leaflet-map/demo-advanced.html#databinding) (part of L.map) (since 0.0.2)
+* [leaflet-geolocation](https://nhnb.github.io/leaflet-map/leaflet-map/demo-advanced.html#databinding) (part of L.map) (since 0.0.2)
 
 
 Dependencies
@@ -45,8 +45,9 @@ Please note that the pages have to be accessed via a webserver. file://-urls are
 Notes for implementing child elements
 =====================================
 
-Child elements like markers or layers will be initialized by the surrounding map by setting a "map" javascript property.
-Therefore the child element should define a mapChanged method and use that as initializer. 
+Child elements like markers or layers will be initialized by the surrounding container (the map or a layer)
+by setting a "container" javascript property.
+Therefore the child element should define a containerChanged method and use that as initializer. 
 Don't forget to define a detached method to support removal of elements. The leaflet-marker element is a good template.  
 
 
