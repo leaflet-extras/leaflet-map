@@ -107,6 +107,33 @@ $ bower install leaflet-map-component
       <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989" tileServer="http://a.tile.stamen.com/toner/{z}/{x}/{y}.jpg">
       </leaflet-map>
 
+      <section id="polythings_text">
+        <div class="container">
+          <h2>Polygons & Polylines</h2>
+          <p>You can create polygons and polylines by adding points inside these elements.</p>
+          <pre><code>
+&lt;leaflet-map longitude="77.5667" latitude="12.9667" zoom="11"&gt;
+  &lt;leaflet-polyline&gt;
+    &lt;leaflet-point longitude="77.6400" latitude="12.9100"&gt;&lt;/leaflet-point&gt;
+    &lt;leaflet-point longitude="77.6229" latitude="12.9259"&gt;&lt;/leaflet-point&gt;
+    &lt;leaflet-point longitude="77.6499" latitude="12.9699"&gt;&lt;/leaflet-point&gt;
+    &lt;leaflet-point longitude="77.6119" latitude="12.9738"&gt;&lt;/leaflet-point&gt;
+  &lt;/leaflet-polyline&gt;
+&lt;/leaflet-map&gt;
+          </pre></code>
+        </div>
+      </section>
+
+      <leaflet-map id="polythings" longitude="77.5667" latitude="12.9667" zoom="11">
+        <leaflet-polyline>
+          <leaflet-point longitude="77.6400" latitude="12.9100"></leaflet-point>
+          <leaflet-point longitude="77.6229" latitude="12.9259"></leaflet-point>
+          <leaflet-point longitude="77.6499" latitude="12.9699"></leaflet-point>
+          <leaflet-point longitude="77.6119" latitude="12.9738"></leaflet-point>
+        </leaflet-polyline>
+      </leaflet-map>
+
+
       <section id="dive_deeper">
         <div class="container">
           <h2>Dive Deeper</h2>

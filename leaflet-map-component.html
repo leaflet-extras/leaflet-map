@@ -30,6 +30,7 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
 <link rel="import" href="leaflet-import.html">
 <link rel="import" href="leaflet-marker-component.html">
 <link rel="import" href="leaflet-circle-component.html">
+<link rel="import" href="leaflet-polyline-component.html">
 
 <polymer-element name="leaflet-map" attributes="tileServer latitude longitude zoom fitToMarkers">
   <template>
@@ -49,7 +50,7 @@ The `leaflet-map` element renders a [Leaflet](http://leafletjs.com/) map.
     </style>
     <link rel="stylesheet" href="../leaflet/dist/leaflet.css">
     <div id="map"></div>
-    <content id="features" select="leaflet-marker, leaflet-circle"></content>
+    <content id="features" select="leaflet-marker, leaflet-circle, leaflet-polyline"></content>
   </template>
   <script>
    Polymer( 'leaflet-map', {
