@@ -15,6 +15,17 @@
 			h2 {
 				margin-top: 2em;
 			}
+
+			.nav {
+				color: #000;
+				text-decoration: none;
+				border-bottom: 1px dashed #000;
+				display: inline-block;
+				padding: 3px;
+			}
+			.nav:hover {
+				background-color: #DDF;
+			}
 			
 			leaflet-map,
 			geolocation-sample {
@@ -75,21 +86,20 @@
 
 <h1>Demo of Leaflet web-component</h1>
 
-<p>This is a demo page for the <a href="https://github.com/nhnb/leaflet-map">web-component wrapper</a> of <a href="http://leafletjs.com">leaflet</a>.</p>
+<p>&lt;leaflet-map&gt; is a web-component which provides access to the <a href="http://leafletjs.com">leaflet</a> JavaScript library via html elements.</p>
 
-<p>At this time the following elements are defined:</p>
+<p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference</a> are exported as html attributes. All events are mapped into html events of the same name.</p>
+
+<p>List of demos:</p>
 <ul>
-<li> leaflet-geolocation (part of L.map) (since 0.0.2)
-<li> leaflet-map (L.map)
-<li> leaflet-marker (L.marker)
-<li> leaflet-icon (L.icon)
-<li> leaflet-divicon (L.icon) (since 0.0.1)
-<li> leaflet-tilelayer (L.tileLayer)
-<li> leaflet-tilelayer-wms (L.tileLayer.wms)  (since 0.0.2)
+<li> <a class="nav" href="#databinding">leaflet-geolocation</a> (part of L.map
+<li> <a class="nav" href="#view">leaflet-map</a> (L.map)
+<li> <a class="nav" href="#marker">leaflet-marker</a> (L.marker)
+<li> <a class="nav" href="#icon">leaflet-icon</a> (L.icon)
+<li> <a class="nav" href="#icon">leaflet-divicon</a> (L.divIcon)
+<li> <a class="nav" href="#tilelayer">leaflet-tilelayer</a> (L.tileLayer)
+<li> <a class="nav" href="#layerwms">leaflet-tilelayer-wms</a> (L.tileLayer.wms)
 </ul>
-<p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference</a> for those objects are exported as html attributes. 
-For example use &lt;leaflet-map latitude="51.505" longitude="-0.09" zoom="13"&gt; &lt;/leaflet-map&gt; to define the view and zoom level.</p>
-<p>All events are mapped into html events of the same name.</p>
 
 
 <h2 id="simple">Simple</h2>
@@ -228,7 +238,7 @@ document.addEventListener("load", function() {
 </code></pre>
 
 
-<h2 id="layer">Tile layer</h2>
+<h2 id="tilelayer">Tile layer</h2>
 
 <p>Custom tile layers, for example from online games can be defined using the leaflet-tilelayer element. If there is no explicit tilelayer defined, a default one will be used as shown in previous examples.</p>
 
