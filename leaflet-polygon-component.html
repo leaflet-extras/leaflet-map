@@ -1,0 +1,83 @@
+<!--
+The `leaflet-polygon` element represents a polygon on the map and is used as
+a child element of the `leaflet-map` element. To compose the line one needs to
+add `leaflet-point` elements inside it.
+
+
+##### Example: Add polygona
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-polygon>
+        <leaflet-point longitude="77.1000" latitude="13.3400"></leaflet-point>
+        <leaflet-point longitude="77.5000" latitude="13.5500"></leaflet-point>
+        <leaflet-point longitude="77.7200" latitude="12.7200"></leaflet-point>
+      </leaflet-polygon>
+    </leaflet-map>
+
+@element leaflet-polygon
+@blurb Element for putting a polygon on the map
+@status alpha
+@homepage http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/
+-->
+
+<link rel="import" href="leaflet-import.html">
+
+<polymer-element name="leaflet-polygon">
+  <template>
+    <style>
+      :host{ display: none; }
+    </style>
+    <content id="points" select="leaflet-point"></content>
+  </template>
+  <script>
+   Polymer( 'leaflet-polygon', {
+     /**
+      * A Leaflet [Polygon](http://leafletjs.com/reference.html#polygon) object
+      *
+      * @property feature
+      * @type L.polygon
+      * @default null
+      */
+     feature: null,
+
+     /**
+      * A Leaflet map object
+      *
+      * @property map
+      * @type L.map
+      * @default null
+      */
+     map: null,
+
+     ready: function () {
+       this.mapReady();
+     },
+
+     mapChanged: function () {
+       this.mapReady();
+     },
+
+     mapReady: function () {
+       if ( this.map ) {
+         this.feature = L.polygon( [], {
+
+         } );
+         this.feature.addTo( this.map );
+         this.contentChanged();
+       }
+     },
+
+     contentChanged: function () {
+       this.points = Array.prototype.slice.call( this.$.points.getDistributedNodes() );
+       this.onMutation( this, this.contentChanged );
+
+       this.points.forEach( function ( p ) {
+         var latlng = L.latLng(
+           p.getAttribute( 'latitude' ),
+           p.getAttribute( 'longitude' )
+         );
+         this.feature.addLatLng( latlng );
+       }.bind( this ) );
+     }
+   } );
+  </script>
+</polymer-element>

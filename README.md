@@ -17,6 +17,48 @@ Web-components are an emerging standard which is based on Custom Elements, Shado
 do not yet support web-components natively, yet.
 
 
+Quickstart Guide
+================
+
+Make leaflet maps using declarative [Polymer](http://polymer-project.org) web components.
+To get started read the [documentation](http://nhnb.github.io/leaflet-map/doc.html)
+or checkout the [demo](http://nhnb.github.io/leaflet-map/).
+
+Install this web component using [Bower](http://bower.io):
+
+```
+bower install leaflet-map
+```
+
+Import the main component and start creating your map:
+
+```html
+  <head>
+    <script src="../platform/platform.js"></script>
+    <link rel="import" href="leaflet-map.html">
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+      }
+      leaflet-map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-marker longitude="77.2" latitude="28.4">
+        Marker I
+      </leaflet-marker>
+      <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
+        Round
+      </leaflet-circle>
+    </leaflet-map>
+  </body>
+```
+
+
 Status
 ======
 
@@ -81,4 +123,3 @@ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRU
 HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
 TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
