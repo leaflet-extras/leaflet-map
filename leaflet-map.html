@@ -99,7 +99,7 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 		 */
 		enableHighAccuracy: false,
 
-		publish: {
+        publish: {
 
 			/**
 			 * The `latitude` attribute returns the detected geographical location of the user.
@@ -237,7 +237,7 @@ add a marker with a popup text.
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold">
+<polymer-element name="leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold zoomPanOptions">
 	<template>
 		<link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
 		<style>
@@ -713,6 +713,16 @@ add a marker with a popup text.
 		 */
 		zoomAnimationThreshold: 4,
 
+        /**
+         * The `zoomPanOptions` attribute sets pan and view properties,
+         * see [http://leafletjs.com/reference.html#map-zoompanoptions] for details
+         *
+         * @attribute zoomPanOptions
+         * @type object
+         * @default null
+         */
+        zoomPanOptions: null,
+
 		/** 
 		 * reference to the leaflet map
 		 *
@@ -796,7 +806,7 @@ add a marker with a popup text.
 
 		view: function(oldValue, newValue) {
 			if (this.map) {
-				this.map.setView(L.latLng(this.latitude, this.longitude), this.zoom);
+				this.map.setView(L.latLng(this.latitude, this.longitude), this.zoom, this.zoomPanOptions);
 			}
 		},
 
