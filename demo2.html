@@ -93,18 +93,32 @@ $ bower install leaflet-map-component
           <pre><code>
 &lt;leaflet-map
   longitude="73.8278"
-  latitude="15.4989"
-  tileServer="http://b.tile.thunderforest.com/cycle/{z}/{x}/{y}.png"&gt;
+  latitude="15.4989"&gt;
+    &lt;leaflet-tilelayer
+      url="http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"&gt;
+      Tiles by &lt;a href="http://stamen.com"&gt;Stamen Design&lt;/a&gt;, CC BY 3.0. 
+      Data by &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt;, 
+      CC BY SA.
+    &lt;/leaflet-tilelayer&gt;
 &lt;/leaflet-map&gt;
           </code></pre>
         </div>
       </section>
 
-      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989" tileServer="http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg">
+      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989">
+         <leaflet-tilelayer url="http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg">
+           Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.
+         </leaflet-tilelayer>
       </leaflet-map>
-      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989" tileServer="http://b.tile.thunderforest.com/cycle/{z}/{x}/{y}.png">
+      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989">
+         <leaflet-tilelayer url="http://b.tile.thunderforest.com/cycle/{z}/{x}/{y}.png">
+           Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.
+         </leaflet-tilelayer>
       </leaflet-map>
-      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989" tileServer="http://a.tile.stamen.com/toner/{z}/{x}/{y}.jpg">
+      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989">
+         <leaflet-tilelayer url="http://a.tile.stamen.com/toner/{z}/{x}/{y}.jpg">
+           Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.
+         </leaflet-tilelayer>
       </leaflet-map>
 
       <section id="polythings_text">
