@@ -1,5 +1,4 @@
-leaflet-map
-===========
+# leaflet-map
 
 *leaflet-map* is a web-component which provides access to the [leaflet map](http://leafletjs.com) 
 JavaScript library via html elements.
@@ -17,8 +16,7 @@ Web-components are an emerging standard which is based on Custom Elements, Shado
 do not yet support web-components natively, yet.
 
 
-Quickstart Guide
-================
+## Quickstart Guide
 
 Make leaflet maps using declarative [Polymer](http://polymer-project.org) web components.
 To get started read the [documentation](http://nhnb.github.io/leaflet-map/doc.html)
@@ -59,34 +57,35 @@ Import the main component and start creating your map:
 ```
 
 
-Status
-======
+## Status
 
 Although leaflet-map is still under heavy development, it is already fully usable.
 
 Lists of demos: 
 
 * [leaflet-map](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#view) (L.map)
+
+* leaflet-circle (since 0.3.0)
+* [leaflet-geolocation](https://nhnb.github.io/leaflet-map/leaflet-map/demo-advanced.html#databinding) (part of L.map) (since 0.0.2)
 * [leaflet-marker](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#marker) (L.marker)
 * [leaflet-icon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.icon)
 * [leaflet-divicon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.divicon) (since 0.0.1)
+* leaflet-polygon (L.polygon) (since 0.3.0)
+* leaflet-polyline (L.polyline) (since 0.3.0)
 * [leaflet-scale-control](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#scale) (L.control.scale) (since 0.2.0)
 * [leaflet-tilelayer](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#tilelayer) (L.tileLayer)
 * [leaflet-tilelayer-wms](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#layerwms) (L.tileLayer.wms)  (since 0.0.2)
-* [leaflet-geolocation](https://nhnb.github.io/leaflet-map/leaflet-map/demo-advanced.html#databinding) (part of L.map) (since 0.0.2)
 
 Please have a look at the [change log](https://github.com/nhnb/leaflet-map/blob/master/CHANGES.md), for recent developments.
 
-Dependencies
-============
+## Dependencies
 
 leaflet-map depends on Polymer in ../platform and ../polymer and it expects an installation of leaflet in ../leaflet.
 
 Please note that the pages have to be accessed via a webserver. file://-urls are not supported.
 
 
-Notes for implementing child elements
-=====================================
+## Notes for implementing child elements
 
 Child elements like markers or layers will be initialized by the surrounding container (the map or a layer)
 by setting a "container" javascript property.
@@ -94,14 +93,14 @@ Therefore the child element should define a containerChanged method and use that
 Don't forget to define a detached method to support removal of elements. The leaflet-marker element is a good template.  
 
 
-License
-=======
+## License
+
 
 * [Leaflet](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
 * [Polymer](https://github.com/polymer/polymer/blob/master/LICENSE)
 
 
-Copyright (c) 2014, Hendrik Brummermann
+Copyright (c) 2014, Hendrik Brummermann, Prateek Saxena
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are
