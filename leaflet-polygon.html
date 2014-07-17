@@ -60,7 +60,14 @@ add `leaflet-point` elements inside it.
          );
          this.feature.addLatLng( latlng );
        }.bind( this ) );
+     },
+     
+     detached: function() {
+       if (this.container && this.feature) {
+         this.container.removeLayer(this.feature);
+       }
      }
+
    } );
   </script>
 </polymer-element>

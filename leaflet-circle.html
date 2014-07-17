@@ -94,7 +94,14 @@ a child element of the `leaflet-map` element.
        this.onMutation( this, this.contentChanged );
        var content = this.innerHTML;
        this.feature.bindPopup( content );
+     },
+     
+     detached: function() {
+       if (this.container && this.feature) {
+         this.container.removeLayer(this.feature);
+       }
      }
+
    } );
   </script>
 </polymer-element>
