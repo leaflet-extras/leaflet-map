@@ -38,29 +38,12 @@ add `leaflet-point` elements inside it.
       */
      feature: null,
 
-     /**
-      * A Leaflet map object
-      *
-      * @property map
-      * @type L.map
-      * @default null
-      */
-     map: null,
-
-     ready: function () {
-       this.mapReady();
-     },
-
-     mapChanged: function () {
-       this.mapReady();
-     },
-
-     mapReady: function () {
-       if ( this.map ) {
+     containerChanged: function() {
+       if ( this.container ) {
          this.feature = L.polyline( [], {
 
          } );
-         this.feature.addTo( this.map );
+         this.feature.addTo( this.container );
          this.contentChanged();
        }
      },

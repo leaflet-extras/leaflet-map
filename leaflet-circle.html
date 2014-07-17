@@ -35,15 +35,6 @@ a child element of the `leaflet-map` element.
       */
      feature: null,
 
-     /**
-      * A Leaflet map object
-      *
-      * @property map
-      * @type L.map
-      * @default null
-      */
-     map: null,
-
      publish: {
        /**
 	* The circle's longitude coordinate
@@ -79,18 +70,10 @@ a child element of the `leaflet-map` element.
        radius: 'updateRadius',
      },
 
-     ready: function () {
-       this.mapReady();
-     },
-
-     mapChanged: function () {
-       this.mapReady();
-     },
-
-     mapReady: function () {
-       if ( this.latitude && this.longitude && this.map ) {
+     containerChanged: function() {
+       if ( this.latitude && this.longitude && this.container ) {
          this.feature = L.circle( [this.latitude, this.longitude], this.radius, this.pathOptions );
-         this.feature.addTo( this.map );
+         this.feature.addTo( this.container );
          this.contentChanged();
        }
      },

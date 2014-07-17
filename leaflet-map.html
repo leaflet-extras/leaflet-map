@@ -827,8 +827,6 @@ add a marker with a popup text.
 		registerMapOnChildren: function() {
 			for (var i = 0; i < this.children.length; i++) {
 				this.children[i].container = this.map;
-				// TODO: remove compatibility code
-				this.children[i].map = this.map;
 			}
 			this.onMutation(this, this.registerMapOnChildren);
 		},
