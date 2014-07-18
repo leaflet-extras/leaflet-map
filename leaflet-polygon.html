@@ -43,7 +43,11 @@ add `leaflet-point` elements inside it.
 
      containerChanged: function() {
        if ( this.container ) {
-         this.feature = L.polygon([], this.getOptions());
+    	 var opt = this.getOptions();
+    	 if (typeof opt.fill === "undefined" || opt.fill === null) {
+    		 opt.fill = true;
+    	 }
+         this.feature = L.polygon([], opt);
          this.feature.addTo( this.container );
          this.contentChanged();
        }
