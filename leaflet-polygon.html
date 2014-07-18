@@ -1,3 +1,6 @@
+<link rel="import" href="leaflet-import.html">
+<link rel="import" href="leaflet-path.html">
+
 <!--
 The `leaflet-polygon` element represents a polygon on the map and is used as
 a child element of the `leaflet-map` element. To compose the line one needs to
@@ -19,9 +22,7 @@ add `leaflet-point` elements inside it.
 @homepage http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/
 -->
 
-<link rel="import" href="leaflet-import.html">
-
-<polymer-element name="leaflet-polygon">
+<polymer-element name="leaflet-polygon" extends="leaflet-path">
   <template>
     <style>
       :host{ display: none; }
@@ -41,9 +42,7 @@ add `leaflet-point` elements inside it.
 
      containerChanged: function() {
        if ( this.container ) {
-         this.feature = L.polygon( [], {
-
-         } );
+         this.feature = L.polygon([], this.getOptions());
          this.feature.addTo( this.container );
          this.contentChanged();
        }

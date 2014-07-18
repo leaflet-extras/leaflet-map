@@ -144,17 +144,26 @@ $ bower install leaflet-map-component
       </section>
 
       <leaflet-map id="polythings" longitude="77.5667" latitude="12.9667" zoom="12">
+      <leaflet-tilelayer 
+		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom="18">
+			Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, 
+			<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
+			Imagery &copy; <a href="http://mapbox.com">Mapbox</a>
+	</leaflet-tilelayer>
+      
+      <leaflet-layer-group>
         <leaflet-polyline>
           <leaflet-point longitude="77.6400" latitude="12.9100"></leaflet-point>
           <leaflet-point longitude="77.6229" latitude="12.9259"></leaflet-point>
           <leaflet-point longitude="77.6499" latitude="12.9699"></leaflet-point>
           <leaflet-point longitude="77.6119" latitude="12.9738"></leaflet-point>
         </leaflet-polyline>
-        <leaflet-polygon>
+        <leaflet-polygon color="#f00">
           <leaflet-point longitude="77.5700" latitude="12.9700"></leaflet-point>
           <leaflet-point longitude="77.6034" latitude="13.0001"></leaflet-point>
           <leaflet-point longitude="77.6006" latitude="12.9547"></leaflet-point>
         </leaflet-polygon>
+      </leaflet-layer-group>
       </leaflet-map>
 
 

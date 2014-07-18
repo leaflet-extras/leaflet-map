@@ -1,3 +1,6 @@
+<link rel="import" href="leaflet-import.html">
+<link rel="import" href="leaflet-path.html">
+
 <!--
 The `leaflet-polyline` element represents a polyline on the map and is used as
 a child element of the `leaflet-map` element. To compose the line one needs to
@@ -18,9 +21,7 @@ add `leaflet-point` elements inside it.
 @homepage http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/
 -->
 
-<link rel="import" href="leaflet-import.html">
-
-<polymer-element name="leaflet-polyline">
+<polymer-element name="leaflet-polyline" extends="leaflet-path">
   <template>
     <style>
       :host{ display: none; }
@@ -40,9 +41,7 @@ add `leaflet-point` elements inside it.
 
      containerChanged: function() {
        if ( this.container ) {
-         this.feature = L.polyline( [], {
-
-         } );
+         this.feature = L.polyline([], this.getOptions());
          this.feature.addTo( this.container );
          this.contentChanged();
        }
