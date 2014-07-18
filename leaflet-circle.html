@@ -76,6 +76,11 @@ a child element of the `leaflet-map` element.
          this.feature = L.circle([this.latitude, this.longitude], this.radius, this.getOptions());
          this.feature.addTo( this.container );
          this.contentChanged();
+
+         // forward events
+         this.feature.on('click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose', function(e) {
+           this.fire(e.type, e);
+         }, this);
        }
      },
 
