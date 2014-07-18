@@ -1,0 +1,72 @@
+<link rel="import" href="leaflet-import.html">
+<link rel="import" href="leaflet-path.html">
+
+<!--
+The `leaflet-polygon` element represents a polygon on the map and is used as
+a child element of the `leaflet-map` element. To compose the line one needs to
+add `leaflet-point` elements inside it.
+
+
+##### Example: Add polygona
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-polygon>
+        <leaflet-point longitude="77.1000" latitude="13.3400"></leaflet-point>
+        <leaflet-point longitude="77.5000" latitude="13.5500"></leaflet-point>
+        <leaflet-point longitude="77.7200" latitude="12.7200"></leaflet-point>
+      </leaflet-polygon>
+    </leaflet-map>
+
+@element leaflet-polygon
+@blurb Element for putting a polygon on the map
+@status alpha
+@homepage http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/
+-->
+
+<polymer-element name="leaflet-polygon" extends="leaflet-path">
+  <template>
+    <style>
+      :host{ display: none; }
+    </style>
+    <content id="points" select="leaflet-point"></content>
+  </template>
+  <script>
+   Polymer( 'leaflet-polygon', {
+     /**
+      * A Leaflet [Polygon](http://leafletjs.com/reference.html#polygon) object
+      *
+      * @property feature
+      * @type L.polygon
+      * @default null
+      */
+     feature: null,
+
+     containerChanged: function() {
+       if ( this.container ) {
+         this.feature = L.polygon([], this.getOptions());
+         this.feature.addTo( this.container );
+         this.contentChanged();
+       }
+     },
+
+     contentChanged: function () {
+       this.points = Array.prototype.slice.call( this.$.points.getDistributedNodes() );
+       this.onMutation( this, this.contentChanged );
+
+       this.points.forEach( function ( p ) {
+         var latlng = L.latLng(
+           p.getAttribute( 'latitude' ),
+           p.getAttribute( 'longitude' )
+         );
+         this.feature.addLatLng( latlng );
+       }.bind( this ) );
+     },
+     
+     detached: function() {
+       if (this.container && this.feature) {
+         this.container.removeLayer(this.feature);
+       }
+     }
+
+   } );
+  </script>
+</polymer-element>

@@ -1,9 +1,15 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="leaflet-import.html">
 
+<link rel="import" href="leaflet-path.html">
+<link rel="import" href="leaflet-circle.html">
 <link rel="import" href="leaflet-control.html">
 <link rel="import" href="leaflet-layer.html">
+<link rel="import" href="leaflet-layer-group.html">
 <link rel="import" href="leaflet-marker.html">
+<link rel="import" href="leaflet-polyline.html">
+<link rel="import" href="leaflet-polygon.html">
+
 
 <!--
 element which controls geo location (<a href="http://leafletjs.com/reference.html#map">Leaflet Reference</a>).
@@ -227,9 +233,20 @@ This simple example will show a map of the world. It is pan and zoomable.
 		</leaflet-marker>
 	
 	</leaflet-map>
-
+	
 This code will zoom in on the specified latitude and longitude coordinates. Further, it will
-add a marker with a popup text. 
+add a marker with a popup text.
+
+##### Example: Add markers & circles
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-marker longitude="77.2" latitude="28.4">
+        Marker
+      </leaflet-marker>
+      <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
+        Circle
+      </leaflet-circle>
+    </leaflet-map>
+ 
 
 
 @element leaflet-map
@@ -237,7 +254,7 @@ add a marker with a popup text.
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold">
+<polymer-element name="leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold fitToMarkers">
 	<template>
 		<link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
 		<style>
@@ -713,6 +730,15 @@ add a marker with a popup text.
 		 */
 		zoomAnimationThreshold: 4,
 
+		/**
+	      * If set, the map is zoomed such that all elements in it are visible
+	      *
+	      * @attribute fitToMarkers
+	      * @type boolean
+	      * @default false
+	      */
+	     fitToMarkers: false,
+
 		/** 
 		 * reference to the leaflet map
 		 *
@@ -806,6 +832,38 @@ add a marker with a popup text.
 			}
 			this.onMutation(this, this.registerMapOnChildren);
 		},
+
+		fitToMarkersChanged: function () {
+			if ( this.map && this.fitToMarkers) {
+				var bounds = [];
+				for( var i = 0, f; f = this.features[i]; i++ ) {
+					if ( f.latitude && f.longitude ) {
+						bounds.push( [ f.latitude, f.longitude ] );
+					}
+				}
+				if ( bounds.length > 0 ) {
+					this.map.fitBounds( bounds );
+					this.map.invalidateSize();
+				}
+			}
+		},
+
+		/**
+		 * Returns a GeoJSON including all the features of the map
+		 *
+		 * @method toGeoJSON
+		 */
+		toGeoJSON: function () {
+			var geoJSON = {
+				"type": "FeatureCollection",
+				"features": []
+			};
+
+			for( var i = 0, f; f = this.features[i]; i++ ) {
+				geoJSON.features.push( f.feature.toGeoJSON() );
+			}
+			return geoJSON;
+		}
 	});
-    </script>
+	</script>
 </polymer-element>

@@ -1,0 +1,70 @@
+<link rel="import" href="leaflet-import.html">
+<link rel="import" href="leaflet-path.html">
+
+<!--
+The `leaflet-polyline` element represents a polyline on the map and is used as
+a child element of the `leaflet-map` element. To compose the line one needs to
+add `leaflet-point` elements inside it.
+
+
+##### Example: Add polylines
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-polyline>
+        <leaflet-point longitude="77.22" latitude="28.44"></leaflet-point>
+        <leaflet-point longitude="77.44" latitude="28.66"></leaflet-point>
+      </leaflet-polyline>
+    </leaflet-map>
+
+@element leaflet-polyline
+@blurb Element for putting a polyline on the map
+@status alpha
+@homepage http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/
+-->
+
+<polymer-element name="leaflet-polyline" extends="leaflet-path">
+  <template>
+    <style>
+      :host{ display: none; }
+    </style>
+    <content id="points" select="leaflet-point"></content>
+  </template>
+  <script>
+   Polymer( 'leaflet-polyline', {
+     /**
+      * A Leaflet [Polyline](http://leafletjs.com/reference.html#polyline) object
+      *
+      * @property feature
+      * @type L.polyline
+      * @default null
+      */
+     feature: null,
+
+     containerChanged: function() {
+       if ( this.container ) {
+         this.feature = L.polyline([], this.getOptions());
+         this.feature.addTo( this.container );
+         this.contentChanged();
+       }
+     },
+
+     contentChanged: function () {
+       this.points = Array.prototype.slice.call( this.$.points.getDistributedNodes() );
+       this.onMutation( this, this.contentChanged );
+
+       this.points.forEach( function ( p ) {
+         var latlng = L.latLng(
+           p.getAttribute( 'latitude' ),
+           p.getAttribute( 'longitude' )
+         );
+         this.feature.addLatLng( latlng );
+       }.bind( this ) );
+     },
+     
+     detached: function() {
+       if (this.container && this.feature) {
+         this.container.removeLayer(this.feature);
+       }
+     }
+   } );
+  </script>
+</polymer-element>

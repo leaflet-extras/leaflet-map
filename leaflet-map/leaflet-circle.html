@@ -1,0 +1,107 @@
+<link rel="import" href="leaflet-import.html">
+<link rel="import" href="leaflet-path.html">
+
+<!--
+The `leaflet-circle` element represents a circle on the map and is used as
+a child element of the `leaflet-map` element.
+
+
+##### Example: Add circles
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
+        Circle
+      </leaflet-circle>
+    </leaflet-map>
+
+@element leaflet-circle
+@blurb Element for putting a circle on the map
+@status alpha
+@homepage http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/
+-->
+<polymer-element name="leaflet-circle" extends="leaflet-path" attributes="latitude longitude radius">
+  <template>
+    <style>
+      :host{ display: none; }
+    </style>
+  </template>
+  <script>
+   Polymer( 'leaflet-circle', {
+     /**
+      * A Leaflet circle object
+      *
+      * @property feature
+      * @type L.circle
+      * @default null
+      */
+     feature: null,
+
+     publish: {
+       /**
+	* The circle's longitude coordinate
+	*
+	* @attribute longitude
+	* @type number
+	* @default null
+	*/
+       longitude: { value: null, reflect: true },
+
+       /**
+	* The circle's latitude coordinate
+	*
+	* @attribute latitude
+	* @type number
+	* @default null
+	*/
+       latitude: { value: null, reflect: true },
+
+       /**
+	* The circle's radius is metres
+	*
+	* @attribute radius
+	* @type number
+	* @default 100
+	*/
+       radius: { value: 100, reflect: true }
+     },
+
+     observe: {
+       latitude: 'updatePosition',
+       longitude: 'updatePosition',
+       radius: 'updateRadius',
+     },
+
+     containerChanged: function() {
+       if ( this.latitude && this.longitude && this.container ) {
+         this.feature = L.circle([this.latitude, this.longitude], this.radius, this.getOptions());
+         this.feature.addTo( this.container );
+         this.contentChanged();
+       }
+     },
+
+     updatePosition: function () {
+       if ( this.feature && this.latitude != null && this.longitude != null ) {
+         this.feature.setLatLng( L.latLng( this.latitude, this.longitude ) );
+       }
+     },
+
+     updateRadius: function () {
+       if ( this.feature && this.radius != null ) {
+         this.feature.setRadius( this.radius );
+       }
+     },
+
+     contentChanged: function () {
+       this.onMutation( this, this.contentChanged );
+       var content = this.innerHTML;
+       this.feature.bindPopup( content );
+     },
+     
+     detached: function() {
+       if (this.container && this.feature) {
+         this.container.removeLayer(this.feature);
+       }
+     }
+
+   } );
+  </script>
+</polymer-element>

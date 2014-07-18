@@ -1,20 +1,24 @@
 {
   "name": "leaflet-map",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
-    "Hendrik Brummermann <nhnb@users.sourceforge.net>"
+    "Hendrik Brummermann <nhnb@users.sourceforge.net>",
+    "Prateek Saxena <prtksxna@gmail.com>"
   ],
   "description": "Leaflet map as web-component based on polymer",
   "main": "leaflet-map.html",
+  "homepage": "https://nhnb.github.io/leaflet-map/",
   "keywords": [
     "polymer",
     "web-components",
-    "leaflet"
+    "leaflet",
+    "leafletjs",
+    "map"
   ],
   "license": "BSD 2-Clause",
-  "private": true,
   "ignore": [
     "**/.*",
+    "demo.html",
     "node_modules",
     "bower_components",
     "test",
@@ -22,6 +26,6 @@
   ],
   "dependencies": {
     "polymer": "~0.3.3",
-    "leaflet-bower": "0.6.3-bower"
+    "leaflet": "~0.7.3"
   }
 }
