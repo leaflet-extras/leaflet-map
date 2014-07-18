@@ -549,7 +549,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		 */
 		riseoffset: 250,
 
-		marker: undefined,
+		feature: undefined,
 		
 		observer_: undefined,
 
@@ -561,7 +561,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		containerChanged: function() {
 			if (this.container) {
 
-				var marker = L.marker([this.latitude, this.longitude], {
+				var feature = L.marker([this.latitude, this.longitude], {
 					clickable: this.clickable,
 					dragable: this.dragable,
 					keyboard: this.keyboard,
@@ -572,11 +572,11 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 					riseOnHover: this.riseOnHover,
 					riseOffset: this.riseOffset,
 				});
-				this.marker = marker;
+				this.feature = feature;
 				this.iconChanged();
 
 				// forward events
-				marker.on('click dblclick mousedown mouseover mouseout contextmenu dragstart drag dragend move add remove popupopen popupclose', function(e) {
+				feature.on('click dblclick mousedown mouseover mouseout contextmenu dragstart drag dragend move add remove popupopen popupclose', function(e) {
 					this.fire(e.type, e);
 				}, this);
 
@@ -586,7 +586,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 					this.observer_ = new MutationObserver(this.childrenMutated.bind(this));
 					this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
 				}
-				this.marker.addTo(this.container);
+				this.feature.addTo(this.container);
 			}
 		},
 
@@ -614,39 +614,39 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			if (!iconOption) {
 				iconOption = new L.Icon.Default();
 			}
-			if (this.marker) {
-				this.marker.setIcon(iconOption);
+			if (this.feature) {
+				this.feature.setIcon(iconOption);
 			}
 		},
 
 		positionChanged: function() {
-			if (this.marker) {
-				this.marker.setLatLng(L.LatLng(this.latitude, this.longitude));
+			if (this.feature) {
+				this.feature.setLatLng(L.LatLng(this.latitude, this.longitude));
 			}
 		},
 
 		zIndexOffsetChanged: function() {
-			if (this.marker) {
-				this.marker.setZIndexOffset(this.zIndexOffset);
+			if (this.feature) {
+				this.feature.setZIndexOffset(this.zIndexOffset);
 			}
 		},
 
 		opacityChanged: function() {
-			if (this.marker) {
-				this.marker.setOpacity(this.opacity);
+			if (this.feature) {
+				this.feature.setOpacity(this.opacity);
 			}
 		},
 		
 		childrenMutated: function() {
-			this.marker.unbindPopup();
+			this.feature.unbindPopup();
 			if (this.innerHTML.trim()) {
-				this.marker.bindPopup(this.innerHTML);
+				this.feature.bindPopup(this.innerHTML);
 			}
 		},
 		
 		detached: function() {
-			if (this.container && this.marker) {
-				this.container.removeLayer(this.marker);
+			if (this.container && this.feature) {
+				this.container.removeLayer(this.feature);
 			}
 			if (observer_) {
 				observer.disconnect();

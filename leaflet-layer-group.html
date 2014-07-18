@@ -1,0 +1,51 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="leaflet-import.html">
+
+<!--
+A Layer group (<a href="http://leafletjs.com/reference.html#layergroup">Leaflet Reference</a>).
+
+##### Example
+
+	<leaflet-layer-group>
+	    <leaflet-marker latitude="51.505" longitude="-0.09"> </leaflet-marker>
+	</leaflet-layer-group>
+
+
+@element leaflet-layer-group
+@blurb an element which represents a layer group 
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+-->
+
+<polymer-element name="leaflet-layer-group" extends="leaflet-ilayer">
+	<template>
+	</template>
+	<script>
+	"use strict";
+
+	Polymer('leaflet-layer-group', {
+		containerChanged: function() {
+			if (this.container) {
+				var feature = L.layerGroup()
+				this.feature = feature;
+				this.feature.addTo(this.container);
+				this.registerContaierOnChildren();
+			}
+		},
+
+
+		registerContaierOnChildren: function() {
+			for (var i = 0; i < this.children.length; i++) {
+				this.children[i].container = this.feature;
+			}
+			this.onMutation(this, this.registerContaierOnChildren);
+		},
+		
+		detached: function() {
+			if (this.container && this.feature) {
+				this.container.removeLayer(this.feature);
+			}
+		}
+	});
+	</script>
+</polymer-element>

@@ -1,5 +1,6 @@
 v0.3.0 (pending)
 ================
+* merged leaflet-map-component by Prateek Saxena (leaflet-circle, leaflet-polygon, leaflet-polyline)
 * split leaflet-map.html into leaflet-control.html, leaflet-layer.html, leaflet.map.html and leaflet-marker.html
   all files are included from leaflet-map.html, so no changes are required.
 
