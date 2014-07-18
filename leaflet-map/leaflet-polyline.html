@@ -17,8 +17,9 @@ add `leaflet-point` elements inside it.
 
 @element leaflet-polyline
 @blurb Element for putting a polyline on the map
-@status alpha
-@homepage http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+@extends leaflet-path
 -->
 
 <polymer-element name="leaflet-polyline" extends="leaflet-path">
@@ -44,6 +45,11 @@ add `leaflet-point` elements inside it.
          this.feature = L.polyline([], this.getOptions());
          this.feature.addTo( this.container );
          this.contentChanged();
+
+         // forward events
+         this.feature.on('click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose', function(e) {
+           this.fire(e.type, e);
+         }, this);
        }
      },
 
