@@ -94,7 +94,8 @@ Don't forget to define a detached method to support removal of elements. The lea
 
 ## License
 
-leaflet-map is based on polymer and leaflet. Parts of the leaflet documentation have been copied into leaflet-map files.
+leaflet-map is based on polymer and leaflet. Small parts of leaflet, 
+especially the api documentation, have been copied into leaflet-map files.
 
 * [Leaflet](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
 * [Polymer](https://github.com/polymer/polymer/blob/master/LICENSE)

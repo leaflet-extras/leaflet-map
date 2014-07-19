@@ -1,7 +1,7 @@
 <html>
 	<head>
 		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>leaflet-map Demo</title>
+		<title>Advanced demo of leaflet-map web-component</title>
 		<script src="../platform/platform.js"></script>
 		<link rel="import" href="leaflet-map.html">
 
@@ -9,13 +9,38 @@
 			body {
 				height: 100%;
 				margin: 1em;
-				font-family: Arial;
+				font-family: sans-serif;
+				background-color: #DDD;
+			}
+			
+			#content {
+				max-width: 790px;
+				background-color: #FFF;
+				padding: 1em;
+				margin: 0 auto;
+				box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
 			}
 			
 			h2 {
-				margin-top: 2em;
+				font-size: 1.8em;
+				margin: 1.5em 0 0.5em -2px;
+				font-weight: bold;
+				padding: .2em .5em;
+				background: #edeeef;
+				border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				color: #fff;
+				background-color: #b0de5c;
+				background-image: -moz-linear-gradient(top, #b0de5c, #82cb00);
+				background-image: -o-linear-gradient(top, #b0de5c, #82cb00);
+				background-image: -webkit-gradient(linear, left top, left bottom, from(#b0de5c), to(#82cb00));
+				background-image: -webkit-linear-gradient(top, #b0de5c, #82cb00);
+				background-image: linear-gradient(top, #b0de5c, #82cb00);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#b0de5c', EndColorStr='#82cb00');
+				border-radius: 5px;
+				text-shadow: 0 -1px 1px rgba(0,0,0,0.35);
+				box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
 			}
-
 			.nav {
 				color: #000;
 				text-decoration: none;
@@ -38,7 +63,6 @@
 			}
 			pre {
 				font-size: large;
-				border: 2px dashed #00A;
 				padding: 0.5em 1em;
 				background-color: #DDD;
 				clear: all;
@@ -83,6 +107,8 @@
 		</style>
 	</head>
 	<body>
+	
+<div id="content">
 
 <div class="rightbuttons">
 <a class="menubutton apidocbutton" href="https://nhnb.github.io/leaflet-map/doc.html#leaflet-map">Documentation</a>
@@ -100,16 +126,18 @@
 
 <p>List of demos:</p>
 <ul>
-<li> <a class="nav" href="demo-advanced.html#databinding">leaflet-geolocation</a> (part of L.map)
 <li> <a class="nav" href="demo.html#view">leaflet-map</a> (L.map)
 <li> <a class="nav" href="demo.html#marker">leaflet-marker</a> (L.marker)
 <li> <a class="nav" href="demo.html#icon">leaflet-icon</a> (L.icon)
 <li> <a class="nav" href="demo.html#icon">leaflet-divicon</a> (L.divIcon)
-<li> <a class="nav" href="demo.html#scale">leaflet-scale-control</a> (L.control.scale)
 <li> <a class="nav" href="demo.html#tilelayer">leaflet-tilelayer</a> (L.tileLayer)
 <li> <a class="nav" href="demo.html#layerwms">leaflet-tilelayer-wms</a> (L.tileLayer.wms)
+<li> <a class="nav" href="demo.html#vector">leaflet-circle</a> (L.cirlce)
+<li> <a class="nav" href="demo.html#vector">leaflet-polyline</a> (L.polyline)
+<li> <a class="nav" href="demo.html#vector">leaflet-polygon</a> (L.polygon)
+<li> <a class="nav" href="demo-advanced.html#databinding">leaflet-geolocation</a> (part of L.map)
+<li> <a class="nav" href="demo.html#scale">leaflet-scale-control</a> (L.control.scale)
 </ul>
-
 
 <h2 id="databinding">Data binding and custom components</h2>
 
@@ -204,6 +232,8 @@ A circle is used to indicate the range of uncertainty.</p>
 &lt;<span class="i">geolocation-sample</span>&gt; &lt;/<span class="i">geolocation-sample</span>&gt;
 
 </code></pre>
+
+</div>
 
 	</body>
 </html>
