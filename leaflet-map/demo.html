@@ -1,7 +1,7 @@
 <html>
 	<head>
 		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>leaflet-map Demo</title>
+		<title>leaflet-map web-component demo</title>
 		<script src="../platform/platform.js"></script>
 		<link rel="import" href="leaflet-map.html">
 
@@ -9,13 +9,38 @@
 			body {
 				height: 100%;
 				margin: 1em;
-				font-family: Arial;
+				font-family: sans-serif;
+				background-color: #DDD;
+			}
+			
+			#content {
+				max-width: 790px;
+				background-color: #FFF;
+				padding: 1em;
+				margin: 0 auto;
+				box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
 			}
 			
 			h2 {
-				margin-top: 2em;
+				font-size: 1.8em;
+				margin: 1.5em 0 0.5em -2px;
+				font-weight: bold;
+				padding: .2em .5em;
+				background: #edeeef;
+				border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				color: #fff;
+				background-color: #b0de5c;
+				background-image: -moz-linear-gradient(top, #b0de5c, #82cb00);
+				background-image: -o-linear-gradient(top, #b0de5c, #82cb00);
+				background-image: -webkit-gradient(linear, left top, left bottom, from(#b0de5c), to(#82cb00));
+				background-image: -webkit-linear-gradient(top, #b0de5c, #82cb00);
+				background-image: linear-gradient(top, #b0de5c, #82cb00);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#b0de5c', EndColorStr='#82cb00');
+				border-radius: 5px;
+				text-shadow: 0 -1px 1px rgba(0,0,0,0.35);
+				box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
 			}
-
 			.nav {
 				color: #000;
 				text-decoration: none;
@@ -38,7 +63,6 @@
 			}
 			pre {
 				font-size: large;
-				border: 2px dashed #00A;
 				padding: 0.5em 1em;
 				background-color: #DDD;
 				clear: all;
@@ -83,6 +107,8 @@
 		</style>
 	</head>
 	<body>
+	
+<div id="content">
 
 <div class="rightbuttons">
 <a class="menubutton apidocbutton" href="https://nhnb.github.io/leaflet-map/doc.html">Documentation</a>
@@ -90,7 +116,7 @@
 <a class="menubutton gitbutton" href="https://github.com/nhnb/leaflet-map/">Github</a>
 </div>
 
-<h1>Demo of Leaflet web-component</h1>
+<h1>Leaflet web-component</h1>
 
 <p>&lt;leaflet-map&gt; is a web-component which provides access to the <a href="http://leafletjs.com">leaflet map</a> JavaScript library via html elements.</p>
 
@@ -141,6 +167,7 @@
 &lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
 
 &lt;/<span class="i">leaflet-map</span>&gt;
+
 </code></pre>
 
 
@@ -162,8 +189,8 @@
 <pre class="html"><code>
 &lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
 
-    &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Transparent</span>" <span class="a">opacity</span>="<span class="v">0.6</span>"&gt;
-    &lt;/<span class="i">leaflet-marker</span>&gt;
+    &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Transparent</span>"
+        <span class="a">opacity</span>="<span class="v">0.6</span>"&gt;  &lt;/<span class="i">leaflet-marker</span>&gt;
 
     &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Popup Demo</span>"&gt; 
         &lt;<span class="i">b</span>&gt;Bold&lt;/<span class="i">b</span>&gt;
@@ -211,9 +238,10 @@ document.addEventListener("load", function() {
 <p>The template icon may be defined using &lt;leaflet-icon&gt; elements. This is the prefered way. Please note that iconSize is mapped to the attributes iconWidth and iconHeight. iconAnchor is mapped to iconAnchorX and iconAnchorY and so on:</p>
 
 <pre class="html"><code>
-&lt;<span class="i">leaflet-icon</span> <span class="a">id</span>="<span class="v">myicon</span>" <span class="a">iconurl</span>="<span class="v">https://stendhalgame.org/images/mapmarker/me.png</span>"&gt; &lt;<span class="i">/leaflet-icon</span>&gt;
+&lt;<span class="i">leaflet-icon</span> <span class="a">id</span>="<span class="v">myicon</span>" 
+    <span class="a">iconurl</span>="<span class="v">https://stendhalgame.org/images/mapmarker/me.png</span>"&gt; &lt;<span class="i">/leaflet-icon</span>&gt;
 
-&lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Icon element reference</span>" <span class="a">icon</span>="<span class="v">myicon</span>"&gt;
+&lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Element</span>" <span class="a">icon</span>="<span class="v">myicon</span>"&gt;
 &lt;/<span class="i">leaflet-marker</span>&gt;
 	
 </code></pre>
@@ -231,12 +259,12 @@ document.addEventListener("load", function() {
 
 <pre class="html"><code>
 
-&lt;<span class="i">leaflet-marker</span> <span class="a">id</span>="<span class="v">icon-reference</span>" <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.8</span>" <span class="a">title</span>="<span class="v">Icon L.icon()</span>"&gt;
+&lt;<span class="i">leaflet-marker</span> <span class="a">id</span>="<span class="v">icon-ref</span>" <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.8</span>" <span class="a">title</span>="<span class="v">L.icon()</span>"&gt;
 &lt;/<span class="i">leaflet-marker</span>&gt;
 
 &lt;<span class="i">script</span>&gt;
     document.addEventListener("load", function() {
-        var marker = document.getElementById("icon-reference");
+        var marker = document.getElementById("icon-ref");
         marker.icon = L.icon({
             "iconUrl": "https://stendhalgame.org/images/mapmarker/npc.png",
             "iconSize": L.point(26, 25),
@@ -375,9 +403,9 @@ document.addEventListener("load", function() {
 
     &lt;<span class="i">leaflet-tilelayer</span> 
         <span class="a">url</span>="<span class="v">https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</span>" <span class="a">maxZoom</span>="<span class="v">19</span>"&gt;
-            Map data &copy; &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt; contributors, 
-            &lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;CC-BY-SA&lt;/a&gt;, 
-            Imagery &copy; &lt;a href="http://mapbox.com">Mapbox&lt;/a&gt;
+          Map data &copy; &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt; contr., 
+          &lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;CC-BY-SA&lt;/a&gt;, 
+          Imagery &copy; &lt;a href="http://mapbox.com">Mapbox&lt;/a&gt;
     &lt;/<span class="i">leaflet-tilelayer</span>&gt;
 
     &lt;<span class="i">leaflet-tilelayer-wms</span> 
@@ -407,7 +435,8 @@ document.addEventListener("load", function() {
 <script>
 var map = document.getElementById("eventmap");
 map.addEventListener("moveend", function(e) {
-	var text = "Center: " + this.latitude.toFixed(3) + ", " + this.longitude.toFixed(3);
+	var text = "Center: " + this.latitude.toFixed(3) + ", "
+	                      + this.longitude.toFixed(3);
 	document.getElementById("eventout").textContent = text; 
 });
 </script>
@@ -420,7 +449,8 @@ map.addEventListener("moveend", function(e) {
 &lt;<span class="i">script</span>&gt;
     var map = document.getElementById("eventmap");
     map.addEventListener("moveend", function(e) {
-        var text = "Center: " + this.latitude.toFixed(3) + ", " + this.longitude.toFixed(3);
+        var text = "Center: " + this.latitude.toFixed(3)
+                              + ", " + this.longitude.toFixed(3);
         document.getElementById("eventout").textContent = text; 
     });
 &lt;/<span class="i">script</span>&gt;
@@ -444,13 +474,8 @@ metric and imperial units.</p>
 <pre class="html"><code>
 &lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
 
-    &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Transparent</span>" <span class="a">opacity</span>="<span class="v">0.6</span>"&gt;
-    &lt;/<span class="i">leaflet-marker</span>&gt;
-
-    &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">title</span>="<span class="v">Popup Demo</span>"&gt; 
-        &lt;<span class="i">b</span>&gt;Bold&lt;/<span class="i">b</span>&gt;
-        &lt;<span class="i">p</span>&gt;Text&lt;/<span class="i">p</span>&gt;
-    &lt;/<span class="i">leaflet-marker</span>&gt;
+    &lt;<span class="i">leaflet-scale-control</span> <span class="a">position</span>="<span class="v">topright</span>" <span class="a">metric</span>="<span class="v">true</span>"&gt;
+    &lt;/<span class="i">leaflet-scale-control</span>&gt;
 
 &lt;/<span class="i">leaflet-map</span>&gt;
 
@@ -468,6 +493,6 @@ metric and imperial units.</p>
 In this example a new component is created which listens for location tracking information and sets a marker accordingly.</p>
 
 <a href="demo-advanced.html">Advanced demo of a custom component which uses data binding and geo location.</a>
-
+</div>
 	</body>
 </html>
