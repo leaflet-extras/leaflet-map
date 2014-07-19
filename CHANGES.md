@@ -1,6 +1,8 @@
-v0.3.0 (pending)
-================
+v0.3.0
+======
 * merged leaflet-map-component by Prateek Saxena (leaflet-circle, leaflet-polygon, leaflet-polyline)
+* added abstract leaflet-path element to style vector layers
+* added layer-group
 * split leaflet-map.html into leaflet-control.html, leaflet-layer.html, leaflet.map.html and leaflet-marker.html
   all files are included from leaflet-map.html, so no changes are required.
 
