@@ -97,9 +97,12 @@ a child element of the `leaflet-map` element.
      },
 
      contentChanged: function () {
-       this.onMutation( this, this.contentChanged );
+       this.onMutation(this, this.contentChanged);
+       this.feature.unbindPopup();
        var content = this.innerHTML;
-       this.feature.bindPopup( content );
+       if (content.trim()) {
+         this.feature.bindPopup(content);
+       }
      },
      
      detached: function() {
