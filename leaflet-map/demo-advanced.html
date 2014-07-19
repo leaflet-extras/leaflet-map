@@ -113,7 +113,9 @@
 
 <h2 id="databinding">Data binding and custom components</h2>
 
-<p>Data binding can be used to create markers based on dynamic information, e. g. from the rows of a spreadsheet. In this example a new component is created which listens for location tracking information and sets a marker accordingly.</p>
+<p>Data binding can be used to create markers based on dynamic information, e. g. from the rows of a spreadsheet. 
+In this example a new component is created which listens for location tracking information and sets a marker accordingly.
+A circle is used to indicate the range of uncertainty.</p>
 
 
 <polymer-element name="geolocation-sample" noscript>
@@ -140,6 +142,10 @@
 				<leaflet-marker latitude="{{latitude}}" longitude="{{longitude}}">
 					I am within {{accuracy}} meters of this location.
 				</leaflet-marker>
+
+				<leaflet-circle latitude="{{latitude}}" longitude="{{longitude}}" radius="{{accuracy}}" color="#d00">
+				</leaflet-circle>
+
 			</template>
 		</leaflet-map>
 
@@ -182,6 +188,11 @@
         &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>"&gt;
             I am within {{accuracy}} meters of this location.
         &lt;/<span class="i">leaflet-marker</span>&gt;
+
+        &lt;<span class="i">leaflet-circle</span> <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>"
+          <span class="a">radius</span>="<span class="v">{{accuracy}}</span>"<span class="a">color</span>="<span class="v">#d00</span>"&gt;
+        &lt;/<span class="i">leaflet-circle</span>&gt;
+
       &lt;/<span class="i">template</span>&gt;
 
     &lt;/<span class="i">leaflet-map</span>&gt;

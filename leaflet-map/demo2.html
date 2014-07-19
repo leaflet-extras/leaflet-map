@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../leaflet-map/demo_files/master.css">
+    <script src="../platform/platform.js"></script>
+    <link rel="import" href="../leaflet-map/leaflet-map.html">
+    <title>Web Component for Leaflet</title>
+  </head>
+  <body unresolved>
+    <header>
+      <div class="container">
+        <img src="../leaflet-map/demo_files/leaflet.svg" id="logo">
+        <h1>&lt;leaflet-map&gt;&lt;/leaflet-map&gt;</h1>
+        <p>
+          Make leaflet maps quickly using web components
+        </p>
+        <iframe src="http://ghbtns.com/github-btn.html?user=prtksxna&repo=leaflet-map-component&type=watch&count=true"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+        <iframe src="http://ghbtns.com/github-btn.html?user=prtksxna&repo=leaflet-map-component&type=fork&count=true"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+
+      </div>
+    </header>
+<div id="content">
+      <section id="install">
+        <div class="container">
+          <h2>Install</h2>
+          <p>Install the component using bower:</p>
+          <pre><code>
+$ bower install leaflet-map-component
+          </code></pre>
+        </div>
+      </section>
+
+      <section id="getting_started_text">
+        <div class="container">
+          <h2>Getting Started</h2>
+          <p>To get started you need to import the web components polyfill, then the web component itself.</p>
+          <pre><code>
+&lt;head&gt;
+  &lt;script src="path_to_bower/platform/platform.js"&gt;&lt;/script&gt;
+  &lt;link
+    rel="import"
+    href="path_to_bower/leaflet-map-component/leaflet-map-component.html"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;leaflet-map
+    longitude="72.82150268554686"
+    latitude="18.92926454727215"
+    zoom="14"&gt;
+  &lt;/leaflet-map&gt;
+&lt;/body&gt;
+          </code></pre>
+        </div>
+      </section>
+      <leaflet-map id="getting_started" longitude="72.82150268554686" latitude="18.92926454727215" zoom="14"></leaflet-map>
+
+      <section id="adding_markers_text">
+        <div class="container">
+          <h2>Adding markers</h2>
+          <p>Adding markers, circles and other features is easy. Use the required feature tag within your map element. </p>
+          <pre><code>
+&lt;leaflet-map fitToMarkers&gt;
+  &lt;leaflet-marker longitude="77.2293" latitude="28.6129"&gt;
+    I am a marker
+  &lt;/leaflet-marker&gt;
+  &lt;leaflet-circle longitude="77.2197" latitude="28.6328" radius="300"&gt;
+    I am a circle
+  &lt;/leaflet-circle&gt;
+&lt;/leaflet-map&gt;
+          </code></pre>
+        </div>
+      </section>
+
+      <leaflet-map id="adding_markers" fitToMarkers>
+        <leaflet-marker longitude="77.2293" latitude="28.6129">
+          I am a marker
+        </leaflet-marker>
+        <leaflet-circle longitude="77.2197" latitude="28.6328" radius="300">
+          I am a circle
+        </leaflet-circle>
+      </leaflet-map>
+
+      <section id="tiles_text">
+        <div class="container">
+          <h2>Tiles</h2>
+          <p>Change the look of your map easily by switching to a different tile server.</p>
+          <pre><code>
+&lt;leaflet-map
+  longitude="73.8278"
+  latitude="15.4989"&gt;
+    &lt;leaflet-tilelayer
+      url="http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"&gt;
+      Tiles by &lt;a href="http://stamen.com"&gt;Stamen Design&lt;/a&gt;, CC BY 3.0. 
+      Data by &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt;, 
+      CC BY SA.
+    &lt;/leaflet-tilelayer&gt;
+&lt;/leaflet-map&gt;
+          </code></pre>
+        </div>
+      </section>
+
+      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989">
+         <leaflet-tilelayer url="http://a.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg">
+           Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.
+         </leaflet-tilelayer>
+      </leaflet-map>
+      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989">
+         <leaflet-tilelayer url="http://b.tile.thunderforest.com/cycle/{z}/{x}/{y}.png">
+           Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.
+         </leaflet-tilelayer>
+      </leaflet-map>
+      <leaflet-map class="tiles" longitude="77.8278" zoom="7" latitude="15.4989">
+         <leaflet-tilelayer url="http://a.tile.stamen.com/toner/{z}/{x}/{y}.jpg">
+           Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.
+         </leaflet-tilelayer>
+      </leaflet-map>
+
+      <section id="polythings_text">
+        <div class="container">
+          <h2>Polygons & Polylines</h2>
+          <p>You can create polygons and polylines by adding points inside these elements.</p>
+          <pre><code>
+&lt;leaflet-map longitude="77.5667" latitude="12.9667" zoom="11"&gt;
+  &lt;leaflet-polyline&gt;
+    &lt;leaflet-point longitude="77.6400" latitude="12.9100"&gt;&lt;/leaflet-point&gt;
+    &lt;leaflet-point longitude="77.6229" latitude="12.9259"&gt;&lt;/leaflet-point&gt;
+    &lt;leaflet-point longitude="77.6499" latitude="12.9699"&gt;&lt;/leaflet-point&gt;
+    &lt;leaflet-point longitude="77.6119" latitude="12.9738"&gt;&lt;/leaflet-point&gt;
+  &lt;/leaflet-polyline&gt;
+  &lt;leaflet-polygon&gt;
+    &lt;leaflet-point longitude="77.5700" latitude="12.9700"&gt;&lt;/leaflet-point&gt;
+    &lt;leaflet-point longitude="77.6034" latitude="13.0001"&gt;&lt;/leaflet-point&gt;
+    &lt;leaflet-point longitude="77.6006" latitude="12.9547"&gt;&lt;/leaflet-point&gt;
+  &lt;/leaflet-polygon&gt;
+&lt;/leaflet-map&gt;
+          </pre></code>
+        </div>
+      </section>
+
+      <leaflet-map id="polythings" longitude="77.5667" latitude="12.9667" zoom="12">
+      <leaflet-tilelayer 
+		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom="18">
+			Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, 
+			<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
+			Imagery &copy; <a href="http://mapbox.com">Mapbox</a>
+	</leaflet-tilelayer>
+      
+      <leaflet-layer-group>
+        <leaflet-polyline>
+          <leaflet-point longitude="77.6400" latitude="12.9100"></leaflet-point>
+          <leaflet-point longitude="77.6229" latitude="12.9259"></leaflet-point>
+          <leaflet-point longitude="77.6499" latitude="12.9699"></leaflet-point>
+          <leaflet-point longitude="77.6119" latitude="12.9738"></leaflet-point>
+        </leaflet-polyline>
+        <leaflet-polygon color="#f00">
+          <leaflet-point longitude="77.5700" latitude="12.9700"></leaflet-point>
+          <leaflet-point longitude="77.6034" latitude="13.0001"></leaflet-point>
+          <leaflet-point longitude="77.6006" latitude="12.9547"></leaflet-point>
+        </leaflet-polygon>
+      </leaflet-layer-group>
+      </leaflet-map>
+
+
+      <section id="dive_deeper">
+        <div class="container">
+          <h2>Dive Deeper</h2>
+          <p>Take a deeper look at the web component by reading its documentation and cloning the code. Contribute by raising issues for features and bugs or by sending pull requests.</p>
+          <ul>
+            <li><a href="https://github.com/prtksxna/leaflet-map-component" target="_blank">Github</a></li>
+            <li><a href="https://github.com/prtksxna/leaflet-map-component/issues/" target="_blank">Issues</a></li>
+            <li><a href="http://prtksxna.github.io/leaflet-map-component/components/leaflet-map-component/" target="_blank">Documentation</a></li>
+            <li><a href="https://github.com/prtksxna/leaflet-map-component/blob/master/CONTRIBUTING.md" target="_blank">Contribution Guide</a></li>
+          </ul>
+          <br><br><br>
+        </div>
+      </section>
+
+
+      <footer>
+        <p>
+          Made by <a href="http://twitter.com/prtksxna/" target="_blank">@prtksxna</a>
+          using <a href="http://leafletjs.com" target="_blank">Leaflet</a> &
+          <a href="http://polymer-project.org" target="_blank">Polymer</a>
+      </footer>
+    </div>
+    <script>
+     document.addEventListener( 'polymer-ready', function() {
+       var maps = document.querySelectorAll("leaflet-map");
+for ( var i = 0; i < maps.length; i++ ) {
+         maps[i].map.scrollWheelZoom.disable()
+       }
+     } );
+    </script>
+  </body>
+</html>
