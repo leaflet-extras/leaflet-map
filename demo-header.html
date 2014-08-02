@@ -1,0 +1,43 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<polymer-element name="demo-header" noscript>
+<template>
+	<style>
+		header {
+			max-width: 790px;
+			background-color: #FFF;
+			padding: 1em;
+			margin: 1em auto;
+			box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+		}
+		.navbar {
+			background-color: #EEE;
+			border-radius: 5px
+		}
+		.menubutton {
+			display: inline-block;
+			padding: 1em 2em;
+			color: #000;
+			border-right: 1px solid #AAA;
+			text-decoration: none;
+		    text-shadow: 1px 1px 0 #FFF;
+		}
+		.githubbutton {
+			border-left: 1px solid #AAA;
+		}
+	</style>
+		
+	<header>
+        <h1>&lt;leaflet-map&gt;</h1>
+        <p>Leaflet map as web component.</p>
+
+		<div class="navbar">
+			<a class="menubutton demobutton" href="https://nhnb.github.io/leaflet-map/demo.html">Demo</a>
+			<a class="menubutton apidocbutton" href="https://nhnb.github.io/leaflet-map/doc.html#leaflet-map">Documentation</a>
+			<a class="menubutton downloadbutton" href="https://github.com/nhnb/leaflet-map/releases/download/v0.3.0/leaflet-map-0.3.0.zip">Download</a>
+			<a class="menubutton githubbutton" href="https://github.com/nhnb/leaflet-map/">Github</a>
+		</div>
+	</header>		
+		
+</template>
+</polymer-element>

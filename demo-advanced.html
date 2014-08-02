@@ -4,6 +4,7 @@
 		<title>Advanced demo of leaflet-map web-component</title>
 		<script src="../platform/platform.js"></script>
 		<link rel="import" href="leaflet-map.html">
+		<link rel="import" href="demo-header.html">
 
 		<style>
 			body {
@@ -79,47 +80,14 @@
 			.c {
 				color: #080;
 			}
-			.rightbuttons {
-				float:right;
-				width: 12em;
-				margin-left: 1em;
-			}
-			.menubutton {
-				display: block;
-				padding: 1em 2em;
-				margin-bottom: 0.3em;
-				border: 1px solid black;
-				text-decoration: none;
-			}
-			
-			.downloadbutton {
-				background-color: #070;
-				color: #FFF;
-			}
-			.apidocbutton {
-				background-color: #E91E63;
-				color: #FFF;
-			}
-			.gitbutton {
-				background-color: #FFF;
-				color: #000;
-			}
 		</style>
 	</head>
 	<body>
-	
+
+
+<demo-header></demo-header>
+
 <div id="content">
-
-<div class="rightbuttons">
-<a class="menubutton apidocbutton" href="https://nhnb.github.io/leaflet-map/doc.html#leaflet-map">Documentation</a>
-<a class="menubutton downloadbutton" href="https://github.com/nhnb/leaflet-map/releases/download/v0.2.0/leaflet-map-0.2.0.zip">Download</a>
-<a class="menubutton gitbutton" href="https://github.com/nhnb/leaflet-map/">Github</a>
-</div>
-
-
-<h1>Advanced demo of Leaflet web-component</h1>
-
-<p>&lt;leaflet-map&gt; is a web-component which provides access to the <a href="http://leafletjs.com">leaflet map</a> JavaScript library via html elements.</p>
 
 <p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference</a> are exported as html attributes. All events are mapped into html events of the same name.</p>
 
