@@ -5,11 +5,48 @@
   <script src="platform/platform.js"></script>
   <link rel="import" href="polymer/polymer.html">
   <link rel="import" href="core-component-page/core-component-page.html">
+  <link rel="import" href="leaflet-map/demo-header.html">
+  <style>
+	body {
+		height: 100vh;
+		margin: 0;
+		font-family: sans-serif;
+		background-color: #DDD;
+	}
 
+	#content {
+		min-width: 790px;
+		max-width: 790px;
+		background-color: #FFF;
+		padding: 1em;
+		margin: 0 auto;
+		box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+	}
+
+	core-doc-viewer /deep/ core-doc-toc,
+	core-doc-viewer::shadow core-doc-toc,
+	core-doc-viewer core-doc-toc {
+		width: 12em;
+	}
+	core-doc-viewer /deep/ .main {
+		padding: 0 1em;
+	}
+
+	core-doc-viewer /deep/ #dropShadow {
+		display: none
+	}
+
+  </style>
 </head>
-<body unresolved>
+<body unresolved horizontal vertical layout>
 
-<core-component-page moduleName="leaflet-map" 
+<demo-header></demo-header>
+
+<div flex id="content">
+
+<core-layout vertical horizontal></core-layout>
+
+<core-doc-viewer core-flex url="leaflet-map.html"
 	sources="[
 		'leaflet-map/leaflet-map.html', 
 		'leaflet-map/leaflet-circle.html',
@@ -21,7 +58,9 @@
 		'leaflet-map/leaflet-polygon.html',
 		'leaflet-map/leaflet-polyline.html'
 	]">
-</core-component-page>
+</core-doc-viewer>
+
+</div>
 
 </body>
 </html>
