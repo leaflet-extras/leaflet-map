@@ -1,0 +1,207 @@
+<html>
+	<head>
+		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Advanced demo of leaflet-map web-component</title>
+		<script src="../platform/platform.js"></script>
+		<link rel="import" href="leaflet-map.html">
+		<link rel="import" href="demo-header.html">
+
+		<style>
+			body {
+				height: 100%;
+				margin: 1em;
+				font-family: sans-serif;
+				background-color: #DDD;
+			}
+			
+			#content {
+				max-width: 790px;
+				background-color: #FFF;
+				padding: 1em;
+				margin: 0 auto;
+				box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+			}
+			
+			h2 {
+				font-size: 1.8em;
+				margin: 1.5em 0 0.5em -2px;
+				font-weight: bold;
+				padding: .2em .5em;
+				background: #edeeef;
+				border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				color: #fff;
+				background-color: #b0de5c;
+				background-image: -moz-linear-gradient(top, #b0de5c, #82cb00);
+				background-image: -o-linear-gradient(top, #b0de5c, #82cb00);
+				background-image: -webkit-gradient(linear, left top, left bottom, from(#b0de5c), to(#82cb00));
+				background-image: -webkit-linear-gradient(top, #b0de5c, #82cb00);
+				background-image: linear-gradient(top, #b0de5c, #82cb00);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#b0de5c', EndColorStr='#82cb00');
+				border-radius: 5px;
+				text-shadow: 0 -1px 1px rgba(0,0,0,0.35);
+				box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+			}
+			.nav {
+				color: #000;
+				text-decoration: none;
+				border-bottom: 1px dashed #000;
+				display: inline-block;
+				padding: 3px;
+			}
+			.nav:hover {
+				background-color: #DDF;
+			}
+			
+			leaflet-map,
+			geolocation-sample {
+				max-width: 20em;
+				height: 20em;
+				border: 1px solid #aaa;
+			}
+			geolocation-sample {
+				height: 21em;
+			}
+			pre {
+				font-size: large;
+				padding: 0.5em 1em;
+				background-color: #DDD;
+				clear: all;
+			}
+			.i {
+				color: #00D
+			}
+			.a {
+				color: #008;
+			}
+			.v {
+				color: #800;
+			}
+			.c {
+				color: #080;
+			}
+		</style>
+	</head>
+	<body>
+
+
+<demo-header></demo-header>
+
+<div id="content">
+
+<p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference</a> are exported as html attributes. All events are mapped into html events of the same name.</p>
+
+
+<p>List of demos:</p>
+<ul>
+<li> <a class="nav" href="demo.html#view">leaflet-map</a> (L.map)
+<li> <a class="nav" href="demo.html#marker">leaflet-marker</a> (L.marker)
+<li> <a class="nav" href="demo.html#icon">leaflet-icon</a> (L.icon)
+<li> <a class="nav" href="demo.html#icon">leaflet-divicon</a> (L.divIcon)
+<li> <a class="nav" href="demo.html#tilelayer">leaflet-tilelayer</a> (L.tileLayer)
+<li> <a class="nav" href="demo.html#layerwms">leaflet-tilelayer-wms</a> (L.tileLayer.wms)
+<li> <a class="nav" href="demo.html#vector">leaflet-circle</a> (L.cirlce)
+<li> <a class="nav" href="demo.html#vector">leaflet-polyline</a> (L.polyline)
+<li> <a class="nav" href="demo.html#vector">leaflet-polygon</a> (L.polygon)
+<li> <a class="nav" href="demo-advanced.html#databinding">leaflet-geolocation</a> (part of L.map)
+<li> <a class="nav" href="demo.html#scale">leaflet-scale-control</a> (L.control.scale)
+</ul>
+
+<h2 id="databinding">Data binding and custom components</h2>
+
+<p>Data binding can be used to create markers based on dynamic information, e. g. from the rows of a spreadsheet. 
+In this example a new component is created which listens for location tracking information and sets a marker accordingly.
+A circle is used to indicate the range of uncertainty.</p>
+
+
+<polymer-element name="geolocation-sample" noscript>
+	<template>
+		<style>
+			:host { display: block; overflow: hidden} 
+			:host leaflet-map {height:18em; width:99%; border: none}
+		</style>
+
+		<template if="{{!latitude}}">
+			Location Unknown.
+		</template>
+		<template if="{{latitude}}">
+			lat: {{latitude}}, lng: {{longitude}}, accuracy: {{accuracy}} meter
+		</template>
+
+		<leaflet-map>
+
+			<leaflet-geolocation enableHighAccuracy
+				latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
+			</leaflet-geolocation>
+
+			<template if="{{latitude}}">
+				<leaflet-marker latitude="{{latitude}}" longitude="{{longitude}}">
+					I am within {{accuracy}} meters of this location.
+				</leaflet-marker>
+
+				<leaflet-circle latitude="{{latitude}}" longitude="{{longitude}}" radius="{{accuracy}}" color="#d00">
+				</leaflet-circle>
+
+			</template>
+		</leaflet-map>
+
+	</template>
+</polymer-element>
+
+
+<geolocation-sample> </geolocation-sample>
+
+
+<pre class="html"><code>
+<span class="c">&lt;-- define geolocation-sample component --&gt;</span>
+&lt;<span class="i">polymer-element</span> <span class="a">name</span>="<span class="v">geolocation-sample</span>" <span class="a">noscript</span>&gt;
+  &lt;<span class="i">template</span>&gt;
+    &lt;<span class="i">style</span>&gt;
+       :host { display: block; overflow: hidden} 
+       :host leaflet-map {height:18em; width:99%; border: none}
+    &lt;/<span class="i">style</span>&gt;
+
+    <span class="c">&lt;-- information text above the map --&gt;</span>
+    &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{!latitude}}</span>"&gt;
+        Location Unknown.
+    &lt;/<span class="i">template</span>&gt;
+
+    &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{latitude}}</span>"&gt;
+        lat: {{latitude}}, lng: {{longitude}}, accuracy: {{accuracy}} meter
+    &lt;/<span class="i">template</span>&gt;
+
+
+    &lt;<span class="i">leaflet-map</span>&gt;
+
+      <span class="c">&lt;-- request geo-location information --&gt;</span>
+      &lt;<span class="i">leaflet-geolocation</span> <span class="a">enableHighAccuracy</span>
+        <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>" <span class="a">accuracy</span>="<span class="v">{{accuracy}}</span>"
+      &lt;/<span class="i">leaflet-geolocation</span>&gt;
+
+
+      <span class="c">&lt;-- add marker, if location information is available --&gt;</span>
+      &lt;<span class="i">template</span> <span class="a">if</span>="<span class="v">{{latitude}}</span>"&gt;
+        &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>"&gt;
+            I am within {{accuracy}} meters of this location.
+        &lt;/<span class="i">leaflet-marker</span>&gt;
+
+        &lt;<span class="i">leaflet-circle</span> <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>"
+          <span class="a">radius</span>="<span class="v">{{accuracy}}</span>"<span class="a">color</span>="<span class="v">#d00</span>"&gt;
+        &lt;/<span class="i">leaflet-circle</span>&gt;
+
+      &lt;/<span class="i">template</span>&gt;
+
+    &lt;/<span class="i">leaflet-map</span>&gt;
+
+  &lt;/<span class="i">template</span>&gt;
+&lt;/<span class="i">polymer-element</span>&gt;
+
+<span class="c">&lt;-- use our component --&gt;</span>
+&lt;<span class="i">geolocation-sample</span>&gt; &lt;/<span class="i">geolocation-sample</span>&gt;
+
+</code></pre>
+
+</div>
+
+	</body>
+</html>
