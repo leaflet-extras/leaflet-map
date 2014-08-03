@@ -318,7 +318,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="leaflet-marker" attributes="latitude longitude icon clickable dragable keyboard title alt zIndexOffset opacity riseOnHover riseOffset">
+<polymer-element name="leaflet-marker" attributes="latitude longitude icon clickable draggable keyboard title alt zIndexOffset opacity riseOnHover riseOffset">
 	<template>
 		<style>
 			:host {
@@ -486,17 +486,17 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		clickable: true,
 
 		/**
-		 * The `dragable` attribute sets the whether the marker is draggable with mouse/touch or not.
+		 * The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.
 		 * 
-		 * @attribute dragable
+		 * @attribute draggable
 		 * @type bool
 		 */
-		dragable: false,
+		draggable: false,
 
 		/**
 		 * The `keyboard` attribute sets the whether the marker is draggable with mouse/touch or not.
 		 * 
-		 * @attribute dragable
+		 * @attribute draggable
 		 * @type bool
 		 */
 		keyboard: true,
@@ -563,7 +563,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 
 				var feature = L.marker([this.latitude, this.longitude], {
 					clickable: this.clickable,
-					dragable: this.dragable,
+					draggable: this.draggable,
 					keyboard: this.keyboard,
 					title: this.title,
 					alt: this.alt,
