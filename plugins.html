@@ -1,0 +1,80 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Plugins - leaflet-map Web Component</title>
+	<script src="../platform/platform.js"></script>
+	<link rel="import" href="demo-header.html">
+
+	<style>
+	body {
+		height: 100%;
+		margin: 0;
+		font-family: sans-serif;
+		background-color: #DDD;
+	}
+	
+	#content {
+		max-width: 790px;
+		background-color: #FFF;
+		padding: 1em;
+		margin: 0 auto;
+		box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+	}
+	
+	h2 {
+		font-size: 1.8em;
+		font-weight: bold;
+		padding: .2em .5em;
+		background: #edeeef;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		color: #fff;
+		background-color: #b0de5c;
+		background-image: -moz-linear-gradient(top, #b0de5c, #82cb00);
+		background-image: -o-linear-gradient(top, #b0de5c, #82cb00);
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#b0de5c), to(#82cb00));
+		background-image: -webkit-linear-gradient(top, #b0de5c, #82cb00);
+		background-image: linear-gradient(top, #b0de5c, #82cb00);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#b0de5c', EndColorStr='#82cb00');
+		border-radius: 5px;
+		text-shadow: 0 -1px 1px rgba(0,0,0,0.35);
+		box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+	}
+	table {
+		border-collapse: collapse;
+		width: 100%;
+		border-spacing: 0;
+	}
+	th, td {
+		vertical-align: top;
+		text-align: left;
+		border: 1px solid #CCC;
+		padding: .2em .6em;
+	}
+	th {
+		background-color: #EEE;
+	}
+	</style>
+</head>
+<body>
+	
+
+<demo-header></demo-header>
+
+<div id="content">
+
+<h2 id="view">Plugins</h2>
+
+<p>Web components from different sources can be combined in one application. This pages list components which will work with &lt;leaflet-map&gt;.</p>
+
+<table border="1">
+<tr><th>Plugin</th><th>Description</th><th>Author</th></tr>
+<tr><td><a href="https://blackhawkwebcomponents.github.io/leaflet-storage-tilelayer/">leaflet-storage-tilelayer</a></td>
+<td>Offline tile layer using <a href=""https://github.com/tbicr/OfflineMap">OfflineMap</a>.</td>
+<td><a href="https://github.com/rbeers">Rob Beers</a></td></tr>
+
+</table>
+
+</div>
+	</body>
+</html>
