@@ -648,8 +648,8 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			if (this.container && this.feature) {
 				this.container.removeLayer(this.feature);
 			}
-			if (observer_) {
-				observer.disconnect();
+			if (this.observer_) {
+				this.observer_.disconnect();
 			}
 		}
 
