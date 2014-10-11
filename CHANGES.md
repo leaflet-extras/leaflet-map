@@ -1,3 +1,8 @@
+v0.3.1
+======
+* fixed divIcon syntax error (thanks to spoobar)
+* fixed "observer_" not a variable in scope (thanks to fabiosantoscode)
+
 v0.3.0
 ======
 * merged leaflet-map-component by Prateek Saxena (leaflet-circle, leaflet-polygon, leaflet-polyline)

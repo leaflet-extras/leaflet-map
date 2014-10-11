@@ -278,7 +278,7 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 			if (this.iconAnchorX && this.iconAnchorY) {
 				icon.iconAnchor = L.point(this.iconAnchorX, this.iconAnchorY);
 			}
-			this.icon_ = L.divicon(icon);
+			this.icon_ = L.divIcon(icon);
 			return this.icon_;
 		},
 
@@ -648,8 +648,8 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			if (this.container && this.feature) {
 				this.container.removeLayer(this.feature);
 			}
-			if (observer_) {
-				observer.disconnect();
+			if (this.observer_) {
+				this.observer_.disconnect();
 			}
 		}
 
