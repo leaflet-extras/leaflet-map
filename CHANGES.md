@@ -1,3 +1,7 @@
+v0.3.2
+======
+* fixed syntax error in event handler for position updates of markers (thanks to bezineb5)
+
 v0.3.1
 ======
 * fixed divIcon syntax error (thanks to spoobar)
