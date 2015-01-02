@@ -621,7 +621,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 
 		positionChanged: function() {
 			if (this.feature) {
-				this.feature.setLatLng(L.LatLng(this.latitude, this.longitude));
+				this.feature.setLatLng(L.latLng(this.latitude, this.longitude));
 			}
 		},
 
