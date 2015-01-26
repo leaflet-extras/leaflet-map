@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "polymer": ">=0.3.3",
-    "leaflet": "~0.7.3"
+    "leaflet": "~0.7.3",
+    "core-style": "Polymer/core-style#~0.5.4"
   }
 }

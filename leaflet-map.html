@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-style/core-style.html">
 <link rel="import" href="leaflet-import.html">
 
 <link rel="import" href="leaflet-path.html">
@@ -247,6 +248,13 @@ add a marker with a popup text.
       </leaflet-circle>
     </leaflet-map>
  
+##### Custom styles 
+Add a core-style element with `id="map-style"` to apply custom styles.
+	<leaflet-map>
+		<core-style id="map-style">
+			// CSS
+		</core-style>
+	</leaflet-map>
 
 
 @element leaflet-map
@@ -257,6 +265,7 @@ add a marker with a popup text.
 <polymer-element name="leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold fitToMarkers">
 	<template>
 		<link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
+		<core-style ref="map-style"></core-style>
 		<style>
 			:host { display: block; } 
 			:host #map {height:100%; width:100%}
