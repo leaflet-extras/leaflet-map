@@ -1,6 +1,6 @@
 {
   "name": "leaflet-map",
-  "version": "0.3.1",
+  "version": "0.4",
   "authors": [
     "Hendrik Brummermann <nhnb@users.sourceforge.net>",
     "Prateek Saxena <prtksxna@gmail.com>"
@@ -25,7 +25,8 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": ">=0.3.3",
-    "leaflet": "~0.7.3"
+    "polymer": ">=0.9.0",
+    "leaflet": "~0.7.3",
+    "webcomponentsjs": "~0.7.0"
   }
 }
