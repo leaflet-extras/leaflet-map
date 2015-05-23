@@ -16,138 +16,187 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="leaflet-icon" attributes="iconUrl iconRetinaUrl iconWidth iconHeight iconAnchorX iconAnchorY shadowUrl shadowRetinaUrl shadowWidth shadowHeight shadowAnchorX shadowAnchorY popupAnchorX popupAnchorY className">
+<dom-module id="leaflet-icon">
+	<style>
+		:host {display: none;}
+	</style>
 	<template>
-		<style>
-			:host {
-				display: none;
-			}
-		</style>
 	</template>
 	<script>
 	"use strict";
 
-	Polymer('leaflet-icon', {
+	Polymer({
+		is: 'leaflet-icon',
+		
+		properties: {
+	
+			/**
+			 * The `iconUrl` attribute sets the URL to the icon image (absolute or relative to your script path).
+			 * 
+			 * @attribute iconUrl
+			 * @type string 
+			 */
+			iconUrl: {
+				type: String,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `iconRetinaUrl` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.
+			 * 
+			 * @attribute iconRetinaUrl
+			 * @type string
+			 */
+			iconRetinaUrl: {
+				type: String,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `iconWidth` attribute sets the size of the icon image in pixels. 
+			 * 
+			 * @attribute iconWidth
+			 * @type number
+			 */
+			iconWidth: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `iconHeight` attribute sets the size of the icon image in pixels.
+			 * 
+			 * @attribute iconHeight
+			 * @type number
+			 */
+			iconHeight: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `iconAnchorX` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+			 * 
+			 * @attribute iconAnchorX
+			 * @type number
+			 */
+			iconAnchorX: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `iconAnchorY` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+			 * 
+			 * @attribute iconAnchorY
+			 * @type number
+			 */
+			iconAnchorY: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `shadowUrl` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.
+			 * 
+			 * @attribute shadowUrl
+			 * @type string
+			 */
+			shadowUrl: {
+				type: String,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `shadowRetinaUrl` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.
+			 * 
+			 * @attribute shadowRetinaUrl
+			 * @type string
+			 */
+			shadowRetinaUrl: {
+				type: String,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `shadowWidth` attribute sets the size of the shadow image in pixels.
+			 * 
+			 * @attribute shadowWidth
+			 * @type number
+			 */
+			shadowWidth: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `shadowHeight` attribute sets the size of the shadow image in pixels.
+			 * 
+			 * @attribute shadowHeight
+			 * @type number
+			 */
+			shadowHeight: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `shadowAnchorX` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
+			 * 
+			 * @attribute shadowAnchorX
+			 * @type number
+			 */
+			shadowAnchorX: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `shadowAnchorY` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
+			 * 
+			 * @attribute shadowAnchorY
+			 * @type number
+			 */
+			shadowAnchorY: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `popupAnchorX` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
+			 * 
+			 * @attribute popupAnchorX
+			 * @type number
+			 */
+			popupAnchorX: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `popupanchory` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
+			 * 
+			 * @attribute popupAnchorY
+			 * @type number
+			 */
+			popupAnchorY: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
 
-		/**
-		 * The `iconUrl` attribute sets the URL to the icon image (absolute or relative to your script path).
-		 * 
-		 * @attribute iconUrl
-		 * @type string 
-		 */
-		iconUrl: undefined,
-
-		/**
-		 * The `iconRetinaUrl` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.
-		 * 
-		 * @attribute iconRetinaUrl
-		 * @type string
-		 */
-		iconRetinaUrl: undefined,
-
-		/**
-		 * The `iconWidth` attribute sets the size of the icon image in pixels. 
-		 * 
-		 * @attribute iconWidth
-		 * @type number
-		 */
-		iconWidth: undefined,
-
-		/**
-		 * The `iconHeight` attribute sets the size of the icon image in pixels.
-		 * 
-		 * @attribute iconHeight
-		 * @type number
-		 */
-		iconHeight: undefined,
-
-		/**
-		 * The `iconAnchorX` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
-		 * 
-		 * @attribute iconAnchorX
-		 * @type number
-		 */
-		iconAnchorX: undefined,
-
-		/**
-		 * The `iconAnchorY` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
-		 * 
-		 * @attribute iconAnchorY
-		 * @type number
-		 */
-		iconAnchorY: undefined,
-
-		/**
-		 * The `shadowUrl` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.
-		 * 
-		 * @attribute shadowUrl
-		 * @type string
-		 */
-		shadowUrl: undefined,
-
-		/**
-		 * The `shadowRetinaUrl` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.
-		 * 
-		 * @attribute shadowRetinaUrl
-		 * @type string
-		 */
-		shadowRetinaUrl: undefined,
-
-		/**
-		 * The `shadowWidth` attribute sets the size of the shadow image in pixels.
-		 * 
-		 * @attribute shadowWidth
-		 * @type number
-		 */
-		shadowWidth: undefined,
-
-		/**
-		 * The `shadowHeight` attribute sets the size of the shadow image in pixels.
-		 * 
-		 * @attribute shadowHeight
-		 * @type number
-		 */
-		shadowHeight: undefined,
-
-		/**
-		 * The `shadowAnchorX` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
-		 * 
-		 * @attribute shadowAnchorX
-		 * @type number
-		 */
-		shadowAnchorX: undefined,
-
-		/**
-		 * The `shadowAnchorY` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
-		 * 
-		 * @attribute shadowAnchorY
-		 * @type number
-		 */
-		shadowAnchorY: undefined,
-
-		/**
-		 * The `popupAnchorX` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
-		 * 
-		 * @attribute popupAnchorX
-		 * @type number
-		 */
-		popupAnchorX: undefined,
-
-		/**
-		 * The `popupanchory` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
-		 * 
-		 * @attribute popupAnchorY
-		 * @type number
-		 */
-		popupAnchorY: undefined,
-
-		/**
-		 * The `className` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
-		 * 
-		 * @attribute className
-		 * @type string
-		 */
-		className: "",
+	
+			/**
+			 * The `className` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+			 * 
+			 * @attribute className
+			 * @type string
+			 */
+			className: {
+				type: String,
+				value: '',
+				observer: '_attributeChanged'
+			},
+		},
 
 		icon_: null,
 
@@ -182,12 +231,12 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 			return this.icon_;
 		},
 		
-		attributeChanged: function() {
+		_attributeChanged: function() {
 			this.icon_ = null;
 		}
 	});
 	</script>
-</polymer-element>
+</dom-module>
 
 
 
@@ -208,59 +257,75 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="leaflet-divicon" attributes="iconWidth iconHeight iconAnchorX iconAnchorY className">
+<dom-module id="leaflet-divicon">
+	<style>
+		:host {display: none;}
+	</style>
 	<template>
-		<style>
-			:host {
-				display: none;
-			}
-		</style>
 	</template>
 	<script>
 	"use strict";
 
-	Polymer('leaflet-divicon', {
+	Polymer({
+		is: 'leaflet-divicon',
+		properties: {
 
-		/**
-		 * The `iconWidth` attribute sets the size of the icon image in pixels. 
-		 * 
-		 * @attribute iconWidth
-		 * @type number
-		 */
-		iconWidth: undefined,
-
-		/**
-		 * The `iconHeight` attribute sets the size of the icon image in pixels.
-		 * 
-		 * @attribute iconHeight
-		 * @type number
-		 */
-		iconHeight: undefined,
-
-		/**
-		 * The `iconAnchorX` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
-		 * 
-		 * @attribute iconAnchorX
-		 * @type number
-		 */
-		iconAnchorX: undefined,
-
-		/**
-		 * The `iconAnchorY` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
-		 * 
-		 * @attribute iconAnchorY
-		 * @type number
-		 */
-		iconAnchorY: undefined,
-
-		/**
-		 * The `className` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
-		 * 
-		 * @attribute className
-		 * @type string
-		 */
-		className: "",
-
+			/**
+			 * The `iconWidth` attribute sets the size of the icon image in pixels. 
+			 * 
+			 * @attribute iconWidth
+			 * @type number
+			 */
+			iconWidth: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `iconHeight` attribute sets the size of the icon image in pixels.
+			 * 
+			 * @attribute iconHeight
+			 * @type number
+			 */
+			iconHeight: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `iconAnchorX` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+			 * 
+			 * @attribute iconAnchorX
+			 * @type number
+			 */
+			iconAnchorX: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `iconAnchorY` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
+			 * 
+			 * @attribute iconAnchorY
+			 * @type number
+			 */
+			iconAnchorY: {
+				type: Number,
+				observer: '_attributeChanged'
+			},
+	
+			/**
+			 * The `className` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
+			 * 
+			 * @attribute className
+			 * @type string
+			 */
+			className: {
+				type: String,
+				value: '',
+				observer: '_attributeChanged'
+			},
+		},
 
 		icon_: null,
 
@@ -270,7 +335,7 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 			}
 			var icon = {
 				className: this.className,
-				html: this.innerHTML
+				html: Polymer.dom(this).innerHTML
 			};
 			if (this.iconWidth && this.iconHeight) {
 				icon.iconSize = L.point(this.iconWidth, this.iconHeight);
@@ -282,12 +347,12 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 			return this.icon_;
 		},
 
-		attributeChanged: function() {
+		_attributeChanged: function() {
 			this.icon_ = null;
 		}
 	});
 	</script>
-</polymer-element>
+</dom-module>
 
 
 
@@ -318,18 +383,19 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
 -->
-<polymer-element name="leaflet-marker" attributes="latitude longitude icon clickable draggable keyboard title alt zIndexOffset opacity riseOnHover riseOffset">
+<dom-module id="leaflet-marker">
+	<style>
+		:host {display: none;}
+	</style>
 	<template>
-		<style>
-			:host {
-				display: none;
-			}
-		</style>
 	</template>
 	<script>
 	"use strict";
 
-	Polymer('leaflet-marker', {
+	Polymer({
+		is: 'leaflet-marker',
+		behaviors: [LeafletPopupContent],
+
 		/**
 		 * Fired when the user clicks (or taps) the marker.
 		 * 
@@ -448,14 +514,20 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		 * @param {Popup} popup The popup that was opened or closed.
 		 */
 
-		publish: {
+		properties: {
 			/**
 			 * The `latitude` attribute sets the positions of the marker.
 			 *
 			 * @attribute latitude
 			 * @type number
 			 */
-			latitude: {value: null, reflect: true},
+			latitude: {
+				type: Number,
+				value: null,
+				reflectToAttribute: true,
+				notify: true,
+				observer: '_positionChanged'
+			},
 
 			/**
 			 * The `longitude` attribute sets the positions of the marker.
@@ -463,102 +535,140 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			 * @attribute longitude
 			 * @type number
 			 */
-			longitude: {value: null, reflect: true}
+			longitude: {
+				type: Number,
+				value: null,
+				reflectToAttribute: true,
+				notify: true,
+				observer: '_positionChanged'
+			},
+
+			/**
+			 * The `icon` attribute sets the Icon class to use for rendering the marker. 
+			 * This attribute may be refer to an id-attribute of an leaflet-icon-element,
+			 * contain json syntax or it be assigned an instance of L.icon.
+			 * See Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.
+			 * 
+			 * @attribute icon
+			 * @type string, json or L.icon
+			 */
+			icon: {
+				type: Object,
+				observer: '_iconChanged'
+			},
+
+			/**
+			 * If `clickable` attribute is set to false, the marker will not emit mouse events and will act as a part of the underlying map.
+			 * 
+			 * @attribute clickable
+			 * @type bool
+			 */
+			clickable: {
+				type: Boolean,
+				value: true
+			},
+	
+			/**
+			 * The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.
+			 * 
+			 * @attribute draggable
+			 * @type bool
+			 */
+			draggable: {
+				type: Boolean,
+				value: false
+			},
+	
+			/**
+			 * The `keyboard` attribute sets the whether the marker is draggable with mouse/touch or not.
+			 * 
+			 * @attribute draggable
+			 * @type bool
+			 */
+			keyboard: {
+				type: Boolean,
+				value: true
+			},
+	
+			/**
+			 * The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).
+			 * 
+			 * @attribute title
+			 * @type string
+			 */
+			title: {
+				type: String,
+				value: ''
+			},
+	
+			/**
+			 * The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).
+			 * 
+			 * @attribute alt
+			 * @type string
+			 */
+			alt: {
+				type: String,
+				value: ''
+			},
+	
+			/**
+			 * The `zIndexOffset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude
+			 * 
+			 * @attribute zIndexOffset
+			 * @type number
+			 */
+			zIndexOffset: {
+				type: Number,
+				value: 0,
+				observer: '_zIndexOffsetChanged'
+			},
+	
+			/**
+			 * The `opacity` attribute sets the opacity of the marker.
+			 * 
+			 * @attribute opacity
+			 * @type number
+			 */
+			opacity: {
+				type: Number,
+				value: 1.0,
+				observer: '_opacityChanged'
+			},
+	
+			/**
+			 * The `riseOnHover` attribute sets the whether the marker will get on top of others when you hover the mouse over it. 
+			 * 
+			 * @attribute riseOnHover
+			 * @type bool
+			 */
+			riseOnHover: {
+				type: Boolean,
+				value: false
+			},
+	
+			/**
+			 * The `riseOffset` attribute sets the z-index offset used for the riseOnHover feature.
+			 * 
+			 * @attribute riseOffset
+			 * @type number
+			 */
+			riseoffset: {
+				type: Number,
+				value: 250
+			},
+			
+			container: {
+				type: Object,
+				observer: '_containerChanged'
+			}
 		},
-
-		/**
-		 * The `icon` attribute sets the Icon class to use for rendering the marker. 
-		 * This attribute may be refer to an id-attribute of an leaflet-icon-element,
-		 * contain json syntax or it be assigned an instance of L.icon.
-		 * See Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.
-		 * 
-		 * @attribute icon
-		 * @type string, json or L.icon
-		 */
-		icon: undefined,
-
-		/**
-		 * If `clickable` attribute is set to false, the marker will not emit mouse events and will act as a part of the underlying map.
-		 * 
-		 * @attribute clickable
-		 * @type bool
-		 */
-		clickable: true,
-
-		/**
-		 * The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.
-		 * 
-		 * @attribute draggable
-		 * @type bool
-		 */
-		draggable: false,
-
-		/**
-		 * The `keyboard` attribute sets the whether the marker is draggable with mouse/touch or not.
-		 * 
-		 * @attribute draggable
-		 * @type bool
-		 */
-		keyboard: true,
-
-		/**
-		 * The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).
-		 * 
-		 * @attribute title
-		 * @type string
-		 */
-		title: '',
-
-		/**
-		 * The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).
-		 * 
-		 * @attribute alt
-		 * @type string
-		 */
-		alt: '',
-
-		/**
-		 * The `zIndexOffset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude
-		 * 
-		 * @attribute zIndexOffset
-		 * @type number
-		 */
-		zIndexOffset: 0,
-
-		/**
-		 * The `opacity` attribute sets the opacity of the marker.
-		 * 
-		 * @attribute opacity
-		 * @type number
-		 */
-		opacity: 1.0,
-
-		/**
-		 * The `riseOnHover` attribute sets the whether the marker will get on top of others when you hover the mouse over it. 
-		 * 
-		 * @attribute riseOnHover
-		 * @type bool
-		 */
-		riseOnHover: false,
-
-		/**
-		 * The `riseOffset` attribute sets the z-index offset used for the riseOnHover feature.
-		 * 
-		 * @attribute riseOffset
-		 * @type number
-		 */
-		riseoffset: 250,
 
 		feature: undefined,
 		
 		observer_: undefined,
 
-		observe: {
-			latitude: 'positionChanged',
-			longitude: 'positionChanged',
-		},
-
-		containerChanged: function() {
+		_containerChanged: function() {
 			if (this.container) {
 
 				var feature = L.marker([this.latitude, this.longitude], {
@@ -567,30 +677,25 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 					keyboard: this.keyboard,
 					title: this.title,
 					alt: this.alt,
-					zindexOffset: this.zIndexOffset,
+					zIndexOffset: this.zIndexOffset,
 					opacity: this.opacity,
 					riseOnHover: this.riseOnHover,
 					riseOffset: this.riseOffset,
 				});
 				this.feature = feature;
-				this.iconChanged();
+				this._iconChanged();
 
 				// forward events
 				feature.on('click dblclick mousedown mouseover mouseout contextmenu dragstart drag dragend move add remove popupopen popupclose', function(e) {
 					this.fire(e.type, e);
 				}, this);
 
-				// update popup on content changes
-				this.childrenMutated();
-				if (MutationObserver && !this.observer_) {
-					this.observer_ = new MutationObserver(this.childrenMutated.bind(this));
-					this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
-				}
+				this.updatePopupContent();
 				this.feature.addTo(this.container);
 			}
 		},
 
-		iconChanged: function() {
+		_iconChanged: function() {
 			// icon support
 			var iconOption;
 			if (this.icon) {
@@ -619,28 +724,21 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			}
 		},
 
-		positionChanged: function() {
+		_positionChanged: function() {
 			if (this.feature) {
 				this.feature.setLatLng(L.latLng(this.latitude, this.longitude));
 			}
 		},
 
-		zIndexOffsetChanged: function() {
+		_zIndexOffsetChanged: function() {
 			if (this.feature) {
 				this.feature.setZIndexOffset(this.zIndexOffset);
 			}
 		},
 
-		opacityChanged: function() {
+		_opacityChanged: function() {
 			if (this.feature) {
 				this.feature.setOpacity(this.opacity);
-			}
-		},
-		
-		childrenMutated: function() {
-			this.feature.unbindPopup();
-			if (this.innerHTML.trim()) {
-				this.feature.bindPopup(this.innerHTML);
 			}
 		},
 		
@@ -648,12 +746,9 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			if (this.container && this.feature) {
 				this.container.removeLayer(this.feature);
 			}
-			if (this.observer_) {
-				this.observer_.disconnect();
-			}
 		}
 
 	});
 	</script>
-</polymer-element>
+</dom-module>
 
