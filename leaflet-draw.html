@@ -465,7 +465,7 @@ add `leaflet-point` elements inside it.
  
 	Polymer({
 		is: 'leaflet-polyline',
-		behaviors: [leafletMap.LeafletPath, leafletMap.LeafletPointContent],
+		behaviors: [leafletMap.LeafletPath, leafletMap.LeafletPointContent, leafletMap.LeafletPopupContent],
 
 		/**
 		 * A Leaflet [Polyline](http://leafletjs.com/reference.html#polyline) object
@@ -488,6 +488,7 @@ add `leaflet-point` elements inside it.
 				this.feature = L.polyline([], this.getPathOptions());
 				this.feature.addTo( this.container );
 				this.updatePointContent();
+				this.updatePopupContent();
 
 				// forward events
 				this.feature.on('click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose', function(e) {
@@ -540,7 +541,7 @@ add `leaflet-point` elements inside it.
 "use strict";
 Polymer({
 	is: 'leaflet-polygon',
-	behaviors: [leafletMap.LeafletPath, leafletMap.LeafletPointContent],
+	behaviors: [leafletMap.LeafletPath, leafletMap.LeafletPointContent, leafletMap.LeafletPopupContent],
 
 	properties: {
 		container: {
@@ -566,7 +567,8 @@ Polymer({
 			}
 			this.feature = L.polygon([], opt);
 			this.feature.addTo(this.container);
-			this.updatePointContent()
+			this.updatePointContent();
+			this.updatePopupContent();
 
 			// forward events
 			this.feature.on('click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose', function(e) {

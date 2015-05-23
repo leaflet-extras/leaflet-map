@@ -1,5 +1,8 @@
 <script>
-window.LeafletPopupContent = {
+"use strict";
+
+var leafletMap = leafletMap || {};
+leafletMap.LeafletPopupContent = {
 	attached: function() {
 		if (MutationObserver && !this.observer_) {
 			this.observer_ = new MutationObserver(this.updatePopupContent.bind(this));
@@ -12,8 +15,10 @@ window.LeafletPopupContent = {
 			return;
 		}
 		this.feature.unbindPopup();
-		if (Polymer.dom(this).innerHTML.trim()) {
-			this.feature.bindPopup(Polymer.dom(this).innerHTML);
+		// TODO: Hack, ignore <leaflet-point>-tag
+		var content = Polymer.dom(this).innerHTML.replace(/<\/?leaflet-point[^>]*>/g, "").trim();
+		if (content) {
+			this.feature.bindPopup(content);
 		}
 	},
 	
