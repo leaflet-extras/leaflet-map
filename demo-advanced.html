@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Advanced demo of leaflet-map web-component</title>
 		<script type="text/javascript" src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+		<link rel="import" href="../polymer/polymer.html">
 		<link rel="import" href="demo-header.html">
 		<link rel="import" href="leaflet-map.html">
 
@@ -84,7 +85,7 @@
 			}
 		</style>
 	</head>
-	<body unresolved>
+	<body>
 
 
 <demo-header></demo-header>
@@ -123,22 +124,22 @@ A circle is used to indicate the range of uncertainty.</p>
 			:host leaflet-map {height:18em; width:99%; border: none}
 		</style>
 
-		<template if="{{!latitude}}">
+		<template is="if" if="{{!latitude}}">
 			Location Unknown.
 		</template>
-		<template if="{{latitude}}">
-			lat: {{latitude}}, lng: {{longitude}}, accuracy: {{accuracy}} meter
+		<template is="if" if="{{latitude}}">
+			lat: <span>{{latitude}}</span>, lng: <span>{{longitude}}</span>, accuracy: <span>{{accuracy}}</span> meter
 		</template>
-
+			lat: <span>{{latitude}}</span>, lng: <span>{{longitude}}</span>, accuracy: <span>{{accuracy}}</span> meter
 		<leaflet-map>
-
-			<leaflet-geolocation enableHighAccuracy
+		
+			<leaflet-geolocation enable-high-accuracy
 				latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
 			</leaflet-geolocation>
 
-			<template if="{{latitude}}">
+			<template is="if" if="{{latitude}}">
 				<leaflet-marker latitude="{{latitude}}" longitude="{{longitude}}">
-					I am within {{accuracy}} meters of this location.
+					I am within <span>{{accuracy}}</span> meters of this location.
 				</leaflet-marker>
 
 				<leaflet-circle latitude="{{latitude}}" longitude="{{longitude}}" radius="{{accuracy}}" color="#d00">
@@ -151,7 +152,12 @@ A circle is used to indicate the range of uncertainty.</p>
 </dom-module>
 <script>
 Polymer({
-	is: "geolocation-sample"
+	is: "geolocation-sample",
+	properties: {
+		latitute: Number,
+		longitude: Number,
+		accurarcy: Number
+	}
 });
 </script>
 
