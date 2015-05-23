@@ -21,10 +21,12 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 </dom-module>
 
 <script>
-	"use strict";
-   
-	Polymer({
-		is: 'leaflet-geolocation',
+"use strict";
+  
+Polymer({
+	is: 'leaflet-geolocation',
+	
+	properties: {
 
 		/**
 		 * Fired when geolocation (using the locate method) went successfully.
@@ -56,7 +58,10 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 		 * @attribute watch
 		 * @type bool
 		 */
-		watch: false, 
+		watch: {
+			type: Boolean,
+			value: false, 
+		},
 
 		/**
 		 * The `setView` attribute sets whether the map view to the user location with respect to detection accuracy, or to world view if geolocation failed.
@@ -64,7 +69,10 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 		 * @attribute setView
 		 * @type bool
 		 */
-		setView: false, 
+		setView: {
+			type: Boolean,
+			value: false
+		}, 
 
 		/**
 		 * The `maxZoom` attribute sets the maximum zoom for automatic view setting when using `setView` option. 
@@ -72,7 +80,10 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 		 * @attribute maxZoom
 		 * @type number
 		 */
-		maxZoom: Infinity,
+		maxZoom: {
+			type: Number,
+			value: Infinity
+		},
 
 		/**
 		 * The `timeout` attribute sets the number of milliseconds to wait for a response from geolocation before firing a locationerror event. 
@@ -80,7 +91,10 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 		 * @attribute timeout
 		 * @type number
 		 */
-		timeout: 10000,
+		timeout: {
+			type: Number,
+			value: 10000
+		},
 
 		/**
 		 * The `maximumAge` attribute sets maximum age of detected location. If less than this amount of milliseconds passed since last geolocation response, locate will return a cached location. 
@@ -88,7 +102,10 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 		 * @attribute maximumAge
 		 * @type number
 		 */
-		maximumAge:	0,
+		maximumAge: {
+			type: Number,
+			value: 0
+		},
 
 		/**
 		 * The `enableHighAccuracy` attribute sets whether high accuracy is enabled, see description in the W3C spec.
@@ -96,111 +113,153 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 		 * @attribute enableHighAccuracy
 		 * @type bool
 		 */
-		enableHighAccuracy: false,
-
-		publish: {
-
-			/**
-			 * The `latitude` attribute returns the detected geographical location of the user.
-			 * 
-			 * @attribute latitude
-			 * @type number
-			 */
-			latitude: {value: null, reflect: true},
-
-			/**
-			 * The `longitude` attribute returns the detected geographical location of the user.
-			 * 
-			 * @attribute longitude
-			 * @type number
-			 */
-			longitude: {value: null, reflect: true},
-
-			/**
-			 * The `bounds` attribute returns the geographical bounds of the area user is located in (with respect to the accuracy of location).
-			 * 
-			 * @attribute bounds
-			 * @type number
-			 */
-			bounds: {value: null, reflect: true},
-
-			/**
-			 * The `accuracy` attribute returns the accuracy of location in meters.
-			 * 
-			 * @attribute accuracy
-			 * @type number
-			 */
-			accuracy: {value: null, reflect: true},
-
-			/**
-			 * The `altitude` attribute returns the height of the position above the WGS84 ellipsoid in meters.
-			 * 
-			 * @attribute altitude
-			 * @type number
-			 */
-			altitude: {value: null, reflect: true},
-
-			/**
-			 * The `altitudeAccuracy` attribute returns the accuracy of altitude in meters.
-			 * 
-			 * @attribute altitudeAccuracy
-			 * @type number
-			 */
-			altitudeAccuracy: {value: null, reflect: true},
-
-			/**
-			 * The `heading` attribute returns the direction of travel in degrees counting clockwise from true North.
-			 * 
-			 * @attribute heading
-			 * @type number
-			 */
-			heading: {value: null, reflect: true},
-
-			/**
-			 * The `speed` attribute returns the current velocity in meters per second.   
-			 * 
-			 * @attribute speed
-			 * @type number
-			 */
-			speed: {value: null, reflect: true},
-
-			/**
-			 * The `timestamp` attribute returns the time when the position was acquired.
-			 * 
-			 * @attribute timestamp
-			 * @type number
-			 */
-			timestamp: {value: null, reflect: true}
+		enableHighAccuracy: {
+			type: Boolean,
+			value: false
 		},
 
-		containerChanged: function() {
-			if (this.container) {
-				this.container.on('locationfound locationerror', function(e) {
-					this.fire(e.type, e);
-				}, this);
+		/**
+		 * The `latitude` attribute returns the detected geographical location of the user.
+		 * 
+		 * @attribute latitude
+		 * @type number
+		 */
+		latitude: {
+			type: Number,
+			value: null,
+			notify: true
+		},
 
-				this.container.on('locationfound', function(e) {				
-					this.latitude = e.latlng.lat;
-					this.longitude = e.latlng.lng;
-					this.bounds = e.bounds;
-					this.accuracy = e.accuracy;
-					this.altitude = e.altitude;
-					this.altitudeAccuracy = e.altitudeAccuracy;
-					this.heading = e.heading;
-					this.speed = e.speed;
-					this.timestamp = e.timestamp;
-				}, this);
+		/**
+		 * The `longitude` attribute returns the detected geographical location of the user.
+		 * 
+		 * @attribute longitude
+		 * @type number
+		 */
+		longitude: {
+			type: Number,
+			value: null,
+			notify: true
+		},
 
-				this.container.locate({
-					watch: this.watch, 
-					setView: this.setView, 
-					maxZoom: this.maxZoom,
-					timeout: this.timeout,
-					maximumAge:	this.maximumAge,
-					enableHighAccuracy: this.enableHighAccuracy,
-				});
-			}
+		/**
+		 * The `bounds` attribute returns the geographical bounds of the area user is located in (with respect to the accuracy of location).
+		 * 
+		 * @attribute bounds
+		 * @type number
+		 */
+		bounds: {
+			type: Number,
+			value: null,
+			notify: true
+		},
+
+		/**
+		 * The `accuracy` attribute returns the accuracy of location in meters.
+		 * 
+		 * @attribute accuracy
+		 * @type number
+		 */
+		accuracy: {
+			type: Number,
+			value: null,
+			notify: true
+		},
+
+		/**
+		 * The `altitude` attribute returns the height of the position above the WGS84 ellipsoid in meters.
+		 * 
+		 * @attribute altitude
+		 * @type number
+		 */
+		altitude: {
+			type: Number,
+			value: null,
+			notify: true
+		},
+
+		/**
+		 * The `altitudeAccuracy` attribute returns the accuracy of altitude in meters.
+		 * 
+		 * @attribute altitudeAccuracy
+		 * @type number
+		 */
+		altitudeAccuracy: {
+			type: Number,
+			value: null,
+			notify: true
+		},
+
+		/**
+		 * The `heading` attribute returns the direction of travel in degrees counting clockwise from true North.
+		 * 
+		 * @attribute heading
+		 * @type number
+		 */
+		heading: {
+			type: Number,
+			value: null,
+			notify: true
+		},
+
+		/**
+		 * The `speed` attribute returns the current velocity in meters per second.   
+		 * 
+		 * @attribute speed
+		 * @type number
+		 */
+		speed: {
+			type: Number,
+			value: null,
+			notify: true
+		},
+
+		/**
+		 * The `timestamp` attribute returns the time when the position was acquired.
+		 * 
+		 * @attribute timestamp
+		 * @type number
+		 */
+		timestamp: {
+			type: Number,
+			value: null,
+			notify: true
+		},
+		
+		container: {
+			type: Object,
+			observer: '_containerChanged'
 		}
-	});
+	},
+
+	_containerChanged: function() {
+		if (this.container) {
+			this.container.on('locationfound locationerror', function(e) {
+				this.fire(e.type, e);
+			}, this);
+
+			this.container.on('locationfound', function(e) {				
+				this.latitude = e.latlng.lat;
+				this.longitude = e.latlng.lng;
+				this.bounds = e.bounds;
+				this.accuracy = e.accuracy;
+				this.altitude = e.altitude;
+				this.altitudeAccuracy = e.altitudeAccuracy;
+				this.heading = e.heading;
+				this.speed = e.speed;
+				this.timestamp = e.timestamp;
+			}, this);
+
+			this.container.locate({
+				watch: this.watch, 
+				setView: this.setView, 
+				maxZoom: this.maxZoom,
+				timeout: this.timeout,
+				maximumAge:	this.maximumAge,
+				enableHighAccuracy: this.enableHighAccuracy,
+			});
+		}
+	}
+});
 </script>
 
