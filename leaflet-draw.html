@@ -165,9 +165,9 @@ Do not use this element directly.
 			},
 
 			/**
-			 * The attribute `fillColor` sets the fill color.
+			 * The attribute `fill-color` sets the fill color.
 			 *
-			 * @attribute fillColor
+			 * @attribute fill-color
 			 * @type string
 			 */
 			fillColor: {
@@ -176,9 +176,9 @@ Do not use this element directly.
 			},
 
 			/**
-			 * The attribute `fillOpacity` sets the fill opacity.
+			 * The attribute `fill-opacity` sets the fill opacity.
 			 *
-			 * @attribute fillOpacity
+			 * @attribute fill-opacity
 			 * @type number
 			 */
 			fillOpacity: {
@@ -187,9 +187,9 @@ Do not use this element directly.
 			},
 
 			/**
-			 * The attribute `dashArray` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).
+			 * The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).
 			 *
-			 * @attribute dashArray
+			 * @attribute dash-array
 			 * @type string
 			 */
 			dashArray: {
@@ -198,9 +198,9 @@ Do not use this element directly.
 			},
 
 			/**
-			 * The attribute `lineCap` defines the shape to be used at the end of the stroke.
+			 * The attribute `line-cap` defines the shape to be used at the end of the stroke.
 			 *
-			 * @attribute lineCap
+			 * @attribute line-cap
 			 * @type string
 			 */
 			lineCap: {
@@ -209,9 +209,9 @@ Do not use this element directly.
 			}, 
 
 			/**
-			 * The attribute `lineJoin` sets the string that defines shape to be used at the corners of the stroke.
+			 * The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.
 			 *
-			 * @attribute lineJoin
+			 * @attribute line-join
 			 * @type string
 			 */
 			lineJoin: {
@@ -231,9 +231,9 @@ Do not use this element directly.
 			},
 
 			/**
-			 * The attribute `pointerEvents` sets the pointer-events attribute on the path if SVG backend is used.
+			 * The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.
 			 *
-			 * @attribute pointerEvents
+			 * @attribute pointer-events
 			 * @type string
 			 */
 			pointerEvents: {
@@ -242,9 +242,9 @@ Do not use this element directly.
 			},
 
 			/**
-			 * The attribute `className` sets the custom class name set on an element.
+			 * The attribute `class-name` sets the custom class name set on an element.
 			 *
-			 * @attribute className
+			 * @attribute class-name
 			 * @type string
 			 */
 			className: {
@@ -326,7 +326,6 @@ a child element of the `leaflet-map` element.
 @blurb Element for putting a circle on the map
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
-@extends leaflet-path
 -->
 <dom-module id="leaflet-circle">
 	<style>
@@ -450,10 +449,9 @@ add `leaflet-point` elements inside it.
 @blurb Element for putting a polyline on the map
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
-@extends leaflet-path
 -->
 
-<dom-module id="leaflet-polyline" extends="leaflet-path">
+<dom-module id="leaflet-polyline">
 	<style>
 		:host{ display: none; }
 	</style>
@@ -527,10 +525,9 @@ add `leaflet-point` elements inside it.
 @blurb Element for putting a polygon on the map
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
-@extends leaflet-path
 -->
 
-<dom-module id="leaflet-polygon" extends="leaflet-path">
+<dom-module id="leaflet-polygon">
 	<style>
 		:host {display: none;}
 	</style>

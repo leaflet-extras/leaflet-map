@@ -40,13 +40,15 @@ add a marker with a popup text.
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
 -->
-<dom-module id="leaflet-map" attributes="minZoom maxZoom dragging touchZoom scrollWheelZoom doubleClickZoom boxZoom tap tapTolerance trackResize worldCopyJump closePopupOnClick bounceAtZoomLimits keyboard keyboardPanOffset keyboardZoomOffset inertia inertiaDeceleration inertiaMaxSpeed zoomControl attributionControl zoomAnimationThreshold fitToMarkers">
+<dom-module id="leaflet-map">
 	<style>
 		:host { display: block; } 
 		:host #map {height:100%; width:100%}
 	</style>
+	<!-- include stylesheet for shady dom and shadow dom -->
+	<link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
+	<link rel="import" type="css" href="../leaflet/dist/leaflet.css" />
 	<template>
-		<link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
 		<div id="map"></div>
 		<content id="markers" select="*"></content>
   	</template>
@@ -362,9 +364,9 @@ add a marker with a popup text.
 
 
 			/**
-			 * The `minZoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.
+			 * The `min-zoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.
 			 * 
-			 * @attribute minZoom
+			 * @attribute min-zoom
 			 * @type number
 			 */
 			minZoom: {
@@ -375,7 +377,7 @@ add a marker with a popup text.
 			/**
 			 * The `maxZoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.
 			 * 
-			 * @attribute maxZoom
+			 * @attribute max-zoom
 			 * @type number
 			 */
 			maxZoom: {
@@ -395,9 +397,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `touchZoom` attribute sets whether the map can be zoomed by touch-dragging with two fingers. 
+			 * The `touch-zoom` attribute sets whether the map can be zoomed by touch-dragging with two fingers. 
 			 * 
-			 * @attribute touchZoom
+			 * @attribute touch-zoom
 			 * @type bool
 			 */
 			touchZoom: {
@@ -408,7 +410,7 @@ add a marker with a popup text.
 			/**
 			 * The `scrollWheelZoom` attribute sets the whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.
 			 * 
-			 * @attribute scrollWheelZoom
+			 * @attribute scroll-wheel-zoom
 			 * @type bool
 			 */
 			scrollWheelZoom: {
@@ -417,9 +419,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `doubleClickZoom` attribute sets the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
+			 * The `double-click-zoom` attribute sets the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
 			 * 
-			 * @attribute doubleClickZoom
+			 * @attribute double-click-zoom
 			 * @type bool
 			 */
 			doubleClickZoom: {
@@ -428,9 +430,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `boxZoom` attribute sets the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
+			 * The `box-zoom` attribute sets the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
 			 * 
-			 * @attribute boxZoom
+			 * @attribute box-zoom
 			 * @type bool
 			 */
 			boxZoom: {
@@ -450,9 +452,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `tapTolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap. 
+			 * The `tap-tolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap. 
 			 * 
-			 * @attribute tapTolerance
+			 * @attribute tap-tolerance
 			 * @type number
 			 */
 			tapTolerance: {
@@ -461,9 +463,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `trackResize` attribute sets whether the map automatically handles browser window resize to update itself.
+			 * The `track-resize` attribute sets whether the map automatically handles browser window resize to update itself.
 			 * 
-			 * @attribute trackResize
+			 * @attribute track-resize
 			 * @type bool
 			 */
 			trackResize: {
@@ -472,9 +474,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `worldCopyJump` attribute sets whether the map tracks when you pan to another "copy" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.
+			 * The `world-copy-jump` attribute sets whether the map tracks when you pan to another "copy" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.
 			 * 
-			 * @attribute worldCopyJump
+			 * @attribute world-copy-jump
 			 * @type bool
 			 */
 			worldCopyJump: {
@@ -483,9 +485,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `closePopupOnClick` attribute sets whether popups are closed when user clicks the map.
+			 * The `close-popup-on-click` attribute sets whether popups are closed when user clicks the map.
 			 * 
-			 * @attribute closePopupOnClick
+			 * @attribute close-popup-on-click
 			 * @type bool
 			 */
 			closePopupOnClick: {
@@ -494,9 +496,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `bounceAtZoomLimits` attribute sets whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
+			 * The `bounce-at-zoom-limits` attribute sets whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
 			 * 
-			 * @attribute bounceAtZoomLimits
+			 * @attribute bounce-at-zoom-limits
 			 * @type bool
 			 */
 			bounceAtZoomLimits: {
@@ -516,9 +518,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `keyboardPanOffset` attribute sets the amount of pixels to pan when pressing an arrow key.
+			 * The `keyboard-pan-offset` attribute sets the amount of pixels to pan when pressing an arrow key.
 			 * 
-			 * @attribute keyboardPanOffset
+			 * @attribute keyboard-pan-offset
 			 * @type number
 			 */
 			keyboardPanOffset: {
@@ -527,9 +529,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `keyboardZoomOffset` attribute sets the number of zoom levels to change when pressing + or - key.
+			 * The `keyboard-zoom-offset` attribute sets the number of zoom levels to change when pressing + or - key.
 			 * 
-			 * @attribute keyboardZoomOffset
+			 * @attribute keyboard-zoom-offset
 			 * @type number
 			 */
 			keyboardZoomOffset: {
@@ -549,17 +551,17 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `inertiaDeceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.
+			 * The `inertia-deceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.
 			 * 
-			 * @attribute inertiaDeceleration
+			 * @attribute inertia-deceleration
 			 * @type number
 			 */
 			inertiaDeceleration: 3000,
 	
 			/**
-			 * The `inertiaMaxSpeed` attribute sets the max speed of the inertial movement, in pixels/second.
+			 * The `inertia-max-speed` attribute sets the max speed of the inertial movement, in pixels/second.
 			 * 
-			 * @attribute inertiaMaxSpeed
+			 * @attribute inertia-max-speed
 			 * @type number
 			 */
 			inertiaMaxSpeed: {
@@ -568,9 +570,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `zoomControl` attribute sets whether the zoom control is added to the map by default.
+			 * The `zoom-control` attribute sets whether the zoom control is added to the map by default.
 			 * 
-			 * @attribute zoomControl
+			 * @attribute zoom-control
 			 * @type bool
 			 */
 			zoomControl: {
@@ -579,9 +581,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `attributionControl` attribute sets whether the attribution control is added to the map by default.
+			 * The `attribution-control` attribute sets whether the attribution control is added to the map by default.
 			 * 
-			 * @attribute attributionControl
+			 * @attribute attribution-control
 			 * @type bool
 			 */
 			attributionControl: {
@@ -590,9 +592,9 @@ add a marker with a popup text.
 			},
 	
 			/**
-			 * The `zoomAnimationThreshold` attribute sets the maximum number of zoom level differences that still use animation
+			 * The `zoom-animation-threshold` attribute sets the maximum number of zoom level differences that still use animation
 			 * 
-			 * @attribute zoomAnimationThreshold
+			 * @attribute zoom-animation-threshold
 			 * @type number
 			 */
 			zoomAnimationThreshold: {
@@ -603,7 +605,7 @@ add a marker with a popup text.
 			/**
 		      * If set, the map is zoomed such that all elements in it are visible
 		      *
-		      * @attribute fitToMarkers
+		      * @attribute fit-to-markers
 		      * @type boolean
 		      * @default false
 		      */

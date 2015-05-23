@@ -12,7 +12,7 @@ element which controls geo location (<a href="http://leafletjs.com/reference.htm
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
 -->
-<dom-module id="leaflet-geolocation" attributes="watch setView maxZoom timeout maximumAge enableHighAccuracy latitude longitude bounds accuracy altitude altitudeAccuracy heading speed timestamp">
+<dom-module id="leaflet-geolocation">
 	<style>
 		:host {display: none;}
 	</style>
@@ -64,9 +64,9 @@ Polymer({
 		},
 
 		/**
-		 * The `setView` attribute sets whether the map view to the user location with respect to detection accuracy, or to world view if geolocation failed.
+		 * The `set-view` attribute sets whether the map view to the user location with respect to detection accuracy, or to world view if geolocation failed.
 		 * 
-		 * @attribute setView
+		 * @attribute set-view
 		 * @type bool
 		 */
 		setView: {
@@ -75,9 +75,9 @@ Polymer({
 		}, 
 
 		/**
-		 * The `maxZoom` attribute sets the maximum zoom for automatic view setting when using `setView` option. 
+		 * The `max-zoom` attribute sets the maximum zoom for automatic view setting when using `setView` option. 
 		 * 
-		 * @attribute maxZoom
+		 * @attribute max-zoom
 		 * @type number
 		 */
 		maxZoom: {
@@ -97,9 +97,9 @@ Polymer({
 		},
 
 		/**
-		 * The `maximumAge` attribute sets maximum age of detected location. If less than this amount of milliseconds passed since last geolocation response, locate will return a cached location. 
+		 * The `maximum-age` attribute sets maximum age of detected location. If less than this amount of milliseconds passed since last geolocation response, locate will return a cached location. 
 		 * 
-		 * @attribute maximumAge
+		 * @attribute maximum-age
 		 * @type number
 		 */
 		maximumAge: {
@@ -108,9 +108,9 @@ Polymer({
 		},
 
 		/**
-		 * The `enableHighAccuracy` attribute sets whether high accuracy is enabled, see description in the W3C spec.
+		 * The `enable-high-accuracy` attribute sets whether high accuracy is enabled, see description in the W3C spec.
 		 * 
-		 * @attribute enableHighAccuracy
+		 * @attribute enable-high-accuracy
 		 * @type bool
 		 */
 		enableHighAccuracy: {
@@ -179,9 +179,9 @@ Polymer({
 		},
 
 		/**
-		 * The `altitudeAccuracy` attribute returns the accuracy of altitude in meters.
+		 * The `altitude-accuracy` attribute returns the accuracy of altitude in meters.
 		 * 
-		 * @attribute altitudeAccuracy
+		 * @attribute altitude-accuracy
 		 * @type number
 		 */
 		altitudeAccuracy: {

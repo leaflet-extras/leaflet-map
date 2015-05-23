@@ -76,9 +76,9 @@ window.leafletMap.LeafletTileLayer = {
 	properties: {
 
 		/**
-		 * The `minZoom` attribute sets the minimum zoom number.
+		 * The `min-zoom` attribute sets the minimum zoom number.
 		 * 
-		 * @attribute minZoom
+		 * @attribute min-zoom
 		 * @type number
 		 */
 		minZoom: {
@@ -87,9 +87,9 @@ window.leafletMap.LeafletTileLayer = {
 		},
 
 		/**
-		 * The `maxZoom` attribute sets the maximum zoom number.
+		 * The `max-zoom` attribute sets the maximum zoom number.
 		 * 
-		 * @attribute maxZoom
+		 * @attribute max-zoom
 		 * @type number
 		 */
 		maxZoom: {
@@ -109,9 +109,9 @@ window.leafletMap.LeafletTileLayer = {
 		},
 
 		/**
-		 * The `tileSize` attribute sets the tile size (width and height in pixels, assuming tiles are square).
+		 * The `tile-size` attribute sets the tile size (width and height in pixels, assuming tiles are square).
 		 * 
-		 * @attribute tileSize
+		 * @attribute tile-size
 		 * @type number
 		 */
 		tileSize: {
@@ -131,9 +131,9 @@ window.leafletMap.LeafletTileLayer = {
 		},
 
 		/**
-		 * The `errorTileUrl` attribute sets the URL to the tile image to show in place of the tile that failed to load.
+		 * The `error-tile-url` attribute sets the URL to the tile image to show in place of the tile that failed to load.
 		 * 
-		 * @attribute errorTileUrl
+		 * @attribute error-tile-url
 		 * @type string
 		 */
 		errorTileUrl: {
@@ -164,9 +164,9 @@ window.leafletMap.LeafletTileLayer = {
 		},
 
 		/**
-		 * The `continuousWorld` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
+		 * The `continuous-world` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
 		 * 
-		 * @attribute continuousWorld
+		 * @attribute continuous-world
 		 * @type bool
 		 */
 		continuousWorld: {
@@ -186,9 +186,9 @@ window.leafletMap.LeafletTileLayer = {
 		},
 
 		/**
-		 * The `zoomOffset` attribute sets the zoom number used in tile URLs will be offset with this value.
+		 * The `zoom-offset` attribute sets the zoom number used in tile URLs will be offset with this value.
 		 * 
-		 * @attribute zoomOffset
+		 * @attribute zoom-offset
 		 * @type number
 		 */
 		zoomOffset: {
@@ -197,9 +197,9 @@ window.leafletMap.LeafletTileLayer = {
 		},
 
 		/**
-		 * The `zoomReverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
+		 * The `zoom-reverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
 		 * 
-		 * @attribute zoomReverse
+		 * @attribute zoom-reverse
 		 * @type bool
 		 */
 		zoomReverse: {
@@ -220,9 +220,9 @@ window.leafletMap.LeafletTileLayer = {
 		},
 
 		/**
-		 * The `zIndex` attribute sets the explicit zIndex of the tile layer. Not set by default.
+		 * The `z-index` attribute sets the explicit zIndex of the tile layer. Not set by default.
 		 * 
-		 * @attribute zIndex
+		 * @attribute z-index
 		 * @type number
 		 */
 		zIndex: {
@@ -232,9 +232,9 @@ window.leafletMap.LeafletTileLayer = {
 		},
 
 		/**
-		 * The `detectretina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution. 
+		 * The `detect-retina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution. 
 		 * 
-		 * @attribute detectretina
+		 * @attribute detect-retina
 		 * @type bool
 		 */
 		detectRetina: {
@@ -243,9 +243,9 @@ window.leafletMap.LeafletTileLayer = {
 		},
 
 		/**
-		 * The `reuseTiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
+		 * The `reuse-tiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
 		 * 
-		 * @attribute reuseTiles
+		 * @attribute reuse-tiles
 		 * @type bool
 		 */
 		reuseTiles: {
@@ -298,7 +298,6 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 @blurb element which defines a tile layer. The content of the leaflet-tilelayer is used as attribution. 
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
-@extends leaflet-ilayer
 -->
 
 <dom-module id="leaflet-tilelayer">
@@ -387,9 +386,8 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 @status beta
 @homepage https://nhnb.github.io/leaflet-map/
 @since 0.0.2
-@extends leaflet-tilelayer
 -->
-<dom-module id="leaflet-tilelayer-wms" extends="leaflet-tilelayer">
+<dom-module id="leaflet-tilelayer-wms">
 	<style>
 		:host {display: none;}
 	</style>
