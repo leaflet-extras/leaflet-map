@@ -5,19 +5,278 @@ Abstract element representing ILayer (<a href="http://leafletjs.com/reference.ht
 -->
 
 <script>
-	"use strict";
+"use strict";
 
-	window.LeafletILayer = {
+var leafletMap = leafletMap || {};
+window.leafletMap.LeafletILayer = {
+
+	/**
+	 * returns true.
+	 *
+	 * @method isLayer
+	 */
+	isLayer: function() {
+		return true;
+	}
+};
+
+window.leafletMap.LeafletTileLayer = {
+	/**
+	 * Fired when the tile layer starts loading tiles.
+	 * 
+	 * @event loading
+	 */
+
+	/**
+	 * Fired when the tile layer loaded all visible tiles.
+	 * 
+	 * @event load
+	 */
+
+	/**
+	 * Fired when a tile is requested and starts loading.
+	 * 
+	 * @event tileloadstart
+	 * @type TileEvent
+	 * @param {HTMLElement} tile The tile element (image).
+	 * @param {string} url The source URL of the tile.
+	 */
+
+	/**
+	 * Fired when a tile loads.
+	 * 
+	 * @event tileload
+	 * @type TileEvent
+	 * @param {HTMLElement} tile The tile element (image).
+	 * @param {string} url The source URL of the tile.
+	 */
+
+	/**
+	 * Fired when a tile is removed (e.g. when you have unloadInvisibleTiles on).
+	 * 
+	 * @event tileunload
+	 * @type TileEvent
+	 * @param {HTMLElement} tile The tile element (image).
+	 * @param {string} url The source URL of the tile.
+	 */
+
+	/**
+	 * The `url` attribute sets the address template for tilesets.
+	 *
+	 *	 'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'
+	 *
+	 * {s} means one of the available subdomains (used sequentially to help with 
+	 * browser parallel requests per domain limitation; subdomain values are specified
+	 * in options; a, b or c by default, can be omitted), {z} — zoom level, {x} and {y}
+	 * — tile coordinates. 
+	 * 
+	 * @attribute url
+	 * @type string
+	 */
+	properties: {
 
 		/**
-		 * returns true.
-		 *
-		 * @method isLayer
+		 * The `minZoom` attribute sets the minimum zoom number.
+		 * 
+		 * @attribute minZoom
+		 * @type number
 		 */
-		isLayer: function() {
-			return true;
+		minZoom: {
+			type: Number,
+			value: 0,
+		},
+
+		/**
+		 * The `maxZoom` attribute sets the maximum zoom number.
+		 * 
+		 * @attribute maxZoom
+		 * @type number
+		 */
+		maxZoom: {
+			type: Number,
+			value: 18
+		},
+
+		/**
+		 * The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled. 
+		 * 
+		 * @attribute maxnativezoom
+		 * @type number
+		 */
+		maxNativeZoom: {
+			type: Number,
+			value: null
+		},
+
+		/**
+		 * The `tileSize` attribute sets the tile size (width and height in pixels, assuming tiles are square).
+		 * 
+		 * @attribute tileSize
+		 * @type number
+		 */
+		tileSize: {
+			type: Number,
+			value: 256
+		},
+
+		/**
+		 * The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.
+		 * 
+		 * @attribute subdomains
+		 * @type string or string[]
+		 */
+		subdomains: {
+			type: String,
+			value: "abc"
+		},
+
+		/**
+		 * The `errorTileUrl` attribute sets the URL to the tile image to show in place of the tile that failed to load.
+		 * 
+		 * @attribute errorTileUrl
+		 * @type string
+		 */
+		errorTileUrl: {
+			type: String,
+			value: ""
+		},
+
+		/**
+		 * The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.
+		 * 
+		 * @attribute attribution
+		 * @type 
+		 */
+		attribution: {
+			type: String,
+			value: ""
+		},
+
+		/**
+		 * The `tms` attribute sets wether inverses Y axis numbering for tiles should be used (turn this on for TMS services).
+		 * 
+		 * @attribute tms
+		 * @type bool
+		 */
+		tms: {
+			type: Number,
+			value: false
+		},
+
+		/**
+		 * The `continuousWorld` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
+		 * 
+		 * @attribute continuousWorld
+		 * @type bool
+		 */
+		continuousWorld: {
+			type: Boolean,
+			value: false
+		},
+
+		/**
+		 * The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.
+		 * 
+		 * @attribute nowrap
+		 * @type bool
+		 */
+		noWrap: {
+			type: Boolean,
+			value: false
+		},
+
+		/**
+		 * The `zoomOffset` attribute sets the zoom number used in tile URLs will be offset with this value.
+		 * 
+		 * @attribute zoomOffset
+		 * @type number
+		 */
+		zoomOffset: {
+			type: Number,
+			value: 0
+		},
+
+		/**
+		 * The `zoomReverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
+		 * 
+		 * @attribute zoomReverse
+		 * @type bool
+		 */
+		zoomReverse: {
+			type: Boolean,
+			value: false
+		},
+
+		/**
+		 * The `opacity` attribute sets the opacity of the tile layer.
+		 * 
+		 * @attribute opacity
+		 * @type number
+		 */
+		opacity: {
+			type: Number,
+			value: 1.0,
+			observer: '_opacityChanged'
+		},
+
+		/**
+		 * The `zIndex` attribute sets the explicit zIndex of the tile layer. Not set by default.
+		 * 
+		 * @attribute zIndex
+		 * @type number
+		 */
+		zIndex: {
+			type: Number,
+			value: null,
+			observer: '_zIndexChanged'
+		},
+
+		/**
+		 * The `detectretina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution. 
+		 * 
+		 * @attribute detectretina
+		 * @type bool
+		 */
+		detectRetina: {
+			type: Boolean,
+			value: false
+		},
+
+		/**
+		 * The `reuseTiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
+		 * 
+		 * @attribute reuseTiles
+		 * @type bool
+		 */
+		reuseTiles: {
+			type: Boolean,
+			value: false
 		}
-	};
+
+	},
+	// unloadInvisibleTiles updateWhenIdle bounds
+	
+
+
+	_opacityChanged: function() {
+		if (this.layer) {
+			this.layer.setOpacity(this.opacity);
+		}
+	},
+
+	_zIndexChanged: function() {
+		if (this.layer) {
+			this.layer.setZIndex(this.zIndex);
+		}
+	},
+
+
+	detached: function() {
+		if (this.container && this.layer) {
+			this.container.removeLayer(this.layer);
+		}
+	}
+};
 </script>
 
 
@@ -51,311 +310,60 @@ element which defines a tile layer (<a href="http://leafletjs.com/reference.html
 </dom-module>
 
 <script>
-	"use strict";
+"use strict";
 
-	Polymer({
-		is: 'leaflet-tilelayer',
-		behaviors: [LeafletILayer],
-
-		/**
-		 * Fired when the tile layer starts loading tiles.
-		 * 
-		 * @event loading
-		 */
-
-		/**
-		 * Fired when the tile layer loaded all visible tiles.
-		 * 
-		 * @event load
-		 */
-
-		/**
-		 * Fired when a tile is requested and starts loading.
-		 * 
-		 * @event tileloadstart
-		 * @type TileEvent
-		 * @param {HTMLElement} tile The tile element (image).
-		 * @param {string} url The source URL of the tile.
-		 */
-
-		/**
-		 * Fired when a tile loads.
-		 * 
-		 * @event tileload
-		 * @type TileEvent
-		 * @param {HTMLElement} tile The tile element (image).
-		 * @param {string} url The source URL of the tile.
-		 */
-
-		/**
-		 * Fired when a tile is removed (e.g. when you have unloadInvisibleTiles on).
-		 * 
-		 * @event tileunload
-		 * @type TileEvent
-		 * @param {HTMLElement} tile The tile element (image).
-		 * @param {string} url The source URL of the tile.
-		 */
-
-		/**
-		 * The `url` attribute sets the address template for tilesets.
-		 *
-		 *	 'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'
-		 *
-		 * {s} means one of the available subdomains (used sequentially to help with 
-		 * browser parallel requests per domain limitation; subdomain values are specified
-		 * in options; a, b or c by default, can be omitted), {z} — zoom level, {x} and {y}
-		 * — tile coordinates. 
-		 * 
-		 * @attribute url
-		 * @type string
-		 */
-		properties: {
-			url: {
-				type: String,
-				value: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-				observer: '_urlChanged'
-			},
-
-			/**
-			 * The `minZoom` attribute sets the minimum zoom number.
-			 * 
-			 * @attribute minZoom
-			 * @type number
-			 */
-			minZoom: {
-				type: Number,
-				value: 0,
-			},
-	
-			/**
-			 * The `maxZoom` attribute sets the maximum zoom number.
-			 * 
-			 * @attribute maxZoom
-			 * @type number
-			 */
-			maxZoom: {
-				type: Number,
-				value: 18
-			},
-	
-			/**
-			 * The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled. 
-			 * 
-			 * @attribute maxnativezoom
-			 * @type number
-			 */
-			maxNativeZoom: {
-				type: Number,
-				value: null
-			},
-	
-			/**
-			 * The `tileSize` attribute sets the tile size (width and height in pixels, assuming tiles are square).
-			 * 
-			 * @attribute tileSize
-			 * @type number
-			 */
-			tileSize: {
-				type: Number,
-				value: 256
-			},
-	
-			/**
-			 * The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.
-			 * 
-			 * @attribute subdomains
-			 * @type string or string[]
-			 */
-			subdomains: {
-				type: String,
-				value: "abc"
-			},
-	
-			/**
-			 * The `errorTileUrl` attribute sets the URL to the tile image to show in place of the tile that failed to load.
-			 * 
-			 * @attribute errorTileUrl
-			 * @type string
-			 */
-			errorTileUrl: {
-				type: String,
-				value: ""
-			},
-	
-			/**
-			 * The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.
-			 * 
-			 * @attribute attribution
-			 * @type 
-			 */
-			attribution: {
-				type: String,
-				value: ""
-			},
-	
-			/**
-			 * The `tms` attribute sets wether inverses Y axis numbering for tiles should be used (turn this on for TMS services).
-			 * 
-			 * @attribute tms
-			 * @type bool
-			 */
-			tms: {
-				type: Number,
-				value: false
-			},
-	
-			/**
-			 * The `continuousWorld` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
-			 * 
-			 * @attribute continuousWorld
-			 * @type bool
-			 */
-			continuousWorld: {
-				type: Boolean,
-				value: false
-			},
-	
-			/**
-			 * The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.
-			 * 
-			 * @attribute nowrap
-			 * @type bool
-			 */
-			noWrap: {
-				type: Boolean,
-				value: false
-			},
-	
-			/**
-			 * The `zoomOffset` attribute sets the zoom number used in tile URLs will be offset with this value.
-			 * 
-			 * @attribute zoomOffset
-			 * @type number
-			 */
-			zoomOffset: {
-				type: Number,
-				value: 0
-			},
-	
-			/**
-			 * The `zoomReverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)
-			 * 
-			 * @attribute zoomReverse
-			 * @type bool
-			 */
-			zoomReverse: {
-				type: Boolean,
-				value: false
-			},
-	
-			/**
-			 * The `opacity` attribute sets the opacity of the tile layer.
-			 * 
-			 * @attribute opacity
-			 * @type number
-			 */
-			opacity: {
-				type: Number,
-				value: 1.0,
-				observer: '_opacityChanged'
-			},
-	
-			/**
-			 * The `zIndex` attribute sets the explicit zIndex of the tile layer. Not set by default.
-			 * 
-			 * @attribute zIndex
-			 * @type number
-			 */
-			zIndex: {
-				type: Number,
-				value: null,
-				observer: '_zIndexChanged'
-			},
-	
-			/**
-			 * The `detectretina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution. 
-			 * 
-			 * @attribute detectretina
-			 * @type bool
-			 */
-			detectRetina: {
-				type: Boolean,
-				value: false
-			},
-	
-			/**
-			 * The `reuseTiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed. 
-			 * 
-			 * @attribute reuseTiles
-			 * @type bool
-			 */
-			reuseTiles: {
-				type: Boolean,
-				value: false
-			},
-			
-			container: {
-				type: Object,
-				observer: '_containerChanged'
-			}
-
+Polymer({
+	is: 'leaflet-tilelayer',
+	behaviors: [leafletMap.LeafletILayer, leafletMap.LeafletTileLayer],
+	properties: {
+		url: {
+			type: String,
+			value: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+			observer: '_urlChanged'
 		},
-		// unloadInvisibleTiles updateWhenIdle bounds
 		
-		_containerChanged: function() {
-			if (this.container) {
-				var layer = L.tileLayer(this.url, {
-					attribution: Polymer.dom(this).innerHTML + this.attribution,
-					minZoom: this.minZoom,
-					maxZoom: this.maxZoom,
-					maxNativeZoom: this.maxNativeZoom,
-					tileSize: this.tileSize,
-					subdomains: this.subdomains,
-					errorTileUrl: this.errorTileUrl,
-					tms: this.tms,
-					continuousWorld: this.continuousWorld,
-					noWrap: this.noWrap,
-					zoomOffset: this.zoomOffset,
-					zoomReverse: this.zoomReverse,
-					opacity: this.opacity,
-					zIndex: this.zIndex,
-					detectRetina: this.detectRetina,
-					reuseTiles: this.reuseTiles,
-				});
-				this.layer = layer
-
-				// forward events
-				layer.on('loading load tileloadstart tileload tileunload', function(e) {
-					this.fire(e.type, e);
-				}, this);
-				this.layer.addTo(this.container);
-			}
-		},
-
-		_opacityChanged: function() {
-			if (this.layer) {
-				this.layer.setOpacity(this.opacity);
-			}
-		},
-
-		_zIndexChanged: function() {
-			if (this.layer) {
-				this.layer.setZIndex(this.zIndex);
-			}
-		},
-
-		_urlChanged: function() {
-			if (this.layer) {
-				this.layer.setUrl(this.url);
-			}
-		},
-
-		detached: function() {
-			if (this.container && this.layer) {
-				this.container.removeLayer(this.layer);
-			}
+		container: {
+			type: Object,
+			observer: '_containerChanged'
 		}
-	});
+	},
+	
+	_containerChanged: function() {
+		if (this.container) {
+			var layer = L.tileLayer(this.url, {
+				attribution: Polymer.dom(this).innerHTML + this.attribution,
+				minZoom: this.minZoom,
+				maxZoom: this.maxZoom,
+				maxNativeZoom: this.maxNativeZoom,
+				tileSize: this.tileSize,
+				subdomains: this.subdomains,
+				errorTileUrl: this.errorTileUrl,
+				tms: this.tms,
+				continuousWorld: this.continuousWorld,
+				noWrap: this.noWrap,
+				zoomOffset: this.zoomOffset,
+				zoomReverse: this.zoomReverse,
+				opacity: this.opacity,
+				zIndex: this.zIndex,
+				detectRetina: this.detectRetina,
+				reuseTiles: this.reuseTiles,
+			});
+			this.layer = layer
+
+			// forward events
+			layer.on('loading load tileloadstart tileload tileunload', function(e) {
+				this.fire(e.type, e);
+			}, this);
+			this.layer.addTo(this.container);
+		}
+	},
+	
+	_urlChanged: function() {
+		if (this.layer) {
+			this.layer.setUrl(this.url);
+		}
+	}
+});
 </script>
 
 
@@ -393,10 +401,8 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 
 	Polymer({
 		is: 'leaflet-tilelayer-wms',
-		behaviors: [LeafletILayer],
+		behaviors: [leafletMap.LeafletILayer, leafletMap.LeafletTileLayer],
 
-		// TODO09 Inherit <leaflet-tilelayer>
-		
 		properties: {
 
 			url: {
@@ -516,11 +522,6 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 			}
 		},
 
-		detached: function() {
-			if (this.container && this.layer) {
-				this.container.removeLayer(this.layer);
-			}
-		}
 	});
 </script>
 -
