@@ -711,8 +711,13 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 							iconOption = new L.Icon.Default();
 						}
 					}
-				} else {
-					iconOption = this.icon;
+				}
+				if (typeof this.icon == "object") {
+					if (this.icon.options) {
+						iconOption = this.icon;
+					} else {
+						iconOption = L.icon(this.icon);
+					}
 				}
 			}
 			if (!iconOption) {

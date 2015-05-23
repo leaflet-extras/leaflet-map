@@ -188,13 +188,11 @@
 	<leaflet-marker latitude="51.5" longitude="-0.10" title="Icon element reference" icon="myicon">
 	</leaflet-marker>
 
-<!--TODO09
 	<leaflet-marker latitude="51.5" longitude="-0.09" title="Icon json" icon='{"iconUrl": "https://stendhalgame.org/images/mapmarker/dungeon.png"}'> 
 	</leaflet-marker>
 
 	<leaflet-marker id="icon-reference" latitude="51.5" longitude="-0.08" title="Icon L.icon()"> 
 	</leaflet-marker>
--->
 </leaflet-map>
 
 <script>
@@ -409,7 +407,7 @@ document.addEventListener("load", function() {
 
  
 <div id="eventout">Center: 51.505, -0.091</div>
-<leaflet-map id="eventmap" latitude="51.505" longitude="-0.091" zoom="13"> </leaflet-map>
+<leaflet-map id="eventmap" latitude="51.505" longitude="-0.091" zoom="8"> </leaflet-map>
 
 <script>
 var map = document.getElementById("eventmap");
@@ -423,7 +421,7 @@ map.addEventListener("moveend", function(e) {
 
 <pre class="html"><code>
 &lt;<span class="i">div</span> <span class="a">id</span>="<span class="v">eventout</span>"&gt;Center: 51.505, -0.091&lt;/<span class="i">div</span>&gt;
-&lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.091</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt; &lt;/<span class="i">leaflet-map</span>&gt;
+&lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.091</span>" <span class="a">zoom</span>="<span class="v">8</span>"&gt; &lt;/<span class="i">leaflet-map</span>&gt;
 
 &lt;<span class="i">script</span>&gt;
     var map = document.getElementById("eventmap");
