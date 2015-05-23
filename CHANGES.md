@@ -1,3 +1,8 @@
+v0.4.0
+======
+* breaking: camelCase attributes renamed to all lower case with hypthen
+* breaking: <leaflet-ilayer> converted to Behavior
+
 v0.3.2
 ======
 * fixed syntax error in event handler for position updates of markers (thanks to bezineb5)
