@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="../webcomponentsjs/webcomponents-lite.min.js"></script>
 		<link rel="import" href="demo-header.html">
 		<link rel="import" href="leaflet-map.html">
+		<link rel="import" href="demo-advanced.html">
 
 		<style type="text/css">
 			body {
@@ -84,7 +85,7 @@
 			}
 		</style>
 	</head>
-	<body unresolvedX>
+	<body>
 	
 
 <demo-header></demo-header>
@@ -104,7 +105,7 @@
 <li> <a class="nav" href="demo.html#vector">leaflet-circle</a> (L.cirlce)
 <li> <a class="nav" href="demo.html#vector">leaflet-polyline</a> (L.polyline)
 <li> <a class="nav" href="demo.html#vector">leaflet-polygon</a> (L.polygon)
-<li> <a class="nav" href="demo-advanced.html#databinding">leaflet-geolocation</a> (part of L.map)
+<li> <a class="nav" href="demo.html#databinding">leaflet-geolocation</a> (part of L.map)
 <li> <a class="nav" href="demo.html#scale">leaflet-scale-control</a> (L.control.scale)
 </ul>
 
@@ -461,16 +462,86 @@ metric and imperial units.</p>
 
 
 
-
-
-
-
 <h2 id="databinding">Data binding and custom components</h2>
 
 <p>Data binding can be used to create markers based on dynamic information, e. g. from the rows of a spreadsheet. 
-In this example a new component is created which listens for location tracking information and sets a marker accordingly.</p>
+In this example a new component is created which listens for location tracking information and sets a marker accordingly.
+A circle is used to indicate the range of uncertainty.</p>
 
-<a href="demo-advanced.html">Advanced demo of a custom component which uses data binding and geo location.</a>
+
+<button id="advanceddemo-button">Show advanced demo</button>
+<div id="advanceddemo-target"></div>
+
+<template id=advanceddemo-template>
+<geolocation-sample> </geolocation-sample>
+
+
+<pre class="html"><code>
+<span class="c">&lt;-- define geolocation-sample component --&gt;</span>
+&lt;<span class="i">dom-module</span> <span class="a">id</span>="<span class="v">geolocation-sample</span>"&gt;
+  &lt;<span class="i">template</span>&gt;
+    &lt;<span class="i">style</span>&gt;
+       :host { display: block; overflow: hidden} 
+       :host leaflet-map {height:18em; width:99%; border: none}
+    &lt;/<span class="i">style</span>&gt;
+
+    <span class="c">&lt;-- information text above the map --&gt;</span>
+    &lt;<span class="i">template</span> <span class="a">is</span>="<span class="v">dom-if</span>" <span class="a">if</span>="<span class="v">{{!latitude}}</span>"&gt;
+        Location Unknown.
+    &lt;/<span class="i">template</span>&gt;
+
+    &lt;<span class="i">template</span> <span class="a">is</span>="<span class="v">dom-if</span>" <span class="a">if</span>="<span class="v">{{latitude}}</span>"&gt;
+        lat: &lt;<span class="i">span</span>&gt;{{latitude}}&lt;/<span class="i">span</span>&gt;, 
+        lng: &lt;<span class="i">span</span>&gt;{{longitude}}&lt;/<span class="i">span</span>&gt;, 
+        accuracy: &lt;<span class="i">span</span>&gt;{{accuracy}}&lt;/<span class="i">span</span>&gt; meter
+    &lt;/<span class="i">template</span>&gt;
+
+
+    &lt;<span class="i">leaflet-map</span>&gt;
+
+      <span class="c">&lt;-- request geo-location information --&gt;</span>
+      &lt;<span class="i">leaflet-geolocation</span> <span class="a">enable-high-accuracy</span>
+        <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>" <span class="a">accuracy</span>="<span class="v">{{accuracy}}</span>"
+      &lt;/<span class="i">leaflet-geolocation</span>&gt;
+
+
+      <span class="c">&lt;-- add marker, if location information is available --&gt;</span>
+      &lt;<span class="i">template</span> <span class="a">is</span>="<span class="v">dom-if</span>" <span class="a">if</span>="<span class="v">{{latitude}}</span>"&gt;
+        &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>"&gt;
+            I am within &lt;<span class="i">span</span>&gt;{{accuracy}}&lt;/<span class="i">span</span>&gt; meters of this location.
+        &lt;/<span class="i">leaflet-marker</span>&gt;
+
+        &lt;<span class="i">leaflet-circle</span> <span class="a">latitude</span>="<span class="v">{{latitude}}</span>" <span class="a">longitude</span>="<span class="v">{{longitude}}</span>"
+          <span class="a">radius</span>="<span class="v">{{accuracy}}</span>"<span class="a">color</span>="<span class="v">#d00</span>"&gt;
+        &lt;/<span class="i">leaflet-circle</span>&gt;
+
+      &lt;/<span class="i">template</span>&gt;
+
+    &lt;/<span class="i">leaflet-map</span>&gt;
+
+  &lt;/<span class="i">template</span>&gt;
+&lt;/<span class="i">dom-module</span>&gt;
+
+&lt;<span class="i">script</span>&gt;
+  Polymer({
+    is: "geolocation-sample"
+  });
+&lt;/<span class="i">script</span>&gt;
+
+<span class="c">&lt;-- use our component --&gt;</span>
+&lt;<span class="i">geolocation-sample</span>&gt; &lt;/<span class="i">geolocation-sample</span>&gt;
+
+</code></pre>
+</template>
+
+<script>
+document.getElementById("advanceddemo-button").addEventListener("click", function() {
+	document.getElementById("advanceddemo-button").style.display = "none";
+	var clone = document.importNode(document.getElementById("advanceddemo-template").content, true);
+	document.getElementById("advanceddemo-target").appendChild(clone);
+});
+</script>
+
 </div>
 	</body>
 </html>
