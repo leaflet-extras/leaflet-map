@@ -1,8 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="demo-header" noscript>
-<template>
-	<style>
+<dom-module id="demo-header">
+<style>
 		header {
 			max-width: 790px;
 			background-color: #FFF;
@@ -25,8 +24,8 @@
 		.githubbutton {
 			border-left: 1px solid #AAA;
 		}
-	</style>
-		
+</style>
+<template>
 	<header>
         <h1>&lt;leaflet-map&gt;</h1>
         <p>Leaflet map as web component.</p>
@@ -39,6 +38,10 @@
 			<a class="menubutton githubbutton" href="https://github.com/nhnb/leaflet-map/">Github</a>
 		</div>
 	</header>		
-		
 </template>
-</polymer-element>
+</dom-module>
+<script>
+	Polymer({
+		is: 'demo-header'
+	});
+</script>
