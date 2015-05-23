@@ -21,59 +21,82 @@ Scale control that shows the scale of the current center of screen in metric (m/
 @homepage https://nhnb.github.io/leaflet-map/
 -->
 
-<polymer-element name="leaflet-scale-control" attributes="position maxWidth metric imperial updateWhenIdle">
+<dom-module id="leaflet-scale-control">
+	<style>
+		:host {display: none;}
+	</style>
 	<template>
-		<style>
-			:host {
-				display: none;
-			}
-		</style>
 	</template>
 	<script>
 	"use strict";
 
-	Polymer('leaflet-scale-control', {
-		/**
-		 * The `position` attribute sets the position of the control (one of the map corners). See control positions.
-		 * 
-		 * @attribute position
-		 * @type string
-		 */
-		position: "bottomleft",
+	Polymer({
+		is: 'leaflet-scale-control',
 
-		/**
-		 * The `maxWidth` attribute sets the maximum width of the control in pixels. The width is set dynamically to show round values (e.g. 100, 200, 500).
-		 * 
-		 * @attribute maxWidth
-		 * @type number
-		 */
-		maxWidth: 100,
+		properties: {
 
-		/**
-		 * The `metric` attribute sets whether to show the metric scale line (m/km).
-		 * 
-		 * @attribute metric
-		 * @type boolean
-		 */
-		metric: true,
+			/**
+			 * The `position` attribute sets the position of the control (one of the map corners). See control positions.
+			 * 
+			 * @attribute position
+			 * @type string
+			 */
+			position: {
+				type: String,
+				value: "bottomleft"
+			},
+	
+			/**
+			 * The `maxWidth` attribute sets the maximum width of the control in pixels. The width is set dynamically to show round values (e.g. 100, 200, 500).
+			 * 
+			 * @attribute maxWidth
+			 * @type number
+			 */
+			maxWidth: {
+				type: Number,
+				value: 100
+			},
+	
+			/**
+			 * The `metric` attribute sets whether to show the metric scale line (m/km).
+			 * 
+			 * @attribute metric
+			 * @type boolean
+			 */
+			metric: {
+				type: Boolean,
+				value: true
+			},
+	
+			/**
+			 * The `imperial` attribute sets whether show the imperial scale line (mi/ft).
+			 * 
+			 * @attribute imperial 
+			 * @type boolean
+			 */
+			imperial: {
+				type: Boolean,
+				value: true
+			},
+	
+			/**
+			 * The `updateWhenIdle` attribute sets whether the control is updated on moveend, otherwise it's always up-to-date (updated on move).
+			 * 
+			 * @attribute updateWhenIdle
+			 * @type boolean
+			 */
+			updateWhenIdle: {
+				type: Boolean,
+				value: false
+			},
 
-		/**
-		 * The `imperial` attribute sets whether show the imperial scale line (mi/ft).
-		 * 
-		 * @attribute imperial 
-		 * @type boolean
-		 */
-		imperial: true,
+			container: {
+				type: Object,
+				observer: '_containerChanged'
+			}
+		},
 
-		/**
-		 * The `updateWhenIdle` attribute sets whether the control is updated on moveend, otherwise it's always up-to-date (updated on move).
-		 * 
-		 * @attribute updateWhenIdle
-		 * @type boolean
-		 */
-		updateWhenIdle: false,
-
-		containerChanged: function() {
+		_containerChanged: function() {
 			if (this.container) {
 				var control = L.control.scale({
 					 position: this.position,
@@ -94,4 +117,4 @@ Scale control that shows the scale of the current center of screen in metric (m/
 		}
 	});
 	</script>
-</polymer-element>
+</dom-module>
