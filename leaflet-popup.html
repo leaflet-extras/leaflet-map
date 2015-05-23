@@ -1,0 +1,26 @@
+<script>
+window.LeafletPopupContent = {
+	attached: function() {
+		if (MutationObserver && !this.observer_) {
+			this.observer_ = new MutationObserver(this.updatePopupContent.bind(this));
+			this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
+		}
+	},
+
+	updatePopupContent: function() {
+		if (!this.feature) {
+			return;
+		}
+		this.feature.unbindPopup();
+		if (Polymer.dom(this).innerHTML.trim()) {
+			this.feature.bindPopup(Polymer.dom(this).innerHTML);
+		}
+	},
+	
+	detached: function() {
+		if (this.observer_) {
+			this.observer_.disconnect();
+		}
+	}
+}
+</script>
