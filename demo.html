@@ -1,12 +1,14 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>leaflet-map web-component demo</title>
-		<script src="../platform/platform.js"></script>
-		<link rel="import" href="leaflet-map.html">
+		<script type="text/javascript" src="../webcomponentsjs/webcomponents-lite.min.js"></script>
 		<link rel="import" href="demo-header.html">
+		<link rel="import" href="leaflet-map.html">
 
-		<style>
+		<style type="text/css">
 			body {
 				height: 100%;
 				margin: 0;
@@ -82,7 +84,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body unresolvedX>
 	
 
 <demo-header></demo-header>
@@ -180,17 +182,18 @@
 
 <leaflet-map latitude="51.505" longitude="-0.09" zoom="13">
 
-	<leaflet-icon id="myicon" iconUrl="https://stendhalgame.org/images/mapmarker/me.png"></leaflet-icon>
+	<leaflet-icon id="myicon" icon-url="https://stendhalgame.org/images/mapmarker/me.png"></leaflet-icon>
 
 	<leaflet-marker latitude="51.5" longitude="-0.10" title="Icon element reference" icon="myicon">
 	</leaflet-marker>
-	
+
+<!--TODO09
 	<leaflet-marker latitude="51.5" longitude="-0.09" title="Icon json" icon='{"iconUrl": "https://stendhalgame.org/images/mapmarker/dungeon.png"}'> 
 	</leaflet-marker>
 
 	<leaflet-marker id="icon-reference" latitude="51.5" longitude="-0.08" title="Icon L.icon()"> 
 	</leaflet-marker>
-
+-->
 </leaflet-map>
 
 <script>
@@ -254,10 +257,12 @@ document.addEventListener("load", function() {
 		<leaflet-point longitude="77.5700" latitude="12.9700"></leaflet-point>
 		<leaflet-point longitude="77.6034" latitude="13.0001"></leaflet-point>
 		<leaflet-point longitude="77.6006" latitude="12.9547"></leaflet-point>
+		Hi, I am a <b>polygon</b>.
 	</leaflet-polygon>
 
 	<leaflet-circle longitude="77.58" latitude="12.9300"
 		radius="2000" color="#0a0" fillColor="#aa0" fillopacity="0.5" fill="true">
+		Hi, I am a <b>circle</b>.
 	</leaflet-circle>
 
 	<leaflet-polyline>
@@ -275,26 +280,30 @@ document.addEventListener("load", function() {
 
 
 <pre class="html"><code>
-&lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">77.6</span>" <span class="a">longitude</span>="<span class="v">12.95</span>" <span class="a">zoom</span>="<span class="v">12</span>"&gt;
+&lt;<span class="i">leaflet-map</span> <span class="a">longitude</span>="<span class="v">77.6</span>" <span class="a">latitude</span>="<span class="v">12.95</span>" <span class="a">zoom</span>="<span class="v">12</span>"&gt;
 
   &lt;<span class="i">leaflet-polygon</span> <span class="a">color</span>="<span class="v">#f00</span>"&gt;
-    &lt;<span class="i">leaflet-point</span> <span class="a">latitude</span>="<span class="v">77.5700</span>" <span class="a">longitude</span>="<span class="v">12.9700</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
-    &lt;<span class="i">leaflet-point</span> <span class="a">latitude</span>="<span class="v">77.6034</span>" <span class="a">longitude</span>="<span class="v">13.0001</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
-    &lt;<span class="i">leaflet-point</span> <span class="a">latitude</span>="<span class="v">77.6006</span>" <span class="a">longitude</span>="<span class="v">12.9547</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
+    &lt;<span class="i">leaflet-point</span> <span class="a">longitude</span>="<span class="v">77.5700</span>" <span class="a">latitude</span>="<span class="v">12.9700</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
+    &lt;<span class="i">leaflet-point</span> <span class="a">longitude</span>="<span class="v">77.6034</span>" <span class="a">latitude</span>="<span class="v">13.0001</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
+    &lt;<span class="i">leaflet-point</span> <span class="a">longitude</span>="<span class="v">77.6006</span>" <span class="a">latitude</span>="<span class="v">12.9547</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
+
+     Hi, I am a &lt;<span class="i">b</span>&gt;polygon&lt;/<span class="i">b</span>&gt;.
   &lt;/<span class="i">leaflet-polygon</span>&gt;
 
-  &lt;<span class="i">leaflet-circle</span> <span class="a">latitude</span>="<span class="v">77.58</span>" <span class="a">longitude</span>="<span class="v">12.93</span>"
+  &lt;<span class="i">leaflet-circle</span> <span class="a">longitude</span>="<span class="v">77.58</span>" <span class="a">latitude</span>="<span class="v">12.93</span>"
      <span class="a">radius</span>="<span class="v">2000</span>" <span class="a">color</span>="<span class="v">#0a0</span>" <span class="a">fillColor</span>="<span class="v">#aa0</span>" <span class="a">fillOpacity</span>="<span class="v">0.5</span>" <span class="a">fill</span>="<span class="v">true</span>"
+     
+     Hi, I am a &lt;<span class="i">b</span>&gt;circle&lt;/<span class="i">b</span>&gt;.
   &lt;/<span class="i">leaflet-circle</span>&gt;
 
   &lt;<span class="i">leaflet-polyline</span>&gt;
-    &lt;<span class="i">leaflet-point</span> <span class="a">latitude</span>="<span class="v">77.6400</span>" <span class="a">longitude</span>="<span class="v">12.9100</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
-    &lt;<span class="i">leaflet-point</span> <span class="a">latitude</span>="<span class="v">77.6229</span>" <span class="a">longitude</span>="<span class="v">12.9259</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
-    &lt;<span class="i">leaflet-point</span> <span class="a">latitude</span>="<span class="v">77.6499</span>" <span class="a">longitude</span>="<span class="v">12.9699</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
-    &lt;<span class="i">leaflet-point</span> <span class="a">latitude</span>="<span class="v">77.6119</span>" <span class="a">longitude</span>="<span class="v">12.9738</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
+    &lt;<span class="i">leaflet-point</span> <span class="a">longitude</span>="<span class="v">77.6400</span>" <span class="a">latitude</span>="<span class="v">12.9100</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
+    &lt;<span class="i">leaflet-point</span> <span class="a">longitude</span>="<span class="v">77.6229</span>" <span class="a">latitude</span>="<span class="v">12.9259</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
+    &lt;<span class="i">leaflet-point</span> <span class="a">longitude</span>="<span class="v">77.6499</span>" <span class="a">latitude</span>="<span class="v">12.9699</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
+    &lt;<span class="i">leaflet-point</span> <span class="a">longitude</span>="<span class="v">77.6119</span>" <span class="a">latitude</span>="<span class="v">12.9738</span>"&gt; &lt;/<span class="i">leaflet-point</span>&gt;
   &lt;/<span class="i">leaflet-polyline</span>&gt;
 
-  &lt;<span class="i">leaflet-circle</span> <span class="a">latitude</span>="<span class="v">77.64</span>" <span class="a">longitude</span>="<span class="v">12.93</span>"
+  &lt;<span class="i">leaflet-circle</span> <span class="a">longitude</span>="<span class="v">77.64</span>" <span class="a">latitude</span>="<span class="v">12.93</span>"
      <span class="a">radius</span>="<span class="v">500</span>" <span class="a">color</span>="<span class="v">#0a0</span>" <span class="a">fillColor</span>="<span class="v">#077</span>"&gt;
   &lt;/<span class="i">leaflet-circle</span>&gt;
 
@@ -312,10 +321,10 @@ document.addEventListener("load", function() {
 <p>Custom tile layers, for example from online games can be defined using the leaflet-tilelayer element. If there is no explicit tilelayer defined, a default one will be used as shown in previous examples.</p>
 
 
-<leaflet-map latitude="78.8" longitude="-96" zoom="5" maxZoom="6">
+<leaflet-map latitude="78.8" longitude="-96" zoom="5" min-zoom="2" max-zoom="6">
 	<leaflet-tilelayer 
 		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
-		minZoom="2" maxZoom="6" noWrap>
+		min-zoom="2" max-zoom="6" no-wrap>
 
 			Map source: <a href="https://stendhalgame.org">Stendhal MMORPG</a>
 
@@ -325,11 +334,11 @@ document.addEventListener("load", function() {
 
 
 <pre class="html"><code>
-&lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>" <span class="a">maxZoom</span>="<span class="v">6</span>"&gt;
+&lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>" <span class="a">max-zoom</span>="<span class="v">6</span>"&gt;
 
     &lt;<span class="i">leaflet-tilelayer</span> 
         <span class="a">url</span>="<span class="v">https://stendhalgame.org/map/3/{z}-{x}-{y}.png</span>"
-        <span class="a">minZoom</span>="<span class="v">2</span>" <span class="a">maxZoom</span>="<span class="v">6</span>" <span class="a">noWrap</span>&gt;
+        <span class="a">min-zoom</span>="<span class="v">2</span>" <span class="a">max-zoom</span>="<span class="v">6</span>" <span class="a">noWrap</span>&gt;
 
             Map source: &lt;<span class="i">a</span> <span class="a">href</span>="<span class="v">https://stendhalgame.org</span>"&gt;Stendhal MMORPG&lt;/<span class="i">a</span>&gt;
 
@@ -350,7 +359,7 @@ document.addEventListener("load", function() {
 <leaflet-map latitude="40" longitude="-85" zoom="4">
 
 	<leaflet-tilelayer 
-		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom="18">
+		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" max-zoom="18">
 			Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, 
 			<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
 			Imagery &copy; <a href="http://mapbox.com">Mapbox</a>
@@ -371,7 +380,7 @@ document.addEventListener("load", function() {
 &lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">40</span>" <span class="a">longitude</span>="<span class="v">-85</span>" <span class="a">zoom</span>="<span class="v">4</span>"&gt;
 
     &lt;<span class="i">leaflet-tilelayer</span> 
-        <span class="a">url</span>="<span class="v">https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</span>" <span class="a">maxZoom</span>="<span class="v">19</span>"&gt;
+        <span class="a">url</span>="<span class="v">https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</span>" <span class="a">max-zoom</span>="<span class="v">19</span>"&gt;
           Map data &copy; &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt; contr., 
           &lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;CC-BY-SA&lt;/a&gt;, 
           Imagery &copy; &lt;a href="http://mapbox.com">Mapbox&lt;/a&gt;

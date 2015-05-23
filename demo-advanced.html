@@ -1,12 +1,14 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Advanced demo of leaflet-map web-component</title>
-		<script src="../platform/platform.js"></script>
-		<link rel="import" href="leaflet-map.html">
+		<script type="text/javascript" src="../webcomponentsjs/webcomponents-lite.min.js"></script>
 		<link rel="import" href="demo-header.html">
+		<link rel="import" href="leaflet-map.html">
 
-		<style>
+		<style type="text/css">
 			body {
 				height: 100%;
 				margin: 1em;
@@ -82,7 +84,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body unresolved>
 
 
 <demo-header></demo-header>
@@ -114,7 +116,7 @@ In this example a new component is created which listens for location tracking i
 A circle is used to indicate the range of uncertainty.</p>
 
 
-<polymer-element name="geolocation-sample" noscript>
+<dom-module id="geolocation-sample">
 	<template>
 		<style>
 			:host { display: block; overflow: hidden} 
@@ -146,7 +148,12 @@ A circle is used to indicate the range of uncertainty.</p>
 		</leaflet-map>
 
 	</template>
-</polymer-element>
+</dom-module>
+<script>
+Polymer({
+	is: "geolocation-sample"
+});
+</script>
 
 
 <geolocation-sample> </geolocation-sample>
@@ -154,7 +161,7 @@ A circle is used to indicate the range of uncertainty.</p>
 
 <pre class="html"><code>
 <span class="c">&lt;-- define geolocation-sample component --&gt;</span>
-&lt;<span class="i">polymer-element</span> <span class="a">name</span>="<span class="v">geolocation-sample</span>" <span class="a">noscript</span>&gt;
+&lt;<span class="i">dom-module</span> <span class="a">id</span>="<span class="v">geolocation-sample</span>"&gt;
   &lt;<span class="i">template</span>&gt;
     &lt;<span class="i">style</span>&gt;
        :host { display: block; overflow: hidden} 
@@ -194,7 +201,13 @@ A circle is used to indicate the range of uncertainty.</p>
     &lt;/<span class="i">leaflet-map</span>&gt;
 
   &lt;/<span class="i">template</span>&gt;
-&lt;/<span class="i">polymer-element</span>&gt;
+&lt;/<span class="i">dom-module</span>&gt;
+
+&lt;<span class="i">script</span>&gt;
+  Polymer({
+    is: "geolocation-sample"
+  });
+&lt;/<span class="i">script</span>&gt;
 
 <span class="c">&lt;-- use our component --&gt;</span>
 &lt;<span class="i">geolocation-sample</span>&gt; &lt;/<span class="i">geolocation-sample</span>&gt;
