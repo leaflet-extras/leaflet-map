@@ -1,7 +1,7 @@
-v0.4.0
+v0.9.0
 ======
-* breaking: camelCase attributes renamed to all lower case with hypthen
-* breaking: <leaflet-ilayer> converted to Behavior
+* breaking change: based on polymer 0.9, please check https://www.polymer-project.org/0.9/docs/migration.html
+* breaking change: camelCase attributes renamed to all lower case with hyphen (e.g. maxZoom renamed to max-zoom)
 
 v0.3.2
 ======
