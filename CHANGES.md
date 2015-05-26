@@ -1,3 +1,8 @@
+master
+======
+* added geojson support (thanks to Rob Beers)
+* fixed marker.zIndexOffset (thanks to Jason Shortall)
+
 v0.3.2
 ======
 * fixed syntax error in event handler for position updates of markers (thanks to bezineb5)
