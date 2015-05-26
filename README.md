@@ -32,7 +32,7 @@ Import the main component and start creating your map:
 
 ```html
   <head>
-    <script src="../platform/platform.js"></script>
+	<script type="text/javascript" src="../webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="leaflet-map.html">
     <style>
       html, body {
@@ -64,22 +64,23 @@ Although leaflet-map is still under heavy development, it is already fully usabl
 Lists of demos: 
 
 * [leaflet-map](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#view) (L.map)
-* [leaflet-circle](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.circle) (since 0.3.0)
-* [leaflet-geolocation](https://nhnb.github.io/leaflet-map/leaflet-map/demo-advanced.html#databinding) (part of L.map) (since 0.0.2)
 * [leaflet-marker](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#marker) (L.marker)
 * [leaflet-icon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.icon)
 * [leaflet-divicon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.divicon) (since 0.0.1)
+* [leaflet-circle](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.circle) (since 0.3.0)
 * [leaflet-polygon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.polygon) (since 0.3.0)
 * [leaflet-polyline](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.polyline) (since 0.3.0)
-* [leaflet-scale-control](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#scale) (L.control.scale) (since 0.2.0)
 * [leaflet-tilelayer](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#tilelayer) (L.tileLayer)
 * [leaflet-tilelayer-wms](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#layerwms) (L.tileLayer.wms)  (since 0.0.2)
+* [leaflet-scale-control](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#scale) (L.control.scale) (since 0.2.0)
+* [leaflet-geojson](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#geojson) (since 0.4.0)
+* [leaflet-geolocation](https://nhnb.github.io/leaflet-map/leaflet-map/demo-advanced.html#databinding) (part of L.map) (since 0.0.2)
 
 Please have a look at the [change log](https://github.com/nhnb/leaflet-map/blob/master/CHANGES.md), for recent developments.
 
 ## Dependencies
 
-leaflet-map depends on Polymer in ../platform and ../polymer and it expects an installation of leaflet in ../leaflet.
+leaflet-map depends on webcomponentsjs in ../webcomponentsjs, Polymer in ../polymer and leaflet in ../leaflet. If you use bower, those will be installed automatically at the right locations.
 
 Please note that the pages have to be accessed via a webserver. file://-urls are not supported.
 
@@ -88,7 +89,7 @@ Please note that the pages have to be accessed via a webserver. file://-urls are
 
 Child elements like markers or layers will be initialized by the surrounding container (the map or a layer)
 by setting a "container" javascript property.
-Therefore the child element should define a containerChanged method and use that as initializer. 
+Therefore the child element should define a _containerChanged method and use that as initializer. 
 Don't forget to define a detached method to support removal of elements. The leaflet-marker element is a good template.  
 
 
@@ -101,7 +102,7 @@ especially the api documentation, have been copied into leaflet-map files.
 * [Polymer](https://github.com/polymer/polymer/blob/master/LICENSE)
 
 
-Copyright (c) 2014
+Copyright (c) 2014-2015
 Hendrik Brummermann, Prateek Saxena
 
 All rights reserved.
