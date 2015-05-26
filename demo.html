@@ -458,6 +458,13 @@ metric and imperial units.</p>
 
 <template id="geojson-template" is="auto-binding">
 	<leaflet-map longitude="-104.989" latitude="39.746" zoom="13">
+		<leaflet-tilelayer 
+			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom="18">
+				Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, 
+				<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
+				Imagery &copy; <a href="http://mapbox.com">Mapbox</a>
+		</leaflet-tilelayer>
+		
 		<leaflet-geojson data="{{data}}"></leaflet-geojson>
 	</leaflet-map>
 </template>
