@@ -2,6 +2,8 @@ v0.9.0
 ======
 * breaking change: based on polymer 0.9, please check https://www.polymer-project.org/0.9/docs/migration.html
 * breaking change: camelCase attributes renamed to all lower case with hyphen (e.g. maxZoom renamed to max-zoom)
+* added geojson support (thanks to Rob Beers)
+* fixed marker.zIndexOffset (thanks to Jason Shortall)
 
 v0.3.2
 ======

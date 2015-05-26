@@ -105,8 +105,9 @@
 <li> <a class="nav" href="demo.html#vector">leaflet-circle</a> (L.cirlce)
 <li> <a class="nav" href="demo.html#vector">leaflet-polyline</a> (L.polyline)
 <li> <a class="nav" href="demo.html#vector">leaflet-polygon</a> (L.polygon)
-<li> <a class="nav" href="demo.html#databinding">leaflet-geolocation</a> (part of L.map)
 <li> <a class="nav" href="demo.html#scale">leaflet-scale-control</a> (L.control.scale)
+<li> <a class="nav" href="demo.html#geojson">leaflet-geojson</a>
+<li> <a class="nav" href="demo.html#databinding">leaflet-geolocation</a> (part of L.map)
 </ul>
 
 
@@ -459,6 +460,61 @@ metric and imperial units.</p>
 </code></pre>
 
 
+
+<h2 id="geojson">GeoJSON</h2>
+
+<p>Example of GeoJSON Layer</p>
+
+	<leaflet-map longitude="102.304" latitude="0.3516" zoom="6">
+		<leaflet-tilelayer 
+			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom="18">
+				Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, 
+				<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
+				Imagery &copy; <a href="http://mapbox.com">Mapbox</a>
+		</leaflet-tilelayer>
+		
+		<leaflet-geojson id="leafletgeojson"></leaflet-geojson>
+	</leaflet-map>
+
+<script>
+	// example from http://geojson.org/geojson-spec.html
+	var t = document.querySelector('#leafletgeojson');
+	t.data = 
+			{ "type": "FeatureCollection",
+			    "features": [
+			      { "type": "Feature",
+			        "geometry": {"type": "Point", "coordinates": [102.0, 0.5]},
+			        "properties": {"prop0": "value0"}
+			        },
+			      { "type": "Feature",
+			        "geometry": {
+			          "type": "LineString",
+			          "coordinates": [
+			            [102.0, 0.0], [103.0, 1.0], [104.0, 0.0], [105.0, 1.0]
+			            ]
+			          },
+			        "properties": {
+			          "prop0": "value0",
+			          "prop1": 0.0
+			          }
+			        },
+			      { "type": "Feature",
+			         "geometry": {
+			           "type": "Polygon",
+			           "coordinates": [
+			             [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0],
+			               [100.0, 1.0], [100.0, 0.0] ]
+			             ]
+			         },
+			         "properties": {
+			           "prop0": "value0",
+			           "prop1": {"this": "that"}
+			           }
+			         }
+			       ]
+			     
+	};
+</script>
 
 <h2 id="databinding">Data binding and custom components</h2>
 
