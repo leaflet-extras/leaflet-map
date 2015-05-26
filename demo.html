@@ -452,9 +452,44 @@ metric and imperial units.</p>
 
 
 
+<h2 id="geojson">GeoJSON</h2>
 
+<p>Example of GeoJSON Layer</p>
 
+<template id="geojson-template" is="auto-binding">
+	<leaflet-map longitude="-104.989" latitude="39.746" zoom="13">
+		<leaflet-geojson data="{{data}}"></leaflet-geojson>
+	</leaflet-map>
+</template>
 
+<script>
+	var t = document.querySelector('#geojson-template');
+
+	t.data = {
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "Feature",
+				"properties": {
+					"popupContent": "18th & California Light Rail Stop"
+				},
+				"geometry": {
+					"type": "Point",
+					"coordinates": [-104.989, 39.746]
+				}
+			},{
+				"type": "Feature",
+				"properties": {
+					"popupContent": "20th & Welton Light Rail Stop"
+				},
+				"geometry": {
+					"type": "Point",
+					"coordinates": [-104.986, 39.747]
+				}
+			}
+		]
+	};
+</script>
 
 <h2 id="databinding">Data binding and custom components</h2>
 
