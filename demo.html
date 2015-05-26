@@ -457,7 +457,7 @@ metric and imperial units.</p>
 <p>Example of GeoJSON Layer</p>
 
 <template id="geojson-template" is="auto-binding">
-	<leaflet-map longitude="-104.989" latitude="39.746" zoom="13">
+	<leaflet-map longitude="102.304" latitude="0.3516" zoom="6">
 		<leaflet-tilelayer 
 			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom="18">
 				Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, 
@@ -470,31 +470,42 @@ metric and imperial units.</p>
 </template>
 
 <script>
+	// example from http://geojson.org/geojson-spec.html
 	var t = document.querySelector('#geojson-template');
-
-	t.data = {
-		"type": "FeatureCollection",
-		"features": [
-			{
-				"type": "Feature",
-				"properties": {
-					"popupContent": "18th & California Light Rail Stop"
-				},
-				"geometry": {
-					"type": "Point",
-					"coordinates": [-104.989, 39.746]
-				}
-			},{
-				"type": "Feature",
-				"properties": {
-					"popupContent": "20th & Welton Light Rail Stop"
-				},
-				"geometry": {
-					"type": "Point",
-					"coordinates": [-104.986, 39.747]
-				}
-			}
-		]
+	t.data = 
+			{ "type": "FeatureCollection",
+			    "features": [
+			      { "type": "Feature",
+			        "geometry": {"type": "Point", "coordinates": [102.0, 0.5]},
+			        "properties": {"prop0": "value0"}
+			        },
+			      { "type": "Feature",
+			        "geometry": {
+			          "type": "LineString",
+			          "coordinates": [
+			            [102.0, 0.0], [103.0, 1.0], [104.0, 0.0], [105.0, 1.0]
+			            ]
+			          },
+			        "properties": {
+			          "prop0": "value0",
+			          "prop1": 0.0
+			          }
+			        },
+			      { "type": "Feature",
+			         "geometry": {
+			           "type": "Polygon",
+			           "coordinates": [
+			             [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0],
+			               [100.0, 1.0], [100.0, 0.0] ]
+			             ]
+			         },
+			         "properties": {
+			           "prop0": "value0",
+			           "prop1": {"this": "that"}
+			           }
+			         }
+			       ]
+			     
 	};
 </script>
 
