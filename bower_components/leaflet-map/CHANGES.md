@@ -1,3 +1,7 @@
+v1.0.1
+======
+* moved repository to leaflet-extras
+
 v1.0.0
 ======
 * breaking change: based on polymer 1.0, please check https://www.polymer-project.org/1.0/docs/migration.html
