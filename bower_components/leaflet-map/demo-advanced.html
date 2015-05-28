@@ -1,0 +1,40 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="leaflet-map.html">
+
+<dom-module id="geolocation-sample">
+	<template>
+		<style>
+			:host { display: block; overflow: hidden} 
+			:host leaflet-map {height:18em; width:99%; border: none}
+		</style>
+
+		<template is="dom-if" if="{{!latitude}}">
+			Location Unknown.
+		</template>
+		<template is="dom-if" if="{{latitude}}">
+			lat: <span>{{latitude}}</span>, lng: <span>{{longitude}}</span>, accuracy: <span>{{accuracy}}</span> meter
+		</template>
+		<leaflet-map>
+		
+			<leaflet-geolocation enable-high-accuracy
+				latitude="{{latitude}}" longitude="{{longitude}}" accuracy="{{accuracy}}">
+			</leaflet-geolocation>
+
+			<template is="dom-if" if="{{latitude}}">
+				<leaflet-marker latitude="{{latitude}}" longitude="{{longitude}}">
+					I am within <span>{{accuracy}}</span> meters of this location.
+				</leaflet-marker>
+
+				<leaflet-circle latitude="{{latitude}}" longitude="{{longitude}}" radius="{{accuracy}}" color="#d00">
+				</leaflet-circle>
+
+			</template>
+		</leaflet-map>
+
+	</template>
+</dom-module>
+<script>
+Polymer({
+	is: "geolocation-sample"
+});
+</script>

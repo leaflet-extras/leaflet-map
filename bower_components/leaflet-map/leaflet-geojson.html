@@ -1,0 +1,77 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="leaflet-import.html">
+<link rel="import" href="leaflet-layer.html">
+<!--
+A GeoJson layer (<a href="http://leafletjs.com/reference.html#geojson">Leaflet Reference</a>).
+
+##### Example
+
+<leaflet-map longitude="-104.99404" latitude="39.75621" zoom="12">
+	<leaflet-geojson
+		data="{{ {'type': 'Feature', 'properties': {'name': 'Coors Field','popupContent': 'Yo popup'},'geometry': {'type': 'Point','coordinates': [-104.99404, 39.75621]}}}}">
+	</leaflet-geojson>
+</leaflet-map>
+
+
+
+@element leaflet-geojson
+@blurb an element which represents a geojson layer
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+-->
+
+<dom-element name="leaflet-geojson">
+	<template>
+		<style>
+			:host { display: none; }
+		</style>
+	</template>
+</dom-element>
+<script>
+"use strict";
+
+Polymer({
+	is: 'leaflet-geojson',
+	behaviors: [leafletMap.LeafletILayer],
+
+	properties: {
+		/**
+		 * data as geojson object
+		 *
+		 * @property data
+		 * @type Object
+		 */
+		data: {
+			type: Object,
+			observer: "_dataChanged"
+		},
+
+		container: {
+			type: Object,
+			observer: '_containerChanged'
+		}	
+	},
+
+	_containerChanged: function() {
+		if (this.container && this.data) {
+			this._dataChanged();
+		}
+	},
+
+	_dataChanged: function() {
+		if (this.container && this.data) {
+			if (this.feature) {
+				this.container.removeLayer(this.feature);
+			}
+			this.feature = L.geoJson(this.data);
+			this.feature.addTo(this.container);
+		}
+	},
+	
+	detached: function() {
+		if (this.container && this.feature) {
+			this.container.removeLayer(this.feature);
+		}
+	}
+});
+</script>

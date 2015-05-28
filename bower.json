@@ -25,7 +25,10 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "~0.3.3",
-    "leaflet": "~0.7.3"
+    "polymer": "~1.0.0",
+    "leaflet": "~0.7.3",
+    "iron-component-page": "PolymerElements/iron-component-page#~1.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#~1.0.0",
+    "promise-polyfill": "PolymerLabs/promise-polyfill#master"
   }
 }

@@ -2,64 +2,13 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <script src="../platform/platform.js"></script>
-  <link rel="import" href="../polymer/polymer.html">
-  <link rel="import" href="../core-component-page/core-component-page.html">
-  <link rel="import" href="demo-header.html">
-  <style>
-	body {
-		height: 100vh;
-		margin: 0;
-		font-family: sans-serif;
-		background-color: #DDD;
-	}
-
-	#content {
-		min-width: 790px;
-		max-width: 790px;
-		background-color: #FFF;
-		padding: 1em;
-		margin: 0 auto;
-		box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
-	}
-
-	core-doc-viewer /deep/ core-doc-toc,
-	core-doc-viewer::shadow core-doc-toc,
-	core-doc-viewer core-doc-toc {
-		width: 12em;
-	}
-	core-doc-viewer /deep/ .main {
-		padding: 0 1em;
-	}
-
-	core-doc-viewer /deep/ #dropShadow {
-		display: none
-	}
-
-  </style>
+  <script type="text/javascript" src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="bower_components/iron-component-page/iron-component-page.html">
 </head>
-<body unresolved horizontal vertical layout>
+<body>
 
-<demo-header></demo-header>
 
-<div flex id="content">
-
-<core-layout vertical horizontal></core-layout>
-
-<core-doc-viewer core-flex url="leaflet-map.html"
-	sources="[
-		'leaflet-circle.html',
-		'leaflet-control.html',
-		'leaflet-layer-group.html',
-		'leaflet-layer.html',
-		'leaflet-marker.html',
-		'leaflet-path.html',
-		'leaflet-polygon.html',
-		'leaflet-polyline.html'
-	]">
-</core-doc-viewer>
-
-</div>
+<iron-component-page iron-flex src="bower_components/leaflet-map/leaflet-map.html"></iron-component-page>
 
 </body>
 </html>

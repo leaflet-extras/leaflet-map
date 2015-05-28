@@ -1,0 +1,585 @@
+<link rel="import" href="leaflet-core.html">
+<link rel="import" href="leaflet-popup.html">
+
+<!--
+element which defines am abstract leaflet path (<a href="http://leafletjs.com/reference.html#path">Leaflet Reference</a>).
+
+Do not use this element directly.
+
+@element leaflet-path
+@blurb element which defines am abstract leaflet path. Do not use directly. Most options are supported as attributes. 
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+-->
+<script>
+	"use strict";
+
+	var leafletMap = leafletMap || {};
+
+	window.leafletMap.LeafletPath = {
+		/**
+		 * Fired when the user clicks (or taps) the object.
+		 * 
+		 * @event click
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+
+		/**
+		 * Fired when the user double-clicks (or double-taps) the object.
+		 * 
+		 * @event dblclick
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+
+		/**
+		 * Fired when the user pushes the mouse button on the object.
+		 * 
+		 * @event mousedown
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+
+		/**
+		 * Fired when the mouse enters the object.
+		 * 
+		 * @event mouseover
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+		
+		/**
+		 * Fired when the mouse leaves the object.
+		 * 
+		 * @event mouseout
+		 * @type MouseEvent
+		 * @param {LatLng} latlng The geographical point where the mouse event occured.
+		 * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+		 */
+		
+		/**
+		 * Fired when the user right-clicks on the object.
+		 * 
+		 * @event contextmenu
+		 * @type MouseEvent
+		 */
+
+		/**
+		 * Fired when the object is added to the map.
+		 * 
+		 * @event add
+		 * @type 
+		 */
+
+		/**
+		 * Fired when the object is removed from the map.
+		 * 
+		 * @event remove
+		 */
+
+		/**
+		 * Fired when a popup bound to the object is open.
+		 * 
+		 * @event popupopen
+		 * @type PopupEvent
+		 * @param {Popup} popup The popup that was opened or closed.
+		 */
+
+		/**
+		 * Fired when a popup bound to the object is closed.
+		 * 
+		 * @event popupclose
+		 * @type PopupEvent
+		 * @param {Popup} popup The popup that was opened or closed.
+		 */
+
+		properties: {
+			/**
+			 * The attribute `stroke` sets whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.
+			 *
+			 * @attribute stroke
+			 * @type boolean
+			 */
+			stroke: {
+				type: Boolean,
+				value: true
+			},
+
+			/**
+			 * The attribute `color` sets the stroke color.
+			 *
+			 * @attribute color
+			 * @type string
+			 */
+			color: {
+				type: String,
+				value: "#03f"
+			},
+
+			/**
+			 * The attribute `weight` sets the stroke width in pixels.
+			 *
+			 * @attribute weight
+			 * @type number
+			 */
+			weight: {
+				type: Number,
+				value: 5
+			},
+
+			/**
+			 * The attribute `opacity` sets the stroke opacity.
+			 *
+			 * @attribute opacity
+			 * @type number
+			 */
+			opacity: {
+				type: Number,
+				value: 0.5
+			},
+
+			/**
+			 * The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.
+			 *
+			 * @attribute fill
+			 * @type boolean
+			 */
+			fill: {
+				type: Boolean,
+				value: null
+			},
+
+			/**
+			 * The attribute `fill-color` sets the fill color.
+			 *
+			 * @attribute fill-color
+			 * @type string
+			 */
+			fillColor: {
+				type: String,
+				value: null
+			},
+
+			/**
+			 * The attribute `fill-opacity` sets the fill opacity.
+			 *
+			 * @attribute fill-opacity
+			 * @type number
+			 */
+			fillOpacity: {
+				type: Number,
+				value: 0.2
+			},
+
+			/**
+			 * The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).
+			 *
+			 * @attribute dash-array
+			 * @type string
+			 */
+			dashArray: {
+				type: String,
+				value: null
+			},
+
+			/**
+			 * The attribute `line-cap` defines the shape to be used at the end of the stroke.
+			 *
+			 * @attribute line-cap
+			 * @type string
+			 */
+			lineCap: {
+				type: String,
+				value: null
+			}, 
+
+			/**
+			 * The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.
+			 *
+			 * @attribute line-join
+			 * @type string
+			 */
+			lineJoin: {
+				type: String,
+				value: null
+			},
+
+			/**
+			 * The attribute `clickable` sets whether the vector will emit mouse events or will act as a part of the underlying map.
+			 *
+			 * @attribute clickable
+			 * @type boolean
+			 */
+			clickable: {
+				type: Boolean,
+				value: true
+			},
+
+			/**
+			 * The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.
+			 *
+			 * @attribute pointer-events
+			 * @type string
+			 */
+			pointerEvents: {
+				type: String,
+				value: null
+			},
+
+			/**
+			 * The attribute `class-name` sets the custom class name set on an element.
+			 *
+			 * @attribute class-name
+			 * @type string
+			 */
+			className: {
+				type: String,
+				value: ""
+			}
+		},
+
+		getPathOptions: function() {
+			return {
+				stroke: this.stroke,
+				color: this.color,
+				weight: this.weight,
+				opacity: this.opacity,
+				fill: this.fill,
+				fillColor: this.fillColor,
+				fillOpacity: this.fillOpacity,
+				dashArray: this.dashArray,
+				lineCap: this.lineCap,
+				lineJoin: this.lineJoin,
+				clickable: this.clickable,
+				pointerEvents: this.pointerEvents,
+				className: this.className,
+			};
+		}
+	};
+
+	window.leafletMap.LeafletPointContent = {
+		attached: function() {
+			if (MutationObserver && !this.observer_) {
+				this.observer_ = new MutationObserver(this.updatePointContent.bind(this));
+				this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
+			}
+		},
+
+		updatePointContent: function() {
+			if (!this.feature) {
+				return;
+			}
+			var temp = [];
+			var i;
+			var nodes = this.children;
+			for (i = 0; i < nodes.length; i++) {
+				if (nodes[i].localName == "leaflet-point") {
+					temp.push(L.latLng(
+						nodes[i].getAttribute('latitude'),
+						nodes[i].getAttribute('longitude')
+					));
+				}
+			}
+			this.feature.setLatLngs(temp);
+		},
+		
+		detached: function() {
+			if (this.observer_) {
+				this.observer_.disconnect();
+			}
+		}
+	}
+</script>
+
+
+
+
+
+<!--
+The `leaflet-circle` element represents a circle on the map and is used as
+a child element of the `leaflet-map` element.
+
+
+##### Example: Add circles
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-circle longitude="77.2" latitude="28.4" radius="300">
+        Circle
+      </leaflet-circle>
+    </leaflet-map>
+
+@element leaflet-circle
+@blurb Element for putting a circle on the map
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+-->
+<dom-module id="leaflet-circle">
+	<style>
+		:host{ display: none; }
+	</style>
+	<template>
+	</template>
+</dom-module>
+<script>
+	"use strict";
+	
+	Polymer({
+		is: 'leaflet-circle',
+
+		/**
+		 * A Leaflet circle object
+		 *
+		 * @property feature
+		 * @type L.circle
+		 * @default null
+		 */
+		feature: null,
+		behaviors: [leafletMap.LeafletPath, leafletMap.LeafletPopupContent],
+
+		properties: {
+			/**
+			 * The circle's longitude coordinate
+			 *
+			 * @attribute longitude
+			 * @type number
+			 * @default null
+			 */
+			longitude: {
+				type: Number,
+				observer: '_updatePosition'
+			},
+	
+			/**
+			 * The circle's latitude coordinate
+			 *
+			 * @attribute latitude
+			 * @type number
+			 * @default null
+			 */
+			latitude: {
+				type: Number,
+				observer: '_updatePosition'
+			},
+	
+			/**
+			 * The circle's radius is metres
+			 *
+			 * @attribute radius
+			 * @type number
+			 * @default 100
+			 */
+			radius: {
+				type: Number,
+				value: 100,
+				observer: '_updateRadius'
+			},
+			
+			container: {
+				type: Object,
+				observer: '_containerChanged'
+			}
+		},
+		
+		
+		_containerChanged: function() {
+			if (this.latitude && this.longitude && this.container) {
+		    	this.feature = L.circle([this.latitude, this.longitude], this.radius, this.getPathOptions());
+		    	this.feature.addTo(this.container);
+		    	this.updatePopupContent();
+
+			    // forward events
+				this.feature.on('click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose', function(e) {
+			    	this.fire(e.type, e);
+				}, this);
+			}
+		},
+	
+		_updatePosition: function () {
+			if (this.feature && this.latitude != null && this.longitude != null) {
+				this.feature.setLatLng(L.latLng( this.latitude, this.longitude) );
+			}
+		},
+		
+		_updateRadius: function () {
+			if (this.feature && this.radius != null) {
+				this.feature.setRadius(this.radius);
+			}
+		},
+		
+		detached: function() {
+			if (this.container && this.feature) {
+				this.container.removeLayer(this.feature);
+			}
+		}
+	});
+</script>
+
+
+
+
+<!--
+The `leaflet-polyline` element represents a polyline on the map and is used as
+a child element of the `leaflet-map` element. To compose the line one needs to
+add `leaflet-point` elements inside it.
+
+
+##### Example: Add polylines
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-polyline>
+        <leaflet-point longitude="77.22" latitude="28.44"></leaflet-point>
+        <leaflet-point longitude="77.44" latitude="28.66"></leaflet-point>
+      </leaflet-polyline>
+    </leaflet-map>
+
+@element leaflet-polyline
+@blurb Element for putting a polyline on the map
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+-->
+
+<dom-module id="leaflet-polyline">
+	<style>
+		:host{ display: none; }
+	</style>
+	<template>
+		<content id="points" select="leaflet-point"></content>
+	</template>
+</dom-module>
+
+<script>
+	"use strict";
+ 
+	Polymer({
+		is: 'leaflet-polyline',
+		behaviors: [leafletMap.LeafletPath, leafletMap.LeafletPointContent, leafletMap.LeafletPopupContent],
+
+		/**
+		 * A Leaflet [Polyline](http://leafletjs.com/reference.html#polyline) object
+		 *
+		 * @property feature
+		 * @type L.polyline
+		 * @default null
+		 */
+		feature: null,
+
+		properties: {
+			container: {
+				type: Object,
+				observer: '_containerChanged'
+			}
+		},
+
+		_containerChanged: function() {
+			if (this.container) {
+				this.feature = L.polyline([], this.getPathOptions());
+				this.feature.addTo( this.container );
+				this.updatePointContent();
+				this.updatePopupContent();
+
+				// forward events
+				this.feature.on('click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose', function(e) {
+					this.fire(e.type, e);
+				}, this);
+			}
+		},
+
+		detached: function() {
+			if (this.container && this.feature) {
+				this.container.removeLayer(this.feature);
+			}
+		}
+	});
+</script>
+
+
+<!--
+The `leaflet-polygon` element represents a polygon on the map and is used as
+a child element of the `leaflet-map` element. To compose the line one needs to
+add `leaflet-point` elements inside it.
+
+
+##### Example: Add polygona
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+      <leaflet-polygon>
+        <leaflet-point longitude="77.1000" latitude="13.3400"></leaflet-point>
+        <leaflet-point longitude="77.5000" latitude="13.5500"></leaflet-point>
+        <leaflet-point longitude="77.7200" latitude="12.7200"></leaflet-point>
+      </leaflet-polygon>
+    </leaflet-map>
+
+@element leaflet-polygon
+@blurb Element for putting a polygon on the map
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+-->
+
+<dom-module id="leaflet-polygon">
+	<style>
+		:host {display: none;}
+	</style>
+	<template>
+		<content id="points" select="leaflet-point"></content>
+	</template>
+</dom-module>
+
+<script>
+"use strict";
+Polymer({
+	is: 'leaflet-polygon',
+	behaviors: [leafletMap.LeafletPath, leafletMap.LeafletPointContent, leafletMap.LeafletPopupContent],
+
+	properties: {
+		container: {
+			type: Object,
+			observer: '_containerChanged'
+		}
+	},
+	
+	/**
+	 * A Leaflet [Polygon](http://leafletjs.com/reference.html#polygon) object
+	 *
+	 * @property feature
+	 * @type L.polygon
+	 * @default null
+	 */
+	feature: null,
+
+	_containerChanged: function() {
+		if (this.container) {
+			var opt = this.getPathOptions();
+			if (typeof opt.fill === "undefined" || opt.fill === null) {
+				opt.fill = true;
+			}
+			this.feature = L.polygon([], opt);
+			this.feature.addTo(this.container);
+			this.updatePointContent();
+			this.updatePopupContent();
+
+			// forward events
+			this.feature.on('click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose', function(e) {
+				this.fire(e.type, e);
+			}, this);
+		}
+	},
+
+	detached: function() {
+		if (this.container && this.feature) {
+			this.container.removeLayer(this.feature);
+		}
+	}
+});
+</script>

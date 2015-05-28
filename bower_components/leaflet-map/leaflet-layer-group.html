@@ -1,0 +1,64 @@
+<link rel="import" href="leaflet-core.html">
+
+<!--
+A Layer group (<a href="http://leafletjs.com/reference.html#layergroup">Leaflet Reference</a>).
+
+##### Example
+
+	<leaflet-layer-group>
+	    <leaflet-marker latitude="51.505" longitude="-0.09"> </leaflet-marker>
+	</leaflet-layer-group>
+
+
+@element leaflet-layer-group
+@blurb an element which represents a layer group 
+@status beta
+@homepage https://nhnb.github.io/leaflet-map/
+-->
+
+<dom-module id="leaflet-layer-group">
+	<template>
+	</template>
+</dom-module>
+
+<script>
+	"use strict";
+
+	Polymer({
+		is: 'leaflet-layer-group',
+
+		properties: {
+			container: {
+				type: Object,
+				observer: '_containerChanged'
+			}	
+		},
+
+		ready: function() {
+			this._mutationObserver = new MutationObserver(this.registerContainerOnChildren.bind(this));
+			this._mutationObserver.observe(this, {childList: true});
+		},
+	
+		_containerChanged: function() {
+			if (this.container) {
+				var feature = L.layerGroup()
+				this.feature = feature;
+				this.feature.addTo(this.container);
+				this.registerContaierOnChildren();
+			}
+		},
+
+		registerContaierOnChildren: function() {
+			for (var i = 0; i < this.children.length; i++) {
+				this.children[i].container = this.feature;
+			}
+		},
+		
+		detached: function() {
+			if (this.container && this.feature) {
+				this.container.removeLayer(this.feature);
+			}
+			this._mutationObserver.disconnect();
+		}
+	});
+</script>
