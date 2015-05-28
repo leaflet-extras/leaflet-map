@@ -53,16 +53,18 @@ Polymer({
 	},
 
 	_containerChanged: function() {
-		if (this.container) {
-			this.feature = L.geoJson(this.data);
+		if (this.container && this.data) {
 			this._dataChanged();
-			this.feature.addTo(this.container);
 		}
 	},
 
 	_dataChanged: function() {
-		if (this.container && this.feature && this.data) {
-			this.feature.addData(this.data);
+		if (this.container && this.data) {
+			if (this.feature) {
+				this.container.removeLayer(this.feature);
+			}
+			this.feature = L.geoJson(this.data);
+			this.feature.addTo(this.container);
 		}
 	},
 	

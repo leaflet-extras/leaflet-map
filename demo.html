@@ -8,6 +8,7 @@
 		<link rel="import" href="demo-header.html">
 		<link rel="import" href="leaflet-map.html">
 		<link rel="import" href="demo-advanced.html">
+		<link rel="import" href="../iron-ajax/iron-ajax.html">
 
 		<style type="text/css">
 			body {
@@ -463,58 +464,45 @@ metric and imperial units.</p>
 
 <h2 id="geojson">GeoJSON</h2>
 
-<p>Example of GeoJSON Layer</p>
+<p>Example of a GeoJSON layer, which is filled by an ajax request.</p>
 
-	<leaflet-map longitude="102.304" latitude="0.3516" zoom="6">
-		<leaflet-tilelayer 
-			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom="18">
-				Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, 
-				<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
-				Imagery &copy; <a href="http://mapbox.com">Mapbox</a>
-		</leaflet-tilelayer>
-		
-		<leaflet-geojson id="leafletgeojson"></leaflet-geojson>
-	</leaflet-map>
+<leaflet-map longitude="102.304" latitude="0.3516" zoom="6">
+	<leaflet-tilelayer 
+		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom="18">
+			Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, 
+			<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, 
+			Imagery &copy; <a href="http://mapbox.com">Mapbox</a>
+	</leaflet-tilelayer>
 
-<script>
-	// example from http://geojson.org/geojson-spec.html
-	var t = document.querySelector('#leafletgeojson');
-	t.data = 
-			{ "type": "FeatureCollection",
-			    "features": [
-			      { "type": "Feature",
-			        "geometry": {"type": "Point", "coordinates": [102.0, 0.5]},
-			        "properties": {"prop0": "value0"}
-			        },
-			      { "type": "Feature",
-			        "geometry": {
-			          "type": "LineString",
-			          "coordinates": [
-			            [102.0, 0.0], [103.0, 1.0], [104.0, 0.0], [105.0, 1.0]
-			            ]
-			          },
-			        "properties": {
-			          "prop0": "value0",
-			          "prop1": 0.0
-			          }
-			        },
-			      { "type": "Feature",
-			         "geometry": {
-			           "type": "Polygon",
-			           "coordinates": [
-			             [ [100.0, 0.0], [101.0, 0.0], [101.0, 1.0],
-			               [100.0, 1.0], [100.0, 0.0] ]
-			             ]
-			         },
-			         "properties": {
-			           "prop0": "value0",
-			           "prop1": {"this": "that"}
-			           }
-			         }
-			       ]
-			     
-	};
-</script>
+	<template is="dom-bind">
+		<iron-ajax url="demo-geojson.json" handle-as="json" auto last-response="{{data}}"></iron-ajax>
+		<leaflet-geojson id="leafletgeojson" data="[[data]]"></leaflet-geojson>
+	</template>
+</leaflet-map>
+
+
+
+<pre class="html"><code>
+&lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">0.3516</span>" <span class="a">longitude</span>="<span class="v">102.304</span>" <span class="a">zoom</span>="<span class="v">6</span>"&gt;
+
+    &lt;<span class="i">leaflet-tilelayer</span> 
+        <span class="a">url</span>="<span class="v">https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</span>" <span class="a">max-zoom</span>="<span class="v">19</span>"&gt;
+          Map data &copy; &lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt; contr., 
+          &lt;a href="http://creativecommons.org/licenses/by-sa/2.0/"&gt;CC-BY-SA&lt;/a&gt;, 
+          Imagery &copy; &lt;a href="http://mapbox.com">Mapbox&lt;/a&gt;
+    &lt;/<span class="i">leaflet-tilelayer</span>&gt;
+
+    &lt;<span class="i">template</span> <span class="a">is</span>="<span class="v">dom-bind</span>"&gt;
+      &lt;<span class="i">iron-ajax</span> <span class="a">url</span>="<span class="v">demo-geojson.json</span>" <span class="a">last-response</span>="<span class="v">{{data}}</span>" <span class="a">auto</span>&gt;
+      &lt;/<span class="i">iron-ajax</span>&gt;
+      &lt;<span class="i">leaflet-geojson</span> <span class="a">data</span>="<span class="v">[[data]]</span>"&gt;&lt;/<span class="i">leaflet-geojson</span>&gt;
+    &lt;/<span class="i">template</span>&gt;
+
+&lt;/<span class="i">leaflet-map</span>&gt;
+
+</code></pre>
+
+
 
 <h2 id="databinding">Data binding and custom components</h2>
 
