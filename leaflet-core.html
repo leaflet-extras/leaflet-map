@@ -629,8 +629,31 @@ add a marker with a popup text.
 			setTimeout(function() {me.domReady()}, 1);
 		},
 		
+
+		guessLeafletImagePath: function() {
+			debugger;
+			if (L.Icon.Default.imagePath) {
+				return;
+			}
+
+			var scripts = document.getElementsByTagName('link'),
+			    leafletRe = /[\/^]leaflet-map.html$/;
+
+			var i, len, src, matches, path;
+
+			for (i = 0, len = scripts.length; i < len; i++) {
+				src = scripts[i].href;
+				matches = src.match(leafletRe);
+
+				if (matches) {
+					path = src.split(leafletRe)[0];
+					L.Icon.Default.imagePath = (path ? path + '/' : '') + '../leaflet/dist/images';
+				}
+			}
+		},
+
 		domReady: function() {
-			L.Icon.Default.imagePath = "../leaflet/dist/images";
+			this.guessLeafletImagePath();
 			var map = L.map(this.$.map, {
 				center: [this.latitude, this.longitude],
 				zoom: this.zoom,
