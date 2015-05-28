@@ -18,12 +18,17 @@
 				background-color: #DDD;
 			}
 			
-			#content {
+			#content, .announcement {
 				max-width: 790px;
 				background-color: #FFF;
 				padding: 1em;
 				margin: 0 auto;
 				box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+			}
+			
+			.announcement {
+				margin: 1em auto;
+				border: 2px solid #0A0;
 			}
 			
 			h2 {
@@ -90,6 +95,13 @@
 	
 
 <demo-header></demo-header>
+
+<div class="announcement">
+
+&lt;leaflet-map&gt; 1.0.0 was released on 2015-05-28. Please check out the <a href="https://github.com/leaflet-extras/leaflet-map/releases/tag/v1.0.0">change notes</a> for breaking changes.
+
+</div>
+
 
 <div id="content">
 
@@ -186,7 +198,6 @@
 <leaflet-map latitude="51.505" longitude="-0.09" zoom="13">
 
 	<leaflet-icon id="myicon" icon-url="https://stendhalgame.org/images/mapmarker/me.png"></leaflet-icon>
-<!-- 
 
 	<leaflet-marker latitude="51.5" longitude="-0.10" title="Icon element reference" icon="myicon">
 	</leaflet-marker>
@@ -194,11 +205,11 @@
 	</leaflet-marker>
 
 	<leaflet-marker id="icon-reference" latitude="51.5" longitude="-0.08" title="Icon L.icon()">
-	--> 
+
 	</leaflet-marker>
 </leaflet-map>
 
-<scriptX>
+<script>
 document.addEventListener("load", function() {
 	var marker = document.getElementById("icon-reference");
 	marker.icon = L.icon({
@@ -207,7 +218,7 @@ document.addEventListener("load", function() {
 		"iconAnchor": L.point(0, 0)
 	});
 });
-</scriptX>
+</script>
 
 <p>The template icon may be defined using &lt;leaflet-icon&gt; elements. This is the prefered way. Please note that iconSize is mapped to the attributes iconWidth and iconHeight. iconAnchor is mapped to iconAnchorX and iconAnchorY and so on:</p>
 
