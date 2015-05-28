@@ -1,6 +1,7 @@
 v1.0.1
 ======
-* moved repository to leaflet-extras
+* moved repository to https://github.com/leaflet-extras/leaflet-map
+* fixed some urls and version numbers
 
 v1.0.0
 ======
