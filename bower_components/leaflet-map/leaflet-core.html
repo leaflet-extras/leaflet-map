@@ -688,8 +688,10 @@ add a marker with a popup text.
 
 			// update attributes
 			map.on('moveend', function(e) {
+				this._ignoreViewChange = true;
 				this.longitude = map.getCenter().lng;
 				this.latitude = map.getCenter().lat;
+				this._ignoreViewChange = false;
 			}, this);
 			map.on('zoomend', function(e) {
 				this.zoom = map.getZoom();
@@ -724,10 +726,10 @@ add a marker with a popup text.
 		},
 
 		_viewChanged: function(newValue, oldValue) {
-			if (this.map) {
-				this.async(function() {
+			if (this.map && !this._ignoreViewChange) {
+				setTimeout(function() {
 					this.map.setView(L.latLng(this.latitude, this.longitude), this.zoom);
-				});
+				}.bind(this), 1);
 			}
 		},
 

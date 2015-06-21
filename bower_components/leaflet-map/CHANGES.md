@@ -1,3 +1,7 @@
+v1.0.2
+======
+* fixed an endless loop on dragging a highly zoomed map (#23)
+
 v1.0.1
 ======
 * moved repository to https://github.com/leaflet-extras/leaflet-map
