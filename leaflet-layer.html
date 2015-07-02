@@ -329,7 +329,7 @@ Polymer({
 	
 	_containerChanged: function() {
 		if (this.container) {
-			var layer = L.tileLayer(this.url, {
+			var layer = L.tileLayer(decodeURI(this.url), {
 				attribution: Polymer.dom(this).innerHTML + this.attribution,
 				minZoom: this.minZoom,
 				maxZoom: this.maxZoom,
@@ -359,7 +359,7 @@ Polymer({
 	
 	_urlChanged: function() {
 		if (this.layer) {
-			this.layer.setUrl(this.url);
+			this.layer.setUrl(decodeURI(this.url));
 		}
 	}
 });
@@ -479,7 +479,7 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 		},		
 		_containerChanged: function() {
 			if (this.container) {
-				var layer = L.tileLayer.wms(this.url, {
+				var layer = L.tileLayer.wms(decodeURI(this.url), {
 					attribution: Polymer.dom(this).innerHTML + this.attribution,
 					minZoom: this.minZoom,
 					maxZoom: this.maxZoom,
@@ -516,7 +516,7 @@ element which defines a tile layer for wms (<a href="http://leafletjs.com/refere
 
 		_urlChanged: function() {
 			if (this.layer) {
-				this.layer.setUrl(this.url);
+				this.layer.setUrl(decodeURI(this.url));
 			}
 		},
 
