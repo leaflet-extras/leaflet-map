@@ -45,7 +45,7 @@ Import the main component and start creating your map:
     </style>
   </head>
   <body unresolved>
-    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+    <leaflet-map fit-to-markers>
       <leaflet-marker longitude="77.2" latitude="28.4">
         Marker I
       </leaflet-marker>
@@ -99,7 +99,7 @@ leaflet-map is based on polymer and leaflet. Small parts of leaflet,
 especially the api documentation, have been copied into leaflet-map files.
 
 * [Leaflet](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
-* [Polymer](https://github.com/polymer/polymer/blob/master/LICENSE)
+* [Polymer](https://github.com/polymer/polymer/blob/master/LICENSE.txt)
 
 
 Copyright (c) 2014-2015
