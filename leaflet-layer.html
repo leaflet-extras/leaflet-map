@@ -329,7 +329,8 @@ Polymer({
 	
 	_containerChanged: function() {
 		if (this.container) {
-			var layer = L.tileLayer(this.url, {
+			var cleanedUrl = this.url.replace(new RegExp("%7B([sxyz])%7D", "g"), '{$1}');
+			var layer = L.tileLayer(cleanedUrl, {
 				attribution: Polymer.dom(this).innerHTML + this.attribution,
 				minZoom: this.minZoom,
 				maxZoom: this.maxZoom,
@@ -359,7 +360,8 @@ Polymer({
 	
 	_urlChanged: function() {
 		if (this.layer) {
-			this.layer.setUrl(this.url);
+			var cleanedUrl = this.url.replace(new RegExp("%7B([sxyz])%7D", "g"), '{$1}');
+			this.layer.setUrl(cleanedUrl);
 		}
 	}
 });

@@ -150,7 +150,7 @@
 
 <p>Markers can be defined using html tags as well. The following examples creates a semi transparent marker on the left hand side. And a second marker with a popup on click.</p>
 
-<leaflet-map fit-to-markers="true">
+<leaflet-map fit-to-markers>
 	<leaflet-marker latitude="51.5" longitude="-0.10" title="Transparent" opacity="0.6">
 	</leaflet-marker>
 	
@@ -161,7 +161,7 @@
 </leaflet-map>
 
 <pre class="html"><code>
-&lt;<span class="i">leaflet-map</span> <span class="a">fit-to-markers</span>="<span class="v">true</span>"&gt;
+&lt;<span class="i">leaflet-map</span> <span class="a">fit-to-markers</span>&gt;
 
     &lt;<span class="i">leaflet-marker</span> <span class="a">latitude</span>="<span class="v">51.5</span>" <span class="a">longitude</span>="<span class="v">-0.10</span>" <span class="a">title</span>="<span class="v">Transparent</span>"
         <span class="a">opacity</span>="<span class="v">0.6</span>"&gt;  &lt;/<span class="i">leaflet-marker</span>&gt;
@@ -321,7 +321,6 @@ document.addEventListener("load", function() {
 
 <p>Custom tile layers, for example from online games can be defined using the leaflet-tilelayer element. If there is no explicit tilelayer defined, a default one will be used as shown in previous examples.</p>
 
-
 <leaflet-map latitude="78.8" longitude="-96" zoom="5" min-zoom="2" max-zoom="6">
 	<leaflet-tilelayer 
 		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
@@ -332,7 +331,6 @@ document.addEventListener("load", function() {
 	</leaflet-tilelayer>
 
 </leaflet-map>
-
 
 <pre class="html"><code>
 &lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>" <span class="a">max-zoom</span>="<span class="v">6</span>"&gt;
