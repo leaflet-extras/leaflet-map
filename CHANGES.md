@@ -1,5 +1,6 @@
 v1.0.2
 ======
+* fixed fitToMarkers (#31, thanks to Horacio Gonzalez)
 * fixed an endless loop on dragging a highly zoomed map (#23)
 
 v1.0.1
