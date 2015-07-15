@@ -611,7 +611,8 @@ add a marker with a popup text.
 		      */
 		     fitToMarkers: {
 		    	 type: Boolean,
-		    	 value: false
+		    	 value: false,
+		    	 observer: '_fitToMarkers'
 		     }
 		},
 
@@ -719,11 +720,6 @@ add a marker with a popup text.
 			this.registerMapOnChildren();
 			this._mutationObserver = new MutationObserver(this.registerMapOnChildren.bind(this));
 			this._mutationObserver.observe(this, {childList: true});
-
-			// Fire fitToMarkers event if fitToMarkers==true
-			if (this.fitToMarkers) {
-				this.fitToMarkersChanged();
-			}
 		},
 
 		detached: function() {
@@ -742,9 +738,10 @@ add a marker with a popup text.
 			for (var i = 0; i < this.children.length; i++) {
 				this.children[i].container = this.map;
 			}
+			this._fitToMarkers();
 		},
 
-		fitToMarkersChanged: function () {
+		_fitToMarkers: function () {
 			if ( this.map && this.fitToMarkers) {
 				var bounds = [];
 				for( var i = 0, f; f = this.children[i]; i++ ) {
