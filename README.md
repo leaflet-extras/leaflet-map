@@ -45,7 +45,7 @@ Import the main component and start creating your map:
     </style>
   </head>
   <body unresolved>
-    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+    <leaflet-map fit-to-markers>
       <leaflet-marker longitude="77.2" latitude="28.4">
         Marker I
       </leaflet-marker>
