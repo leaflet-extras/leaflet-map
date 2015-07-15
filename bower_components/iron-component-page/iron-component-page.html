@@ -41,13 +41,13 @@ documentation page including demos (if available).
             </template>
           </select>
         </div>
-        <iron-selector attr-for-selected="view" selected="{{view}}" id="links" hidden$="[[!_firstDemoUrl]]">
+        <iron-selector attr-for-selected="view" selected="{{view}}" id="links" hidden$="[[!docDemos.length]]">
           <a view="docs"><iron-icon icon="description"></iron-icon> Docs</a>
-          <a view="demo"><iron-icon icon="visibility"></iron-icon> Demo</a>
+          <a view="[[_demoView(docDemos.0.path)]]"><iron-icon icon="visibility"></iron-icon> <span>Demo</span></a>
         </iron-selector>
       </paper-toolbar>
       <div id="content">
-        <iron-selector id="view" selected="[[view]]" attr-for-selected="id">
+        <iron-selector id="view" selected="[[_viewType(view)]]" attr-for-selected="id">
           <div id="docs">
             <div id="catalog-heading" catalog-only>
               <h2><span>[[active]]</span> <span class="version" hidden$="[[!version]]">[[version]]</span></h2>
@@ -58,7 +58,7 @@ documentation page including demos (if available).
               No documentation found.
             </div>
           </div>
-          <iframe id="demo" src="[[_frameSrc(_firstDemoUrl)]]"></iframe>
+          <iframe id="demo" src="[[_frameSrc(view, base)]]"></iframe>
         </iron-selector>
       </div>
     </paper-header-panel>
@@ -121,7 +121,6 @@ documentation page including demos (if available).
       /**
        * The relative root for determining paths to demos and default source
        * detection.
-       * @default ownerDocument.baseURI
        */
       base: {
         type: String,
@@ -183,7 +182,6 @@ documentation page including demos (if available).
         notify: true,
         readOnly: true
       },
-      _firstDemoUrl: String,
 
       /**
        * The currently displayed element.
@@ -314,9 +312,10 @@ documentation page including demos (if available).
       if (!this._hydroLoading) this.$.analyzer.analyze();
     },
 
-    _frameSrc: function(src) {
-      if (src) { return new URL(src, this.base).toString(); }
-      else { return "about:blank"; }
+    _frameSrc: function(view) {
+      if (!view || view.indexOf("demo:") !== 0) return "about:blank";
+      var src = view.split(':')[1];
+      return new URL(src, this.base).toString();
     },
 
     _descriptorsChanged: function() {
@@ -348,17 +347,38 @@ documentation page including demos (if available).
       return null;
     },
 
-    _setActiveDescriptor: function() {
-    },
-
     _activeChanged: function() {
       this.async(function() { this.$.active.value = this.active; });
       if (this._analyzer && this._analyzer.elementsByTagName) {
         this.$.headerPanel.scroller.scrollTop = 0;
-        this.view = 'docs';
         this._activeDescriptor = this._findDescriptor(this.active);
+        if (this._activeDescriptor) {
+          var hasDemo;
+          var demos = this._activeDescriptor.demos;
+          if (this.view && demos && demos.length) {
+            var parts = this.view.split(':');
+            if (parts[0] == 'demo') {
+              if (parts[1]) {
+                hasDemo = demos.some(function(d, i) {
+                  if (d.path == parts[1]) {
+                    return true;
+                  }
+                });
+              }
+              if (!hasDemo) {
+                this.view = 'demo:' + demos[0].path;
+                hasDemo = true;
+              }
+            }
+          }
+          if (!hasDemo == undefined) {
+            this.view = 'docs';
+          }
+          if (this._activeDescriptor.is && !document.title) {
+            document.title = this._activeDescriptor.is + " documentation";
+          }
+        }
         this._setDocDemos(this._activeDescriptor ? this._activeDescriptor.demos : []);
-        this._firstDemoUrl = this.docDemos && this.docDemos.length ? this.docDemos[0].path : null;
       }
     },
 
@@ -408,6 +428,13 @@ documentation page including demos (if available).
              jsonText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '\n' +
              '</' + this.is + '>';
     },
+
+    _demoView: function(path) {
+      return "demo:" + path;
+    },
+    _viewType: function(view) {
+      return view ? view.split(":")[0] : null;
+    }
   });
 })();
 </script>

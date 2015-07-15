@@ -38,9 +38,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   padding: 4px 16px;
   color: var(--paper-grey-800);
 }
-#api #togglePrivate {
-  opacity: 0.5;
-}
 
 /* Common Formatting */
 

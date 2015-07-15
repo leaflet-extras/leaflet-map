@@ -1,11 +1,24 @@
 {
   "name": "iron-component-page",
-  "version": "1.0.0",
+  "description": "Turns a raw element definition into beautiful documentation",
+  "authors": [
+    "The Polymer Authors"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "docs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/iron-component-page.git"
+  },
+  "version": "1.0.5",
   "private": true,
   "license": "http://polymer.github.io/LICENSE.txt",
   "dependencies": {
-    "polymer": "polymer/polymer#^1.0.0",
-    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^1.0.0",
+    "polymer": "Polymer/polymer#^1.0.0",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^1.0.1",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
     "paper-toolbar": "PolymerElements/paper-toolbar#^1.0.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",

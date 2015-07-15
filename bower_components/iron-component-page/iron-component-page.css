@@ -44,7 +44,6 @@ paper-toolbar {
 #content {
   display: block;
   background: var(--paper-grey-50);
-  padding: 20px;
 }
 
 paper-toolbar a {
@@ -69,7 +68,7 @@ paper-toolbar a:hover, paper-toolbar a:hover iron-icon, paper-toolbar a.iron-sel
   color: var(--paper-grey-800);
 }
 
-#view, #docs, #demo {
+#demo {
   @apply(--layout-fit);
 }
 

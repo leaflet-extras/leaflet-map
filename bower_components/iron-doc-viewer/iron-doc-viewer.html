@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../marked-element/marked-element.html">
 <link rel="import" href="../paper-styles/paper-styles.html">
+<link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../prism-element/prism-highlighter.html">
 
@@ -56,7 +57,8 @@ property.
 
     <nav id="api">
       <header>API Reference</header>
-      <a id="togglePrivate" on-tap="_togglePrivate">{{_privateToggleLabel}}</a>
+      <paper-button id="togglePrivate"
+        on-tap="_togglePrivate">{{_privateToggleLabel}}</paper-button>
     </nav>
 
     <section id="properties" class="card" hidden$="{{_noneToShow(_showPrivate,_properties)}}">
@@ -227,7 +229,7 @@ property.
     },
 
     _broadcastBehavior: function(ev) {
-      this.fire('iron-doc-viewer-component-selected', ev.srcElement._templateInstance.item);
+      this.fire('iron-doc-viewer-component-selected', ev.target._templateInstance.item);
     }
   });
 
