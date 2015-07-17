@@ -1,3 +1,7 @@
+v1.1.0
+======
+* add support for styling GeoJson (thanks to Ryan Cooper)
+
 v1.0.2
 ======
 * workaround for {s},{x},{y},{z} being escaped in tileset urls (thanks to Kevin Schaaf, John Eckhart, JustinCase1089)
