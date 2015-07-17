@@ -16,7 +16,7 @@ A GeoJson layer (<a href="http://leafletjs.com/reference.html#geojson">Leaflet R
 
 @element leaflet-geojson
 @blurb an element which represents a geojson layer
-@demo https://leaflet-extras.github.io/leaflet-map/demo.html
+@status beta
 @homepage https://leaflet-extras.github.io/leaflet-map/
 -->
 
@@ -49,7 +49,108 @@ Polymer({
 		container: {
 			type: Object,
 			observer: '_containerChanged'
-		}	
+		},
+		/**
+
+			/**
+			 * The attribute `color` sets the stroke color.
+			 *
+			 * @attribute color
+			 * @type string
+			 */
+			color: {
+				type: String,
+				value: "#03f"
+			},
+
+			/**
+			 * The attribute `weight` sets the stroke width in pixels.
+			 *
+			 * @attribute weight
+			 * @type number
+			 */
+			weight: {
+				type: Number,
+				value: 5
+			},
+
+			/**
+			 * The attribute `opacity` sets the stroke opacity.
+			 *
+			 * @attribute opacity
+			 * @type number
+			 */
+			opacity: {
+				type: Number,
+				value: 0.5
+			},
+
+			/**
+			 * The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.
+			 *
+			 * @attribute fill
+			 * @type boolean
+			 */
+			fill: {
+				type: Boolean,
+				value: null
+			},
+
+			/**
+			 * The attribute `fill-color` sets the fill color.
+			 *
+			 * @attribute fill-color
+			 * @type string
+			 */
+			fillColor: {
+				type: String,
+				value: null
+			},
+
+			/**
+			 * The attribute `fill-opacity` sets the fill opacity.
+			 *
+			 * @attribute fill-opacity
+			 * @type number
+			 */
+			fillOpacity: {
+				type: Number,
+				value: 0.2
+			},
+
+			/**
+			 * The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).
+			 *
+			 * @attribute dash-array
+			 * @type string
+			 */
+			dashArray: {
+				type: String,
+				value: null
+			},
+
+			/**
+			 * The attribute `line-cap` defines the shape to be used at the end of the stroke.
+			 *
+			 * @attribute line-cap
+			 * @type string
+			 */
+			lineCap: {
+				type: String,
+				value: null
+			}, 
+
+			/**
+			 * The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.
+			 *
+			 * @attribute line-join
+			 * @type string
+			 */
+			lineJoin: {
+				type: String,
+				value: null
+			}
+
 	},
 
 	_containerChanged: function() {
@@ -64,7 +165,19 @@ Polymer({
 				this.container.removeLayer(this.feature);
 			}
 			this.feature = L.geoJson(this.data);
-			this.feature.addTo(this.container);
+
+			this.feature.addTo(this.container)
+				.setStyle({
+					color: this.color,
+					weight: this.weight,
+					opacity: this.opacity,
+					fill: this.fill,
+					fillColor: this.fillColor,
+					fillOpacity: this.fillOpacity,
+					dashArray: this.dashArray,
+					lineCap: this.lineCap,
+					lineJoin: this.lineJoin
+				});
 		}
 	},
 	
