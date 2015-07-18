@@ -438,18 +438,17 @@ map.addEventListener("moveend", function(e) {
 
 <h2 id="scale">Scale control</h2>
 
-<p>A scale control can be added and configured using &lt;leaflet-scale-control&gt; By default it displays both
-metric and imperial units.</p>
+<p>A scale control can be added and configured using &lt;leaflet-scale-control&gt;. By default it displays both metric and imperial units.</p>
 
 <leaflet-map latitude="51.505" longitude="-0.09" zoom="6">
-	<leaflet-scale-control position="topright" metric="true">
+	<leaflet-scale-control position="topright" metric imperial>
 	</leaflet-scale-control>
 </leaflet-map>
 
 <pre class="html"><code>
 &lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
 
-    &lt;<span class="i">leaflet-scale-control</span> <span class="a">position</span>="<span class="v">topright</span>" <span class="a">metric</span>="<span class="v">true</span>"&gt;
+    &lt;<span class="i">leaflet-scale-control</span> <span class="a">position</span>="<span class="v">topright</span>" <span class="a">metric</span> <span class="a">imperial</span>&gt;
     &lt;/<span class="i">leaflet-scale-control</span>&gt;
 
 &lt;/<span class="i">leaflet-map</span>&gt;

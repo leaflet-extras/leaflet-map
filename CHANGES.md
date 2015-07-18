@@ -1,6 +1,8 @@
 v1.1.0
 ======
-* add support for styling GeoJson (thanks to Ryan Cooper)
+* added support for styling GeoJson layers (thanks to Ryan Cooper)
+* renamed attributes on leaflet-map: no-dragging, no-touch-zoom, no-scroll-wheel-zoom, no-double-click-zoom, no-box-zoom, no-tap, no-track-resize, no-close-popup-on-click, no-bounce-at-zoom-limits, no-keyboard, no-inertia, no-zoom-control, no-attribution-control
+* renamed attributes on leaflet-marker: no-clickable, no-keyboard
 
 v1.0.2
 ======

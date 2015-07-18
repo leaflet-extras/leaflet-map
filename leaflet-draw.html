@@ -115,9 +115,9 @@ Do not use this element directly.
 			 * @attribute stroke
 			 * @type boolean
 			 */
-			stroke: {
+			noStroke: {
 				type: Boolean,
-				value: true
+				value: false
 			},
 
 			/**
@@ -225,9 +225,9 @@ Do not use this element directly.
 			 * @attribute clickable
 			 * @type boolean
 			 */
-			clickable: {
+			noClickable: {
 				type: Boolean,
-				value: true
+				value: false
 			},
 
 			/**
@@ -255,7 +255,7 @@ Do not use this element directly.
 
 		getPathOptions: function() {
 			return {
-				stroke: this.stroke,
+				stroke: !this.noStroke,
 				color: this.color,
 				weight: this.weight,
 				opacity: this.opacity,
@@ -265,7 +265,7 @@ Do not use this element directly.
 				dashArray: this.dashArray,
 				lineCap: this.lineCap,
 				lineJoin: this.lineJoin,
-				clickable: this.clickable,
+				clickable: !this.noClickable,
 				pointerEvents: this.pointerEvents,
 				className: this.className,
 			};

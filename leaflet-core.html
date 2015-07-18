@@ -386,69 +386,69 @@ add a marker with a popup text.
 			},
 
 			/**
-			 * The `dragging` attribute sets whether  when he tries to pan outside the view.
+			 * The `no-dragging` attribute disables whether the map is draggable with mouse/touch or not.
 			 *
-			 * @attribute dragging
+			 * @attribute no-dragging
 			 * @type bool
 			 */
-			dragging: {
+			noDragging: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
-			 * The `touch-zoom` attribute sets whether the map can be zoomed by touch-dragging with two fingers.
+			 * The `no-touch-zoom` attribute disables whether the map can be zoomed by touch-dragging with two fingers.
 			 *
-			 * @attribute touch-zoom
+			 * @attribute no-touch-zoom
 			 * @type bool
 			 */
-			touchZoom: {
+			noTouchZoom: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
-			 * The `scrollWheelZoom` attribute sets the whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.
+			 * The `no-scroll-wheel-zoom` attribute disables whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.
 			 *
-			 * @attribute scroll-wheel-zoom
+			 * @attribute no-scroll-wheel-zoom
 			 * @type bool
 			 */
-			scrollWheelZoom: {
+			noScrollWheelZoom: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
-			 * The `double-click-zoom` attribute sets the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
+			 * The `no-double-click-zoom` attribute disables the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
 			 *
-			 * @attribute double-click-zoom
+			 * @attribute no-double-click-zoom
 			 * @type bool
 			 */
-			doubleClickZoom: {
+			noDoubleClickZoom: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
-			 * The `box-zoom` attribute sets the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
+			 * The `no-box-zoom` attribute disable the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
 			 *
-			 * @attribute box-zoom
+			 * @attribute no-box-zoom
 			 * @type bool
 			 */
-			boxZoom: {
+			noBoxZoom: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
-			 * The `tap` attribute enables mobile hacks for supporting instant taps (fixing 200ms click delay on iOS/Android) and touch holds (fired as contextmenu events).
+			 * The `no-tap` attribute disables mobile hacks for supporting instant taps (fixing 200ms click delay on iOS/Android) and touch holds (fired as contextmenu events).
 			 *
-			 * @attribute tap
+			 * @attribute no-tap
 			 * @type bool
 			 */
-			tap: {
+			noTap: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
@@ -463,14 +463,14 @@ add a marker with a popup text.
 			},
 
 			/**
-			 * The `track-resize` attribute sets whether the map automatically handles browser window resize to update itself.
+			 * The `no-track-resize` attribute disables whether the map automatically handles browser window resize to update itself.
 			 *
-			 * @attribute track-resize
+			 * @attribute no-track-resize
 			 * @type bool
 			 */
-			trackResize: {
+			noTrackResize: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
@@ -485,36 +485,36 @@ add a marker with a popup text.
 			},
 
 			/**
-			 * The `close-popup-on-click` attribute sets whether popups are closed when user clicks the map.
+			 * The `no-close-popup-on-click` attribute disables whether popups are closed when user clicks the map.
 			 *
-			 * @attribute close-popup-on-click
+			 * @attribute no-close-popup-on-click
 			 * @type bool
 			 */
-			closePopupOnClick: {
+			noClosePopupOnClick: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
-			 * The `bounce-at-zoom-limits` attribute sets whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
+			 * The `no-bounce-at-zoom-limits` attribute disables whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
 			 *
-			 * @attribute bounce-at-zoom-limits
+			 * @attribute no-bounce-at-zoom-limits
 			 * @type bool
 			 */
-			bounceAtZoomLimits: {
+			noBounceAtZoomLimits: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
-			 * The `keyboard` attribute sets whether the map is focusable and allows users to navigate the map with keyboard arrows and +/- keys.
+			 * The `no-keyboard` attribute disables whether the map is focusable and allows users to navigate the map with keyboard arrows and +/- keys.
 			 *
-			 * @attribute keyboard
+			 * @attribute no-keyboard
 			 * @type bool
 			 */
-			keyboard: {
+			noKeyboard: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
@@ -540,14 +540,14 @@ add a marker with a popup text.
 			},
 
 			/**
-			 * The `inertia` attribute sets whether panning of the map will have an inertia effect where the map builds momentum while dragging and continues moving in the same direction for some time. Feels especially nice on touch devices.
+			 * The `no-inertia` attribute disables panning of the map will have an inertia effect where the map builds momentum while dragging and continues moving in the same direction for some time. Feels especially nice on touch devices.
 			 *
-			 * @attribute inertia
+			 * @attribute no-inertia
 			 * @type
 			 */
-			inertia: {
+			noInertia: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
@@ -570,25 +570,25 @@ add a marker with a popup text.
 			},
 
 			/**
-			 * The `zoom-control` attribute sets whether the zoom control is added to the map by default.
+			 * The `no-zoom-control` attribute disables the zoom control is added to the map by default.
 			 *
-			 * @attribute zoom-control
+			 * @attribute no-zoom-control
 			 * @type bool
 			 */
-			zoomControl: {
+			noZoomControl: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
-			 * The `attribution-control` attribute sets whether the attribution control is added to the map by default.
+			 * The `no-attribution-control` attribute disable the attribution control is added to the map by default.
 			 *
-			 * @attribute attribution-control
+			 * @attribute no-attribution-control
 			 * @type bool
 			 */
-			attributionControl: {
+			noAttributionControl: {
 		    	 type: Boolean,
-		    	 value: true
+		    	 value: false
 			},
 
 			/**
@@ -659,25 +659,25 @@ add a marker with a popup text.
 				zoom: this.zoom,
 				minZoom: this.minZoom,
 				maxZoom: this.maxZoom,
-				dragging: this.dragging,
-				touchZoom: this.touchZoom,
-				scrollWheelZoom: this.scrollWheelZoom,
-				doubleClickZoom: this.doubleClickZoom,
-				boxZoom: this.boxZoom,
-				tap: this.tap,
+				dragging: !this.noDragging,
+				touchZoom: !this.noTouchZoom,
+				scrollWheelZoom: !this.noScrollWheelZoom,
+				doubleClickZoom: !this.noDoubleClickZoom,
+				boxZoom: !this.noBoxZoom,
+				tap: !this.noTap,
 				tapTolerance: this.tapTolerance,
-				trackResize: this.trackResize,
+				trackResize: !this.noTrackResize,
 				worldCopyJump: this.worldCopyJump,
-				closePopupOnClick: this.closePopupOnClick,
-				bounceAtZoomLimits: this.bounceAtZoomLimits,
-				keyboard: this.keyboard,
+				closePopupOnClick: !this.noClosePopupOnClick,
+				bounceAtZoomLimits: !this.noBounceAtZoomLimits,
+				keyboard: !this.noKeyboard,
 				keyboardPanOffset: this.keyboardPanOffset,
 				keyboardZoomOffset: this.keyboardZoomOffset,
-				inertia: this.inertia,
+				inertia: !this.noInertia,
 				inertiaDeceleration: this.inertiaDeceleration,
 				inertiaMaxSpeed: this.inertiaMaxSpeed,
-				zoomControl: this.zoomControl,
-				attributionControl: this.attributionControl,
+				zoomControl: !this.noZoomControl,
+				attributionControl: !this.noAttributionControl,
 				zoomAnimationThreshold: this.zoomAnimationThreshold
 			});
 			this.map = map;
