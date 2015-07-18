@@ -18,12 +18,17 @@
 				background-color: #DDD;
 			}
 			
-			#content {
+			#content, .announcement {
 				max-width: 790px;
 				background-color: #FFF;
 				padding: 1em;
 				margin: 0 auto;
 				box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+			}
+			
+			.announcement {
+				margin: 1em auto;
+				border: 2px solid #0A0;
 			}
 			
 			h2 {
@@ -91,25 +96,16 @@
 
 <demo-header></demo-header>
 
+<div class="announcement">
+
+&lt;leaflet-map&gt; 1.0.0 was released on 2015-05-28. Please check out the <a href="https://github.com/leaflet-extras/leaflet-map/releases/tag/v1.0.0">change notes</a> for breaking changes.
+
+</div>
+
+
 <div id="content">
 
 <p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference</a> are exported as html attributes. All events are mapped into html events of the same name.</p>
-
-<p>List of demos:</p>
-<ul>
-<li> <a class="nav" href="demo.html#view">leaflet-map</a> (L.map)
-<li> <a class="nav" href="demo.html#marker">leaflet-marker</a> (L.marker)
-<li> <a class="nav" href="demo.html#icon">leaflet-icon</a> (L.icon)
-<li> <a class="nav" href="demo.html#icon">leaflet-divicon</a> (L.divIcon)
-<li> <a class="nav" href="demo.html#tilelayer">leaflet-tilelayer</a> (L.tileLayer)
-<li> <a class="nav" href="demo.html#layerwms">leaflet-tilelayer-wms</a> (L.tileLayer.wms)
-<li> <a class="nav" href="demo.html#vector">leaflet-circle</a> (L.cirlce)
-<li> <a class="nav" href="demo.html#vector">leaflet-polyline</a> (L.polyline)
-<li> <a class="nav" href="demo.html#vector">leaflet-polygon</a> (L.polygon)
-<li> <a class="nav" href="demo.html#scale">leaflet-scale-control</a> (L.control.scale)
-<li> <a class="nav" href="demo.html#geojson">leaflet-geojson</a>
-<li> <a class="nav" href="demo.html#databinding">leaflet-geolocation</a> (part of L.map)
-</ul>
 
 
 <h2 id="simple">Simple</h2>
@@ -119,7 +115,7 @@
 <leaflet-map> </leaflet-map>
 
 <pre class="html"><code>
-&lt;<span class="i">script</span> <span class="a">src</span>="<span class="v">../platform/platform.js</span>"&gt;&lt;/<span class="i">script</span>&gt;
+&lt;<span class="i">script</span> <span class="a">src</span>="<span class="v">../webcomponentsjs/webcomponents-lite.min.js</span>"&gt;&lt;/<span class="i">script</span>&gt;
 &lt;<span class="i">link</span> <span class="a">rel</span>="<span class="v">import</span>" <span class="a">href</span>="<span class="v">leaflet-map.html</span>"&gt;
 
 &lt;<span class="i">leaflet-map</span>&gt; &lt;/<span class="i">leaflet-map</span>&gt;
@@ -189,11 +185,11 @@
 
 	<leaflet-marker latitude="51.5" longitude="-0.10" title="Icon element reference" icon="myicon">
 	</leaflet-marker>
-
 	<leaflet-marker latitude="51.5" longitude="-0.09" title="Icon json" icon='{"iconUrl": "https://stendhalgame.org/images/mapmarker/dungeon.png"}'> 
 	</leaflet-marker>
 
-	<leaflet-marker id="icon-reference" latitude="51.5" longitude="-0.08" title="Icon L.icon()"> 
+	<leaflet-marker id="icon-reference" latitude="51.5" longitude="-0.08" title="Icon L.icon()">
+
 	</leaflet-marker>
 </leaflet-map>
 
@@ -321,6 +317,7 @@ document.addEventListener("load", function() {
 
 <p>Custom tile layers, for example from online games can be defined using the leaflet-tilelayer element. If there is no explicit tilelayer defined, a default one will be used as shown in previous examples.</p>
 
+
 <leaflet-map latitude="78.8" longitude="-96" zoom="5" min-zoom="2" max-zoom="6">
 	<leaflet-tilelayer 
 		url="https://stendhalgame.org/map/3/{z}-{x}-{y}.png"
@@ -331,6 +328,7 @@ document.addEventListener("load", function() {
 	</leaflet-tilelayer>
 
 </leaflet-map>
+
 
 <pre class="html"><code>
 &lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">78.8</span>" <span class="a">longitude</span>="<span class="v">-96</span>" <span class="a">zoom</span>="<span class="v">5</span>" <span class="a">max-zoom</span>="<span class="v">6</span>"&gt;
@@ -440,18 +438,17 @@ map.addEventListener("moveend", function(e) {
 
 <h2 id="scale">Scale control</h2>
 
-<p>A scale control can be added and configured using &lt;leaflet-scale-control&gt; By default it displays both
-metric and imperial units.</p>
+<p>A scale control can be added and configured using &lt;leaflet-scale-control&gt;. By default it displays both metric and imperial units.</p>
 
 <leaflet-map latitude="51.505" longitude="-0.09" zoom="6">
-	<leaflet-scale-control position="topright" metric="true">
+	<leaflet-scale-control position="topright" metric imperial>
 	</leaflet-scale-control>
 </leaflet-map>
 
 <pre class="html"><code>
 &lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
 
-    &lt;<span class="i">leaflet-scale-control</span> <span class="a">position</span>="<span class="v">topright</span>" <span class="a">metric</span>="<span class="v">true</span>"&gt;
+    &lt;<span class="i">leaflet-scale-control</span> <span class="a">position</span>="<span class="v">topright</span>" <span class="a">metric</span> <span class="a">imperial</span>&gt;
     &lt;/<span class="i">leaflet-scale-control</span>&gt;
 
 &lt;/<span class="i">leaflet-map</span>&gt;
@@ -474,7 +471,7 @@ metric and imperial units.</p>
 
 	<template is="dom-bind">
 		<iron-ajax url="demo-geojson.json" handle-as="json" auto last-response="{{data}}"></iron-ajax>
-		<leaflet-geojson id="leafletgeojson" data="[[data]]"></leaflet-geojson>
+		<leaflet-geojson id="leafletgeojson" color="#FF0000" data="[[data]]"></leaflet-geojson>
 	</template>
 </leaflet-map>
 
@@ -493,13 +490,12 @@ metric and imperial units.</p>
     &lt;<span class="i">template</span> <span class="a">is</span>="<span class="v">dom-bind</span>"&gt;
       &lt;<span class="i">iron-ajax</span> <span class="a">url</span>="<span class="v">demo-geojson.json</span>" <span class="a">last-response</span>="<span class="v">{{data}}</span>" <span class="a">auto</span>&gt;
       &lt;/<span class="i">iron-ajax</span>&gt;
-      &lt;<span class="i">leaflet-geojson</span> <span class="a">data</span>="<span class="v">[[data]]</span>"&gt;&lt;/<span class="i">leaflet-geojson</span>&gt;
+      &lt;<span class="i">leaflet-geojson</span> <span class="a">color</span>="<span class="v">#FF0000</span>" <span class="a">data</span>="<span class="v">[[data]]</span>"&gt;&lt;/<span class="i">leaflet-geojson</span>&gt;
     &lt;/<span class="i">template</span>&gt;
 
 &lt;/<span class="i">leaflet-map</span>&gt;
 
 </code></pre>
-
 
 
 <h2 id="databinding">Data binding and custom components</h2>

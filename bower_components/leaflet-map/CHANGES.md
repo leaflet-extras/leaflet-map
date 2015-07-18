@@ -1,3 +1,9 @@
+v1.1.0
+======
+* added support for styling GeoJson layers (thanks to Ryan Cooper)
+* renamed attributes on leaflet-map: no-dragging, no-touch-zoom, no-scroll-wheel-zoom, no-double-click-zoom, no-box-zoom, no-tap, no-track-resize, no-close-popup-on-click, no-bounce-at-zoom-limits, no-keyboard, no-inertia, no-zoom-control, no-attribution-control
+* renamed attributes on leaflet-marker: no-clickable, no-keyboard
+
 v1.0.2
 ======
 * workaround for {s},{x},{y},{z} being escaped in tileset urls (thanks to Kevin Schaaf, John Eckhart, JustinCase1089)

@@ -5,12 +5,12 @@ Scale control that shows the scale of the current center of screen in metric (m/
 
 ##### Example
 
-	<leaflet-scale-control> </leaflet-scale-control>
+    <leaflet-scale-control> </leaflet-scale-control>
 	
 ##### Example
 
-	<leaflet-scale-control imperial="false">
-	</leaflet-scale-control>
+    <leaflet-scale-control metric>
+    </leaflet-scale-control>
 
 @element leaflet-scale-control
 @blurb Scale control that shows the scale of the current center of screen in metric (m/km) and imperial (mi/ft) systems. 
@@ -62,18 +62,18 @@ Scale control that shows the scale of the current center of screen in metric (m/
 			 */
 			metric: {
 				type: Boolean,
-				value: true
+				value: false
 			},
 	
 			/**
-			 * The `imperial` attribute sets whether show the imperial scale line (mi/ft).
+			 * The `imperial` attribute sets whether to show the imperial scale line (mi/ft).
 			 * 
 			 * @attribute imperial 
 			 * @type boolean
 			 */
 			imperial: {
 				type: Boolean,
-				value: true
+				value: false
 			},
 	
 			/**
@@ -98,8 +98,8 @@ Scale control that shows the scale of the current center of screen in metric (m/
 				var control = L.control.scale({
 					 position: this.position,
 					 maxWidth: this.maxWidth,
-					 metric: this.metric,
-					 imperial: this.imperial,
+					 metric: this.metric || !this.imperial,
+					 imperial: this.imperial || !this.metric,
 					 updateWhenIdle: this.updateWhenIdle,
 				});
 				this.control = control;

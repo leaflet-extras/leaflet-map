@@ -107,17 +107,6 @@
 
 <p>Most of the options documented in the <a href="http://leafletjs.com/reference.html">Leaflet reference</a> are exported as html attributes. All events are mapped into html events of the same name.</p>
 
-<!--
-<p>List of demos:</p>
-<ul>
-<li> <b>Map</b>: <a class="nav" href="demo.html#view">leaflet-map</a>, <a class="nav" href="demo.html#databinding">leaflet-geolocation</a>
-<li> <b>Marker</b>: <a class="nav" href="demo.html#marker">leaflet-marker</a>, <a class="nav" href="demo.html#icon">leaflet-icon</a>, <a class="nav" href="demo.html#icon">leaflet-divicon</a> 
-<li> <b>Layer</b>: <a class="nav" href="demo.html#tilelayer">leaflet-tilelayer</a>, <a class="nav" href="demo.html#layerwms">leaflet-tilelayer-wms</a>, <a class="nav" href="demo.html#geojson">leaflet-geojson</a>
-<li> <b>Draw</b>: <a class="nav" href="demo.html#vector">leaflet-circle</a>, <a class="nav" href="demo.html#vector">leaflet-polyline</a>, <a class="nav" href="demo.html#vector">leaflet-polygon</a>
-<li> <b>Control</b>: <a class="nav" href="demo.html#scale">leaflet-scale-control</a>
-</ul>
--->
-
 <h2 id="simple">Simple</h2>
 
 <p>Creating a leaflet based map is as simple as adding a &lt;leaflet-map&gt; tag after two lines of boilerplate code to load the web component platform and import the leaflet-map component.</p>
@@ -448,18 +437,17 @@ map.addEventListener("moveend", function(e) {
 
 <h2 id="scale">Scale control</h2>
 
-<p>A scale control can be added and configured using &lt;leaflet-scale-control&gt; By default it displays both
-metric and imperial units.</p>
+<p>A scale control can be added and configured using &lt;leaflet-scale-control&gt;. By default it displays both metric and imperial units.</p>
 
 <leaflet-map latitude="51.505" longitude="-0.09" zoom="6">
-	<leaflet-scale-control position="topright" metric="true">
+	<leaflet-scale-control position="topright" metric imperial>
 	</leaflet-scale-control>
 </leaflet-map>
 
 <pre class="html"><code>
 &lt;<span class="i">leaflet-map</span> <span class="a">latitude</span>="<span class="v">51.505</span>" <span class="a">longitude</span>="<span class="v">-0.09</span>" <span class="a">zoom</span>="<span class="v">13</span>"&gt;
 
-    &lt;<span class="i">leaflet-scale-control</span> <span class="a">position</span>="<span class="v">topright</span>" <span class="a">metric</span>="<span class="v">true</span>"&gt;
+    &lt;<span class="i">leaflet-scale-control</span> <span class="a">position</span>="<span class="v">topright</span>" <span class="a">metric</span> <span class="a">imperial</span>&gt;
     &lt;/<span class="i">leaflet-scale-control</span>&gt;
 
 &lt;/<span class="i">leaflet-map</span>&gt;
@@ -482,7 +470,7 @@ metric and imperial units.</p>
 
 	<template is="dom-bind">
 		<iron-ajax url="demo-geojson.json" handle-as="json" auto last-response="{{data}}"></iron-ajax>
-		<leaflet-geojson id="leafletgeojson" data="[[data]]"></leaflet-geojson>
+		<leaflet-geojson id="leafletgeojson" color="#FF0000" data="[[data]]"></leaflet-geojson>
 	</template>
 </leaflet-map>
 
@@ -501,7 +489,7 @@ metric and imperial units.</p>
     &lt;<span class="i">template</span> <span class="a">is</span>="<span class="v">dom-bind</span>"&gt;
       &lt;<span class="i">iron-ajax</span> <span class="a">url</span>="<span class="v">demo-geojson.json</span>" <span class="a">last-response</span>="<span class="v">{{data}}</span>" <span class="a">auto</span>&gt;
       &lt;/<span class="i">iron-ajax</span>&gt;
-      &lt;<span class="i">leaflet-geojson</span> <span class="a">data</span>="<span class="v">[[data]]</span>"&gt;&lt;/<span class="i">leaflet-geojson</span>&gt;
+      &lt;<span class="i">leaflet-geojson</span> <span class="a">color</span>="<span class="v">#FF0000</span>" <span class="a">data</span>="<span class="v">[[data]]</span>"&gt;&lt;/<span class="i">leaflet-geojson</span>&gt;
     &lt;/<span class="i">template</span>&gt;
 
 &lt;/<span class="i">leaflet-map</span>&gt;

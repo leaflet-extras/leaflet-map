@@ -7,7 +7,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 ##### Example
 
     <leaflet-icon id="myicon"
-    	icon-url="https://stendhalgame.org/images/mapmarker/me.png">
+        icon-url="https://stendhalgame.org/images/mapmarker/me.png">
     </leaflet-icon>
 
 @element leaflet-icon
@@ -26,9 +26,9 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 
 	Polymer({
 		is: 'leaflet-icon',
-		
+
 		properties: {
-	
+
 			/**
 			 * The `icon-url` attribute sets the URL to the icon image (absolute or relative to your script path).
 			 * 
@@ -50,7 +50,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: String,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `icon-width` attribute sets the size of the icon image in pixels. 
 			 * 
@@ -61,7 +61,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: Number,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `icon-height` attribute sets the size of the icon image in pixels.
 			 * 
@@ -72,7 +72,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: Number,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `icon-anchor-x` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 			 * 
@@ -83,7 +83,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: Number,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `icon-anchor-y` attribute sets the coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.
 			 * 
@@ -94,7 +94,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: Number,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `shadow-url` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.
 			 * 
@@ -105,7 +105,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: String,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `shadow-retina-url` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.
 			 * 
@@ -116,7 +116,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: String,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `shadow-width` attribute sets the size of the shadow image in pixels.
 			 * 
@@ -127,7 +127,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: Number,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `shadow-height` attribute sets the size of the shadow image in pixels.
 			 * 
@@ -138,7 +138,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: Number,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `shadow-anchor-x` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
 			 * 
@@ -149,7 +149,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: Number,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `shadow-anchor-y` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
 			 * 
@@ -160,7 +160,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: Number,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `popup-anchor-x` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
 			 * 
@@ -171,7 +171,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				type: Number,
 				observer: '_attributeChanged'
 			},
-	
+
 			/**
 			 * The `popupanchory` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.
 			 * 
@@ -183,7 +183,7 @@ Element which defines an icon template for markers (<a href="http://leafletjs.co
 				observer: '_attributeChanged'
 			},
 
-	
+
 			/**
 			 * The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.
 			 * 
@@ -248,7 +248,7 @@ Element which defines an divicon template for markers (<a href="http://leafletjs
 ##### Example
 
     <leaflet-divicon id="myicon" classname="name">
-    	<a href="https://leaflet-extras.github.io/leaflet-map/demo.html">Demo</a>
+        <a href="https://leaflet-extras.github.io/leaflet-map/demo.html">Demo</a>
     </leaflet-icon>
 
 @element leaflet-divicon
@@ -366,16 +366,16 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 
 ##### Example
 
-	<leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
-		<b>Popup text</b>
-	</leaflet-marker>
+    <leaflet-marker latitude="51.5" longitude="-0.10" title="Some title">
+        <b>Popup text</b>
+    </leaflet-marker>
 
 ##### Example
 
-	<leaflet-icon id="myicon" iconurl="https://stendhalgame.org/images/mapmarker/me.png"></leaflet-icon>
+    <leaflet-icon id="myicon" iconurl="https://stendhalgame.org/images/mapmarker/me.png"></leaflet-icon>
 
-	<leaflet-marker latitude="51.5" longitude="-0.10" title="Some title" icon="myicon">
-	</leaflet-marker>
+    <leaflet-marker latitude="51.5" longitude="-0.10" title="Some title" icon="myicon">
+    </leaflet-marker>
 
 @element leaflet-marker
 @blurb element which defines a marker. The content is used as popup window, unless it is empty.
@@ -557,16 +557,16 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			},
 
 			/**
-			 * If `clickable` attribute is set to false, the marker will not emit mouse events and will act as a part of the underlying map.
+			 * The `no-clickable` disables emitting mouse events and will act as a part of the underlying map.
 			 * 
-			 * @attribute clickable
+			 * @attribute no-clickable
 			 * @type bool
 			 */
-			clickable: {
+			noClickable: {
 				type: Boolean,
-				value: true
+				value: false
 			},
-	
+
 			/**
 			 * The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.
 			 * 
@@ -577,18 +577,18 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				type: Boolean,
 				value: false
 			},
-	
+
 			/**
-			 * The `keyboard` attribute sets the whether the marker is draggable with mouse/touch or not.
+			 * The `no-keyboard` attribute disables whether the marker can be tabbed to with a keyboard and clicked by pressing enter.
 			 * 
-			 * @attribute draggable
+			 * @attribute no-keyboard
 			 * @type bool
 			 */
-			keyboard: {
+			noKeyboard: {
 				type: Boolean,
-				value: true
+				value: false
 			},
-	
+
 			/**
 			 * The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).
 			 * 
@@ -599,7 +599,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				type: String,
 				value: ''
 			},
-	
+
 			/**
 			 * The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).
 			 * 
@@ -610,7 +610,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				type: String,
 				value: ''
 			},
-	
+
 			/**
 			 * The `z-index-offset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude
 			 * 
@@ -622,7 +622,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				value: 0,
 				observer: '_zIndexOffsetChanged'
 			},
-	
+
 			/**
 			 * The `opacity` attribute sets the opacity of the marker.
 			 * 
@@ -634,7 +634,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				value: 1.0,
 				observer: '_opacityChanged'
 			},
-	
+
 			/**
 			 * The `rise-on-hover` attribute sets the whether the marker will get on top of others when you hover the mouse over it. 
 			 * 
@@ -645,7 +645,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				type: Boolean,
 				value: false
 			},
-	
+
 			/**
 			 * The `rise-offset` attribute sets the z-index offset used for the riseOnHover feature.
 			 * 
@@ -656,7 +656,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				type: Number,
 				value: 250
 			},
-			
+
 			container: {
 				type: Object,
 				observer: '_containerChanged'
@@ -664,16 +664,16 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 		},
 
 		feature: undefined,
-		
+
 		observer_: undefined,
 
 		_containerChanged: function() {
 			if (this.container) {
 
 				var feature = L.marker([this.latitude, this.longitude], {
-					clickable: this.clickable,
+					clickable: !this.noClickable,
 					draggable: this.draggable,
-					keyboard: this.keyboard,
+					keyboard: !this.noKeyboard,
 					title: this.title,
 					alt: this.alt,
 					zIndexOffset: this.zIndexOffset,
@@ -745,7 +745,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 				this.feature.setOpacity(this.opacity);
 			}
 		},
-		
+
 		detached: function() {
 			if (this.container && this.feature) {
 				this.container.removeLayer(this.feature);
@@ -755,4 +755,3 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 	});
 	</script>
 </dom-module>
-
