@@ -613,7 +613,19 @@ add a marker with a popup text.
 		    	 type: Boolean,
 		    	 value: false,
 		    	 observer: '_fitToMarkers'
-		     }
+		     },
+
+		     /**
+		      * If set, set icon default imagepath
+		      *
+		      * @attribute icon-default-image-path
+		      * @type string
+		      * @default null
+		      */
+		     iconDefaultImagePath: {
+				type: String,
+				value: null
+			 }
 		},
 
 		/**
@@ -633,6 +645,11 @@ add a marker with a popup text.
 
 		guessLeafletImagePath: function() {
 			if (L.Icon.Default.imagePath) {
+				return;
+			}
+
+			if(this.iconDefaultImagePath){
+				L.Icon.Default.imagePath = this.iconDefaultImagePath;
 				return;
 			}
 
