@@ -17,7 +17,7 @@ A Layer group (<a href="http://leafletjs.com/reference.html#layergroup">Leaflet 
 -->
 
 <dom-module id="leaflet-layer-group">
-	<template>
+	<template><content></content>
 	</template>
 </dom-module>
 
@@ -41,7 +41,7 @@ A Layer group (<a href="http://leafletjs.com/reference.html#layergroup">Leaflet 
 	
 		_containerChanged: function() {
 			if (this.container) {
-				var feature = L.layerGroup()
+				var feature = L.layerGroup();
 				this.feature = feature;
 				this.feature.addTo(this.container);
 				this.registerContainerOnChildren();
