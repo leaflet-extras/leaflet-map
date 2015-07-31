@@ -149,6 +149,16 @@ Polymer({
 			lineJoin: {
 				type: String,
 				value: null
+			},
+		/**
+		 * The attribute `options` sets the options that are passed additonally when the geoJson-Object is created.
+		 * (See http://leafletjs.com/reference.html#geojson)
+		 * @attribute options
+		 * @type Object
+		 */
+			options : {
+				type : Object,
+				value : null
 			}
 
 	},
@@ -164,8 +174,7 @@ Polymer({
 			if (this.feature) {
 				this.container.removeLayer(this.feature);
 			}
-			this.feature = L.geoJson(this.data);
-
+			this.feature = L.geoJson(this.data, this.options);
 			this.feature.addTo(this.container)
 				.setStyle({
 					color: this.color,
