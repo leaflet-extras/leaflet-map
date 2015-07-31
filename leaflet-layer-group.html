@@ -5,9 +5,9 @@ A Layer group (<a href="http://leafletjs.com/reference.html#layergroup">Leaflet 
 
 ##### Example
 
-    <leaflet-layer-group>
-        <leaflet-marker latitude="51.505" longitude="-0.09"> </leaflet-marker>
-    </leaflet-layer-group>
+	<leaflet-layer-group>
+	    <leaflet-marker latitude="51.505" longitude="-0.09"> </leaflet-marker>
+	</leaflet-layer-group>
 
 
 @element leaflet-layer-group
@@ -31,7 +31,11 @@ A Layer group (<a href="http://leafletjs.com/reference.html#layergroup">Leaflet 
 			container: {
 				type: Object,
 				observer: '_containerChanged'
-			}	
+			},
+			fitMapToBounds : {
+				type: Boolean,
+				value: false
+			}
 		},
 
 		ready: function() {
@@ -51,6 +55,11 @@ A Layer group (<a href="http://leafletjs.com/reference.html#layergroup">Leaflet 
 		registerContainerOnChildren: function() {
 			for (var i = 0; i < this.children.length; i++) {
 				this.children[i].container = this.feature;
+			}
+			if(this.fitMapToBounds && this.container!=null && this.feature!=null) {
+				var layers = this.feature.getLayers();
+				if(layers.length>0)
+					this.container.fitBounds(L.featureGroup(layers).getBounds());
 			}
 		},
 		
