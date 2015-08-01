@@ -34,7 +34,7 @@ A Layer group (<a href="http://leafletjs.com/reference.html#layergroup">Leaflet 
 			}	
 		},
 
-		ready: function() {
+		resetMutationObserver : function() {
 			this._mutationObserver = new MutationObserver(this.registerContainerOnChildren.bind(this));
 			this._mutationObserver.observe(this, {childList: true});
 		},
@@ -49,6 +49,7 @@ A Layer group (<a href="http://leafletjs.com/reference.html#layergroup">Leaflet 
 		},
 
 		registerContainerOnChildren: function() {
+			this.resetMutationObserver();
 			for (var i = 0; i < this.children.length; i++) {
 				this.children[i].container = this.feature;
 			}
