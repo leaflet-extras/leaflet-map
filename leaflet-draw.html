@@ -432,6 +432,45 @@ a child element of the `leaflet-map` element.
 
 
 <!--
+The `leaflet-point` element represents one point in an polyline on the map and is used as
+a child element of the `leaflet-polyline` element.
+
+##### Example: Add polylines
+    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+        <leaflet-polyline>
+            <leaflet-point longitude="77.22" latitude="28.44"></leaflet-point>
+            <leaflet-point longitude="77.44" latitude="28.66"></leaflet-point>
+        </leaflet-polyline>
+    </leaflet-map>
+
+@element leaflet-point
+@blurb Element for adding a point to a polyline
+@demo https://leaflet-extras.github.io/leaflet-map/demo.html
+@homepage https://leaflet-extras.github.io/leaflet-map/
+-->
+<dom-module id="leaflet-point">
+	<script>
+		Polymer({
+			is: "leaflet-point",
+			properties: {
+				latitude: {
+					type: Number,
+					value: 0,
+					reflectToAttribute:true
+				},
+				longitude: {
+					type: Number,
+					value: 0,
+					reflectToAttribute:true
+				}
+			}
+		});
+	</script>
+</dom-module>
+
+
+
+<!--
 The `leaflet-polyline` element represents a polyline on the map and is used as
 a child element of the `leaflet-map` element. To compose the line one needs to
 add `leaflet-point` elements inside it.
