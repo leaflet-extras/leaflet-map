@@ -16,7 +16,7 @@ leafletMap.LeafletPopupContent = {
 		}
 		this.feature.unbindPopup();
 		// TODO: Hack, ignore <leaflet-point>-tag
-		var content = Polymer.dom(this).innerHTML.replace(/<\/?leaflet-point[^>]*>/g, "").trim();
+		var content = this.innerHTML.replace(/<\/?leaflet-point[^>]*>/g, "").trim();
 		if (content) {
 			this.feature.bindPopup(content);
 		}
