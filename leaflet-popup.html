@@ -1,31 +1,34 @@
 <script>
-"use strict";
+	"use strict";
 
-var leafletMap = leafletMap || {};
-leafletMap.LeafletPopupContent = {
-	attached: function() {
-		if (MutationObserver && !this.observer_) {
-			this.observer_ = new MutationObserver(this.updatePopupContent.bind(this));
-			this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
-		}
-	},
+	var leafletMap = leafletMap || {};
+	leafletMap.LeafletPopupContent = {
+		attached: function() {
+			if (MutationObserver && !this.observer_) {
+				this.observer_ = new MutationObserver(this.updatePopupContent.bind(this));
+				this.observer_.observe(this, {childList: true, characterData: true, attributes: true, subtree: true});
+			}
+		},
 
-	updatePopupContent: function() {
-		if (!this.feature) {
-			return;
-		}
-		this.feature.unbindPopup();
-		// TODO: Hack, ignore <leaflet-point>-tag
-		var content = this.innerHTML.replace(/<\/?leaflet-point[^>]*>/g, "").trim();
-		if (content) {
-			this.feature.bindPopup(content);
-		}
-	},
-	
-	detached: function() {
-		if (this.observer_) {
-			this.observer_.disconnect();
+		updatePopupContent: function() {
+			if (!this.feature) {
+				return;
+			}
+			this.feature.unbindPopup();
+			// TODO: Hack, ignore <leaflet-point>-tag
+			var content = Polymer.dom(this).innerHTML.replace(/<\/?leaflet-point[^>]*>/g, "").trim();
+			if(!content) { // above code does not work with dynamic content, below not with static content -.-
+				content = this.innerHTML.replace(/<\/?leaflet-point[^>]*>/g, "").trim();
+			}
+			if (content) {
+				this.feature.bindPopup(content);
+			}
+		},
+
+		detached: function() {
+			if (this.observer_) {
+				this.observer_.disconnect();
+			}
 		}
 	}
-}
 </script>
