@@ -681,6 +681,10 @@ add a marker with a popup text.
 				zoomAnimationThreshold: this.zoomAnimationThreshold
 			});
 			this.map = map;
+			
+			// fire an event for when this.map is defined and ready.
+			// (needed for components that talk to this.map directly)
+			this.fire('map-ready');
 
 			// forward events
 			map.on('click dblclick mousedown mouseup mouseover mouseout mousemove contextmenu focus blur preclick load unload viewreset movestart move moveend dragstart drag dragend zoomstart zoomend zoomlevelschange resize autopanstart layeradd layerremove baselayerchange overlayadd overlayremove locationfound locationerror popupopen popupclose', function(e) {

@@ -1,3 +1,8 @@
+v1.2.0
+======
+* fire map-ready event when this.map is defined (thanks to David B. Calhoun)
+* add leaflet-point dom-module (thanks to Compufreak345)
+
 v1.1.0
 ======
 * added support for styling GeoJson layers (thanks to Ryan Cooper)
