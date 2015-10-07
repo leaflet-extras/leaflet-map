@@ -1,6 +1,21 @@
 <link rel="import" href="leaflet-core.html">
 <link rel="import" href="leaflet-popup.html">
+<!--
+The `leaflet-rectangle` element represents a rectangle on the map and is used as
+a child element of the `leaflet-map` element. To compose the rectangle, set
+the "northEast" and "southWest"-property to a LatLng-object or -array.
 
+##### Example: Add rectangle
+<leaflet-rectangle weight="1" color="#03f" fill-color="#FFCC00"
+ fill="true" id="rect" container="{{container}}"
+  north-east="[40.91264180711942, 10.334070143473614]"
+   south-west="[50.93705640763448, 13.346227708088888]">This is a rectangle!</leaflet-rectangle>
+
+@element leaflet-rectangle
+@blurb Element for putting a rectangle on the map
+@demo https://leaflet-extras.github.io/leaflet-map/demo.html
+@homepage https://leaflet-extras.github.io/leaflet-map/
+-->
 <dom-module id="leaflet-rectangle">
     <style>
         :host{ display: none; }
@@ -30,10 +45,10 @@
             },
 
             /**
-             * The `northEast` attribute sets the positions of the north east corner of the rectangle.
-             *
-             * @attribute latitude
-             * @type number
+             * The `northEast` attribute sets the position of the north east corner of the rectangle.
+             * (e.g. "[0,0]")
+             * @attribute northEast
+             * @type array
              */
             northEast : {
                 type: Object,
@@ -43,10 +58,10 @@
                 observer:'_boundsChanged'
             },
             /**
-             * The `southWest` attribute sets the positions of the southWest corner of the rectangle.
-             *
-             * @attribute latitude
-             * @type number
+             * The `southWest` attribute sets the position of the southWest corner of the rectangle.
+             * (e.g. "[1,1]")
+             * @attribute southWest
+             * @type array
              */
             southWest : {
                 type: Object,
