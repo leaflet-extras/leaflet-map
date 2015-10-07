@@ -32,7 +32,7 @@ A GeoJson layer (<a href="http://leafletjs.com/reference.html#geojson">Leaflet R
 
 Polymer({
 	is: 'leaflet-geojson',
-	behaviors: [leafletMap.LeafletILayer],
+	behaviors: [leafletMap.LeafletILayer,leafletMap.LeafletOptionsContent],
 
 	properties: {
 		/**
@@ -166,21 +166,29 @@ Polymer({
 			}
 			this.feature = L.geoJson(this.data);
 
-			this.feature.addTo(this.container)
-				.setStyle({
-					color: this.color,
-					weight: this.weight,
-					opacity: this.opacity,
-					fill: this.fill,
-					fillColor: this.fillColor,
-					fillOpacity: this.fillOpacity,
-					dashArray: this.dashArray,
-					lineCap: this.lineCap,
-					lineJoin: this.lineJoin
-				});
+			this.feature.addTo(this.container);
+			this._updateStyle();
 		}
 	},
-	
+	_updateStyle: function() {
+		if (!this.feature) {
+			return;
+		}
+		return this.feature.setStyle(this.getGeoJsonOptions());
+	},
+	getGeoJsonOptions: function() {
+		return this._addAdditionalOptions({
+			color: this.color,
+					weight: this.weight,
+				opacity: this.opacity,
+				fill: this.fill,
+				fillColor: this.fillColor,
+				fillOpacity: this.fillOpacity,
+				dashArray: this.dashArray,
+				lineCap: this.lineCap,
+				lineJoin: this.lineJoin
+		});
+	},
 	detached: function() {
 		if (this.container && this.feature) {
 			this.container.removeLayer(this.feature);
