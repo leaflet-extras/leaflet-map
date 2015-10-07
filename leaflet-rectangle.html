@@ -72,7 +72,7 @@ the "northEast" and "southWest"-property to a LatLng-object or -array.
             }
         },
         _containerChanged: function() {
-            if (this.container) {
+            if (this.container && this.northEast && this.southWest) {
                 // define rectangle geographical bounds
                 var bounds = [this.southWest,this.northEast];
                 this.feature = L.rectangle(bounds, this.getPathOptions());
@@ -88,6 +88,8 @@ the "northEast" and "southWest"-property to a LatLng-object or -array.
         _boundsChanged: function(newVal) {
             if(this.feature && newVal) {
                 this.feature.setBounds([this.southWest,this.northEast]);
+            } else {
+                this._containerChanged();
             }
         },
         detached: function() {
