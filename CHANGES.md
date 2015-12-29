@@ -1,5 +1,7 @@
 v1.2.0
 ======
+* propagate leaflet initialisation events (thanks to Fedor Baart)
+* fixed references to demos in README.md (thanks to Stephen Moore)
 * fire map-ready event when this.map is defined (thanks to David B. Calhoun)
 * add leaflet-point dom-module (thanks to Compufreak345)
 
