@@ -726,7 +726,8 @@ add a marker with a popup text.
 		},
 
 		detached: function() {
-			this._mutationObserver.disconnect();
+			if(this._mutationObserver)
+				this._mutationObserver.disconnect();
 		},
 
 		_viewChanged: function(newValue, oldValue) {
