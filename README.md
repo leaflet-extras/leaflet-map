@@ -61,20 +61,20 @@ Import the main component and start creating your map:
 
 Although leaflet-map is still under heavy development, it is already fully usable.
 
-Lists of demos: 
+List of demos: 
 
-* [leaflet-map](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#view) (L.map)
-* [leaflet-marker](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#marker) (L.marker)
-* [leaflet-icon](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.icon)
-* [leaflet-divicon](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.divicon) (since 0.0.1)
-* [leaflet-circle](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.circle) (since 0.3.0)
-* [leaflet-polygon](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.polygon) (since 0.3.0)
-* [leaflet-polyline](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.polyline) (since 0.3.0)
-* [leaflet-tilelayer](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#tilelayer) (L.tileLayer)
-* [leaflet-tilelayer-wms](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#layerwms) (L.tileLayer.wms)  (since 0.0.2)
-* [leaflet-scale-control](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#scale) (L.control.scale) (since 0.2.0)
-* [leaflet-geojson](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo.html#geojson) (since 0.4.0)
-* [leaflet-geolocation](https://leaflet-extras.github.io/leaflet-map/leaflet-map/demo-advanced.html#databinding) (part of L.map) (since 0.0.2)
+* [leaflet-map](https://leaflet-extras.github.io/leaflet-map/demo.html#view) (L.map)
+* [leaflet-marker](https://leaflet-extras.github.io/leaflet-map/demo.html#marker) (L.marker)
+* [leaflet-icon](https://leaflet-extras.github.io/leaflet-map/demo.html#icon) (L.icon)
+* [leaflet-divicon](https://leaflet-extras.github.io/leaflet-map/demo.html#icon) (L.divicon) (since 0.0.1)
+* [leaflet-circle](https://leaflet-extras.github.io/leaflet-map/demo.html#vector) (L.circle) (since 0.3.0)
+* [leaflet-polygon](https://leaflet-extras.github.io/leaflet-map/demo.html#vector) (L.polygon) (since 0.3.0)
+* [leaflet-polyline](https://leaflet-extras.github.io/leaflet-map/demo.html#vector) (L.polyline) (since 0.3.0)
+* [leaflet-tilelayer](https://leaflet-extras.github.io/leaflet-map/demo.html#tilelayer) (L.tileLayer)
+* [leaflet-tilelayer-wms](https://leaflet-extras.github.io/leaflet-map/demo.html#layerwms) (L.tileLayer.wms)  (since 0.0.2)
+* [leaflet-scale-control](https://leaflet-extras.github.io/leaflet-map/demo.html#scale) (L.control.scale) (since 0.2.0)
+* [leaflet-geojson](https://leaflet-extras.github.io/leaflet-map/demo.html#geojson) (since 0.4.0)
+* [leaflet-geolocation](https://leaflet-extras.github.io/leaflet-map/demo.html#databinding) (part of L.map) (since 0.0.2)
 
 Please have a look at the [change log](https://github.com/nhnb/leaflet-map/blob/master/CHANGES.md), for recent developments.
 
