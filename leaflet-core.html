@@ -655,8 +655,6 @@ add a marker with a popup text.
 		domReady: function() {
 			this.guessLeafletImagePath();
 			var map = L.map(this.$.map, {
-				center: [this.latitude, this.longitude],
-				zoom: this.zoom,
 				minZoom: this.minZoom,
 				maxZoom: this.maxZoom,
 				dragging: !this.noDragging,
@@ -681,7 +679,7 @@ add a marker with a popup text.
 				zoomAnimationThreshold: this.zoomAnimationThreshold
 			});
 			this.map = map;
-			
+
 			// fire an event for when this.map is defined and ready.
 			// (needed for components that talk to this.map directly)
 			this.fire('map-ready');
@@ -690,7 +688,8 @@ add a marker with a popup text.
 			map.on('click dblclick mousedown mouseup mouseover mouseout mousemove contextmenu focus blur preclick load unload viewreset movestart move moveend dragstart drag dragend zoomstart zoomend zoomlevelschange resize autopanstart layeradd layerremove baselayerchange overlayadd overlayremove locationfound locationerror popupopen popupclose', function(e) {
 				this.fire(e.type, e);
 			}, this);
-
+			// set map view after registering events so viewreset and load events can be caught
+			map.setView([this.latitude, this.longitude], this.zoom);
 			// update attributes
 			map.on('moveend', function(e) {
 				this._ignoreViewChange = true;
