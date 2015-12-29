@@ -3,7 +3,7 @@
 *leaflet-map* is a web-component which provides access to the [leaflet map](http://leafletjs.com) 
 JavaScript library via html elements.
 
-Please have a look at the [demo](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html) or the [api documentation](https://nhnb.github.io/leaflet-map/doc.html#leaflet-map).
+Please have a look at the [demo](https://leaflet-extras.github.io/leaflet-map/demo.html) or the [api documentation](https://leaflet-extras.github.io/leaflet-map/doc.html#leaflet-map).
 
 Most of the options documented in the Leaflet reference are exported as html attributes. 
 All events are mapped into html events of the same name.</p>
@@ -19,8 +19,8 @@ do not yet support web-components natively, yet.
 ## Quickstart Guide
 
 Make leaflet maps using declarative [Polymer](http://polymer-project.org) web components.
-To get started read the [documentation](http://nhnb.github.io/leaflet-map/doc.html)
-or checkout the [demo](http://nhnb.github.io/leaflet-map/).
+To get started read the [documentation](http://leaflet-extras.github.io/leaflet-map/doc.html)
+or checkout the [demo](http://leaflet-extras.github.io/leaflet-map/).
 
 Install this web component using [Bower](http://bower.io):
 
@@ -44,8 +44,8 @@ Import the main component and start creating your map:
       }
     </style>
   </head>
-  <body unresolved>
-    <leaflet-map longitude="77.2" latitude="28.4" zoom="12">
+  <body>
+    <leaflet-map fit-to-markers>
       <leaflet-marker longitude="77.2" latitude="28.4">
         Marker I
       </leaflet-marker>
@@ -61,20 +61,20 @@ Import the main component and start creating your map:
 
 Although leaflet-map is still under heavy development, it is already fully usable.
 
-Lists of demos: 
+List of demos: 
 
-* [leaflet-map](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#view) (L.map)
-* [leaflet-marker](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#marker) (L.marker)
-* [leaflet-icon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.icon)
-* [leaflet-divicon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#icon) (L.divicon) (since 0.0.1)
-* [leaflet-circle](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.circle) (since 0.3.0)
-* [leaflet-polygon](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.polygon) (since 0.3.0)
-* [leaflet-polyline](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#vector) (L.polyline) (since 0.3.0)
-* [leaflet-tilelayer](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#tilelayer) (L.tileLayer)
-* [leaflet-tilelayer-wms](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#layerwms) (L.tileLayer.wms)  (since 0.0.2)
-* [leaflet-scale-control](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#scale) (L.control.scale) (since 0.2.0)
-* [leaflet-geojson](https://nhnb.github.io/leaflet-map/leaflet-map/demo.html#geojson) (since 0.4.0)
-* [leaflet-geolocation](https://nhnb.github.io/leaflet-map/leaflet-map/demo-advanced.html#databinding) (part of L.map) (since 0.0.2)
+* [leaflet-map](https://leaflet-extras.github.io/leaflet-map/demo.html#view) (L.map)
+* [leaflet-marker](https://leaflet-extras.github.io/leaflet-map/demo.html#marker) (L.marker)
+* [leaflet-icon](https://leaflet-extras.github.io/leaflet-map/demo.html#icon) (L.icon)
+* [leaflet-divicon](https://leaflet-extras.github.io/leaflet-map/demo.html#icon) (L.divicon) (since 0.0.1)
+* [leaflet-circle](https://leaflet-extras.github.io/leaflet-map/demo.html#vector) (L.circle) (since 0.3.0)
+* [leaflet-polygon](https://leaflet-extras.github.io/leaflet-map/demo.html#vector) (L.polygon) (since 0.3.0)
+* [leaflet-polyline](https://leaflet-extras.github.io/leaflet-map/demo.html#vector) (L.polyline) (since 0.3.0)
+* [leaflet-tilelayer](https://leaflet-extras.github.io/leaflet-map/demo.html#tilelayer) (L.tileLayer)
+* [leaflet-tilelayer-wms](https://leaflet-extras.github.io/leaflet-map/demo.html#layerwms) (L.tileLayer.wms)  (since 0.0.2)
+* [leaflet-scale-control](https://leaflet-extras.github.io/leaflet-map/demo.html#scale) (L.control.scale) (since 0.2.0)
+* [leaflet-geojson](https://leaflet-extras.github.io/leaflet-map/demo.html#geojson) (since 0.4.0)
+* [leaflet-geolocation](https://leaflet-extras.github.io/leaflet-map/demo.html#databinding) (part of L.map) (since 0.0.2)
 
 Please have a look at the [change log](https://github.com/nhnb/leaflet-map/blob/master/CHANGES.md), for recent developments.
 
@@ -99,7 +99,7 @@ leaflet-map is based on polymer and leaflet. Small parts of leaflet,
 especially the api documentation, have been copied into leaflet-map files.
 
 * [Leaflet](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
-* [Polymer](https://github.com/polymer/polymer/blob/master/LICENSE)
+* [Polymer](https://github.com/polymer/polymer/blob/master/LICENSE.txt)
 
 
 Copyright (c) 2014-2015
