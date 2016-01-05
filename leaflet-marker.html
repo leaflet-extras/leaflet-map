@@ -750,7 +750,13 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			if (this.container && this.feature) {
 				this.container.removeLayer(this.feature);
 			}
-		}
+		},
+        
+        attached: function(){
+            if(this.container && this.feature){
+                this.feature.addTo(this.container);
+            }
+        }
 
 	});
 	</script>
