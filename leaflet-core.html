@@ -624,13 +624,6 @@ add a marker with a popup text.
 		 */
 		map: undefined,
 
-		ready: function() {
-			// TODO09: Workaround for removed domReady event
-			var me = this;
-			setTimeout(function() {me.domReady()}, 1);
-		},
-
-
 		guessLeafletImagePath: function() {
 			if (L.Icon.Default.imagePath) {
 				return;
@@ -652,7 +645,7 @@ add a marker with a popup text.
 			}
 		},
 
-		domReady: function() {
+		attached: function() {
 			this.guessLeafletImagePath();
 			var map = L.map(this.$.map, {
 				minZoom: this.minZoom,
