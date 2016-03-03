@@ -102,7 +102,7 @@ especially the api documentation, have been copied into leaflet-map files.
 * [Polymer](https://github.com/polymer/polymer/blob/master/LICENSE.txt)
 
 
-Copyright (c) 2014-2015
+Copyright (c) 2014-2016
 Hendrik Brummermann, Prateek Saxena
 
 All rights reserved.
