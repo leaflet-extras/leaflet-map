@@ -16,6 +16,7 @@ Do not use this element directly.
 
 	var leafletMap = leafletMap || {};
 
+	/** @polymerBehavior leafletMap.LeafletPath */
 	window.leafletMap.LeafletPath = {
 		/**
 		 * Fired when the user clicks (or taps) the object.
@@ -272,6 +273,7 @@ Do not use this element directly.
 		}
 	};
 
+	/** @polymerBehavior leafletMap.LeafletPointContent */
 	window.leafletMap.LeafletPointContent = {
 		attached: function() {
 			if (MutationObserver && !this.observer_) {
