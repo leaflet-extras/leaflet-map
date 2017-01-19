@@ -2,6 +2,8 @@
 "use strict";
 
 var leafletMap = leafletMap || {};
+
+/** @polymerBehavior leafletMap.LeafletPopupContent */
 leafletMap.LeafletPopupContent = {
 	attached: function() {
 		if (MutationObserver && !this.observer_) {

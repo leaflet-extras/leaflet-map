@@ -8,6 +8,8 @@ Abstract element representing ILayer (<a href="http://leafletjs.com/reference.ht
 "use strict";
 
 var leafletMap = leafletMap || {};
+
+/** @polymerBehavior leafletMap.LeafletILayer */
 window.leafletMap.LeafletILayer = {
 
 	/**
@@ -20,6 +22,7 @@ window.leafletMap.LeafletILayer = {
 	}
 };
 
+/** @polymerBehavior leafletMap.LeafletTileLayer */
 window.leafletMap.LeafletTileLayer = {
 	/**
 	 * Fired when the tile layer starts loading tiles.
