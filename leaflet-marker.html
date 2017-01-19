@@ -699,7 +699,7 @@ Element which defines a maker  (<a href="http://leafletjs.com/reference.html#mar
 			var iconOption;
 			if (this.icon) {
 				if (typeof this.icon == "string") {
-					var iconElement = document.getElementById(this.icon);
+				  var iconElement = Polymer.dom(this.parentNode).querySelector('#'+this.icon);
 					if (iconElement != null) {
 						if (iconElement.getIcon) {
 							iconOption = iconElement.getIcon();
