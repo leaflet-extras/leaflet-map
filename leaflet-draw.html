@@ -117,7 +117,8 @@ Do not use this element directly.
 			 */
 			noStroke: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -128,7 +129,8 @@ Do not use this element directly.
 			 */
 			color: {
 				type: String,
-				value: "#03f"
+				value: "#03f",
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -139,7 +141,8 @@ Do not use this element directly.
 			 */
 			weight: {
 				type: Number,
-				value: 5
+				value: 5,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -150,7 +153,8 @@ Do not use this element directly.
 			 */
 			opacity: {
 				type: Number,
-				value: 0.5
+				value: 0.5,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -161,7 +165,8 @@ Do not use this element directly.
 			 */
 			fill: {
 				type: Boolean,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -172,7 +177,8 @@ Do not use this element directly.
 			 */
 			fillColor: {
 				type: String,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -183,7 +189,8 @@ Do not use this element directly.
 			 */
 			fillOpacity: {
 				type: Number,
-				value: 0.2
+				value: 0.2,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -194,7 +201,8 @@ Do not use this element directly.
 			 */
 			dashArray: {
 				type: String,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -205,7 +213,8 @@ Do not use this element directly.
 			 */
 			lineCap: {
 				type: String,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			}, 
 
 			/**
@@ -216,7 +225,8 @@ Do not use this element directly.
 			 */
 			lineJoin: {
 				type: String,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -227,7 +237,8 @@ Do not use this element directly.
 			 */
 			noClickable: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -238,7 +249,8 @@ Do not use this element directly.
 			 */
 			pointerEvents: {
 				type: String,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -249,7 +261,8 @@ Do not use this element directly.
 			 */
 			className: {
 				type: String,
-				value: ""
+				value: "",
+				observer: "_updateStyle"
 			}
 		},
 
@@ -269,6 +282,17 @@ Do not use this element directly.
 				pointerEvents: this.pointerEvents,
 				className: this.className,
 			};
+		},
+		/**
+		 * If the item is already initialised (this.feature is set), it will update the style depending on the settings of this
+		 * e.g. useful to change colors without deleting & re-inserting the item.
+		 * @returns {*|result} result of this.feature.setStyle or undefined if no feature initialized
+		 */
+		_updateStyle: function() {
+			if (!this.feature) {
+				return;
+			}
+			return this.feature.setStyle(this.getPathOptions());
 		}
 	};
 
