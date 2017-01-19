@@ -1,0 +1,103 @@
+<link rel="import" href="leaflet-core.html">
+<link rel="import" href="leaflet-popup.html">
+<!--
+The `leaflet-rectangle` element represents a rectangle on the map and is used as
+a child element of the `leaflet-map` element. To compose the rectangle, set
+the "northEast" and "southWest"-property to a LatLng-object or -array.
+
+##### Example: Add rectangle
+<leaflet-rectangle weight="1" color="#03f" fill-color="#FFCC00"
+ fill="true" id="rect" container="{{container}}"
+  north-east="[40.91264180711942, 10.334070143473614]"
+   south-west="[50.93705640763448, 13.346227708088888]">This is a rectangle!</leaflet-rectangle>
+
+@element leaflet-rectangle
+@blurb Element for putting a rectangle on the map
+@demo https://leaflet-extras.github.io/leaflet-map/demo.html
+@homepage https://leaflet-extras.github.io/leaflet-map/
+-->
+<dom-module id="leaflet-rectangle">
+    <style>
+        :host{ display: none; }
+    </style>
+    <template><content></content>
+    </template>
+</dom-module>
+
+<script>
+    "use strict";
+    Polymer({
+        is: 'leaflet-rectangle',
+        // TODO: Implement complete inheritance from Polygon <- Polyline <- Path
+        behaviors: [leafletMap.LeafletPath, leafletMap.LeafletPopupContent],
+        /**
+         * A Leaflet [Rectangle] object
+         *
+         * @property feature
+         * @type L.rectangle
+         * @default null
+         */
+        feature: null,
+        properties: {
+            container: {
+                type: Object,
+                observer: '_containerChanged'
+            },
+
+            /**
+             * The `northEast` attribute sets the position of the north east corner of the rectangle.
+             * (e.g. "[0,0]")
+             * @attribute northEast
+             * @type array
+             */
+            northEast : {
+                type: Object,
+                value : null,
+                reflectToAttribute:true,
+                notify:true,
+                observer:'_boundsChanged'
+            },
+            /**
+             * The `southWest` attribute sets the position of the southWest corner of the rectangle.
+             * (e.g. "[1,1]")
+             * @attribute southWest
+             * @type array
+             */
+            southWest : {
+                type: Object,
+                value : null,
+                reflectToAttribute:true,
+                notify:true,
+                observer:'_boundsChanged'
+            }
+        },
+        _containerChanged: function() {
+            if (this.container && this.northEast && this.southWest) {
+                // define rectangle geographical bounds
+                var bounds = [this.southWest,this.northEast];
+                this.feature = L.rectangle(bounds, this.getPathOptions());
+                // forward events
+                this.feature.on('click dblclick mousedown mouseover mouseout contextmenu dragstart drag dragend move add remove popupopen popupclose', function(e) {
+                    this.fire(e.type, e);
+                }, this);
+
+                this.updatePopupContent();
+                this.feature.addTo(this.container);
+            }
+        },
+        _boundsChanged: function(newVal) {
+            if(this.feature && newVal) {
+                this.feature.setBounds([this.southWest,this.northEast]);
+            } else {
+                this._containerChanged();
+            }
+        },
+        detached: function() {
+            if (this.container && this.feature) {
+                this.container.removeLayer(this.feature);
+            }
+        }
+    });
+</script>
+
+
