@@ -15,11 +15,47 @@ Do not use this element directly.
 	"use strict";
 
 	var leafletMap = leafletMap || {};
-
-	window.leafletMap.LeafletPath = {
+	window.leafletMap.LeafletOptionsContent = {
+		properties: {
+			additionalOptions: {
+				type: Object,
+				value: function() {return {};},
+				observer: '_additionalOptionsChanged'
+			}
+		},
+		_additionalOptionsChanged: function (newVal, oldVal) {
+			if(typeof(this._updateStyle)=="function") {
+				this._updateStyle();
+			} else if (this.feature && this.feature.options) {
+				if (oldVal) {
+					if (newVal == undefined) newVal = {};
+					var opts = this.feature.options;
+					Object.keys(oldVal).forEach(function (key, index) {
+						opts[key] = newVal[key];
+					});
+				}
+				if (this.additionalOptions) {
+					var opts = this.feature.options;
+					Object.keys(this.additionalOptions).forEach(function (key, index) {
+						opts[key] = newVal[key];
+					});
+				}
+			}
+		},
+		_addAdditionalOptions: function (options) {
+			if (this.additionalOptions) {
+				var opts = this.additionalOptions;
+				Object.keys(this.additionalOptions).forEach(function (key, index) {
+					options[key] = opts[key];
+				});
+			}
+			return options;
+		}
+	};
+	window.leafletMap._LeafletPathImpl = {
 		/**
 		 * Fired when the user clicks (or taps) the object.
-		 * 
+		 *
 		 * @event click
 		 * @type MouseEvent
 		 * @param {LatLng} latlng The geographical point where the mouse event occured.
@@ -30,7 +66,7 @@ Do not use this element directly.
 
 		/**
 		 * Fired when the user double-clicks (or double-taps) the object.
-		 * 
+		 *
 		 * @event dblclick
 		 * @type MouseEvent
 		 * @param {LatLng} latlng The geographical point where the mouse event occured.
@@ -41,7 +77,7 @@ Do not use this element directly.
 
 		/**
 		 * Fired when the user pushes the mouse button on the object.
-		 * 
+		 *
 		 * @event mousedown
 		 * @type MouseEvent
 		 * @param {LatLng} latlng The geographical point where the mouse event occured.
@@ -52,7 +88,7 @@ Do not use this element directly.
 
 		/**
 		 * Fired when the mouse enters the object.
-		 * 
+		 *
 		 * @event mouseover
 		 * @type MouseEvent
 		 * @param {LatLng} latlng The geographical point where the mouse event occured.
@@ -60,10 +96,10 @@ Do not use this element directly.
 		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
 		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
 		 */
-		
+
 		/**
 		 * Fired when the mouse leaves the object.
-		 * 
+		 *
 		 * @event mouseout
 		 * @type MouseEvent
 		 * @param {LatLng} latlng The geographical point where the mouse event occured.
@@ -71,30 +107,30 @@ Do not use this element directly.
 		 * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
 		 * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
 		 */
-		
+
 		/**
 		 * Fired when the user right-clicks on the object.
-		 * 
+		 *
 		 * @event contextmenu
 		 * @type MouseEvent
 		 */
 
 		/**
 		 * Fired when the object is added to the map.
-		 * 
+		 *
 		 * @event add
-		 * @type 
+		 * @type
 		 */
 
 		/**
 		 * Fired when the object is removed from the map.
-		 * 
+		 *
 		 * @event remove
 		 */
 
 		/**
 		 * Fired when a popup bound to the object is open.
-		 * 
+		 *
 		 * @event popupopen
 		 * @type PopupEvent
 		 * @param {Popup} popup The popup that was opened or closed.
@@ -102,7 +138,7 @@ Do not use this element directly.
 
 		/**
 		 * Fired when a popup bound to the object is closed.
-		 * 
+		 *
 		 * @event popupclose
 		 * @type PopupEvent
 		 * @param {Popup} popup The popup that was opened or closed.
@@ -117,7 +153,8 @@ Do not use this element directly.
 			 */
 			noStroke: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -128,7 +165,8 @@ Do not use this element directly.
 			 */
 			color: {
 				type: String,
-				value: "#03f"
+				value: "#03f",
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -139,7 +177,8 @@ Do not use this element directly.
 			 */
 			weight: {
 				type: Number,
-				value: 5
+				value: 5,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -150,7 +189,8 @@ Do not use this element directly.
 			 */
 			opacity: {
 				type: Number,
-				value: 0.5
+				value: 0.5,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -161,7 +201,8 @@ Do not use this element directly.
 			 */
 			fill: {
 				type: Boolean,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -172,7 +213,8 @@ Do not use this element directly.
 			 */
 			fillColor: {
 				type: String,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -183,7 +225,8 @@ Do not use this element directly.
 			 */
 			fillOpacity: {
 				type: Number,
-				value: 0.2
+				value: 0.2,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -194,7 +237,8 @@ Do not use this element directly.
 			 */
 			dashArray: {
 				type: String,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -205,8 +249,9 @@ Do not use this element directly.
 			 */
 			lineCap: {
 				type: String,
-				value: null
-			}, 
+				value: null,
+				observer: "_updateStyle"
+			},
 
 			/**
 			 * The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.
@@ -216,7 +261,8 @@ Do not use this element directly.
 			 */
 			lineJoin: {
 				type: String,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -227,7 +273,8 @@ Do not use this element directly.
 			 */
 			noClickable: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -238,7 +285,8 @@ Do not use this element directly.
 			 */
 			pointerEvents: {
 				type: String,
-				value: null
+				value: null,
+				observer: "_updateStyle"
 			},
 
 			/**
@@ -249,12 +297,13 @@ Do not use this element directly.
 			 */
 			className: {
 				type: String,
-				value: ""
+				value: "",
+				observer: "_updateStyle"
 			}
 		},
 
 		getPathOptions: function() {
-			return {
+			return this._addAdditionalOptions({
 				stroke: !this.noStroke,
 				color: this.color,
 				weight: this.weight,
@@ -267,10 +316,24 @@ Do not use this element directly.
 				lineJoin: this.lineJoin,
 				clickable: !this.noClickable,
 				pointerEvents: this.pointerEvents,
-				className: this.className,
-			};
+				className: this.className
+			});
+		},
+		/**
+		 * If the item is already initialised (this.feature is set), it will update the style depending on the settings of this
+		 * e.g. useful to change colors without deleting & re-inserting the item.
+		 * @returns {*|result} result of this.feature.setStyle or undefined if no feature initialized
+		 */
+		_updateStyle: function() {
+			if (!this.feature) {
+				return;
+			}
+			return this.feature.setStyle(this.getPathOptions());
 		}
 	};
+
+	window.leafletMap.LeafletPath = [leafletMap.LeafletOptionsContent,leafletMap._LeafletPathImpl];
+
 
 	window.leafletMap.LeafletPointContent = {
 		attached: function() {
@@ -297,7 +360,7 @@ Do not use this element directly.
 			}
 			this.feature.setLatLngs(temp);
 		},
-		
+
 		detached: function() {
 			if (this.observer_) {
 				this.observer_.disconnect();
@@ -336,7 +399,7 @@ a child element of the `leaflet-map` element.
 </dom-module>
 <script>
 	"use strict";
-	
+
 	Polymer({
 		is: 'leaflet-circle',
 
@@ -362,7 +425,7 @@ a child element of the `leaflet-map` element.
 				type: Number,
 				observer: '_updatePosition'
 			},
-	
+
 			/**
 			 * The circle's latitude coordinate
 			 *
@@ -374,7 +437,7 @@ a child element of the `leaflet-map` element.
 				type: Number,
 				observer: '_updatePosition'
 			},
-	
+
 			/**
 			 * The circle's radius is metres
 			 *
@@ -387,14 +450,14 @@ a child element of the `leaflet-map` element.
 				value: 100,
 				observer: '_updateRadius'
 			},
-			
+
 			container: {
 				type: Object,
 				observer: '_containerChanged'
 			}
 		},
-		
-		
+
+
 		_containerChanged: function() {
 			if (this.latitude && this.longitude && this.container) {
 		    	this.feature = L.circle([this.latitude, this.longitude], this.radius, this.getPathOptions());
@@ -407,19 +470,19 @@ a child element of the `leaflet-map` element.
 				}, this);
 			}
 		},
-	
+
 		_updatePosition: function () {
 			if (this.feature && this.latitude != null && this.longitude != null) {
 				this.feature.setLatLng(L.latLng( this.latitude, this.longitude) );
 			}
 		},
-		
+
 		_updateRadius: function () {
 			if (this.feature && this.radius != null) {
 				this.feature.setRadius(this.radius);
 			}
 		},
-		
+
 		detached: function() {
 			if (this.container && this.feature) {
 				this.container.removeLayer(this.feature);
@@ -501,7 +564,7 @@ add `leaflet-point` elements inside it.
 
 <script>
 	"use strict";
- 
+
 	Polymer({
 		is: 'leaflet-polyline',
 		behaviors: [leafletMap.LeafletPath, leafletMap.LeafletPointContent, leafletMap.LeafletPopupContent],
@@ -587,7 +650,7 @@ Polymer({
 			observer: '_containerChanged'
 		}
 	},
-	
+
 	/**
 	 * A Leaflet [Polygon](http://leafletjs.com/reference.html#polygon) object
 	 *
