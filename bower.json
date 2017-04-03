@@ -7,7 +7,7 @@
   ],
   "description": "Leaflet map as web-component based on polymer",
   "main": "leaflet-map.html",
-  "homepage": "https://github.com/rebla/leaflet-map/",
+  "homepage": "https://github.com/rebla/leaflet-maps/",
   "keywords": [
     "polymer",
     "web-components",
