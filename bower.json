@@ -1,5 +1,5 @@
 {
-  "name": "leaflet-map",
+  "name": "leaflet-maps",
   "version": "1.1.0",
   "authors": [
     "Hendrik Brummermann <nhnb@users.sourceforge.net>",
@@ -7,7 +7,7 @@
   ],
   "description": "Leaflet map as web-component based on polymer",
   "main": "leaflet-map.html",
-  "homepage": "https://leaflet-extras.github.io/leaflet-map/",
+  "homepage": "https://github.com/rebla/leaflet-map/",
   "keywords": [
     "polymer",
     "web-components",
