@@ -685,20 +685,22 @@ add a marker with a popup text.
 			this.fire('map-ready');
 
 			// forward events
-			map.on('click dblclick mousedown mouseup mouseover mouseout mousemove contextmenu focus blur preclick load unload viewreset movestart move moveend dragstart drag dragend zoomstart zoomend zoomlevelschange resize autopanstart layeradd layerremove baselayerchange overlayadd overlayremove locationfound locationerror popupopen popupclose', function(e) {
+			map.on('click dblclick mousedown mouseup mouseover mouseout mousemove contextmenu focus blur preclick load unload viewreset movestart dragstart drag dragend zoomstart zoomlevelschange resize autopanstart layeradd layerremove baselayerchange overlayadd overlayremove locationfound locationerror popupopen popupclose', function(e) {
 				this.fire(e.type, e);
 			}, this);
 			// set map view after registering events so viewreset and load events can be caught
 			map.setView([this.latitude, this.longitude], this.zoom);
 			// update attributes
-			map.on('moveend', function(e) {
+			map.on('move moveend', function(e) {
 				this._ignoreViewChange = true;
 				this.longitude = map.getCenter().lng;
 				this.latitude = map.getCenter().lat;
 				this._ignoreViewChange = false;
+				this.fire(e.type, e);
 			}, this);
 			map.on('zoomend', function(e) {
 				this.zoom = map.getZoom();
+				this.fire(e.type, e);
 			}, this);
 
 			if (this.zoom == -1) {
