@@ -41,14 +41,15 @@ add a marker with a popup text.
 @demo https://leaflet-extras.github.io/leaflet-map/demo.html
 -->
 <dom-module id="leaflet-map">
-	<style>
-		:host { display: block; }
-		:host #map {height:100%; width:100%}
-	</style>
 	<!-- include stylesheet for shady dom and shadow dom -->
 	<link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
 	<link rel="import" type="css" href="../leaflet/dist/leaflet.css" />
 	<template>
+		<style>
+                :host { display: block; }
+                :host #map {height:100%; width:100%}
+        	</style>
+
 		<div id="map"></div>
 		<content id="markers" select="*"></content>
   	</template>
@@ -556,8 +557,10 @@ add a marker with a popup text.
 			 * @attribute inertia-deceleration
 			 * @type number
 			 */
-			inertiaDeceleration: 3000,
-
+			inertiaDeceleration: {
+			 type: Number,
+			 value: 3000
+			},
 			/**
 			 * The `inertia-max-speed` attribute sets the max speed of the inertial movement, in pixels/second.
 			 *
