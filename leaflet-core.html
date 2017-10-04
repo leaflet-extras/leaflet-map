@@ -637,7 +637,7 @@ add a marker with a popup text.
 			}
 
 			var scripts = document.getElementsByTagName('link'),
-			    leafletRe = /[\/^]elements.html$/;
+			    leafletRe = /[\/^]leaflet-map.html$/;
 
 			var i, len, src, matches, path;
 
@@ -647,7 +647,7 @@ add a marker with a popup text.
 
 				if (matches) {
 					path = src.split(leafletRe)[0];
-					L.Icon.Default.imagePath = (path ? path + '/' : '') + '../bower_components/leaflet/dist/images';
+					L.Icon.Default.imagePath = (path ? path + '/' : '') + '/bower_components/leaflet/dist/images';
 				}
 			}
 		},
