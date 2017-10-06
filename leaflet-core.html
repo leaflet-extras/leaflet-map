@@ -46,8 +46,8 @@ add a marker with a popup text.
 		:host #map {height:100%; width:100%}
 	</style>
 	<!-- include stylesheet for shady dom and shadow dom -->
-	<link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
-	<link rel="import" type="css" href="../leaflet/dist/leaflet.css" />
+	<link rel="stylesheet" href="/bower_components/leaflet/dist/leaflet.css" />
+	<link rel="import" type="css" href="/bower_components/leaflet/dist/leaflet.css" />
 	<template>
 		<div id="map"></div>
 		<content id="markers" select="*"></content>
@@ -632,6 +632,9 @@ add a marker with a popup text.
 
 
 		guessLeafletImagePath: function() {
+
+			L.Icon.Default.imagePath = '/bower_components/leaflet/dist/images';
+
 			if (L.Icon.Default.imagePath) {
 				return;
 			}
@@ -643,7 +646,9 @@ add a marker with a popup text.
 
 			for (i = 0, len = scripts.length; i < len; i++) {
 				src = scripts[i].href;
+				console.log(leafletRe)
 				matches = src.match(leafletRe);
+				console.log(matches)
 
 				if (matches) {
 					path = src.split(leafletRe)[0];
