@@ -1,0 +1,3398 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "leaflet-icon",
+      "path": "./leaflet-icon.ts",
+      "description": "Element which defines an icon template for markers (<a href=\"http://leafletjs.com/reference.html#icon\">Leaflet Reference</a>).",
+      "attributes": [
+        {
+          "name": "icon-url",
+          "description": "The `icon-url` attribute sets the URL to the icon image (absolute or relative to your script path).",
+          "type": "string"
+        },
+        {
+          "name": "icon-retina-url",
+          "description": "The `icon-retina-url` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "icon-width",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "icon-height",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "icon-anchor-x",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "icon-anchor-y",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "shadow-url",
+          "description": "The `shadow-url` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.",
+          "type": "string"
+        },
+        {
+          "name": "shadow-retina-url",
+          "description": "The `shadow-retina-url` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "shadow-width",
+          "description": "The `shadow-width` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadow-height",
+          "description": "The `shadow-height` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadow-anchor-x",
+          "description": "The `shadow-anchor-x` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "shadow-anchor-y",
+          "description": "The `shadow-anchor-y` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "popup-anchor-x",
+          "description": "The `popup-anchor-x` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "popup-anchor-y",
+          "description": "The `popupanchory` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "class-name",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "iconUrl",
+          "attribute": "icon-url",
+          "description": "The `icon-url` attribute sets the URL to the icon image (absolute or relative to your script path).",
+          "type": "string"
+        },
+        {
+          "name": "iconRetinaUrl",
+          "attribute": "icon-retina-url",
+          "description": "The `icon-retina-url` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "iconWidth",
+          "attribute": "icon-width",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconHeight",
+          "attribute": "icon-height",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorX",
+          "attribute": "icon-anchor-x",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorY",
+          "attribute": "icon-anchor-y",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "shadowUrl",
+          "attribute": "shadow-url",
+          "description": "The `shadow-url` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.",
+          "type": "string"
+        },
+        {
+          "name": "shadowRetinaUrl",
+          "attribute": "shadow-retina-url",
+          "description": "The `shadow-retina-url` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "shadowWidth",
+          "attribute": "shadow-width",
+          "description": "The `shadow-width` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadowHeight",
+          "attribute": "shadow-height",
+          "description": "The `shadow-height` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadowAnchorX",
+          "attribute": "shadow-anchor-x",
+          "description": "The `shadow-anchor-x` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "shadowAnchorY",
+          "attribute": "shadow-anchor-y",
+          "description": "The `shadow-anchor-y` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "popupAnchorX",
+          "attribute": "popup-anchor-x",
+          "description": "The `popup-anchor-x` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "popupAnchorY",
+          "attribute": "popup-anchor-y",
+          "description": "The `popupanchory` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "className",
+          "attribute": "class-name",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-divicon",
+      "path": "./leaflet-divicon.ts",
+      "description": "Element which defines an divicon template for markers (<a href=\"http://leafletjs.com/reference.html#divicon\">Leaflet Reference</a>).",
+      "attributes": [
+        {
+          "name": "icon-width",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "icon-height",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "icon-anchor-x",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "icon-anchor-y",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "class-name",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "iconWidth",
+          "attribute": "icon-width",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconHeight",
+          "attribute": "icon-height",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorX",
+          "attribute": "icon-anchor-x",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorY",
+          "attribute": "icon-anchor-y",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "className",
+          "attribute": "class-name",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-marker",
+      "path": "./leaflet-marker.ts",
+      "description": "Element which defines a [marker](http://leafletjs.com/reference.html#marker)",
+      "attributes": [
+        {
+          "name": "latitude",
+          "description": "The `latitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "description": "The `longitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "icon",
+          "description": "The `icon` attribute sets the Icon class to use for rendering the marker.\nThis attribute may be refer to an id-attribute of an leaflet-icon-element,\ncontain json syntax or it be assigned an instance of L.icon.\nSee Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.",
+          "type": "string | Icon<IconOptions>"
+        },
+        {
+          "name": "draggable",
+          "description": "The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "keyboard",
+          "description": "The `no-keyboard` attribute disables whether the marker can be tabbed to with a keyboard and clicked by pressing enter.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "title",
+          "description": "The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "alt",
+          "description": "The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "z-index-offset",
+          "description": "The `z-index-offset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "opacity",
+          "description": "The `opacity` attribute sets the opacity of the marker.",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "rise-on-hover",
+          "description": "The `rise-on-hover` attribute sets the whether the marker will get on top of others when you hover the mouse over it.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "rise-offset",
+          "description": "The `rise-offset` attribute sets the z-index offset used for the riseOnHover feature.",
+          "type": "number",
+          "default": "250"
+        }
+      ],
+      "properties": [
+        {
+          "name": "latitude",
+          "attribute": "latitude",
+          "description": "The `latitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "attribute": "longitude",
+          "description": "The `longitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "description": "The `icon` attribute sets the Icon class to use for rendering the marker.\nThis attribute may be refer to an id-attribute of an leaflet-icon-element,\ncontain json syntax or it be assigned an instance of L.icon.\nSee Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.",
+          "type": "string | Icon<IconOptions>"
+        },
+        {
+          "name": "draggable",
+          "attribute": "draggable",
+          "description": "The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "keyboard",
+          "attribute": "keyboard",
+          "description": "The `no-keyboard` attribute disables whether the marker can be tabbed to with a keyboard and clicked by pressing enter.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "title",
+          "attribute": "title",
+          "description": "The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "alt",
+          "attribute": "alt",
+          "description": "The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "zIndexOffset",
+          "attribute": "z-index-offset",
+          "description": "The `z-index-offset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "opacity",
+          "attribute": "opacity",
+          "description": "The `opacity` attribute sets the opacity of the marker.",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "riseOnHover",
+          "attribute": "rise-on-hover",
+          "description": "The `rise-on-hover` attribute sets the whether the marker will get on top of others when you hover the mouse over it.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "riseOffset",
+          "attribute": "rise-offset",
+          "description": "The `rise-offset` attribute sets the z-index offset used for the riseOnHover feature.",
+          "type": "number",
+          "default": "250"
+        },
+        {
+          "name": "latLng",
+          "type": "LatLng"
+        },
+        {
+          "name": "container",
+          "type": "Map"
+        },
+        {
+          "name": "feature",
+          "type": "Marker<any>"
+        }
+      ],
+      "events": [
+        {
+          "name": "click"
+        },
+        {
+          "name": "dblclick"
+        },
+        {
+          "name": "mousedown"
+        },
+        {
+          "name": "mouseover"
+        },
+        {
+          "name": "mouseout"
+        },
+        {
+          "name": "contextmenu"
+        },
+        {
+          "name": "dragstart",
+          "description": "Fired repeatedly while the user drags the marker."
+        },
+        {
+          "name": "drag",
+          "description": "Fired when the user stops dragging the marker."
+        },
+        {
+          "name": "dragend"
+        },
+        {
+          "name": "move"
+        },
+        {
+          "name": "add"
+        },
+        {
+          "name": "remove",
+          "description": "Fired when a popup bound to the marker is open."
+        },
+        {
+          "name": "popupopen"
+        },
+        {
+          "name": "popupclose"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-map",
+      "path": "./leaflet-map.ts",
+      "description": "Element which defines a Leaflet map (<a href=\"http://leafletjs.com/reference.html#map\">Leaflet Reference</a>).\n\n##### Example\n\n     <leaflet-map> </leaflet-map>\n\nThis simple example will show a map of the world. It is pan and zoomable.\n\n##### Example\n\n     <leaflet-map latitude=\"78.8\" longitude=\"-96\" zoom=\"5\">\n\n         <leaflet-marker latitude=\"51.5\" longitude=\"-0.10\" title=\"Some title\">\n             <b>Popup text</b>\n         </leaflet-marker>\n\n     </leaflet-map>\n\nThis code will zoom in on the specified latitude and longitude coordinates. Further, it will\nadd a marker with a popup text.\n\n##### Example: Add markers & circles\n     <leaflet-map longitude=\"77.2\" latitude=\"28.4\" zoom=\"12\">\n         <leaflet-marker longitude=\"77.2\" latitude=\"28.4\">\n             Marker\n         </leaflet-marker>\n         <leaflet-circle longitude=\"77.2\" latitude=\"28.4\" radius=\"300\">\n             Circle\n         </leaflet-circle>\n     </leaflet-map>\n\n\nFired when the user clicks (or taps) the marker.",
+      "attributes": [
+        {
+          "name": "latitude",
+          "description": "The `latitude` attribute sets the map center.",
+          "type": "number",
+          "default": "51"
+        },
+        {
+          "name": "longitude",
+          "description": "The `longitude` attribute sets the map center.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "zoom",
+          "description": "The `zoom` attribute sets the map zoom.",
+          "type": "number",
+          "default": "-1"
+        },
+        {
+          "name": "min-zoom",
+          "description": "The `min-zoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "max-zoom",
+          "description": "The `maxZoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.",
+          "type": "number",
+          "default": "\"MAX_SAFE_INTEGER\""
+        },
+        {
+          "name": "no-dragging",
+          "description": "The `no-dragging` attribute disables whether the map is draggable with mouse/touch or not.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-touch-zoom",
+          "description": "The `no-touch-zoom` attribute disables whether the map can be zoomed by touch-dragging with two fingers.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-scroll-wheel-zoom",
+          "description": "The `no-scroll-wheel-zoom` attribute disables whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-double-click-zoom",
+          "description": "The `no-double-click-zoom` attribute disables the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-box-zoom",
+          "description": "The `no-box-zoom` attribute disable the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-tap",
+          "description": "The `no-tap` attribute disables mobile hacks for supporting instant taps (fixing 200ms click delay on iOS/Android) and touch holds (fired as contextmenu events).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "tap-tolerance",
+          "description": "The `tap-tolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap.",
+          "type": "number",
+          "default": "15"
+        },
+        {
+          "name": "no-track-resize",
+          "description": "The `no-track-resize` attribute disables whether the map automatically handles browser window resize to update itself.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "world-copy-jump",
+          "description": "The `world-copy-jump` attribute sets whether the map tracks when you pan to another \"copy\" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-close-popup-on-click",
+          "description": "The `no-close-popup-on-click` attribute disables whether popups are closed when user clicks the map.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-bounce-at-zoom-limits",
+          "description": "The `no-bounce-at-zoom-limits` attribute disables whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-keyboard",
+          "description": "The `no-keyboard` attribute disables whether the map is focusable and allows users to navigate the map with keyboard arrows and +/- keys.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-inertia",
+          "description": "The `no-inertia` attribute disables panning of the map will have an inertia effect where the map builds momentum while dragging and continues moving in the same direction for some time. Feels especially nice on touch devices.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "inertia-deceleration",
+          "description": "The `inertia-deceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.",
+          "type": "number",
+          "default": "3000"
+        },
+        {
+          "name": "inertia-max-speed",
+          "description": "The `inertia-max-speed` attribute sets the max speed of the inertial movement, in pixels/second.",
+          "type": "number",
+          "default": "1500"
+        },
+        {
+          "name": "no-zoom-control",
+          "description": "The `no-zoom-control` attribute disables the zoom control is added to the map by default.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "no-attribution-control",
+          "description": "The `no-attribution-control` attribute disable the attribution control is added to the map by default.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "zoom-animation-threshold",
+          "description": "The `zoom-animation-threshold` attribute sets the maximum number of zoom level differences that still use animation",
+          "type": "number",
+          "default": "4"
+        },
+        {
+          "name": "fit-to-markers",
+          "description": "If set, the map is zoomed such that all elements in it are visible",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "map",
+          "description": "reference to the leaflet map",
+          "type": "Map"
+        },
+        {
+          "name": "latitude",
+          "attribute": "latitude",
+          "description": "The `latitude` attribute sets the map center.",
+          "type": "number",
+          "default": "51"
+        },
+        {
+          "name": "longitude",
+          "attribute": "longitude",
+          "description": "The `longitude` attribute sets the map center.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "zoom",
+          "attribute": "zoom",
+          "description": "The `zoom` attribute sets the map zoom.",
+          "type": "number",
+          "default": "-1"
+        },
+        {
+          "name": "minZoom",
+          "attribute": "min-zoom",
+          "description": "The `min-zoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "maxZoom",
+          "attribute": "max-zoom",
+          "description": "The `maxZoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.",
+          "type": "number",
+          "default": "\"MAX_SAFE_INTEGER\""
+        },
+        {
+          "name": "noDragging",
+          "attribute": "no-dragging",
+          "description": "The `no-dragging` attribute disables whether the map is draggable with mouse/touch or not.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noTouchZoom",
+          "attribute": "no-touch-zoom",
+          "description": "The `no-touch-zoom` attribute disables whether the map can be zoomed by touch-dragging with two fingers.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noScrollWheelZoom",
+          "attribute": "no-scroll-wheel-zoom",
+          "description": "The `no-scroll-wheel-zoom` attribute disables whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noDoubleClickZoom",
+          "attribute": "no-double-click-zoom",
+          "description": "The `no-double-click-zoom` attribute disables the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noBoxZoom",
+          "attribute": "no-box-zoom",
+          "description": "The `no-box-zoom` attribute disable the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noTap",
+          "attribute": "no-tap",
+          "description": "The `no-tap` attribute disables mobile hacks for supporting instant taps (fixing 200ms click delay on iOS/Android) and touch holds (fired as contextmenu events).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "tapTolerance",
+          "attribute": "tap-tolerance",
+          "description": "The `tap-tolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap.",
+          "type": "number",
+          "default": "15"
+        },
+        {
+          "name": "noTrackResize",
+          "attribute": "no-track-resize",
+          "description": "The `no-track-resize` attribute disables whether the map automatically handles browser window resize to update itself.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "worldCopyJump",
+          "attribute": "world-copy-jump",
+          "description": "The `world-copy-jump` attribute sets whether the map tracks when you pan to another \"copy\" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noClosePopupOnClick",
+          "attribute": "no-close-popup-on-click",
+          "description": "The `no-close-popup-on-click` attribute disables whether popups are closed when user clicks the map.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noBounceAtZoomLimits",
+          "attribute": "no-bounce-at-zoom-limits",
+          "description": "The `no-bounce-at-zoom-limits` attribute disables whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noKeyboard",
+          "attribute": "no-keyboard",
+          "description": "The `no-keyboard` attribute disables whether the map is focusable and allows users to navigate the map with keyboard arrows and +/- keys.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noInertia",
+          "attribute": "no-inertia",
+          "description": "The `no-inertia` attribute disables panning of the map will have an inertia effect where the map builds momentum while dragging and continues moving in the same direction for some time. Feels especially nice on touch devices.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "inertiaDeceleration",
+          "attribute": "inertia-deceleration",
+          "description": "The `inertia-deceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.",
+          "type": "number",
+          "default": "3000"
+        },
+        {
+          "name": "inertiaMaxSpeed",
+          "attribute": "inertia-max-speed",
+          "description": "The `inertia-max-speed` attribute sets the max speed of the inertial movement, in pixels/second.",
+          "type": "number",
+          "default": "1500"
+        },
+        {
+          "name": "noZoomControl",
+          "attribute": "no-zoom-control",
+          "description": "The `no-zoom-control` attribute disables the zoom control is added to the map by default.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noAttributionControl",
+          "attribute": "no-attribution-control",
+          "description": "The `no-attribution-control` attribute disable the attribution control is added to the map by default.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "zoomAnimationThreshold",
+          "attribute": "zoom-animation-threshold",
+          "description": "The `zoom-animation-threshold` attribute sets the maximum number of zoom level differences that still use animation",
+          "type": "number",
+          "default": "4"
+        },
+        {
+          "name": "fitToMarkers",
+          "attribute": "fit-to-markers",
+          "description": "If set, the map is zoomed such that all elements in it are visible",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "mapContainer",
+          "type": "HTMLDivElement"
+        },
+        {
+          "name": "features",
+          "type": "{ feature: LayerGroup<any> | Marker<any> | Polyline<LineString | MultiLineString, any>; }[] | undefined"
+        },
+        {
+          "name": "children",
+          "type": "HTMLCollectionOf<LeafletBase & { isLayer?(): boolean; }>"
+        },
+        {
+          "name": "latLng",
+          "type": "LatLng"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ],
+      "events": [
+        {
+          "name": "click"
+        },
+        {
+          "name": "dblclick"
+        },
+        {
+          "name": "mousedown"
+        },
+        {
+          "name": "mouseover"
+        },
+        {
+          "name": "mouseout"
+        },
+        {
+          "name": "contextmenu"
+        },
+        {
+          "name": "focus",
+          "description": "Fired when the map looses focus."
+        },
+        {
+          "name": "blur",
+          "description": "Fired before mouse click on the map (sometimes useful when you want something to happen on click before any existing click handlers start running)."
+        },
+        {
+          "name": "preclick"
+        },
+        {
+          "name": "load",
+          "description": "Fired when the map is destroyed with remove method."
+        },
+        {
+          "name": "unload",
+          "description": "Fired when the map needs to redraw its content (this usually happens on map zoom or load). Very useful for creating custom overlays."
+        },
+        {
+          "name": "viewreset",
+          "description": "Fired when the view of the map starts changing (e.g. user starts dragging the map)."
+        },
+        {
+          "name": "movestart",
+          "description": "Fired on any movement of the map view."
+        },
+        {
+          "name": "move",
+          "description": "Fired when the view of the map ends changed (e.g. user stopped dragging the map)."
+        },
+        {
+          "name": "moveend",
+          "description": "Fired when the user starts dragging the marker."
+        },
+        {
+          "name": "dragstart",
+          "description": "Fired repeatedly while the user drags the marker."
+        },
+        {
+          "name": "drag",
+          "description": "Fired when the user stops dragging the marker."
+        },
+        {
+          "name": "dragend"
+        },
+        {
+          "name": "zoomstart",
+          "description": "Fired when the map zoom changes."
+        },
+        {
+          "name": "zoomend",
+          "description": "Fired when the number of zoomlevels on the map is changed due to adding or removing a layer."
+        },
+        {
+          "name": "zoomlevelschange",
+          "description": "Fired when the map is resized."
+        },
+        {
+          "name": "resize"
+        },
+        {
+          "name": "autopanstart",
+          "description": "Fired when a new layer is added to the map."
+        },
+        {
+          "name": "layeradd"
+        },
+        {
+          "name": "layerremove"
+        },
+        {
+          "name": "baselayerchange"
+        },
+        {
+          "name": "overlayadd"
+        },
+        {
+          "name": "overlayremove"
+        },
+        {
+          "name": "locationfound"
+        },
+        {
+          "name": "locationerror"
+        },
+        {
+          "name": "popupopen"
+        },
+        {
+          "name": "popupclose"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-point",
+      "path": "./leaflet-point.ts",
+      "description": "The `leaflet-point` element represents one point in an polyline on the map and is used as\na child element of the `leaflet-polyline` element.\n\n##### Example: Add polylines\n     <leaflet-map longitude=\"77.2\" latitude=\"28.4\" zoom=\"12\">\n         <leaflet-polyline>\n             <leaflet-point longitude=\"77.22\" latitude=\"28.44\"></leaflet-point>\n             <leaflet-point longitude=\"77.44\" latitude=\"28.66\"></leaflet-point>\n         </leaflet-polyline>\n     </leaflet-map>",
+      "attributes": [
+        {
+          "name": "latitude",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "longitude",
+          "type": "number",
+          "default": "0"
+        }
+      ],
+      "properties": [
+        {
+          "name": "latitude",
+          "attribute": "latitude",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "longitude",
+          "attribute": "longitude",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "latLng",
+          "type": "LatLng"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-polygon",
+      "path": "./leaflet-polygon.ts",
+      "description": "The `leaflet-polygon` element represents a polygon on the map and is used as\na child element of the `leaflet-map` element. To compose the line one needs to\nadd `leaflet-point` elements inside it.",
+      "attributes": [
+        {
+          "name": "clickable",
+          "description": "The attribute `clickable` sets whether the vector will emit mouse events or will act as a part of the underlying map.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "class-name",
+          "description": "The attribute `class-name` sets the custom class name set on an element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "stroke",
+          "description": "The attribute `stroke` sets whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "color",
+          "description": "The attribute `color` sets the stroke color.",
+          "type": "string",
+          "default": "\"#03f\""
+        },
+        {
+          "name": "weight",
+          "description": "The attribute `weight` sets the stroke width in pixels.",
+          "type": "number",
+          "default": "5"
+        },
+        {
+          "name": "opacity",
+          "description": "The attribute `opacity` sets the stroke opacity.",
+          "type": "number",
+          "default": "0.5"
+        },
+        {
+          "name": "fill",
+          "description": "The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "fill-color",
+          "description": "The attribute `fill-color` sets the fill color.",
+          "type": "string"
+        },
+        {
+          "name": "fill-opacity",
+          "description": "The attribute `fill-opacity` sets the fill opacity.",
+          "type": "number",
+          "default": "0.2"
+        },
+        {
+          "name": "dash-array",
+          "description": "The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).",
+          "type": "string"
+        },
+        {
+          "name": "line-cap",
+          "description": "The attribute `line-cap` defines the shape to be used at the end of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "line-join",
+          "description": "The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "pointer-events",
+          "description": "The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.",
+          "type": "null"
+        }
+      ],
+      "properties": [
+        {
+          "name": "clickable",
+          "attribute": "clickable",
+          "description": "The attribute `clickable` sets whether the vector will emit mouse events or will act as a part of the underlying map.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "className",
+          "attribute": "class-name",
+          "description": "The attribute `class-name` sets the custom class name set on an element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "stroke",
+          "attribute": "stroke",
+          "description": "The attribute `stroke` sets whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "color",
+          "attribute": "color",
+          "description": "The attribute `color` sets the stroke color.",
+          "type": "string",
+          "default": "\"#03f\""
+        },
+        {
+          "name": "weight",
+          "attribute": "weight",
+          "description": "The attribute `weight` sets the stroke width in pixels.",
+          "type": "number",
+          "default": "5"
+        },
+        {
+          "name": "opacity",
+          "attribute": "opacity",
+          "description": "The attribute `opacity` sets the stroke opacity.",
+          "type": "number",
+          "default": "0.5"
+        },
+        {
+          "name": "fill",
+          "attribute": "fill",
+          "description": "The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "fillColor",
+          "attribute": "fill-color",
+          "description": "The attribute `fill-color` sets the fill color.",
+          "type": "string"
+        },
+        {
+          "name": "fillOpacity",
+          "attribute": "fill-opacity",
+          "description": "The attribute `fill-opacity` sets the fill opacity.",
+          "type": "number",
+          "default": "0.2"
+        },
+        {
+          "name": "dashArray",
+          "attribute": "dash-array",
+          "description": "The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).",
+          "type": "string"
+        },
+        {
+          "name": "lineCap",
+          "attribute": "line-cap",
+          "description": "The attribute `line-cap` defines the shape to be used at the end of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "lineJoin",
+          "attribute": "line-join",
+          "description": "The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "pointerEvents",
+          "attribute": "pointer-events",
+          "description": "The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.",
+          "type": "null"
+        },
+        {
+          "name": "container",
+          "type": "Map"
+        },
+        {
+          "name": "feature",
+          "description": "A Leaflet [Polygon](http://leafletjs.com/reference.html#polygon) object",
+          "type": "Polygon<any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-polyline",
+      "path": "./leaflet-polyline.ts",
+      "description": "The `leaflet-polyline` element represents a polyline on the map and is used as\na child element of the `leaflet-map` element. To compose the line one needs to\nadd `leaflet-point` elements inside it.",
+      "attributes": [
+        {
+          "name": "clickable",
+          "description": "The attribute `clickable` sets whether the vector will emit mouse events or will act as a part of the underlying map.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "class-name",
+          "description": "The attribute `class-name` sets the custom class name set on an element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "stroke",
+          "description": "The attribute `stroke` sets whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "color",
+          "description": "The attribute `color` sets the stroke color.",
+          "type": "string",
+          "default": "\"#03f\""
+        },
+        {
+          "name": "weight",
+          "description": "The attribute `weight` sets the stroke width in pixels.",
+          "type": "number",
+          "default": "5"
+        },
+        {
+          "name": "opacity",
+          "description": "The attribute `opacity` sets the stroke opacity.",
+          "type": "number",
+          "default": "0.5"
+        },
+        {
+          "name": "fill",
+          "description": "The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "fill-color",
+          "description": "The attribute `fill-color` sets the fill color.",
+          "type": "string"
+        },
+        {
+          "name": "fill-opacity",
+          "description": "The attribute `fill-opacity` sets the fill opacity.",
+          "type": "number",
+          "default": "0.2"
+        },
+        {
+          "name": "dash-array",
+          "description": "The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).",
+          "type": "string"
+        },
+        {
+          "name": "line-cap",
+          "description": "The attribute `line-cap` defines the shape to be used at the end of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "line-join",
+          "description": "The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "pointer-events",
+          "description": "The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.",
+          "type": "null"
+        }
+      ],
+      "properties": [
+        {
+          "name": "clickable",
+          "attribute": "clickable",
+          "description": "The attribute `clickable` sets whether the vector will emit mouse events or will act as a part of the underlying map.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "className",
+          "attribute": "class-name",
+          "description": "The attribute `class-name` sets the custom class name set on an element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "stroke",
+          "attribute": "stroke",
+          "description": "The attribute `stroke` sets whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "color",
+          "attribute": "color",
+          "description": "The attribute `color` sets the stroke color.",
+          "type": "string",
+          "default": "\"#03f\""
+        },
+        {
+          "name": "weight",
+          "attribute": "weight",
+          "description": "The attribute `weight` sets the stroke width in pixels.",
+          "type": "number",
+          "default": "5"
+        },
+        {
+          "name": "opacity",
+          "attribute": "opacity",
+          "description": "The attribute `opacity` sets the stroke opacity.",
+          "type": "number",
+          "default": "0.5"
+        },
+        {
+          "name": "fill",
+          "attribute": "fill",
+          "description": "The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "fillColor",
+          "attribute": "fill-color",
+          "description": "The attribute `fill-color` sets the fill color.",
+          "type": "string"
+        },
+        {
+          "name": "fillOpacity",
+          "attribute": "fill-opacity",
+          "description": "The attribute `fill-opacity` sets the fill opacity.",
+          "type": "number",
+          "default": "0.2"
+        },
+        {
+          "name": "dashArray",
+          "attribute": "dash-array",
+          "description": "The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).",
+          "type": "string"
+        },
+        {
+          "name": "lineCap",
+          "attribute": "line-cap",
+          "description": "The attribute `line-cap` defines the shape to be used at the end of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "lineJoin",
+          "attribute": "line-join",
+          "description": "The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "pointerEvents",
+          "attribute": "pointer-events",
+          "description": "The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.",
+          "type": "null"
+        },
+        {
+          "name": "container",
+          "type": "Map"
+        },
+        {
+          "name": "feature",
+          "description": "A Leaflet [Polyline](http://leafletjs.com/reference.html#polyline) object",
+          "type": "Polyline<LineString | MultiLineString, any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-circle",
+      "path": "./leaflet-circle.ts",
+      "description": "The `leaflet-circle` element represents a circle on the map and is used as\na child element of the `leaflet-map` element.\n\n\n##### Example: Add circles\n     <leaflet-map longitude=\"77.2\" latitude=\"28.4\" zoom=\"12\">\n         <leaflet-circle longitude=\"77.2\" latitude=\"28.4\" radius=\"300\">\n             Circle\n         </leaflet-circle>\n     </leaflet-map>",
+      "attributes": [
+        {
+          "name": "longitude",
+          "description": "The circle's longitude coordinate",
+          "type": "null"
+        },
+        {
+          "name": "latitude",
+          "description": "The circle's latitude coordinate",
+          "type": "null"
+        },
+        {
+          "name": "radius",
+          "description": "The circle's radius is metres",
+          "type": "number",
+          "default": "100"
+        },
+        {
+          "name": "clickable",
+          "description": "The attribute `clickable` sets whether the vector will emit mouse events or will act as a part of the underlying map.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "class-name",
+          "description": "The attribute `class-name` sets the custom class name set on an element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "stroke",
+          "description": "The attribute `stroke` sets whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "color",
+          "description": "The attribute `color` sets the stroke color.",
+          "type": "string",
+          "default": "\"#03f\""
+        },
+        {
+          "name": "weight",
+          "description": "The attribute `weight` sets the stroke width in pixels.",
+          "type": "number",
+          "default": "5"
+        },
+        {
+          "name": "opacity",
+          "description": "The attribute `opacity` sets the stroke opacity.",
+          "type": "number",
+          "default": "0.5"
+        },
+        {
+          "name": "fill",
+          "description": "The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "fill-color",
+          "description": "The attribute `fill-color` sets the fill color.",
+          "type": "string"
+        },
+        {
+          "name": "fill-opacity",
+          "description": "The attribute `fill-opacity` sets the fill opacity.",
+          "type": "number",
+          "default": "0.2"
+        },
+        {
+          "name": "dash-array",
+          "description": "The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).",
+          "type": "string"
+        },
+        {
+          "name": "line-cap",
+          "description": "The attribute `line-cap` defines the shape to be used at the end of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "line-join",
+          "description": "The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "pointer-events",
+          "description": "The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.",
+          "type": "null"
+        }
+      ],
+      "properties": [
+        {
+          "name": "longitude",
+          "attribute": "longitude",
+          "description": "The circle's longitude coordinate",
+          "type": "null"
+        },
+        {
+          "name": "latitude",
+          "attribute": "latitude",
+          "description": "The circle's latitude coordinate",
+          "type": "null"
+        },
+        {
+          "name": "radius",
+          "attribute": "radius",
+          "description": "The circle's radius is metres",
+          "type": "number",
+          "default": "100"
+        },
+        {
+          "name": "clickable",
+          "attribute": "clickable",
+          "description": "The attribute `clickable` sets whether the vector will emit mouse events or will act as a part of the underlying map.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "className",
+          "attribute": "class-name",
+          "description": "The attribute `class-name` sets the custom class name set on an element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "stroke",
+          "attribute": "stroke",
+          "description": "The attribute `stroke` sets whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "color",
+          "attribute": "color",
+          "description": "The attribute `color` sets the stroke color.",
+          "type": "string",
+          "default": "\"#03f\""
+        },
+        {
+          "name": "weight",
+          "attribute": "weight",
+          "description": "The attribute `weight` sets the stroke width in pixels.",
+          "type": "number",
+          "default": "5"
+        },
+        {
+          "name": "opacity",
+          "attribute": "opacity",
+          "description": "The attribute `opacity` sets the stroke opacity.",
+          "type": "number",
+          "default": "0.5"
+        },
+        {
+          "name": "fill",
+          "attribute": "fill",
+          "description": "The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "fillColor",
+          "attribute": "fill-color",
+          "description": "The attribute `fill-color` sets the fill color.",
+          "type": "string"
+        },
+        {
+          "name": "fillOpacity",
+          "attribute": "fill-opacity",
+          "description": "The attribute `fill-opacity` sets the fill opacity.",
+          "type": "number",
+          "default": "0.2"
+        },
+        {
+          "name": "dashArray",
+          "attribute": "dash-array",
+          "description": "The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).",
+          "type": "string"
+        },
+        {
+          "name": "lineCap",
+          "attribute": "line-cap",
+          "description": "The attribute `line-cap` defines the shape to be used at the end of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "lineJoin",
+          "attribute": "line-join",
+          "description": "The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "pointerEvents",
+          "attribute": "pointer-events",
+          "description": "The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.",
+          "type": "null"
+        },
+        {
+          "name": "container",
+          "type": "Map"
+        },
+        {
+          "name": "feature",
+          "description": "A Leaflet circle object",
+          "type": "Circle<any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-scale-control",
+      "path": "./leaflet-control.ts",
+      "description": "Scale control that shows the scale of the current center of screen in metric (m/km) and imperial (mi/ft) systems. (<a href=\"http://leafletjs.com/reference.html#control-scale\">Leaflet Reference</a>).\n\n##### Example\n\n     <leaflet-scale-control> </leaflet-scale-control>\n\n##### Example\n\n     <leaflet-scale-control metric>\n     </leaflet-scale-control>",
+      "attributes": [
+        {
+          "name": "position",
+          "description": "The `position` attribute sets the position of the control (one of the map corners). See control positions.",
+          "type": "ControlPosition",
+          "default": "\"bottomleft\""
+        },
+        {
+          "name": "max-width",
+          "description": "The `max-width` attribute sets the maximum width of the control in pixels. The width is set dynamically to show round values (e.g. 100, 200, 500).",
+          "type": "number",
+          "default": "100"
+        },
+        {
+          "name": "metric",
+          "description": "The `metric` attribute sets whether to show the metric scale line (m/km).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "imperial",
+          "description": "The `imperial` attribute sets whether to show the imperial scale line (mi/ft).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "update-when-idle",
+          "description": "The `update-when-idle` attribute sets whether the control is updated on moveend, otherwise it's always up-to-date (updated on move).",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "position",
+          "attribute": "position",
+          "description": "The `position` attribute sets the position of the control (one of the map corners). See control positions.",
+          "type": "ControlPosition",
+          "default": "\"bottomleft\""
+        },
+        {
+          "name": "maxWidth",
+          "attribute": "max-width",
+          "description": "The `max-width` attribute sets the maximum width of the control in pixels. The width is set dynamically to show round values (e.g. 100, 200, 500).",
+          "type": "number",
+          "default": "100"
+        },
+        {
+          "name": "metric",
+          "attribute": "metric",
+          "description": "The `metric` attribute sets whether to show the metric scale line (m/km).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "imperial",
+          "attribute": "imperial",
+          "description": "The `imperial` attribute sets whether to show the imperial scale line (mi/ft).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "updateWhenIdle",
+          "attribute": "update-when-idle",
+          "description": "The `update-when-idle` attribute sets whether the control is updated on moveend, otherwise it's always up-to-date (updated on move).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "control",
+          "type": "Scale"
+        },
+        {
+          "name": "container",
+          "type": "Map"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-tilelayer",
+      "path": "./leaflet-tilelayer.ts",
+      "description": "Element which defines a [tile layer](http://leafletjs.com/reference.html#tilelayer).",
+      "attributes": [
+        {
+          "name": "url",
+          "description": "The `url` attribute sets the address template for tilesets.\n\n'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'\n\n{s} means one of the available subdomains (used sequentially to help with\nbrowser parallel requests per domain limitation; subdomain values are specified\nin options; a, b or c by default, can be omitted), {z} — zoom level, {x} and {y}\n— tile coordinates.",
+          "type": "string",
+          "default": "\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\""
+        },
+        {
+          "name": "min-zoom",
+          "description": "The `min-zoom` attribute sets the minimum zoom number.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "max-zoom",
+          "description": "The `max-zoom` attribute sets the maximum zoom number.",
+          "type": "number",
+          "default": "18"
+        },
+        {
+          "name": "max-native-zoom",
+          "description": "The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled."
+        },
+        {
+          "name": "tile-size",
+          "description": "The `tile-size` attribute sets the tile size (width and height in pixels, assuming tiles are square).",
+          "type": "number",
+          "default": "256"
+        },
+        {
+          "name": "subdomains",
+          "description": "The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.",
+          "type": "string | string[]",
+          "default": "\"abc\""
+        },
+        {
+          "name": "error-tile-url",
+          "description": "The `error-tile-url` attribute sets the URL to the tile image to show in place of the tile that failed to load.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "attribution",
+          "description": "The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "tms",
+          "description": "The `tms` attribute sets wether inverses Y axis numbering for tiles should be used (turn this on for TMS services).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "continuous-world",
+          "description": "The `continuous-world` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noWrap",
+          "description": "The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "zoom-offset",
+          "description": "The `zoom-offset` attribute sets the zoom number used in tile URLs will be offset with this value.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "zoom-reverse",
+          "description": "The `zoom-reverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "opacity",
+          "description": "The `opacity` attribute sets the opacity of the tile layer.",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "z-index",
+          "description": "The `z-index` attribute sets the explicit zIndex of the tile layer. Not set by default.",
+          "type": "number"
+        },
+        {
+          "name": "detect-retina",
+          "description": "The `detect-retina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reuse-tiles",
+          "description": "The `reuse-tiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "cleanedUrl",
+          "type": "string"
+        },
+        {
+          "name": "layer",
+          "type": "TileLayer"
+        },
+        {
+          "name": "url",
+          "attribute": "url",
+          "description": "The `url` attribute sets the address template for tilesets.\n\n'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'\n\n{s} means one of the available subdomains (used sequentially to help with\nbrowser parallel requests per domain limitation; subdomain values are specified\nin options; a, b or c by default, can be omitted), {z} — zoom level, {x} and {y}\n— tile coordinates.",
+          "type": "string",
+          "default": "\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\""
+        },
+        {
+          "name": "minZoom",
+          "attribute": "min-zoom",
+          "description": "The `min-zoom` attribute sets the minimum zoom number.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "maxZoom",
+          "attribute": "max-zoom",
+          "description": "The `max-zoom` attribute sets the maximum zoom number.",
+          "type": "number",
+          "default": "18"
+        },
+        {
+          "name": "maxNativeZoom",
+          "attribute": "max-native-zoom",
+          "description": "The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled."
+        },
+        {
+          "name": "tileSize",
+          "attribute": "tile-size",
+          "description": "The `tile-size` attribute sets the tile size (width and height in pixels, assuming tiles are square).",
+          "type": "number",
+          "default": "256"
+        },
+        {
+          "name": "subdomains",
+          "attribute": "subdomains",
+          "description": "The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.",
+          "type": "string | string[]",
+          "default": "\"abc\""
+        },
+        {
+          "name": "errorTileUrl",
+          "attribute": "error-tile-url",
+          "description": "The `error-tile-url` attribute sets the URL to the tile image to show in place of the tile that failed to load.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "attribution",
+          "attribute": "attribution",
+          "description": "The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "tms",
+          "attribute": "tms",
+          "description": "The `tms` attribute sets wether inverses Y axis numbering for tiles should be used (turn this on for TMS services).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "continuousWorld",
+          "attribute": "continuous-world",
+          "description": "The `continuous-world` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noWrap",
+          "attribute": "noWrap",
+          "description": "The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "zoomOffset",
+          "attribute": "zoom-offset",
+          "description": "The `zoom-offset` attribute sets the zoom number used in tile URLs will be offset with this value.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "zoomReverse",
+          "attribute": "zoom-reverse",
+          "description": "The `zoom-reverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "opacity",
+          "attribute": "opacity",
+          "description": "The `opacity` attribute sets the opacity of the tile layer.",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "zIndex",
+          "attribute": "z-index",
+          "description": "The `z-index` attribute sets the explicit zIndex of the tile layer. Not set by default.",
+          "type": "number"
+        },
+        {
+          "name": "detectRetina",
+          "attribute": "detect-retina",
+          "description": "The `detect-retina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reuseTiles",
+          "attribute": "reuse-tiles",
+          "description": "The `reuse-tiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-tilelayer-wms",
+      "path": "./leaflet-tilelayer-wms.ts",
+      "description": "Element which defines a [tile layer for wms](http://leafletjs.com/reference.html#tilelayer-wms)",
+      "attributes": [
+        {
+          "name": "layers",
+          "description": "The `layers` attribute sets the comma-separated list of WMS layers to show (required).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "styles",
+          "description": "The `styles` attribute sets the comma-separated list of WMS styles.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "format",
+          "description": "The `format` attribute sets the WMS image format (use 'image/png' for layers with transparency).",
+          "type": "string",
+          "default": "\"image/jpeg\""
+        },
+        {
+          "name": "transparent",
+          "description": "The `transparent` attribute whether the WMS service will return images with transparency.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "version",
+          "description": "The `version` attribute sets the version of the WMS service to use.",
+          "type": "string",
+          "default": "\"1.1.1\""
+        },
+        {
+          "name": "url",
+          "description": "The `url` attribute sets the address template for tilesets.\n\n'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'\n\n{s} means one of the available subdomains (used sequentially to help with\nbrowser parallel requests per domain limitation; subdomain values are specified\nin options; a, b or c by default, can be omitted), {z} — zoom level, {x} and {y}\n— tile coordinates.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "min-zoom",
+          "description": "The `min-zoom` attribute sets the minimum zoom number.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "max-zoom",
+          "description": "The `max-zoom` attribute sets the maximum zoom number.",
+          "type": "number",
+          "default": "18"
+        },
+        {
+          "name": "max-native-zoom",
+          "description": "The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled."
+        },
+        {
+          "name": "tile-size",
+          "description": "The `tile-size` attribute sets the tile size (width and height in pixels, assuming tiles are square).",
+          "type": "number",
+          "default": "256"
+        },
+        {
+          "name": "subdomains",
+          "description": "The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.",
+          "type": "string | string[]",
+          "default": "\"abc\""
+        },
+        {
+          "name": "error-tile-url",
+          "description": "The `error-tile-url` attribute sets the URL to the tile image to show in place of the tile that failed to load.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "attribution",
+          "description": "The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "tms",
+          "description": "The `tms` attribute sets wether inverses Y axis numbering for tiles should be used (turn this on for TMS services).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "continuous-world",
+          "description": "The `continuous-world` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noWrap",
+          "description": "The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "zoom-offset",
+          "description": "The `zoom-offset` attribute sets the zoom number used in tile URLs will be offset with this value.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "zoom-reverse",
+          "description": "The `zoom-reverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "opacity",
+          "description": "The `opacity` attribute sets the opacity of the tile layer.",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "z-index",
+          "description": "The `z-index` attribute sets the explicit zIndex of the tile layer. Not set by default.",
+          "type": "number"
+        },
+        {
+          "name": "detect-retina",
+          "description": "The `detect-retina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reuse-tiles",
+          "description": "The `reuse-tiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed.",
+          "type": "boolean",
+          "default": "false"
+        }
+      ],
+      "properties": [
+        {
+          "name": "layers",
+          "attribute": "layers",
+          "description": "The `layers` attribute sets the comma-separated list of WMS layers to show (required).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "styles",
+          "attribute": "styles",
+          "description": "The `styles` attribute sets the comma-separated list of WMS styles.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "format",
+          "attribute": "format",
+          "description": "The `format` attribute sets the WMS image format (use 'image/png' for layers with transparency).",
+          "type": "string",
+          "default": "\"image/jpeg\""
+        },
+        {
+          "name": "transparent",
+          "attribute": "transparent",
+          "description": "The `transparent` attribute whether the WMS service will return images with transparency.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "version",
+          "attribute": "version",
+          "description": "The `version` attribute sets the version of the WMS service to use.",
+          "type": "string",
+          "default": "\"1.1.1\""
+        },
+        {
+          "name": "crs",
+          "description": "The `crs` attribute sets the coordinate Reference System to use for the WMS requests, defaults to map CRS. Don't change this if you're not sure what it means.",
+          "type": "CRS"
+        },
+        {
+          "name": "layer",
+          "type": "WMS"
+        },
+        {
+          "name": "url",
+          "attribute": "url",
+          "description": "The `url` attribute sets the address template for tilesets.\n\n'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'\n\n{s} means one of the available subdomains (used sequentially to help with\nbrowser parallel requests per domain limitation; subdomain values are specified\nin options; a, b or c by default, can be omitted), {z} — zoom level, {x} and {y}\n— tile coordinates.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "minZoom",
+          "attribute": "min-zoom",
+          "description": "The `min-zoom` attribute sets the minimum zoom number.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "maxZoom",
+          "attribute": "max-zoom",
+          "description": "The `max-zoom` attribute sets the maximum zoom number.",
+          "type": "number",
+          "default": "18"
+        },
+        {
+          "name": "maxNativeZoom",
+          "attribute": "max-native-zoom",
+          "description": "The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled."
+        },
+        {
+          "name": "tileSize",
+          "attribute": "tile-size",
+          "description": "The `tile-size` attribute sets the tile size (width and height in pixels, assuming tiles are square).",
+          "type": "number",
+          "default": "256"
+        },
+        {
+          "name": "subdomains",
+          "attribute": "subdomains",
+          "description": "The `subdomains` attribute sets the subdomains of the tile service. Can be passed in the form of one string (where each letter is a subdomain name) or an array of strings.",
+          "type": "string | string[]",
+          "default": "\"abc\""
+        },
+        {
+          "name": "errorTileUrl",
+          "attribute": "error-tile-url",
+          "description": "The `error-tile-url` attribute sets the URL to the tile image to show in place of the tile that failed to load.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "attribution",
+          "attribute": "attribution",
+          "description": "The `attribution` attribute sets the attribute. As html code needs to be escaped here, it is preferable to define it as child element.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "tms",
+          "attribute": "tms",
+          "description": "The `tms` attribute sets wether inverses Y axis numbering for tiles should be used (turn this on for TMS services).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "continuousWorld",
+          "attribute": "continuous-world",
+          "description": "The `continuous-world` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "noWrap",
+          "attribute": "noWrap",
+          "description": "The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "zoomOffset",
+          "attribute": "zoom-offset",
+          "description": "The `zoom-offset` attribute sets the zoom number used in tile URLs will be offset with this value.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "zoomReverse",
+          "attribute": "zoom-reverse",
+          "description": "The `zoom-reverse` attribute sets whether the zoom number used in tile URLs will be reversed (maxZoom - zoom instead of zoom)",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "opacity",
+          "attribute": "opacity",
+          "description": "The `opacity` attribute sets the opacity of the tile layer.",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "zIndex",
+          "attribute": "z-index",
+          "description": "The `z-index` attribute sets the explicit zIndex of the tile layer. Not set by default.",
+          "type": "number"
+        },
+        {
+          "name": "detectRetina",
+          "attribute": "detect-retina",
+          "description": "The `detect-retina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "reuseTiles",
+          "attribute": "reuse-tiles",
+          "description": "The `reuse-tiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-layer-group",
+      "path": "./leaflet-layer-group.ts",
+      "description": "A [Layer group](http://leafletjs.com/reference.html#layergroup)",
+      "properties": [
+        {
+          "name": "children",
+          "type": "HTMLCollectionOf<LeafletBase>"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LayerGroup<any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-geojson",
+      "path": "./leaflet-geojson.ts",
+      "description": "A [GeoJSON layer](http://leafletjs.com/reference.html#geojson).",
+      "attributes": [
+        {
+          "name": "stroke",
+          "description": "The attribute `stroke` sets whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "color",
+          "description": "The attribute `color` sets the stroke color.",
+          "type": "string",
+          "default": "\"#03f\""
+        },
+        {
+          "name": "weight",
+          "description": "The attribute `weight` sets the stroke width in pixels.",
+          "type": "number",
+          "default": "5"
+        },
+        {
+          "name": "opacity",
+          "description": "The attribute `opacity` sets the stroke opacity.",
+          "type": "number",
+          "default": "0.5"
+        },
+        {
+          "name": "fill",
+          "description": "The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "fill-color",
+          "description": "The attribute `fill-color` sets the fill color.",
+          "type": "string"
+        },
+        {
+          "name": "fill-opacity",
+          "description": "The attribute `fill-opacity` sets the fill opacity.",
+          "type": "number",
+          "default": "0.2"
+        },
+        {
+          "name": "dash-array",
+          "description": "The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).",
+          "type": "string"
+        },
+        {
+          "name": "line-cap",
+          "description": "The attribute `line-cap` defines the shape to be used at the end of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "line-join",
+          "description": "The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "pointer-events",
+          "description": "The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.",
+          "type": "null"
+        }
+      ],
+      "properties": [
+        {
+          "name": "data",
+          "description": "data as geojson object",
+          "type": "GeoJsonObject"
+        },
+        {
+          "name": "stroke",
+          "attribute": "stroke",
+          "description": "The attribute `stroke` sets whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "color",
+          "attribute": "color",
+          "description": "The attribute `color` sets the stroke color.",
+          "type": "string",
+          "default": "\"#03f\""
+        },
+        {
+          "name": "weight",
+          "attribute": "weight",
+          "description": "The attribute `weight` sets the stroke width in pixels.",
+          "type": "number",
+          "default": "5"
+        },
+        {
+          "name": "opacity",
+          "attribute": "opacity",
+          "description": "The attribute `opacity` sets the stroke opacity.",
+          "type": "number",
+          "default": "0.5"
+        },
+        {
+          "name": "fill",
+          "attribute": "fill",
+          "description": "The attribute `fill` sets the whether to fill the path with color. Set it to false to disable filling on polygons or circles.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "fillColor",
+          "attribute": "fill-color",
+          "description": "The attribute `fill-color` sets the fill color.",
+          "type": "string"
+        },
+        {
+          "name": "fillOpacity",
+          "attribute": "fill-opacity",
+          "description": "The attribute `fill-opacity` sets the fill opacity.",
+          "type": "number",
+          "default": "0.2"
+        },
+        {
+          "name": "dashArray",
+          "attribute": "dash-array",
+          "description": "The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).",
+          "type": "string"
+        },
+        {
+          "name": "lineCap",
+          "attribute": "line-cap",
+          "description": "The attribute `line-cap` defines the shape to be used at the end of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "lineJoin",
+          "attribute": "line-join",
+          "description": "The attribute `line-join` sets the string that defines shape to be used at the corners of the stroke.",
+          "type": "null"
+        },
+        {
+          "name": "pointerEvents",
+          "attribute": "pointer-events",
+          "description": "The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.",
+          "type": "null"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "GeoJSON<any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-geolocation",
+      "path": "./leaflet-geolocation.ts",
+      "description": "Element which controls geo location (<a href=\"http://leafletjs.com/reference.html#map\">Leaflet Reference</a>).",
+      "attributes": [
+        {
+          "name": "watch",
+          "description": "The `watch` attribute sets wether location changes should be continous watching (instead of detecting it once) using W3C watchPosition method. You can later stop watching using map.stopLocate() method.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "set-view",
+          "description": "The `set-view` attribute sets whether the map view to the user location with respect to detection accuracy, or to world view if geolocation failed.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "max-zoom",
+          "description": "The `max-zoom` attribute sets the maximum zoom for automatic view setting when using `setView` option.",
+          "type": "number",
+          "default": "\"MAX_SAFE_INTEGER\""
+        },
+        {
+          "name": "timeout",
+          "description": "The `timeout` attribute sets the number of milliseconds to wait for a response from geolocation before firing a locationerror event.",
+          "type": "number",
+          "default": "10000"
+        },
+        {
+          "name": "maximum-age",
+          "description": "The `maximum-age` attribute sets maximum age of detected location. If less than this amount of milliseconds passed since last geolocation response, locate will return a cached location.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "enable-high-accuracy",
+          "description": "The `enable-high-accuracy` attribute sets whether high accuracy is enabled, see description in the W3C spec.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "latitude",
+          "description": "The `latitude` attribute returns the detected geographical location of the user.",
+          "type": "null"
+        },
+        {
+          "name": "longitude",
+          "description": "The `longitude` attribute returns the detected geographical location of the user.",
+          "type": "null"
+        },
+        {
+          "name": "bounds",
+          "description": "The `bounds` attribute returns the geographical bounds of the area user is located in (with respect to the accuracy of location).",
+          "type": "null"
+        },
+        {
+          "name": "accuracy",
+          "description": "The `accuracy` attribute returns the accuracy of location in meters.",
+          "type": "null"
+        },
+        {
+          "name": "altitude",
+          "description": "The `altitude` attribute returns the height of the position above the WGS84 ellipsoid in meters.",
+          "type": "null"
+        },
+        {
+          "name": "altitude-accuracy",
+          "description": "The `altitude-accuracy` attribute returns the accuracy of altitude in meters.",
+          "type": "null"
+        },
+        {
+          "name": "heading",
+          "description": "The `heading` attribute returns the direction of travel in degrees counting clockwise from true North.",
+          "type": "null"
+        },
+        {
+          "name": "speed",
+          "description": "The `speed` attribute returns the current velocity in meters per second.",
+          "type": "null"
+        },
+        {
+          "name": "timestamp",
+          "description": "The `timestamp` attribute returns the time when the position was acquired.",
+          "type": "null"
+        }
+      ],
+      "properties": [
+        {
+          "name": "watch",
+          "attribute": "watch",
+          "description": "The `watch` attribute sets wether location changes should be continous watching (instead of detecting it once) using W3C watchPosition method. You can later stop watching using map.stopLocate() method.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "setView",
+          "attribute": "set-view",
+          "description": "The `set-view` attribute sets whether the map view to the user location with respect to detection accuracy, or to world view if geolocation failed.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "maxZoom",
+          "attribute": "max-zoom",
+          "description": "The `max-zoom` attribute sets the maximum zoom for automatic view setting when using `setView` option.",
+          "type": "number",
+          "default": "\"MAX_SAFE_INTEGER\""
+        },
+        {
+          "name": "timeout",
+          "attribute": "timeout",
+          "description": "The `timeout` attribute sets the number of milliseconds to wait for a response from geolocation before firing a locationerror event.",
+          "type": "number",
+          "default": "10000"
+        },
+        {
+          "name": "maximumAge",
+          "attribute": "maximum-age",
+          "description": "The `maximum-age` attribute sets maximum age of detected location. If less than this amount of milliseconds passed since last geolocation response, locate will return a cached location.",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "enableHighAccuracy",
+          "attribute": "enable-high-accuracy",
+          "description": "The `enable-high-accuracy` attribute sets whether high accuracy is enabled, see description in the W3C spec.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "latitude",
+          "attribute": "latitude",
+          "description": "The `latitude` attribute returns the detected geographical location of the user.",
+          "type": "null"
+        },
+        {
+          "name": "longitude",
+          "attribute": "longitude",
+          "description": "The `longitude` attribute returns the detected geographical location of the user.",
+          "type": "null"
+        },
+        {
+          "name": "bounds",
+          "attribute": "bounds",
+          "description": "The `bounds` attribute returns the geographical bounds of the area user is located in (with respect to the accuracy of location).",
+          "type": "null"
+        },
+        {
+          "name": "accuracy",
+          "attribute": "accuracy",
+          "description": "The `accuracy` attribute returns the accuracy of location in meters.",
+          "type": "null"
+        },
+        {
+          "name": "altitude",
+          "attribute": "altitude",
+          "description": "The `altitude` attribute returns the height of the position above the WGS84 ellipsoid in meters.",
+          "type": "null"
+        },
+        {
+          "name": "altitudeAccuracy",
+          "attribute": "altitude-accuracy",
+          "description": "The `altitude-accuracy` attribute returns the accuracy of altitude in meters.",
+          "type": "null"
+        },
+        {
+          "name": "heading",
+          "attribute": "heading",
+          "description": "The `heading` attribute returns the direction of travel in degrees counting clockwise from true North.",
+          "type": "null"
+        },
+        {
+          "name": "speed",
+          "attribute": "speed",
+          "description": "The `speed` attribute returns the current velocity in meters per second.",
+          "type": "null"
+        },
+        {
+          "name": "timestamp",
+          "attribute": "timestamp",
+          "description": "The `timestamp` attribute returns the time when the position was acquired.",
+          "type": "null"
+        },
+        {
+          "name": "container",
+          "type": "Map"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ],
+      "events": [
+        {
+          "name": "locationfound"
+        },
+        {
+          "name": "locationerror"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-circle",
+      "path": "./leaflet-circle.d.ts",
+      "description": "The `leaflet-circle` element represents a circle on the map and is used as\na child element of the `leaflet-map` element.\n\n\n##### Example: Add circles\n     <leaflet-map longitude=\"77.2\" latitude=\"28.4\" zoom=\"12\">\n         <leaflet-circle longitude=\"77.2\" latitude=\"28.4\" radius=\"300\">\n             Circle\n         </leaflet-circle>\n     </leaflet-map>",
+      "properties": [
+        {
+          "name": "feature",
+          "description": "A Leaflet circle object",
+          "type": "Circle<any>"
+        },
+        {
+          "name": "longitude",
+          "description": "The circle's longitude coordinate"
+        },
+        {
+          "name": "latitude",
+          "description": "The circle's latitude coordinate"
+        },
+        {
+          "name": "radius",
+          "description": "The circle's radius is metres",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-scale-control",
+      "path": "./leaflet-control.d.ts",
+      "description": "Scale control that shows the scale of the current center of screen in metric (m/km) and imperial (mi/ft) systems. (<a href=\"http://leafletjs.com/reference.html#control-scale\">Leaflet Reference</a>).\n\n##### Example\n\n     <leaflet-scale-control> </leaflet-scale-control>\n\n##### Example\n\n     <leaflet-scale-control metric>\n     </leaflet-scale-control>",
+      "properties": [
+        {
+          "name": "position",
+          "description": "The `position` attribute sets the position of the control (one of the map corners). See control positions.",
+          "type": "ControlPosition"
+        },
+        {
+          "name": "maxWidth",
+          "description": "The `max-width` attribute sets the maximum width of the control in pixels. The width is set dynamically to show round values (e.g. 100, 200, 500).",
+          "type": "number"
+        },
+        {
+          "name": "metric",
+          "description": "The `metric` attribute sets whether to show the metric scale line (m/km).",
+          "type": "boolean"
+        },
+        {
+          "name": "imperial",
+          "description": "The `imperial` attribute sets whether to show the imperial scale line (mi/ft).",
+          "type": "boolean"
+        },
+        {
+          "name": "updateWhenIdle",
+          "description": "The `update-when-idle` attribute sets whether the control is updated on moveend, otherwise it's always up-to-date (updated on move).",
+          "type": "boolean"
+        },
+        {
+          "name": "control",
+          "type": "Scale"
+        },
+        {
+          "name": "container",
+          "type": "Map"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-divicon",
+      "path": "./leaflet-divicon.d.ts",
+      "description": "Element which defines an divicon template for markers (<a href=\"http://leafletjs.com/reference.html#divicon\">Leaflet Reference</a>).",
+      "properties": [
+        {
+          "name": "iconWidth",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconHeight",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorX",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorY",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "className",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-geojson",
+      "path": "./leaflet-geojson.d.ts",
+      "description": "A [GeoJSON layer](http://leafletjs.com/reference.html#geojson).",
+      "properties": [
+        {
+          "name": "feature",
+          "type": "GeoJSON<any>"
+        },
+        {
+          "name": "fill",
+          "type": "boolean"
+        },
+        {
+          "name": "data",
+          "description": "data as geojson object",
+          "type": "GeoJsonObject"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-geolocation",
+      "path": "./leaflet-geolocation.d.ts",
+      "description": "Element which controls geo location (<a href=\"http://leafletjs.com/reference.html#map\">Leaflet Reference</a>).",
+      "properties": [
+        {
+          "name": "watch",
+          "description": "The `watch` attribute sets wether location changes should be continous watching (instead of detecting it once) using W3C watchPosition method. You can later stop watching using map.stopLocate() method.",
+          "type": "boolean"
+        },
+        {
+          "name": "setView",
+          "description": "The `set-view` attribute sets whether the map view to the user location with respect to detection accuracy, or to world view if geolocation failed.",
+          "type": "boolean"
+        },
+        {
+          "name": "maxZoom",
+          "description": "The `max-zoom` attribute sets the maximum zoom for automatic view setting when using `setView` option.",
+          "type": "number"
+        },
+        {
+          "name": "timeout",
+          "description": "The `timeout` attribute sets the number of milliseconds to wait for a response from geolocation before firing a locationerror event.",
+          "type": "number"
+        },
+        {
+          "name": "maximumAge",
+          "description": "The `maximum-age` attribute sets maximum age of detected location. If less than this amount of milliseconds passed since last geolocation response, locate will return a cached location.",
+          "type": "number"
+        },
+        {
+          "name": "enableHighAccuracy",
+          "description": "The `enable-high-accuracy` attribute sets whether high accuracy is enabled, see description in the W3C spec.",
+          "type": "boolean"
+        },
+        {
+          "name": "latitude",
+          "description": "The `latitude` attribute returns the detected geographical location of the user."
+        },
+        {
+          "name": "longitude",
+          "description": "The `longitude` attribute returns the detected geographical location of the user."
+        },
+        {
+          "name": "bounds",
+          "description": "The `bounds` attribute returns the geographical bounds of the area user is located in (with respect to the accuracy of location)."
+        },
+        {
+          "name": "accuracy",
+          "description": "The `accuracy` attribute returns the accuracy of location in meters."
+        },
+        {
+          "name": "altitude",
+          "description": "The `altitude` attribute returns the height of the position above the WGS84 ellipsoid in meters."
+        },
+        {
+          "name": "altitudeAccuracy",
+          "description": "The `altitude-accuracy` attribute returns the accuracy of altitude in meters."
+        },
+        {
+          "name": "heading",
+          "description": "The `heading` attribute returns the direction of travel in degrees counting clockwise from true North."
+        },
+        {
+          "name": "speed",
+          "description": "The `speed` attribute returns the current velocity in meters per second."
+        },
+        {
+          "name": "timestamp",
+          "description": "The `timestamp` attribute returns the time when the position was acquired."
+        },
+        {
+          "name": "container",
+          "type": "Map"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ],
+      "events": [
+        {
+          "name": "locationfound"
+        },
+        {
+          "name": "locationerror"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-icon",
+      "path": "./leaflet-icon.d.ts",
+      "description": "Element which defines an icon template for markers (<a href=\"http://leafletjs.com/reference.html#icon\">Leaflet Reference</a>).",
+      "properties": [
+        {
+          "name": "iconUrl",
+          "description": "The `icon-url` attribute sets the URL to the icon image (absolute or relative to your script path).",
+          "type": "string"
+        },
+        {
+          "name": "iconRetinaUrl",
+          "description": "The `icon-retina-url` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "iconWidth",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconHeight",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorX",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorY",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "shadowUrl",
+          "description": "The `shadow-url` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.",
+          "type": "string"
+        },
+        {
+          "name": "shadowRetinaUrl",
+          "description": "The `shadow-retina-url` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "shadowWidth",
+          "description": "The `shadow-width` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadowHeight",
+          "description": "The `shadow-height` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadowAnchorX",
+          "description": "The `shadow-anchor-x` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "shadowAnchorY",
+          "description": "The `shadow-anchor-y` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "popupAnchorX",
+          "description": "The `popup-anchor-x` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "popupAnchorY",
+          "description": "The `popupanchory` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "className",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-icon",
+      "path": "./leaflet-icon.js",
+      "description": "Element which defines an icon template for markers (<a href=\"http://leafletjs.com/reference.html#icon\">Leaflet Reference</a>).",
+      "properties": [
+        {
+          "name": "className",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "icon"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-layer-group",
+      "path": "./leaflet-layer-group.d.ts",
+      "description": "A [Layer group](http://leafletjs.com/reference.html#layergroup)",
+      "properties": [
+        {
+          "name": "children",
+          "type": "HTMLCollectionOf<LeafletBase>"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LayerGroup<any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-map",
+      "path": "./leaflet-map.d.ts",
+      "description": "Element which defines a Leaflet map (<a href=\"http://leafletjs.com/reference.html#map\">Leaflet Reference</a>).\n\n##### Example\n\n     <leaflet-map> </leaflet-map>\n\nThis simple example will show a map of the world. It is pan and zoomable.\n\n##### Example\n\n     <leaflet-map latitude=\"78.8\" longitude=\"-96\" zoom=\"5\">\n\n         <leaflet-marker latitude=\"51.5\" longitude=\"-0.10\" title=\"Some title\">\n             <b>Popup text</b>\n         </leaflet-marker>\n\n     </leaflet-map>\n\nThis code will zoom in on the specified latitude and longitude coordinates. Further, it will\nadd a marker with a popup text.\n\n##### Example: Add markers & circles\n     <leaflet-map longitude=\"77.2\" latitude=\"28.4\" zoom=\"12\">\n         <leaflet-marker longitude=\"77.2\" latitude=\"28.4\">\n             Marker\n         </leaflet-marker>\n         <leaflet-circle longitude=\"77.2\" latitude=\"28.4\" radius=\"300\">\n             Circle\n         </leaflet-circle>\n     </leaflet-map>\n\n\nFired when the user clicks (or taps) the marker.",
+      "properties": [
+        {
+          "name": "map",
+          "description": "reference to the leaflet map",
+          "type": "Map"
+        },
+        {
+          "name": "latitude",
+          "description": "The `latitude` attribute sets the map center.",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "description": "The `longitude` attribute sets the map center.",
+          "type": "number"
+        },
+        {
+          "name": "zoom",
+          "description": "The `zoom` attribute sets the map zoom.",
+          "type": "number"
+        },
+        {
+          "name": "minZoom",
+          "description": "The `min-zoom` attribute sets the minimum zoom level of the map. Overrides any minZoom set on map layers.",
+          "type": "number"
+        },
+        {
+          "name": "maxZoom",
+          "description": "The `maxZoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.",
+          "type": "number"
+        },
+        {
+          "name": "noDragging",
+          "description": "The `no-dragging` attribute disables whether the map is draggable with mouse/touch or not.",
+          "type": "boolean"
+        },
+        {
+          "name": "noTouchZoom",
+          "description": "The `no-touch-zoom` attribute disables whether the map can be zoomed by touch-dragging with two fingers.",
+          "type": "boolean"
+        },
+        {
+          "name": "noScrollWheelZoom",
+          "description": "The `no-scroll-wheel-zoom` attribute disables whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.",
+          "type": "boolean"
+        },
+        {
+          "name": "noDoubleClickZoom",
+          "description": "The `no-double-click-zoom` attribute disables the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.",
+          "type": "boolean"
+        },
+        {
+          "name": "noBoxZoom",
+          "description": "The `no-box-zoom` attribute disable the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.",
+          "type": "boolean"
+        },
+        {
+          "name": "noTap",
+          "description": "The `no-tap` attribute disables mobile hacks for supporting instant taps (fixing 200ms click delay on iOS/Android) and touch holds (fired as contextmenu events).",
+          "type": "boolean"
+        },
+        {
+          "name": "tapTolerance",
+          "description": "The `tap-tolerance` attribute sets the max number of pixels a user can shift his finger during touch for it to be considered a valid tap.",
+          "type": "number"
+        },
+        {
+          "name": "noTrackResize",
+          "description": "The `no-track-resize` attribute disables whether the map automatically handles browser window resize to update itself.",
+          "type": "boolean"
+        },
+        {
+          "name": "worldCopyJump",
+          "description": "The `world-copy-jump` attribute sets whether the map tracks when you pan to another \"copy\" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.",
+          "type": "boolean"
+        },
+        {
+          "name": "noClosePopupOnClick",
+          "description": "The `no-close-popup-on-click` attribute disables whether popups are closed when user clicks the map.",
+          "type": "boolean"
+        },
+        {
+          "name": "noBounceAtZoomLimits",
+          "description": "The `no-bounce-at-zoom-limits` attribute disables whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.",
+          "type": "boolean"
+        },
+        {
+          "name": "noKeyboard",
+          "description": "The `no-keyboard` attribute disables whether the map is focusable and allows users to navigate the map with keyboard arrows and +/- keys.",
+          "type": "boolean"
+        },
+        {
+          "name": "noInertia",
+          "description": "The `no-inertia` attribute disables panning of the map will have an inertia effect where the map builds momentum while dragging and continues moving in the same direction for some time. Feels especially nice on touch devices.",
+          "type": "boolean"
+        },
+        {
+          "name": "inertiaDeceleration",
+          "description": "The `inertia-deceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.",
+          "type": "number"
+        },
+        {
+          "name": "inertiaMaxSpeed",
+          "description": "The `inertia-max-speed` attribute sets the max speed of the inertial movement, in pixels/second.",
+          "type": "number"
+        },
+        {
+          "name": "noZoomControl",
+          "description": "The `no-zoom-control` attribute disables the zoom control is added to the map by default.",
+          "type": "boolean"
+        },
+        {
+          "name": "noAttributionControl",
+          "description": "The `no-attribution-control` attribute disable the attribution control is added to the map by default.",
+          "type": "boolean"
+        },
+        {
+          "name": "zoomAnimationThreshold",
+          "description": "The `zoom-animation-threshold` attribute sets the maximum number of zoom level differences that still use animation",
+          "type": "number"
+        },
+        {
+          "name": "fitToMarkers",
+          "description": "If set, the map is zoomed such that all elements in it are visible",
+          "type": "boolean"
+        },
+        {
+          "name": "mapContainer",
+          "type": "HTMLDivElement"
+        },
+        {
+          "name": "features",
+          "type": "{ feature: LayerGroup<any> | Marker<any> | Polyline<LineString | MultiLineString, any>; }[] | undefined"
+        },
+        {
+          "name": "children",
+          "type": "HTMLCollectionOf<LeafletBase & { isLayer?(): boolean; }>"
+        },
+        {
+          "name": "latLng",
+          "type": "LatLng"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ],
+      "events": [
+        {
+          "name": "click"
+        },
+        {
+          "name": "dblclick"
+        },
+        {
+          "name": "mousedown"
+        },
+        {
+          "name": "mouseover"
+        },
+        {
+          "name": "mouseout"
+        },
+        {
+          "name": "contextmenu"
+        },
+        {
+          "name": "focus",
+          "description": "Fired when the map looses focus."
+        },
+        {
+          "name": "blur",
+          "description": "Fired before mouse click on the map (sometimes useful when you want something to happen on click before any existing click handlers start running)."
+        },
+        {
+          "name": "preclick"
+        },
+        {
+          "name": "load",
+          "description": "Fired when the map is destroyed with remove method."
+        },
+        {
+          "name": "unload",
+          "description": "Fired when the map needs to redraw its content (this usually happens on map zoom or load). Very useful for creating custom overlays."
+        },
+        {
+          "name": "viewreset",
+          "description": "Fired when the view of the map starts changing (e.g. user starts dragging the map)."
+        },
+        {
+          "name": "movestart",
+          "description": "Fired on any movement of the map view."
+        },
+        {
+          "name": "move",
+          "description": "Fired when the view of the map ends changed (e.g. user stopped dragging the map)."
+        },
+        {
+          "name": "moveend",
+          "description": "Fired when the user starts dragging the marker."
+        },
+        {
+          "name": "dragstart",
+          "description": "Fired repeatedly while the user drags the marker."
+        },
+        {
+          "name": "drag",
+          "description": "Fired when the user stops dragging the marker."
+        },
+        {
+          "name": "dragend"
+        },
+        {
+          "name": "zoomstart",
+          "description": "Fired when the map zoom changes."
+        },
+        {
+          "name": "zoomend",
+          "description": "Fired when the number of zoomlevels on the map is changed due to adding or removing a layer."
+        },
+        {
+          "name": "zoomlevelschange",
+          "description": "Fired when the map is resized."
+        },
+        {
+          "name": "resize"
+        },
+        {
+          "name": "autopanstart",
+          "description": "Fired when a new layer is added to the map."
+        },
+        {
+          "name": "layeradd"
+        },
+        {
+          "name": "layerremove"
+        },
+        {
+          "name": "baselayerchange"
+        },
+        {
+          "name": "overlayadd"
+        },
+        {
+          "name": "overlayremove"
+        },
+        {
+          "name": "locationfound"
+        },
+        {
+          "name": "locationerror"
+        },
+        {
+          "name": "popupopen"
+        },
+        {
+          "name": "popupclose"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-marker",
+      "path": "./leaflet-marker.d.ts",
+      "description": "Element which defines a [marker](http://leafletjs.com/reference.html#marker)",
+      "properties": [
+        {
+          "name": "feature",
+          "type": "Marker<any>"
+        },
+        {
+          "name": "latitude",
+          "description": "The `latitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "description": "The `longitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "icon",
+          "description": "The `icon` attribute sets the Icon class to use for rendering the marker.\nThis attribute may be refer to an id-attribute of an leaflet-icon-element,\ncontain json syntax or it be assigned an instance of L.icon.\nSee Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.",
+          "type": "string | Icon<IconOptions>"
+        },
+        {
+          "name": "draggable",
+          "description": "The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.",
+          "type": "boolean"
+        },
+        {
+          "name": "keyboard",
+          "description": "The `no-keyboard` attribute disables whether the marker can be tabbed to with a keyboard and clicked by pressing enter.",
+          "type": "boolean"
+        },
+        {
+          "name": "title",
+          "description": "The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).",
+          "type": "string"
+        },
+        {
+          "name": "alt",
+          "description": "The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).",
+          "type": "string"
+        },
+        {
+          "name": "zIndexOffset",
+          "description": "The `z-index-offset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude",
+          "type": "number"
+        },
+        {
+          "name": "opacity",
+          "description": "The `opacity` attribute sets the opacity of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "riseOnHover",
+          "description": "The `rise-on-hover` attribute sets the whether the marker will get on top of others when you hover the mouse over it.",
+          "type": "boolean"
+        },
+        {
+          "name": "riseOffset",
+          "description": "The `rise-offset` attribute sets the z-index offset used for the riseOnHover feature.",
+          "type": "number"
+        },
+        {
+          "name": "latLng",
+          "type": "LatLng"
+        }
+      ],
+      "events": [
+        {
+          "name": "click"
+        },
+        {
+          "name": "dblclick"
+        },
+        {
+          "name": "mousedown"
+        },
+        {
+          "name": "mouseover"
+        },
+        {
+          "name": "mouseout"
+        },
+        {
+          "name": "contextmenu"
+        },
+        {
+          "name": "dragstart",
+          "description": "Fired repeatedly while the user drags the marker."
+        },
+        {
+          "name": "drag",
+          "description": "Fired when the user stops dragging the marker."
+        },
+        {
+          "name": "dragend"
+        },
+        {
+          "name": "move"
+        },
+        {
+          "name": "add"
+        },
+        {
+          "name": "remove",
+          "description": "Fired when a popup bound to the marker is open."
+        },
+        {
+          "name": "popupopen"
+        },
+        {
+          "name": "popupclose"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-point",
+      "path": "./leaflet-point.d.ts",
+      "description": "The `leaflet-point` element represents one point in an polyline on the map and is used as\na child element of the `leaflet-polyline` element.\n\n##### Example: Add polylines\n     <leaflet-map longitude=\"77.2\" latitude=\"28.4\" zoom=\"12\">\n         <leaflet-polyline>\n             <leaflet-point longitude=\"77.22\" latitude=\"28.44\"></leaflet-point>\n             <leaflet-point longitude=\"77.44\" latitude=\"28.66\"></leaflet-point>\n         </leaflet-polyline>\n     </leaflet-map>",
+      "properties": [
+        {
+          "name": "latitude",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "type": "number"
+        },
+        {
+          "name": "latLng",
+          "type": "LatLng"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-polygon",
+      "path": "./leaflet-polygon.d.ts",
+      "description": "The `leaflet-polygon` element represents a polygon on the map and is used as\na child element of the `leaflet-map` element. To compose the line one needs to\nadd `leaflet-point` elements inside it.",
+      "properties": [
+        {
+          "name": "feature",
+          "description": "A Leaflet [Polygon](http://leafletjs.com/reference.html#polygon) object",
+          "type": "Polygon<any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-polyline",
+      "path": "./leaflet-polyline.d.ts",
+      "description": "The `leaflet-polyline` element represents a polyline on the map and is used as\na child element of the `leaflet-map` element. To compose the line one needs to\nadd `leaflet-point` elements inside it.",
+      "properties": [
+        {
+          "name": "feature",
+          "description": "A Leaflet [Polyline](http://leafletjs.com/reference.html#polyline) object",
+          "type": "Polyline<LineString | MultiLineString, any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-tilelayer-wms",
+      "path": "./leaflet-tilelayer-wms.d.ts",
+      "description": "Element which defines a [tile layer for wms](http://leafletjs.com/reference.html#tilelayer-wms)",
+      "properties": [
+        {
+          "name": "layer",
+          "type": "WMS"
+        },
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "layers",
+          "description": "The `layers` attribute sets the comma-separated list of WMS layers to show (required).",
+          "type": "string"
+        },
+        {
+          "name": "styles",
+          "description": "The `styles` attribute sets the comma-separated list of WMS styles.",
+          "type": "string"
+        },
+        {
+          "name": "format",
+          "description": "The `format` attribute sets the WMS image format (use 'image/png' for layers with transparency).",
+          "type": "string"
+        },
+        {
+          "name": "transparent",
+          "description": "The `transparent` attribute whether the WMS service will return images with transparency.",
+          "type": "boolean"
+        },
+        {
+          "name": "version",
+          "description": "The `version` attribute sets the version of the WMS service to use.",
+          "type": "string"
+        },
+        {
+          "name": "crs",
+          "description": "The `crs` attribute sets the coordinate Reference System to use for the WMS requests, defaults to map CRS. Don't change this if you're not sure what it means.",
+          "type": "CRS"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-tilelayer",
+      "path": "./leaflet-tilelayer.d.ts",
+      "description": "Element which defines a [tile layer](http://leafletjs.com/reference.html#tilelayer).",
+      "properties": [
+        {
+          "name": "layer",
+          "type": "TileLayer"
+        },
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "cleanedUrl",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

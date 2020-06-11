@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "module": "ESNext",
+    "target": "ES2017"
+  }
+}
