@@ -1,6 +1,8 @@
-import { customElement, css, LitElement, property } from 'lit-element';
+import { customElement, property } from 'lit-element';
 import { DATA_ELEMENT_STYLES } from './data-element.css';
 import { LeafletBase } from './base';
+
+import type * as L from 'leaflet';
 
 /**
  * Element which controls geo location (<a href="http://leafletjs.com/reference.html#map">Leaflet Reference</a>).

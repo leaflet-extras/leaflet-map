@@ -1,5 +1,5 @@
 import { customElement, property, PropertyValues } from 'lit-element';
-import { LeafletPopupContentMixin } from './mixins/popup';
+import { LeafletPopupContentMixin } from './mixins/popup-content';
 import * as L from 'leaflet';
 import { DATA_ELEMENT_STYLES } from './data-element.css';
 import { LeafletBase } from './base';

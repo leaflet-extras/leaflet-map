@@ -1,4 +1,5 @@
 import type { LeafletBase } from '../base';
+import type * as L from 'leaflet';
 
 import { Constructor } from 'lit-element';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';

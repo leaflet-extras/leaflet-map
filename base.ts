@@ -1,7 +1,7 @@
-import type { PropertyValues } from 'lit-element';
 import { FireMixin } from '@pwrs/mixins/fire';
-import { LitElement, property } from 'lit-element';
+import { LitElement } from 'lit-element';
 import { bound } from './bound-decorator';
+import type * as L from 'leaflet';
 
 type LeafletFeature =
   | null

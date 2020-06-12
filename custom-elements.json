@@ -2,472 +2,9 @@
   "version": "experimental",
   "tags": [
     {
-      "name": "leaflet-icon",
-      "path": "./leaflet-icon.ts",
-      "description": "Element which defines an icon template for markers (<a href=\"http://leafletjs.com/reference.html#icon\">Leaflet Reference</a>).",
-      "attributes": [
-        {
-          "name": "icon-url",
-          "description": "The `icon-url` attribute sets the URL to the icon image (absolute or relative to your script path).",
-          "type": "string"
-        },
-        {
-          "name": "icon-retina-url",
-          "description": "The `icon-retina-url` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.",
-          "type": "string"
-        },
-        {
-          "name": "icon-width",
-          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "icon-height",
-          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "icon-anchor-x",
-          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
-          "type": "number"
-        },
-        {
-          "name": "icon-anchor-y",
-          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
-          "type": "number"
-        },
-        {
-          "name": "shadow-url",
-          "description": "The `shadow-url` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.",
-          "type": "string"
-        },
-        {
-          "name": "shadow-retina-url",
-          "description": "The `shadow-retina-url` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.",
-          "type": "string"
-        },
-        {
-          "name": "shadow-width",
-          "description": "The `shadow-width` attribute sets the size of the shadow image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "shadow-height",
-          "description": "The `shadow-height` attribute sets the size of the shadow image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "shadow-anchor-x",
-          "description": "The `shadow-anchor-x` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
-          "type": "number"
-        },
-        {
-          "name": "shadow-anchor-y",
-          "description": "The `shadow-anchor-y` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
-          "type": "number"
-        },
-        {
-          "name": "popup-anchor-x",
-          "description": "The `popup-anchor-x` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
-          "type": "number"
-        },
-        {
-          "name": "popup-anchor-y",
-          "description": "The `popupanchory` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
-          "type": "number"
-        },
-        {
-          "name": "class-name",
-          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
-          "type": "string",
-          "default": "\"\""
-        }
-      ],
-      "properties": [
-        {
-          "name": "iconUrl",
-          "attribute": "icon-url",
-          "description": "The `icon-url` attribute sets the URL to the icon image (absolute or relative to your script path).",
-          "type": "string"
-        },
-        {
-          "name": "iconRetinaUrl",
-          "attribute": "icon-retina-url",
-          "description": "The `icon-retina-url` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.",
-          "type": "string"
-        },
-        {
-          "name": "iconWidth",
-          "attribute": "icon-width",
-          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "iconHeight",
-          "attribute": "icon-height",
-          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "iconAnchorX",
-          "attribute": "icon-anchor-x",
-          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
-          "type": "number"
-        },
-        {
-          "name": "iconAnchorY",
-          "attribute": "icon-anchor-y",
-          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
-          "type": "number"
-        },
-        {
-          "name": "shadowUrl",
-          "attribute": "shadow-url",
-          "description": "The `shadow-url` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.",
-          "type": "string"
-        },
-        {
-          "name": "shadowRetinaUrl",
-          "attribute": "shadow-retina-url",
-          "description": "The `shadow-retina-url` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.",
-          "type": "string"
-        },
-        {
-          "name": "shadowWidth",
-          "attribute": "shadow-width",
-          "description": "The `shadow-width` attribute sets the size of the shadow image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "shadowHeight",
-          "attribute": "shadow-height",
-          "description": "The `shadow-height` attribute sets the size of the shadow image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "shadowAnchorX",
-          "attribute": "shadow-anchor-x",
-          "description": "The `shadow-anchor-x` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
-          "type": "number"
-        },
-        {
-          "name": "shadowAnchorY",
-          "attribute": "shadow-anchor-y",
-          "description": "The `shadow-anchor-y` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
-          "type": "number"
-        },
-        {
-          "name": "popupAnchorX",
-          "attribute": "popup-anchor-x",
-          "description": "The `popup-anchor-x` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
-          "type": "number"
-        },
-        {
-          "name": "popupAnchorY",
-          "attribute": "popup-anchor-y",
-          "description": "The `popupanchory` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
-          "type": "number"
-        },
-        {
-          "name": "className",
-          "attribute": "class-name",
-          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
-          "type": "string",
-          "default": "\"\""
-        },
-        {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
-        },
-        {
-          "name": "feature",
-          "type": "LeafletFeature"
-        }
-      ]
-    },
-    {
-      "name": "leaflet-divicon",
-      "path": "./leaflet-divicon.ts",
-      "description": "Element which defines an divicon template for markers (<a href=\"http://leafletjs.com/reference.html#divicon\">Leaflet Reference</a>).",
-      "attributes": [
-        {
-          "name": "icon-width",
-          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "icon-height",
-          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "icon-anchor-x",
-          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
-          "type": "number"
-        },
-        {
-          "name": "icon-anchor-y",
-          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
-          "type": "number"
-        },
-        {
-          "name": "class-name",
-          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
-          "type": "string",
-          "default": "\"\""
-        }
-      ],
-      "properties": [
-        {
-          "name": "iconWidth",
-          "attribute": "icon-width",
-          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "iconHeight",
-          "attribute": "icon-height",
-          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
-          "type": "number"
-        },
-        {
-          "name": "iconAnchorX",
-          "attribute": "icon-anchor-x",
-          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
-          "type": "number"
-        },
-        {
-          "name": "iconAnchorY",
-          "attribute": "icon-anchor-y",
-          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
-          "type": "number"
-        },
-        {
-          "name": "className",
-          "attribute": "class-name",
-          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
-          "type": "string",
-          "default": "\"\""
-        },
-        {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
-        },
-        {
-          "name": "feature",
-          "type": "LeafletFeature"
-        }
-      ]
-    },
-    {
-      "name": "leaflet-marker",
-      "path": "./leaflet-marker.ts",
-      "description": "Element which defines a [marker](http://leafletjs.com/reference.html#marker)",
-      "attributes": [
-        {
-          "name": "latitude",
-          "description": "The `latitude` attribute sets the positions of the marker.",
-          "type": "number"
-        },
-        {
-          "name": "longitude",
-          "description": "The `longitude` attribute sets the positions of the marker.",
-          "type": "number"
-        },
-        {
-          "name": "icon",
-          "description": "The `icon` attribute sets the Icon class to use for rendering the marker.\nThis attribute may be refer to an id-attribute of an leaflet-icon-element,\ncontain json syntax or it be assigned an instance of L.icon.\nSee Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.",
-          "type": "string | Icon<IconOptions>"
-        },
-        {
-          "name": "draggable",
-          "description": "The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "keyboard",
-          "description": "The `no-keyboard` attribute disables whether the marker can be tabbed to with a keyboard and clicked by pressing enter.",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "title",
-          "description": "The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).",
-          "type": "string",
-          "default": "\"\""
-        },
-        {
-          "name": "alt",
-          "description": "The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).",
-          "type": "string",
-          "default": "\"\""
-        },
-        {
-          "name": "z-index-offset",
-          "description": "The `z-index-offset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude",
-          "type": "number",
-          "default": "0"
-        },
-        {
-          "name": "opacity",
-          "description": "The `opacity` attribute sets the opacity of the marker.",
-          "type": "number",
-          "default": "1"
-        },
-        {
-          "name": "rise-on-hover",
-          "description": "The `rise-on-hover` attribute sets the whether the marker will get on top of others when you hover the mouse over it.",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "rise-offset",
-          "description": "The `rise-offset` attribute sets the z-index offset used for the riseOnHover feature.",
-          "type": "number",
-          "default": "250"
-        }
-      ],
-      "properties": [
-        {
-          "name": "latitude",
-          "attribute": "latitude",
-          "description": "The `latitude` attribute sets the positions of the marker.",
-          "type": "number"
-        },
-        {
-          "name": "longitude",
-          "attribute": "longitude",
-          "description": "The `longitude` attribute sets the positions of the marker.",
-          "type": "number"
-        },
-        {
-          "name": "icon",
-          "attribute": "icon",
-          "description": "The `icon` attribute sets the Icon class to use for rendering the marker.\nThis attribute may be refer to an id-attribute of an leaflet-icon-element,\ncontain json syntax or it be assigned an instance of L.icon.\nSee Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.",
-          "type": "string | Icon<IconOptions>"
-        },
-        {
-          "name": "draggable",
-          "attribute": "draggable",
-          "description": "The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "keyboard",
-          "attribute": "keyboard",
-          "description": "The `no-keyboard` attribute disables whether the marker can be tabbed to with a keyboard and clicked by pressing enter.",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "title",
-          "attribute": "title",
-          "description": "The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).",
-          "type": "string",
-          "default": "\"\""
-        },
-        {
-          "name": "alt",
-          "attribute": "alt",
-          "description": "The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).",
-          "type": "string",
-          "default": "\"\""
-        },
-        {
-          "name": "zIndexOffset",
-          "attribute": "z-index-offset",
-          "description": "The `z-index-offset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude",
-          "type": "number",
-          "default": "0"
-        },
-        {
-          "name": "opacity",
-          "attribute": "opacity",
-          "description": "The `opacity` attribute sets the opacity of the marker.",
-          "type": "number",
-          "default": "1"
-        },
-        {
-          "name": "riseOnHover",
-          "attribute": "rise-on-hover",
-          "description": "The `rise-on-hover` attribute sets the whether the marker will get on top of others when you hover the mouse over it.",
-          "type": "boolean",
-          "default": "false"
-        },
-        {
-          "name": "riseOffset",
-          "attribute": "rise-offset",
-          "description": "The `rise-offset` attribute sets the z-index offset used for the riseOnHover feature.",
-          "type": "number",
-          "default": "250"
-        },
-        {
-          "name": "latLng",
-          "type": "LatLng"
-        },
-        {
-          "name": "container",
-          "type": "Map"
-        },
-        {
-          "name": "feature",
-          "type": "Marker<any>"
-        }
-      ],
-      "events": [
-        {
-          "name": "click"
-        },
-        {
-          "name": "dblclick"
-        },
-        {
-          "name": "mousedown"
-        },
-        {
-          "name": "mouseover"
-        },
-        {
-          "name": "mouseout"
-        },
-        {
-          "name": "contextmenu"
-        },
-        {
-          "name": "dragstart",
-          "description": "Fired repeatedly while the user drags the marker."
-        },
-        {
-          "name": "drag",
-          "description": "Fired when the user stops dragging the marker."
-        },
-        {
-          "name": "dragend"
-        },
-        {
-          "name": "move"
-        },
-        {
-          "name": "add"
-        },
-        {
-          "name": "remove",
-          "description": "Fired when a popup bound to the marker is open."
-        },
-        {
-          "name": "popupopen"
-        },
-        {
-          "name": "popupclose"
-        }
-      ]
-    },
-    {
       "name": "leaflet-map",
       "path": "./leaflet-map.ts",
-      "description": "Element which defines a Leaflet map (<a href=\"http://leafletjs.com/reference.html#map\">Leaflet Reference</a>).\n\n##### Example\n\n     <leaflet-map> </leaflet-map>\n\nThis simple example will show a map of the world. It is pan and zoomable.\n\n##### Example\n\n     <leaflet-map latitude=\"78.8\" longitude=\"-96\" zoom=\"5\">\n\n         <leaflet-marker latitude=\"51.5\" longitude=\"-0.10\" title=\"Some title\">\n             <b>Popup text</b>\n         </leaflet-marker>\n\n     </leaflet-map>\n\nThis code will zoom in on the specified latitude and longitude coordinates. Further, it will\nadd a marker with a popup text.\n\n##### Example: Add markers & circles\n     <leaflet-map longitude=\"77.2\" latitude=\"28.4\" zoom=\"12\">\n         <leaflet-marker longitude=\"77.2\" latitude=\"28.4\">\n             Marker\n         </leaflet-marker>\n         <leaflet-circle longitude=\"77.2\" latitude=\"28.4\" radius=\"300\">\n             Circle\n         </leaflet-circle>\n     </leaflet-map>\n\n\nFired when the user clicks (or taps) the marker.",
+      "description": "Element which defines a Leaflet map (<a href=\"http://leafletjs.com/reference.html#map\">Leaflet Reference</a>).",
       "attributes": [
         {
           "name": "latitude",
@@ -794,135 +331,153 @@
         },
         {
           "name": "features",
-          "type": "{ feature: LayerGroup<any> | Marker<any> | Polyline<LineString | MultiLineString, any>; }[] | undefined"
+          "type": "{ feature: LayerGroup<any> | Polyline<LineString | MultiLineString, any> | Marker<any>; }[] | undefined"
         },
         {
           "name": "children",
-          "type": "HTMLCollectionOf<LeafletBase & { isLayer?(): boolean; }>"
+          "type": "HTMLCollectionOf<any>"
         },
         {
           "name": "latLng",
           "type": "LatLng"
         },
         {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ],
       "events": [
         {
-          "name": "click"
+          "name": "click",
+          "description": "Fired when the user clicks (or taps) the marker."
         },
         {
-          "name": "dblclick"
+          "name": "dblclick",
+          "description": "Fired when the user double-clicks (or double-taps) the marker."
         },
         {
-          "name": "mousedown"
+          "name": "mousedown",
+          "description": "Fired when the user pushes the mouse button on the marker."
         },
         {
-          "name": "mouseover"
+          "name": "mouseover",
+          "description": "Fired when the mouse enters the marker."
         },
         {
-          "name": "mouseout"
+          "name": "mouseout",
+          "description": "Fired when the mouse leaves the marker."
         },
         {
-          "name": "contextmenu"
+          "name": "contextmenu",
+          "description": "Fired when the user right-clicks on the marker."
         },
         {
-          "name": "focus",
-          "description": "Fired when the map looses focus."
-        },
-        {
-          "name": "blur",
+          "name": "preclick",
           "description": "Fired before mouse click on the map (sometimes useful when you want something to happen on click before any existing click handlers start running)."
         },
         {
-          "name": "preclick"
+          "name": "focus",
+          "description": "Fired when the user focuses the map either by tabbing to it or clicking/panning."
+        },
+        {
+          "name": "blur",
+          "description": "Fired when the map looses focus."
         },
         {
           "name": "load",
-          "description": "Fired when the map is destroyed with remove method."
+          "description": "Fired when the map is initialized (when its center and zoom are set for the first time)."
         },
         {
           "name": "unload",
-          "description": "Fired when the map needs to redraw its content (this usually happens on map zoom or load). Very useful for creating custom overlays."
+          "description": "Fired when the map is destroyed with remove method."
         },
         {
           "name": "viewreset",
-          "description": "Fired when the view of the map starts changing (e.g. user starts dragging the map)."
+          "description": "Fired when the map needs to redraw its content (this usually happens on map zoom or load). Very useful for creating custom overlays."
         },
         {
           "name": "movestart",
-          "description": "Fired on any movement of the map view."
+          "description": "Fired when the view of the map starts changing (e.g. user starts dragging the map)."
         },
         {
           "name": "move",
-          "description": "Fired when the view of the map ends changed (e.g. user stopped dragging the map)."
+          "description": "Fired on any movement of the map view."
         },
         {
           "name": "moveend",
-          "description": "Fired when the user starts dragging the marker."
+          "description": "Fired when the view of the map ends changed (e.g. user stopped dragging the map)."
         },
         {
           "name": "dragstart",
-          "description": "Fired repeatedly while the user drags the marker."
+          "description": "Fired when the user starts dragging the marker."
         },
         {
           "name": "drag",
-          "description": "Fired when the user stops dragging the marker."
-        },
-        {
-          "name": "dragend"
-        },
-        {
-          "name": "zoomstart",
-          "description": "Fired when the map zoom changes."
-        },
-        {
-          "name": "zoomend",
-          "description": "Fired when the number of zoomlevels on the map is changed due to adding or removing a layer."
-        },
-        {
-          "name": "zoomlevelschange",
-          "description": "Fired when the map is resized."
-        },
-        {
-          "name": "resize"
+          "description": "Fired repeatedly while the user drags the marker."
         },
         {
           "name": "autopanstart",
+          "description": "Fired when the map starts autopanning when opening a popup."
+        },
+        {
+          "name": "zoomstart",
+          "description": "Fired when the map zoom is about to change (e.g. before zoom animation)."
+        },
+        {
+          "name": "zoomend",
+          "description": "Fired when the map zoom changes."
+        },
+        {
+          "name": "zoomlevelschange",
+          "description": "Fired when the number of zoomlevels on the map is changed due to adding or removing a layer."
+        },
+        {
+          "name": "dragend",
+          "description": "Fired when the user stops dragging the marker."
+        },
+        {
+          "name": "resize",
+          "description": "Fired when the map is resized."
+        },
+        {
+          "name": "layeradd",
           "description": "Fired when a new layer is added to the map."
         },
         {
-          "name": "layeradd"
+          "name": "layerremove",
+          "description": "Fired when some layer is removed from the map."
         },
         {
-          "name": "layerremove"
+          "name": "baselayerchange",
+          "description": "Fired when the base layer is changed through the layer control."
         },
         {
-          "name": "baselayerchange"
+          "name": "overlayadd",
+          "description": "Fired when an overlay is selected through the layer control."
         },
         {
-          "name": "overlayadd"
+          "name": "overlayremove",
+          "description": "Fired when an overlay is deselected through the layer control."
         },
         {
-          "name": "overlayremove"
+          "name": "locationfound",
+          "description": "Fired when geolocation (using the locate method) went successfully."
         },
         {
-          "name": "locationfound"
+          "name": "locationerror",
+          "description": "Fired when geolocation (using the locate method) failed."
         },
         {
-          "name": "locationerror"
+          "name": "popupopen",
+          "description": "Fired when a popup bound to the marker is open."
         },
         {
-          "name": "popupopen"
-        },
-        {
-          "name": "popupclose"
+          "name": "popupclose",
+          "description": "Fired when a popup bound to the marker is closed."
         }
       ]
     },
@@ -960,12 +515,12 @@
           "type": "LatLng"
         },
         {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     },
@@ -1136,13 +691,13 @@
           "type": "null"
         },
         {
-          "name": "container",
-          "type": "Map"
-        },
-        {
           "name": "feature",
           "description": "A Leaflet [Polygon](http://leafletjs.com/reference.html#polygon) object",
           "type": "Polygon<any>"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ]
     },
@@ -1313,13 +868,13 @@
           "type": "null"
         },
         {
-          "name": "container",
-          "type": "Map"
-        },
-        {
           "name": "feature",
           "description": "A Leaflet [Polyline](http://leafletjs.com/reference.html#polyline) object",
           "type": "Polyline<LineString | MultiLineString, any>"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ]
     },
@@ -1525,13 +1080,13 @@
           "type": "null"
         },
         {
-          "name": "container",
-          "type": "Map"
-        },
-        {
           "name": "feature",
           "description": "A Leaflet circle object",
           "type": "Circle<any>"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ]
     },
@@ -1612,12 +1167,12 @@
           "type": "Scale"
         },
         {
-          "name": "container",
-          "type": "Map"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ]
     },
@@ -1852,12 +1407,12 @@
           "default": "false"
         },
         {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     },
@@ -2158,12 +1713,217 @@
           "default": "false"
         },
         {
+          "name": "feature",
+          "type": "LeafletFeature"
+        },
+        {
           "name": "container",
           "type": "Map | LayerGroup<any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-marker",
+      "path": "./leaflet-marker.ts",
+      "description": "Element which defines a [marker](http://leafletjs.com/reference.html#marker)",
+      "attributes": [
+        {
+          "name": "latitude",
+          "description": "The `latitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "description": "The `longitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "icon",
+          "description": "The `icon` attribute sets the Icon class to use for rendering the marker.\nThis attribute may be refer to an id-attribute of an leaflet-icon-element,\ncontain json syntax or it be assigned an instance of L.icon.\nSee Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.",
+          "type": "string | Icon<IconOptions>"
+        },
+        {
+          "name": "draggable",
+          "description": "The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "keyboard",
+          "description": "The `no-keyboard` attribute disables whether the marker can be tabbed to with a keyboard and clicked by pressing enter.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "title",
+          "description": "The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "alt",
+          "description": "The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "z-index-offset",
+          "description": "The `z-index-offset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "opacity",
+          "description": "The `opacity` attribute sets the opacity of the marker.",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "rise-on-hover",
+          "description": "The `rise-on-hover` attribute sets the whether the marker will get on top of others when you hover the mouse over it.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "rise-offset",
+          "description": "The `rise-offset` attribute sets the z-index offset used for the riseOnHover feature.",
+          "type": "number",
+          "default": "250"
+        }
+      ],
+      "properties": [
+        {
+          "name": "latitude",
+          "attribute": "latitude",
+          "description": "The `latitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "longitude",
+          "attribute": "longitude",
+          "description": "The `longitude` attribute sets the positions of the marker.",
+          "type": "number"
+        },
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "description": "The `icon` attribute sets the Icon class to use for rendering the marker.\nThis attribute may be refer to an id-attribute of an leaflet-icon-element,\ncontain json syntax or it be assigned an instance of L.icon.\nSee Icon documentation for details on how to customize the marker icon. Set to new L.Icon.Default() by default.",
+          "type": "string | Icon<IconOptions>"
+        },
+        {
+          "name": "draggable",
+          "attribute": "draggable",
+          "description": "The `draggable` attribute sets the whether the marker is draggable with mouse/touch or not.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "keyboard",
+          "attribute": "keyboard",
+          "description": "The `no-keyboard` attribute disables whether the marker can be tabbed to with a keyboard and clicked by pressing enter.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "title",
+          "attribute": "title",
+          "description": "The `title` attribute sets the text for the browser tooltip that appear on marker hover (no tooltip by default).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "alt",
+          "attribute": "alt",
+          "description": "The `alt` attribute sets the text for the alt attribute of the icon image (useful for accessibility).",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "zIndexOffset",
+          "attribute": "z-index-offset",
+          "description": "The `z-index-offset` attribute sets the zIndexOffset. By default, marker images zIndex is set automatically based on its latitude",
+          "type": "number",
+          "default": "0"
+        },
+        {
+          "name": "opacity",
+          "attribute": "opacity",
+          "description": "The `opacity` attribute sets the opacity of the marker.",
+          "type": "number",
+          "default": "1"
+        },
+        {
+          "name": "riseOnHover",
+          "attribute": "rise-on-hover",
+          "description": "The `rise-on-hover` attribute sets the whether the marker will get on top of others when you hover the mouse over it.",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "riseOffset",
+          "attribute": "rise-offset",
+          "description": "The `rise-offset` attribute sets the z-index offset used for the riseOnHover feature.",
+          "type": "number",
+          "default": "250"
+        },
+        {
+          "name": "latLng",
+          "type": "LatLng"
         },
         {
           "name": "feature",
-          "type": "LeafletFeature"
+          "type": "Marker<any>"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        }
+      ],
+      "events": [
+        {
+          "name": "click"
+        },
+        {
+          "name": "dblclick"
+        },
+        {
+          "name": "mousedown"
+        },
+        {
+          "name": "mouseover"
+        },
+        {
+          "name": "mouseout"
+        },
+        {
+          "name": "contextmenu"
+        },
+        {
+          "name": "dragstart",
+          "description": "Fired repeatedly while the user drags the marker."
+        },
+        {
+          "name": "drag",
+          "description": "Fired when the user stops dragging the marker."
+        },
+        {
+          "name": "dragend"
+        },
+        {
+          "name": "move"
+        },
+        {
+          "name": "add"
+        },
+        {
+          "name": "remove",
+          "description": "Fired when a popup bound to the marker is open."
+        },
+        {
+          "name": "popupopen"
+        },
+        {
+          "name": "popupclose"
         }
       ]
     },
@@ -2174,15 +1934,15 @@
       "properties": [
         {
           "name": "children",
-          "type": "HTMLCollectionOf<LeafletBase>"
-        },
-        {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
+          "type": "HTMLCollectionOf<LeafletMarker>"
         },
         {
           "name": "feature",
           "type": "LayerGroup<any>"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     },
@@ -2332,12 +2092,270 @@
           "type": "null"
         },
         {
+          "name": "feature",
+          "type": "GeoJSON<any>"
+        },
+        {
           "name": "container",
           "type": "Map | LayerGroup<any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-icon",
+      "path": "./leaflet-icon.ts",
+      "description": "Element which defines an icon template for markers (<a href=\"http://leafletjs.com/reference.html#icon\">Leaflet Reference</a>).",
+      "attributes": [
+        {
+          "name": "icon-url",
+          "description": "The `icon-url` attribute sets the URL to the icon image (absolute or relative to your script path).",
+          "type": "string"
+        },
+        {
+          "name": "icon-retina-url",
+          "description": "The `icon-retina-url` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "icon-width",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "icon-height",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "icon-anchor-x",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "icon-anchor-y",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "shadow-url",
+          "description": "The `shadow-url` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.",
+          "type": "string"
+        },
+        {
+          "name": "shadow-retina-url",
+          "description": "The `shadow-retina-url` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "shadow-width",
+          "description": "The `shadow-width` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadow-height",
+          "description": "The `shadow-height` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadow-anchor-x",
+          "description": "The `shadow-anchor-x` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "shadow-anchor-y",
+          "description": "The `shadow-anchor-y` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "popup-anchor-x",
+          "description": "The `popup-anchor-x` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "popup-anchor-y",
+          "description": "The `popupanchory` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "class-name",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "iconUrl",
+          "attribute": "icon-url",
+          "description": "The `icon-url` attribute sets the URL to the icon image (absolute or relative to your script path).",
+          "type": "string"
+        },
+        {
+          "name": "iconRetinaUrl",
+          "attribute": "icon-retina-url",
+          "description": "The `icon-retina-url` attribute sets the URL to a retina sized version of the icon image (absolute or relative to your script path). Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "iconWidth",
+          "attribute": "icon-width",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconHeight",
+          "attribute": "icon-height",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorX",
+          "attribute": "icon-anchor-x",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorY",
+          "attribute": "icon-anchor-y",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "shadowUrl",
+          "attribute": "shadow-url",
+          "description": "The `shadow-url` attribute sets the URL to the icon shadow image. If not specified, no shadow image will be created.",
+          "type": "string"
+        },
+        {
+          "name": "shadowRetinaUrl",
+          "attribute": "shadow-retina-url",
+          "description": "The `shadow-retina-url` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.",
+          "type": "string"
+        },
+        {
+          "name": "shadowWidth",
+          "attribute": "shadow-width",
+          "description": "The `shadow-width` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadowHeight",
+          "attribute": "shadow-height",
+          "description": "The `shadow-height` attribute sets the size of the shadow image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "shadowAnchorX",
+          "attribute": "shadow-anchor-x",
+          "description": "The `shadow-anchor-x` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "shadowAnchorY",
+          "attribute": "shadow-anchor-y",
+          "description": "The `shadow-anchor-y` attribute sets the coordinates of the \"tip\" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).",
+          "type": "number"
+        },
+        {
+          "name": "popupAnchorX",
+          "attribute": "popup-anchor-x",
+          "description": "The `popup-anchor-x` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "popupAnchorY",
+          "attribute": "popup-anchor-y",
+          "description": "The `popupanchory` attribute sets the coordinates of the point from which popups will \"open\", relative to the icon anchor.",
+          "type": "number"
+        },
+        {
+          "name": "className",
+          "attribute": "class-name",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string",
+          "default": "\"\""
         },
         {
           "name": "feature",
-          "type": "GeoJSON<any>"
+          "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
+        }
+      ]
+    },
+    {
+      "name": "leaflet-divicon",
+      "path": "./leaflet-divicon.ts",
+      "description": "Element which defines an divicon template for markers (<a href=\"http://leafletjs.com/reference.html#divicon\">Leaflet Reference</a>).",
+      "attributes": [
+        {
+          "name": "icon-width",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "icon-height",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "icon-anchor-x",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "icon-anchor-y",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "class-name",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string",
+          "default": "\"\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "iconWidth",
+          "attribute": "icon-width",
+          "description": "The `icon-width` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconHeight",
+          "attribute": "icon-height",
+          "description": "The `icon-height` attribute sets the size of the icon image in pixels.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorX",
+          "attribute": "icon-anchor-x",
+          "description": "The `icon-anchor-x` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "iconAnchorY",
+          "attribute": "icon-anchor-y",
+          "description": "The `icon-anchor-y` attribute sets the coordinates of the \"tip\" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker's geographical location. Centered by default if size is specified, also can be set in CSS with negative margins.",
+          "type": "number"
+        },
+        {
+          "name": "className",
+          "attribute": "class-name",
+          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
+          "type": "string",
+          "default": "\"\""
+        },
+        {
+          "name": "feature",
+          "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     },
@@ -2526,12 +2544,12 @@
           "type": "null"
         },
         {
-          "name": "container",
-          "type": "Map"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ],
       "events": [
@@ -2565,6 +2583,10 @@
           "name": "radius",
           "description": "The circle's radius is metres",
           "type": "number"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ]
     },
@@ -2603,12 +2625,12 @@
           "type": "Scale"
         },
         {
-          "name": "container",
-          "type": "Map"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ]
     },
@@ -2643,12 +2665,12 @@
           "type": "string"
         },
         {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     },
@@ -2669,6 +2691,10 @@
           "name": "data",
           "description": "data as geojson object",
           "type": "GeoJsonObject"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     },
@@ -2744,12 +2770,12 @@
           "description": "The `timestamp` attribute returns the time when the position was acquired."
         },
         {
-          "name": "container",
-          "type": "Map"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ],
       "events": [
@@ -2842,36 +2868,12 @@
           "type": "string"
         },
         {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
-        }
-      ]
-    },
-    {
-      "name": "leaflet-icon",
-      "path": "./leaflet-icon.js",
-      "description": "Element which defines an icon template for markers (<a href=\"http://leafletjs.com/reference.html#icon\">Leaflet Reference</a>).",
-      "properties": [
-        {
-          "name": "className",
-          "description": "The `class-name` attribute sets a custom class name to assign to both icon and shadow images. Empty by default.",
-          "type": "string",
-          "default": "\"\""
-        },
-        {
-          "name": "icon"
         },
         {
           "name": "container",
           "type": "Map | LayerGroup<any>"
-        },
-        {
-          "name": "feature",
-          "type": "LeafletFeature"
         }
       ]
     },
@@ -2882,22 +2884,22 @@
       "properties": [
         {
           "name": "children",
-          "type": "HTMLCollectionOf<LeafletBase>"
-        },
-        {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
+          "type": "HTMLCollectionOf<LeafletMarker>"
         },
         {
           "name": "feature",
           "type": "LayerGroup<any>"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     },
     {
       "name": "leaflet-map",
       "path": "./leaflet-map.d.ts",
-      "description": "Element which defines a Leaflet map (<a href=\"http://leafletjs.com/reference.html#map\">Leaflet Reference</a>).\n\n##### Example\n\n     <leaflet-map> </leaflet-map>\n\nThis simple example will show a map of the world. It is pan and zoomable.\n\n##### Example\n\n     <leaflet-map latitude=\"78.8\" longitude=\"-96\" zoom=\"5\">\n\n         <leaflet-marker latitude=\"51.5\" longitude=\"-0.10\" title=\"Some title\">\n             <b>Popup text</b>\n         </leaflet-marker>\n\n     </leaflet-map>\n\nThis code will zoom in on the specified latitude and longitude coordinates. Further, it will\nadd a marker with a popup text.\n\n##### Example: Add markers & circles\n     <leaflet-map longitude=\"77.2\" latitude=\"28.4\" zoom=\"12\">\n         <leaflet-marker longitude=\"77.2\" latitude=\"28.4\">\n             Marker\n         </leaflet-marker>\n         <leaflet-circle longitude=\"77.2\" latitude=\"28.4\" radius=\"300\">\n             Circle\n         </leaflet-circle>\n     </leaflet-map>\n\n\nFired when the user clicks (or taps) the marker.",
+      "description": "Element which defines a Leaflet map (<a href=\"http://leafletjs.com/reference.html#map\">Leaflet Reference</a>).",
       "properties": [
         {
           "name": "map",
@@ -3030,23 +3032,23 @@
         },
         {
           "name": "features",
-          "type": "{ feature: LayerGroup<any> | Marker<any> | Polyline<LineString | MultiLineString, any>; }[] | undefined"
+          "type": "{ feature: LayerGroup<any> | Polyline<LineString | MultiLineString, any> | Marker<any>; }[] | undefined"
         },
         {
           "name": "children",
-          "type": "HTMLCollectionOf<LeafletBase & { isLayer?(): boolean; }>"
+          "type": "HTMLCollectionOf<LeafletBase & Partial<LatLngElement> & { isLayer?(): boolean; }>"
         },
         {
           "name": "latLng",
           "type": "LatLng"
         },
         {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ],
       "events": [
@@ -3229,6 +3231,10 @@
         {
           "name": "latLng",
           "type": "LatLng"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ],
       "events": [
@@ -3297,12 +3303,12 @@
           "type": "LatLng"
         },
         {
-          "name": "container",
-          "type": "Map | LayerGroup<any>"
-        },
-        {
           "name": "feature",
           "type": "LeafletFeature"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     },
@@ -3315,6 +3321,10 @@
           "name": "feature",
           "description": "A Leaflet [Polygon](http://leafletjs.com/reference.html#polygon) object",
           "type": "Polygon<any>"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ]
     },
@@ -3327,6 +3337,10 @@
           "name": "feature",
           "description": "A Leaflet [Polyline](http://leafletjs.com/reference.html#polyline) object",
           "type": "Polyline<LineString | MultiLineString, any>"
+        },
+        {
+          "name": "container",
+          "type": "Map"
         }
       ]
     },
@@ -3372,6 +3386,10 @@
           "name": "crs",
           "description": "The `crs` attribute sets the coordinate Reference System to use for the WMS requests, defaults to map CRS. Don't change this if you're not sure what it means.",
           "type": "CRS"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     },
@@ -3391,6 +3409,10 @@
         {
           "name": "cleanedUrl",
           "type": "string"
+        },
+        {
+          "name": "container",
+          "type": "Map | LayerGroup<any>"
         }
       ]
     }

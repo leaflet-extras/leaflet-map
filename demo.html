@@ -6,10 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>leaflet-map web-component demo</title>
 	<script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-	<script src="https://unpkg.com/leaflet"></script>
-	<script type="module" src="https://unpkg.com/api-viewer-element?module"></script>
-	<script type="module" src="index.js"></script>
-
+	<script type="module">
+		import 'api-viewer-element'
+		import * as L from 'leaflet'
+		window.L = L;
+		L.Icon.Default.imagePath = `${location.origin}/node_modules/leaflet/dist/images/`;
+		import '/index.js'
+	</script>
 	<style type="text/css">
 		body {
 			height: 100%;
@@ -146,7 +149,7 @@
 				parameter of L.map as defined in the <a href="http://leafletjs.com/reference.html">leaflet documentation</a>.
 				For example the initial view is defined as follows:</p>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="51.505" longitude="-0.09" zoom="13"> </leaflet-map>
 				</template>
@@ -158,16 +161,16 @@
 				left hand side. And a second marker with a popup on click.</p>
 
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
+				<template data-element="leaflet-map" data-target="host">
+					<leaflet-map fit-to-markers></leaflet-map>
+				</template>
 				<template data-element="leaflet-map" data-target="slot">
 					<leaflet-marker latitude="51.5" longitude="-0.10" title="Transparent" opacity="0.6"></leaflet-marker>
 					<leaflet-marker latitude="51.5" longitude="-0.09" title="Popup Demo">
 						<b>Bold</b>
 						<p>Text</p>
 					</leaflet-marker>
-				</template>
-				<template data-element="leaflet-map" data-target="host">
-					<leaflet-map fit-to-markers></leaflet-map>
 				</template>
 			</api-viewer>
 
@@ -177,7 +180,7 @@
 			<p>Markers are based on formating templates called "icons". There are three ways to reference such an icon
 				definition:</p>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="51.505" longitude="-0.09" zoom="13"></leaflet-map>
 				</template>
@@ -192,7 +195,7 @@
 				that iconSize is mapped to the attributes iconWidth and iconHeight. iconAnchor is mapped to iconAnchorX and
 				iconAnchorY and so on:</p>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="51.5" longitude="-0.10" zoom="8"></leaflet-map>
 				</template>
@@ -204,7 +207,7 @@
 
 			<p>Alternatively plain json is understood, too:</p>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="51.5" longitude="-0.09" zoom="8"></leaflet-map>
 				</template>
@@ -220,19 +223,24 @@
 
 			<p>Last but not least, an instance of L.icon may be assigned:</p>
 
-			<api-viewer id="icon-ref" src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer id="icon-ref" src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="51.5" longitude="-0.8" zoom="8"></leaflet-map>
 				</template>
 				<template data-element="leaflet-map" data-target="slot">
 					<leaflet-marker latitude="51.5" longitude="-0.8" title="L.icon()"></leaflet-marker>
-					<script>
-						const marker = document.getElementById('icon-ref').shadowRoot.querySelector('leaflet-marker')
-						marker.icon = L.icon({
-								"iconUrl": "https://stendhalgame.org/images/mapmarker/npc.png",
-								"iconSize": L.point(26, 25),
-								"iconAnchor": L.point(0, 0)
-						});
+					<script type="module">
+						const iconUrl = "https://stendhalgame.org/images/mapmarker/npc.png";
+						const iconSize = L.point(26, 25);
+						const iconAnchor = L.point(0, 0);
+
+						const icon = L.icon({ iconUrl, iconSize, iconAnchor });
+
+						document
+							.getElementById('icon-ref')
+							.shadowRoot
+							.querySelector('leaflet-marker')
+							.icon = icon
 					</script>
 				</template>
 			</api-viewer>
@@ -241,9 +249,9 @@
 
 			<p>Circles, polylines and polygons can be drawn on the map.</p>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
-					<leaflet-map longitude="77.6" latitude="12.95" zoom="12"></leaflet-map>
+					<leaflet-map fit-to-markers></leaflet-map>
 				</template>
 
 				<template data-element="leaflet-map" data-target="slot">
@@ -290,7 +298,7 @@
 			<p>Custom tile layers, for example from online games can be defined using the leaflet-tilelayer element. If there
 				is no explicit tilelayer defined, a default one will be used as shown in previous examples.</p>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="78.8" longitude="-96" zoom="5" min-zoom="2" max-zoom="6"></leaflet-map>
 				</template>
@@ -301,7 +309,7 @@
 				</template>
 			</api-viewer>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="78.8" longitude="-96" zoom="5" max-zoom="6"></leaflet-map>
 				</template>
@@ -316,7 +324,7 @@
 
 			<p>It is possible to display data from external WMS services as tile layers on the map.</p>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="40" longitude="-85" zoom="4"></leaflet-map>
 				</template>
@@ -333,7 +341,7 @@
 				</template>
 			</api-viewer>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="40" longitude="-85" zoom="4"></leaflet-map>
 				</template>
@@ -357,7 +365,7 @@
 			<p>Leaflet events are converted into html events which originate from the component.</p>
 
 
-			<api-viewer id="eventmap" src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer id="eventmap" src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="51.505" longitude="-0.091" zoom="8"> </leaflet-map>
 					<script>
@@ -376,7 +384,7 @@
 			<p>A scale control can be added and configured using <leaflet-scale-control>. By default it displays both
 				metric and imperial units.</p>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="51.505" longitude="-0.09" zoom="6"></leaflet-map>
 				</template>
@@ -385,7 +393,7 @@
 				</template>
 			</api-viewer>
 
-			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map latitude="51.505" longitude="-0.09" zoom="13"></leaflet-map>
 				</template>
@@ -398,7 +406,7 @@
 
 			<p>Example of a GeoJSON layer, which is filled by an ajax request.</p>
 
-			<api-viewer id="leafletgeojson" src="custom-elements.json" section="demo" exclude-knobs="children,map" selected="leaflet-map">
+			<api-viewer id="leafletgeojson" src="custom-elements.json" section="demo" exclude-knobs="children,map" exclude-events="drag,mouseover" selected="leaflet-map">
 				<template data-element="leaflet-map" data-target="host">
 					<leaflet-map longitude="102.304" latitude="0.3516" zoom="6"></leaflet-map>
 				</template>

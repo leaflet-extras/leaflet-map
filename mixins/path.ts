@@ -5,6 +5,8 @@ import { property } from 'lit-element';
 import { SVGAttributesMixin } from './svg-attributes';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
+import type * as L from 'leaflet';
+
 export interface LeafletPathMixinElement extends LeafletBase {
   /**
    * The attribute `clickable` sets whether the vector will emit mouse events or will act as a part of the underlying map.

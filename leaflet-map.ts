@@ -7,10 +7,21 @@ import {
   PropertyValues,
   TemplateResult,
 } from 'lit-element';
-import { LeafletMarker } from './leaflet-marker';
+
 import { LeafletBase } from './base';
+
 import { bound } from './bound-decorator';
+
 import * as L from 'leaflet';
+
+interface FeatureElement extends LeafletBase {
+  feature: L.LayerGroup | L.Polyline | L.Polygon | L.Marker;
+  layer: L.LayerGroup | L.Layer;
+}
+
+const isFeatureElement = (
+  x: Node & Partial<FeatureElement>
+): x is Node & FeatureElement => x && 'feature' in x;
 
 const EVENTS = [
   'click',
@@ -48,6 +59,48 @@ const EVENTS = [
   'popupopen',
   'popupclose',
 ].join(' ');
+
+/**
+ * @typedef {LeafletMouseEvent}
+ *
+ * @param {LatLng} latlng The geographical point where the mouse event occured.
+ * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
+ * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
+ * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
+ */
+
+/**
+ * @typedef {Event} LeafletDragEndEvent
+ * @param {number} distance The distance in pixels the draggable element was moved by.
+ */
+
+/**
+ * @typedef {Event} LeafletResizeEvent
+ * @param {Point}	oldSize	The old size before resize event.
+ * @param {Point}	newSize	The new size after the resize event.
+ */
+
+/**
+ * @typedef {Event} LeafletLayerEvent
+ * @param {ILayer}	layer	The layer that was added or removed.
+ */
+
+/**
+ * @typedef {Event} LeafletLocationEvent
+ * @param {LatLng} latlng Detected geographical location of the user.
+ * @param {LatLngBounds} bounds Geographical bounds of the area user is located in (with respect to the accuracy of location).
+ * @param {Number} accuracy Accuracy of location in meters.
+ * @param {Number} altitude Height of the position above the WGS84 ellipsoid in meters.
+ * @param {Number} altitudeAccuracy Accuracy of altitude in meters.
+ * @param {Number} heading The direction of travel in degrees counting clockwise from true North.
+ * @param {Number} speed Current velocity in meters per second.
+ * @param {Number} timestamp The time when the position was acquired.
+ */
+
+/**
+ * @typedef {Event} LeafletPopupEvent
+ * @param {Popup} popup The popup that was opened or closed.
+ */
 
 /**
  * Element which defines a Leaflet map (<a href="http://leafletjs.com/reference.html#map">Leaflet Reference</a>).
@@ -88,200 +141,38 @@ const EVENTS = [
  * ```
  *
 
- * Fired when the user clicks (or taps) the marker.
- *
- * @fires click
- * @type MouseEvent
- * @param {LatLng} latlng The geographical point where the mouse event occured.
- * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
- * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
- * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
-
- * Fired when the user double-clicks (or double-taps) the marker.
- *
- * @fires dblclick
- * @type MouseEvent
- * @param {LatLng} latlng The geographical point where the mouse event occured.
- * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
- * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
- * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
-
- * Fired when the user pushes the mouse button on the marker.
- *
- * @fires mousedown
- * @type MouseEvent
- * @param {LatLng} latlng The geographical point where the mouse event occured.
- * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
- * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
- * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
-
- * Fired when the mouse enters the marker.
- *
- * @fires mouseover
- * @type MouseEvent
- * @param {LatLng} latlng The geographical point where the mouse event occured.
- * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
- * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
- * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
-
- * Fired when the mouse leaves the marker.
- *
- * @fires mouseout
- * @type MouseEvent
- * @param {LatLng} latlng The geographical point where the mouse event occured.
- * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
- * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
- * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
-
- * Fired when the user right-clicks on the marker.
- *
- * @fires contextmenu
- * @type MouseEvent
- * @param {LatLng} latlng The geographical point where the mouse event occured.
- * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
- * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
- * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
-
- * Fired when the user focuses the map either by tabbing to it or clicking/panning.
- *
- * @fires focus
-
- * Fired when the map looses focus.
- *
- * @fires blur
-
- * Fired before mouse click on the map (sometimes useful when you want something to happen on click before any existing click handlers start running).
- *
- * @fires preclick
- * @type MouseEvent
- * @param {LatLng} latlng The geographical point where the mouse event occured.
- * @param {Point} layerPoint Pixel coordinates of the point where the mouse event occured relative to the map layer.
- * @param {Point} containerPoint Pixel coordinates of the point where the mouse event occured relative to the map сontainer.
- * @param {DOMMouseEvent} originalEvent The original DOM mouse event fired by the browser.
-
- * Fired when the map is initialized (when its center and zoom are set for the first time).
- *
- * @fires load
-
- * Fired when the map is destroyed with remove method.
- *
- * @fires unload
-
- * Fired when the map needs to redraw its content (this usually happens on map zoom or load). Very useful for creating custom overlays.
- *
- * @fires viewreset
-
- * Fired when the view of the map starts changing (e.g. user starts dragging the map).
- *
- * @fires movestart
-
- * Fired on any movement of the map view.
- *
- * @fires move
-
- * Fired when the view of the map ends changed (e.g. user stopped dragging the map).
- *
- * @fires moveend
-
- * Fired when the user starts dragging the marker.
- *
- * @fires dragstart
-
- * Fired repeatedly while the user drags the marker.
- *
- * @fires drag
-
- * Fired when the user stops dragging the marker.
- *
- * @fires dragend
- * @type DragEndEvent
- * @param {number} distance The distance in pixels the draggable element was moved by.
-
- * Fired when the map zoom is about to change (e.g. before zoom animation).
- *
- * @fires zoomstart
-
- * Fired when the map zoom changes.
- *
- * @fires zoomend
-
- * Fired when the number of zoomlevels on the map is changed due to adding or removing a layer.
- *
- * @fires zoomlevelschange
-
- * Fired when the map is resized.
- *
- * @fires resize
- * @type ResizeEvent
- * @param {Point}	oldSize	The old size before resize event.
- * @param {Point}	newSize	The new size after the resize event.
-
- * Fired when the map starts autopanning when opening a popup.
- *
- * @fires autopanstart
-
- * Fired when a new layer is added to the map.
- *
- * @fires layeradd
- * @type LayerEvent
- * @param {ILayer}	layer	The layer that was added or removed.
-
- * Fired when some layer is removed from the map.
- *
- * @fires layerremove
- * @type LayerEvent
- * @param {ILayer}	layer	The layer that was added or removed.
-
- * Fired when the base layer is changed through the layer control.
- *
- * @fires baselayerchange
- * @type LayerEvent
- * @param {ILayer}	layer	The layer that was added or removed.
-
- * Fired when an overlay is selected through the layer control.
- *
- * @fires overlayadd
- * @type LayerEvent
- * @param {ILayer}	layer	The layer that was added or removed.
-
- * Fired when an overlay is deselected through the layer control.
- *
- * @fires overlayremove
- * @type LayerEvent
- * @param {ILayer}	layer	The layer that was added or removed.
-
- * Fired when geolocation (using the locate method) went successfully.
- *
- * @fires locationfound
- * @type LocationEvent
- * @param {LatLng} latlng Detected geographical location of the user.
- * @param {LatLngBounds} bounds Geographical bounds of the area user is located in (with respect to the accuracy of location).
- * @param {Number} accuracy Accuracy of location in meters.
- * @param {Number} altitude Height of the position above the WGS84 ellipsoid in meters.
- * @param {Number} altitudeAccuracy Accuracy of altitude in meters.
- * @param {Number} heading The direction of travel in degrees counting clockwise from true North.
- * @param {Number} speed Current velocity in meters per second.
- * @param {Number} timestamp The time when the position was acquired.
-
- * Fired when geolocation (using the locate method) failed.
- *
- * @fires locationerror
- * @type ErrorEvent
- * @param {string} message Error message.
- * @param {number} code Error code (if applicable).
-
- * Fired when a popup bound to the marker is open.
- *
- * @fires popupopen
- * @type PopupEvent
- * @param {Popup} popup The popup that was opened or closed.
-
- * Fired when a popup bound to the marker is closed.
- *
- * @fires popupclose
- * @type PopupEvent
- * @param {Popup} popup The popup that was opened or closed.
-
+ * @fires {LeafletMouseEvent} click - Fired when the user clicks (or taps) the marker.
+ * @fires {LeafletMouseEvent} dblclick - Fired when the user double-clicks (or double-taps) the marker.
+ * @fires {LeafletMouseEvent} mousedown - Fired when the user pushes the mouse button on the marker.
+ * @fires {LeafletMouseEvent} mouseover - Fired when the mouse enters the marker.
+ * @fires {LeafletMouseEvent} mouseout - Fired when the mouse leaves the marker.
+ * @fires {LeafletMouseEvent} contextmenu - Fired when the user right-clicks on the marker.
+ * @fires {LeafletMouseEvent} preclick - Fired before mouse click on the map (sometimes useful when you want something to happen on click before any existing click handlers start running).
+ * @fires focus - Fired when the user focuses the map either by tabbing to it or clicking/panning.
+ * @fires blur - Fired when the map looses focus.
+ * @fires load - Fired when the map is initialized (when its center and zoom are set for the first time).
+ * @fires unload - Fired when the map is destroyed with remove method.
+ * @fires viewreset - Fired when the map needs to redraw its content (this usually happens on map zoom or load). Very useful for creating custom overlays.
+ * @fires movestart - Fired when the view of the map starts changing (e.g. user starts dragging the map).
+ * @fires move - Fired on any movement of the map view.
+ * @fires moveend - Fired when the view of the map ends changed (e.g. user stopped dragging the map).
+ * @fires dragstart - Fired when the user starts dragging the marker.
+ * @fires drag - Fired repeatedly while the user drags the marker.
+ * @fires autopanstart - Fired when the map starts autopanning when opening a popup.
+ * @fires zoomstart - Fired when the map zoom is about to change (e.g. before zoom animation).
+ * @fires zoomend - Fired when the map zoom changes.
+ * @fires zoomlevelschange - Fired when the number of zoomlevels on the map is changed due to adding or removing a layer.
+ * @fires {LeafletDragEndEvent} dragend - Fired when the user stops dragging the marker.
+ * @fires {LeafletResizeEvent} resize - Fired when the map is resized.
+ * @fires {LeafletLayerEvent} layeradd - Fired when a new layer is added to the map.
+ * @fires {LeafletLayerEvent} layerremove - Fired when some layer is removed from the map.
+ * @fires {LeafletLayerEvent} baselayerchange - Fired when the base layer is changed through the layer control.
+ * @fires {LeafletLayerEvent} overlayadd - Fired when an overlay is selected through the layer control.
+ * @fires {LeafletLayerEvent} overlayremove - Fired when an overlay is deselected through the layer control.
+ * @fires {LeafletLocationEvent} locationfound - Fired when geolocation (using the locate method) went successfully.
+ * @fires {ErrorEvent} locationerror - Fired when geolocation (using the locate method) failed.
+ * @fires {LeafletPopupEvent} popupopen - Fired when a popup bound to the marker is open.
+ * @fires {LeafletPopupEvent} popupclose - Fired when a popup bound to the marker is closed.
  *
  * @element leaflet-map
  * @homepage https://leaflet-extras.github.io/leaflet-map/
@@ -449,7 +340,9 @@ export class LeafletMap extends LeafletBase {
 
   features?: { feature: L.LayerGroup | L.Polyline | L.Marker }[];
 
-  readonly children: HTMLCollectionOf<LeafletBase & { isLayer?(): boolean }>;
+  readonly children: HTMLCollectionOf<
+    LeafletBase & Partial<FeatureElement> & { isLayer?(): boolean }
+  >;
 
   get latLng(): L.LatLng {
     return L.latLng(this.latitude, this.longitude);
@@ -479,16 +372,18 @@ export class LeafletMap extends LeafletBase {
       this.viewChanged();
   }
 
-  fitToMarkersChanged() {
+  async fitToMarkersChanged() {
     if (this.map && this.fitToMarkers) {
-      const bounds: L.LatLngBoundsLiteral = [...this.children]
-        .filter(LeafletMarker.isLeafletMarker)
-        .map(x => [x.latitude, x.longitude]);
-
-      if (bounds.length > 0) {
-        this.map.fitBounds(bounds);
-        this.map.invalidateSize();
-      }
+      const elements = [...this.children].filter(isFeatureElement);
+      if (!elements.length) return;
+      await Promise.race([
+        new Promise(r => setTimeout(r, 100)),
+        Promise.all(elements.map(x => x.updateComplete)),
+      ]);
+      const group = L.featureGroup(elements.map(x => x.feature ?? x.layer));
+      const bounds = group.getBounds();
+      this.map.fitBounds(bounds);
+      this.map.invalidateSize();
     }
   }
 
@@ -505,8 +400,7 @@ export class LeafletMap extends LeafletBase {
   guessLeafletImagePath() {
     L.Icon.Default.imagePath =
       L.Icon.Default.imagePath ||
-      import.meta.url.replace('leaflet-map.js', '') +
-        '../node_modules/leaflet/dist/images/';
+      import.meta.url.replace('leaflet-map.js', '') + '../leaflet/dist/images/';
     return L.Icon.Default.imagePath;
   }
 

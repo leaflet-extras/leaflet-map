@@ -3,7 +3,7 @@ import type { PropertyValues } from 'lit-element';
 import { customElement, property } from 'lit-element';
 import * as L from 'leaflet';
 import { LeafletPathMixin } from './mixins/path';
-import { LeafletPopupContentMixin } from './mixins/popup';
+import { LeafletPopupContentMixin } from './mixins/popup-content';
 import { LeafletBase } from './base';
 import { DATA_ELEMENT_STYLES } from './data-element.css';
 
@@ -31,6 +31,10 @@ export class LeafletCircle extends LeafletPathMixin(
   static readonly is = 'leaflet-circle';
 
   static readonly styles = DATA_ELEMENT_STYLES;
+
+  static isLeafletCircle(node: Node): node is LeafletCircle {
+    return node instanceof LeafletCircle;
+  }
 
   /**
    * A Leaflet circle object

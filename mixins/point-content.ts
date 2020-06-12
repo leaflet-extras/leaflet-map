@@ -5,6 +5,8 @@ import { bound } from '../bound-decorator';
 import { LeafletPoint } from '../leaflet-point';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
+import type * as L from 'leaflet';
+
 export interface LeafletPointContentMixinElement extends LeafletBase {
   _pointMutationObserver: MutationObserver;
   feature: L.Polygon | L.Polyline;

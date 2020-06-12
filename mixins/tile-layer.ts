@@ -2,6 +2,8 @@ import { Constructor, property, PropertyValues } from 'lit-element';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { LeafletBase } from '../base';
 
+import type * as L from 'leaflet';
+
 export interface LeafletTileLayerMixinElement extends LeafletBase {
   layer: L.TileLayer;
 
