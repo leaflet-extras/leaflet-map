@@ -19,6 +19,7 @@
     "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\""
   },
   "files": [
+    "custom-elements.json",
     "*.js",
     "*.js.map",
     "*.d.ts",
