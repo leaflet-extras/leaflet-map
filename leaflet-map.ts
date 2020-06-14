@@ -413,7 +413,8 @@ export class LeafletMap extends LeafletBase {
     L.Icon.Default.imagePath =
       this.imagePath ||
       L.Icon.Default.imagePath ||
-      new URL('../leaflet/dist/images/', import.meta.url);
+      // assuming that `leaflet-element` is installed in `/node_modules`, as a sibling of `leaflet`
+      new URL('../leaflet/dist/images/', import.meta.url).pathname;
     return L.Icon.Default.imagePath;
   }
 
@@ -424,7 +425,6 @@ export class LeafletMap extends LeafletBase {
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
       dragging: !this.noDragging,
-      fullscreenControl: this.fullscreenControl,
       touchZoom: !this.noTouchZoom,
       scrollWheelZoom: !this.noScrollWheelZoom,
       doubleClickZoom: !this.noDoubleClickZoom,
