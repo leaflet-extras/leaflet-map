@@ -214,6 +214,12 @@ export class LeafletMap extends LeafletBase {
   @property({ type: Number, reflect: true }) longitude = 0;
 
   /**
+   * Whether the map should display a fullscreen control
+   */
+  @property({ type: Boolean, reflect: true, attribute: 'fullscreen-control' })
+  fullscreenControl = false;
+
+  /**
    * The `zoom` attribute sets the map zoom.
    */
   @property({ type: Number, reflect: true }) zoom = -1;
@@ -331,6 +337,12 @@ export class LeafletMap extends LeafletBase {
   zoomAnimationThreshold = 4;
 
   /**
+   * `L.Icon.Default.imagePath` url. When unset, the element will attempt to guess using `import.meta.url`.
+   */
+  @property({ reflect: true, attribute: 'image-path' })
+  imagePath: string;
+
+  /**
    * If set, the map is zoomed such that all elements in it are visible
    */
   @property({ type: Boolean, attribute: 'fit-to-markers' })
@@ -399,8 +411,9 @@ export class LeafletMap extends LeafletBase {
 
   guessLeafletImagePath() {
     L.Icon.Default.imagePath =
+      this.imagePath ||
       L.Icon.Default.imagePath ||
-      import.meta.url.replace('leaflet-map.js', '') + '../leaflet/dist/images/';
+      new URL('../leaflet/dist/images/', import.meta.url);
     return L.Icon.Default.imagePath;
   }
 
@@ -411,6 +424,7 @@ export class LeafletMap extends LeafletBase {
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
       dragging: !this.noDragging,
+      fullscreenControl: this.fullscreenControl,
       touchZoom: !this.noTouchZoom,
       scrollWheelZoom: !this.noScrollWheelZoom,
       doubleClickZoom: !this.noDoubleClickZoom,
