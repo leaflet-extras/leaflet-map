@@ -19,11 +19,13 @@ interface FeatureElement extends LeafletBase {
   layer: L.LayerGroup | L.Layer;
 }
 
-const isFeatureElement = (
+function isFeatureElement(
   x: Node & Partial<FeatureElement>
-): x is Node & FeatureElement => x && 'feature' in x;
+): x is FeatureElement {
+  return x && (x.tagName.startsWith('LEAFLET-') || 'feature' in x);
+}
 
-function isSlot(node: ChildNode): node is HTMLSLotElement {
+function isSlot(node: ChildNode): node is HTMLSlotElement {
   return node instanceof HTMLSlotElement;
 }
 
@@ -364,14 +366,16 @@ export class LeafletMap extends LeafletBase {
     return L.latLng(this.latitude, this.longitude);
   }
 
-  private get elements(): ChildNode[] {
-    return [...this.children].reduce(
-      (acc, child) => [
-        ...acc,
-        ...(isSlot(child) ? child.assignedElements() : [child]),
-      ],
-      []
-    );
+  private get elements(): FeatureElement[] {
+    return [...this.children]
+      .reduce(
+        (acc, child) => [
+          ...acc,
+          ...(isSlot(child) ? child.assignedElements() : [child]),
+        ],
+        []
+      )
+      .filter(isFeatureElement);
   }
 
   _ignoreViewChange: boolean;
@@ -400,7 +404,7 @@ export class LeafletMap extends LeafletBase {
 
   async fitToMarkersChanged() {
     if (this.map && this.fitToMarkers) {
-      const elements = this.elements.filter(isFeatureElement);
+      const { elements } = this;
       if (!elements.length) return;
       await Promise.race([
         new Promise(r => setTimeout(r, 100)),
