@@ -19,6 +19,12 @@
           "default": "0"
         },
         {
+          "name": "fullscreen-control",
+          "description": "Whether the map should display a fullscreen control",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
           "name": "zoom",
           "description": "The `zoom` attribute sets the map zoom.",
           "type": "number",
@@ -145,6 +151,11 @@
           "default": "4"
         },
         {
+          "name": "image-path",
+          "description": "`L.Icon.Default.imagePath` url. When unset, the element will attempt to guess using `import.meta.url`.",
+          "type": "string"
+        },
+        {
           "name": "fit-to-markers",
           "description": "If set, the map is zoomed such that all elements in it are visible",
           "type": "boolean",
@@ -170,6 +181,13 @@
           "description": "The `longitude` attribute sets the map center.",
           "type": "number",
           "default": "0"
+        },
+        {
+          "name": "fullscreenControl",
+          "attribute": "fullscreen-control",
+          "description": "Whether the map should display a fullscreen control",
+          "type": "boolean",
+          "default": "false"
         },
         {
           "name": "zoom",
@@ -319,6 +337,12 @@
           "default": "4"
         },
         {
+          "name": "imagePath",
+          "attribute": "image-path",
+          "description": "`L.Icon.Default.imagePath` url. When unset, the element will attempt to guess using `import.meta.url`.",
+          "type": "string"
+        },
+        {
           "name": "fitToMarkers",
           "attribute": "fit-to-markers",
           "description": "If set, the map is zoomed such that all elements in it are visible",
@@ -335,7 +359,7 @@
         },
         {
           "name": "children",
-          "type": "HTMLCollectionOf<any>"
+          "type": "HTMLCollectionOf<LeafletBase & Partial<FeatureElement> & { isLayer?(): boolean; }>"
         },
         {
           "name": "latLng",
@@ -2917,6 +2941,11 @@
           "type": "number"
         },
         {
+          "name": "fullscreenControl",
+          "description": "Whether the map should display a fullscreen control",
+          "type": "boolean"
+        },
+        {
           "name": "zoom",
           "description": "The `zoom` attribute sets the map zoom.",
           "type": "number"
@@ -3022,6 +3051,11 @@
           "type": "number"
         },
         {
+          "name": "imagePath",
+          "description": "`L.Icon.Default.imagePath` url. When unset, the element will attempt to guess using `import.meta.url`.",
+          "type": "string"
+        },
+        {
           "name": "fitToMarkers",
           "description": "If set, the map is zoomed such that all elements in it are visible",
           "type": "boolean"
@@ -3036,7 +3070,7 @@
         },
         {
           "name": "children",
-          "type": "HTMLCollectionOf<LeafletBase & Partial<LatLngElement> & { isLayer?(): boolean; }>"
+          "type": "HTMLCollectionOf<LeafletBase & Partial<FeatureElement> & { isLayer?(): boolean; }>"
         },
         {
           "name": "latLng",
@@ -3053,114 +3087,132 @@
       ],
       "events": [
         {
-          "name": "click"
+          "name": "click",
+          "description": "Fired when the user clicks (or taps) the marker."
         },
         {
-          "name": "dblclick"
+          "name": "dblclick",
+          "description": "Fired when the user double-clicks (or double-taps) the marker."
         },
         {
-          "name": "mousedown"
+          "name": "mousedown",
+          "description": "Fired when the user pushes the mouse button on the marker."
         },
         {
-          "name": "mouseover"
+          "name": "mouseover",
+          "description": "Fired when the mouse enters the marker."
         },
         {
-          "name": "mouseout"
+          "name": "mouseout",
+          "description": "Fired when the mouse leaves the marker."
         },
         {
-          "name": "contextmenu"
+          "name": "contextmenu",
+          "description": "Fired when the user right-clicks on the marker."
         },
         {
-          "name": "focus",
-          "description": "Fired when the map looses focus."
-        },
-        {
-          "name": "blur",
+          "name": "preclick",
           "description": "Fired before mouse click on the map (sometimes useful when you want something to happen on click before any existing click handlers start running)."
         },
         {
-          "name": "preclick"
+          "name": "focus",
+          "description": "Fired when the user focuses the map either by tabbing to it or clicking/panning."
+        },
+        {
+          "name": "blur",
+          "description": "Fired when the map looses focus."
         },
         {
           "name": "load",
-          "description": "Fired when the map is destroyed with remove method."
+          "description": "Fired when the map is initialized (when its center and zoom are set for the first time)."
         },
         {
           "name": "unload",
-          "description": "Fired when the map needs to redraw its content (this usually happens on map zoom or load). Very useful for creating custom overlays."
+          "description": "Fired when the map is destroyed with remove method."
         },
         {
           "name": "viewreset",
-          "description": "Fired when the view of the map starts changing (e.g. user starts dragging the map)."
+          "description": "Fired when the map needs to redraw its content (this usually happens on map zoom or load). Very useful for creating custom overlays."
         },
         {
           "name": "movestart",
-          "description": "Fired on any movement of the map view."
+          "description": "Fired when the view of the map starts changing (e.g. user starts dragging the map)."
         },
         {
           "name": "move",
-          "description": "Fired when the view of the map ends changed (e.g. user stopped dragging the map)."
+          "description": "Fired on any movement of the map view."
         },
         {
           "name": "moveend",
-          "description": "Fired when the user starts dragging the marker."
+          "description": "Fired when the view of the map ends changed (e.g. user stopped dragging the map)."
         },
         {
           "name": "dragstart",
-          "description": "Fired repeatedly while the user drags the marker."
+          "description": "Fired when the user starts dragging the marker."
         },
         {
           "name": "drag",
-          "description": "Fired when the user stops dragging the marker."
-        },
-        {
-          "name": "dragend"
-        },
-        {
-          "name": "zoomstart",
-          "description": "Fired when the map zoom changes."
-        },
-        {
-          "name": "zoomend",
-          "description": "Fired when the number of zoomlevels on the map is changed due to adding or removing a layer."
-        },
-        {
-          "name": "zoomlevelschange",
-          "description": "Fired when the map is resized."
-        },
-        {
-          "name": "resize"
+          "description": "Fired repeatedly while the user drags the marker."
         },
         {
           "name": "autopanstart",
+          "description": "Fired when the map starts autopanning when opening a popup."
+        },
+        {
+          "name": "zoomstart",
+          "description": "Fired when the map zoom is about to change (e.g. before zoom animation)."
+        },
+        {
+          "name": "zoomend",
+          "description": "Fired when the map zoom changes."
+        },
+        {
+          "name": "zoomlevelschange",
+          "description": "Fired when the number of zoomlevels on the map is changed due to adding or removing a layer."
+        },
+        {
+          "name": "dragend",
+          "description": "Fired when the user stops dragging the marker."
+        },
+        {
+          "name": "resize",
+          "description": "Fired when the map is resized."
+        },
+        {
+          "name": "layeradd",
           "description": "Fired when a new layer is added to the map."
         },
         {
-          "name": "layeradd"
+          "name": "layerremove",
+          "description": "Fired when some layer is removed from the map."
         },
         {
-          "name": "layerremove"
+          "name": "baselayerchange",
+          "description": "Fired when the base layer is changed through the layer control."
         },
         {
-          "name": "baselayerchange"
+          "name": "overlayadd",
+          "description": "Fired when an overlay is selected through the layer control."
         },
         {
-          "name": "overlayadd"
+          "name": "overlayremove",
+          "description": "Fired when an overlay is deselected through the layer control."
         },
         {
-          "name": "overlayremove"
+          "name": "locationfound",
+          "description": "Fired when geolocation (using the locate method) went successfully."
         },
         {
-          "name": "locationfound"
+          "name": "locationerror",
+          "description": "Fired when geolocation (using the locate method) failed."
         },
         {
-          "name": "locationerror"
+          "name": "popupopen",
+          "description": "Fired when a popup bound to the marker is open."
         },
         {
-          "name": "popupopen"
-        },
-        {
-          "name": "popupclose"
+          "name": "popupclose",
+          "description": "Fired when a popup bound to the marker is closed."
         }
       ]
     },
