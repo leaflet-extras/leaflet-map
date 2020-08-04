@@ -19,10 +19,12 @@ interface FeatureElement extends LeafletBase {
   layer: L.LayerGroup | L.Layer;
 }
 
-function isFeatureElement(
-  x: Node & Partial<FeatureElement>
-): x is FeatureElement {
-  return x && (x.tagName.startsWith('LEAFLET-') || 'feature' in x);
+function isLeafletElement(x: Node): x is LeafletBase {
+  return x && 'container' in x;
+}
+
+function isFeatureElement(x: Node): x is FeatureElement {
+  return x && 'feature' in x;
 }
 
 function isSlot(node: ChildNode): node is HTMLSlotElement {
@@ -366,7 +368,7 @@ export class LeafletMap extends LeafletBase {
     return L.latLng(this.latitude, this.longitude);
   }
 
-  private get elements(): FeatureElement[] {
+  private get elements(): LeafletBase[] {
     return [...this.children]
       .reduce(
         (acc, child) => [
@@ -375,7 +377,7 @@ export class LeafletMap extends LeafletBase {
         ],
         []
       )
-      .filter(isFeatureElement);
+      .filter(isLeafletElement);
   }
 
   _ignoreViewChange: boolean;
@@ -404,13 +406,13 @@ export class LeafletMap extends LeafletBase {
 
   async fitToMarkersChanged() {
     if (this.map && this.fitToMarkers) {
-      const { elements } = this;
-      if (!elements.length) return;
+      const features = this.elements.filter(isFeatureElement);
+      if (!features.length) return;
       await Promise.race([
         new Promise(r => setTimeout(r, 100)),
-        Promise.all(elements.map(x => x.updateComplete)),
+        Promise.all(features.map(x => x.updateComplete)),
       ]);
-      const group = L.featureGroup(elements.map(x => x.feature ?? x.layer));
+      const group = L.featureGroup(features.map(x => x.feature ?? x.layer));
       const bounds = group.getBounds();
       this.map.fitBounds(bounds);
       this.map.invalidateSize();

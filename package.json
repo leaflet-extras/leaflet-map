@@ -3,6 +3,7 @@
   "version": "0.0.12",
   "main": "index.js",
   "module": "index.js",
+  "license": "ISC",
   "scripts": {
     "prepublishOnly": "tsc",
     "start": "concurrently --kill-others --names tsc,serve \"npm run tsc:watch\" \"npm run serve\"",
