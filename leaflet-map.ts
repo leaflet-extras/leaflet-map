@@ -23,6 +23,10 @@ const isFeatureElement = (
   x: Node & Partial<FeatureElement>
 ): x is Node & FeatureElement => x && 'feature' in x;
 
+function isSlot(node: ChildNode): node is HTMLSLotElement {
+  return node instanceof HTMLSlotElement;
+}
+
 const EVENTS = [
   'click',
   'dblclick',
@@ -360,6 +364,16 @@ export class LeafletMap extends LeafletBase {
     return L.latLng(this.latitude, this.longitude);
   }
 
+  private get elements(): ChildNode[] {
+    return [...this.children].reduce(
+      (acc, child) => [
+        ...acc,
+        ...(isSlot(child) ? child.assignedElements() : [child]),
+      ],
+      []
+    );
+  }
+
   _ignoreViewChange: boolean;
 
   _mutationObserver: MutationObserver;
@@ -386,7 +400,7 @@ export class LeafletMap extends LeafletBase {
 
   async fitToMarkersChanged() {
     if (this.map && this.fitToMarkers) {
-      const elements = [...this.children].filter(isFeatureElement);
+      const elements = this.elements.filter(isFeatureElement);
       if (!elements.length) return;
       await Promise.race([
         new Promise(r => setTimeout(r, 100)),
@@ -506,10 +520,7 @@ export class LeafletMap extends LeafletBase {
   }
 
   @bound async registerMapOnChildren() {
-    for (const child of this.children) {
-      child.container = this.map;
-    }
-
+    for (const child of this.elements) child.container = this.map;
     this.fitToMarkersChanged();
   }
 

@@ -429,6 +429,59 @@
 					</script>
 				</template>
 			</api-viewer>
+
+			<h2 id="slotted-children">Slotted Children</h2>
+
+			<script type="module">
+			import { html, LitElement } from 'lit-element';
+			customElements.define('wraps-map', class WrapsMap extends LitElement {
+				render() {
+					return html`
+						<leaflet-map fit-to-markers>
+							<leaflet-circle
+									longitude="77.58"
+									latitude="12.9300"
+									radius="2000"
+									color="#0a0"
+									fill-color="#aa0"
+									fill-opacity="0.5"
+									fill="true">
+								I'm a direct child
+							</leaflet-circle>
+
+							<leaflet-polyline
+									fill-opacity="0.5"
+									fill
+									stroke>
+								<leaflet-point longitude="77.6400" latitude="12.9100"></leaflet-point>
+								<leaflet-point longitude="77.6229" latitude="12.9259"></leaflet-point>
+								<leaflet-point longitude="77.6499" latitude="12.9699"></leaflet-point>
+								<leaflet-point longitude="77.6119" latitude="12.9738"></leaflet-point>
+								I'm a direct child
+							</leaflet-polyline>
+
+							<leaflet-circle
+									longitude="77.64"
+									latitude="12.9300"
+									radius="500"
+									color="#077"
+									fill
+									fill-opacity="0.5"
+							>I'm a direct child</leaflet-circle>
+							<slot></slot>
+						</leaflet-map>
+					`
+				}
+			})
+			</script>
+			<wraps-map>
+				<leaflet-polygon color="red" fill-opacity="1" stroke fill>
+					<leaflet-point longitude="77.5700" latitude="12.9700"></leaflet-point>
+					<leaflet-point longitude="77.6034" latitude="13.0001"></leaflet-point>
+					<leaflet-point longitude="77.6006" latitude="12.9547"></leaflet-point>
+					I'm a slotted polygon
+				</leaflet-polygon>
+			</wraps-map>
 		</main>
 	</body>
 </html>
