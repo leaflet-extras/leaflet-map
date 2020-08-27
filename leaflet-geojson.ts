@@ -47,27 +47,48 @@ export class LeafletGeoJSON extends SVGAttributesMixin(
 
   fill: boolean;
 
+  private _data: GeoJsonObject;
+
+  parseError: Error;
+
   /**
    * data as geojson object
    */
-  @property({ attribute: false }) data: GeoJsonObject;
+  @property({ attribute: false })
+  get data(): GeoJsonObject {
+    if (this._data)
+      return this._data;
 
-  updated(changed: PropertyValues) {
-    super.updated(changed);
-    if (changed.has('data')) this.dataChanged();
-  }
-
-  get container() {
-    return this._container;
-  }
-  set container(v) {
-    this._container = v;
-    if (this.container && this.data) {
-      this.dataChanged();
+    try {
+      return JSON.parse(this.querySelector('script[type="application/json"]').textContent);
+    } catch (e) {
+      this.parseError = e;
     }
   }
 
-  dataChanged() {
+  set data(v: GeoJsonObject) {
+    const old = this.data;
+    this._data = v;
+    this.requestUpdate('data', old);
+  }
+
+  updated(changed: PropertyValues): void {
+    super.updated(changed);
+    if (changed.has('data'))
+      this.dataChanged();
+  }
+
+  get container(): L.Map | L.LayerGroup {
+    return this._container;
+  }
+
+  set container(v: L.Map | L.LayerGroup) {
+    this._container = v;
+    if (this.container && this.data)
+      this.dataChanged();
+  }
+
+  dataChanged(): void {
     if (!this.container || !this.data) return;
 
     if (this.feature) this.container.removeLayer(this.feature);
@@ -87,10 +108,9 @@ export class LeafletGeoJSON extends SVGAttributesMixin(
     });
   }
 
-  disconnectedCallback() {
+  disconnectedCallback(): void {
     super.disconnectedCallback?.();
-    if (this.container && this.feature) {
+    if (this.container && this.feature)
       this.container.removeLayer(this.feature);
-    }
   }
 }

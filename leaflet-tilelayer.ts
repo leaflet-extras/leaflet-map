@@ -25,9 +25,7 @@ import { DATA_ELEMENT_STYLES } from './data-element.css';
  * @homepage https://leaflet-extras.github.io/leaflet-map/
  */
 @customElement('leaflet-tilelayer')
-export class LeafletTileLayer extends LeafletILayerMixin(
-  LeafletTileLayerMixin(LeafletBase)
-) {
+export class LeafletTileLayer extends LeafletILayerMixin(LeafletTileLayerMixin(LeafletBase)) {
   static readonly is = 'leaflet-tilelayer';
 
   static readonly styles = DATA_ELEMENT_STYLES;
@@ -36,20 +34,15 @@ export class LeafletTileLayer extends LeafletILayerMixin(
 
   @property() url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
-  get cleanedUrl() {
+  get cleanedUrl(): string {
     return this.url.replace(/%7B([sxyz])%7D/g, '{$1}');
   }
 
-  updated(changed: PropertyValues) {
-    super.updated?.(changed);
-    if (changed.has('url')) this.urlChanged();
-  }
-
-  get container() {
+  get container(): L.Map|L.LayerGroup {
     return this._container;
   }
 
-  set container(v) {
+  set container(v: L.Map|L.LayerGroup) {
     this._container = v;
     if (!this.container) return;
 
@@ -71,15 +64,17 @@ export class LeafletTileLayer extends LeafletILayerMixin(
     });
 
     // forward events
-    this.layer.on(
-      'loading load tileloadstart tileload tileunload',
-      this.onLeafletEvent
-    );
+    this.layer.on('loading load tileloadstart tileload tileunload', this.onLeafletEvent);
 
     this.layer.addTo(this.container);
   }
 
-  urlChanged() {
+  updated(changed: PropertyValues): void {
+    super.updated?.(changed);
+    if (changed.has('url')) this.urlChanged();
+  }
+
+  urlChanged(): void {
     if (!this.layer) return;
     this.layer.setUrl(this.cleanedUrl);
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 export function bound<T extends Function>(
   target: object,
   propertyKey: string,
@@ -12,6 +13,7 @@ export function bound<T extends Function>(
   return {
     configurable: true,
     get(this: T): T {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const f: T = descriptor.value!.bind(this);
       // Credits to https://github.com/andreypopp/autobind-decorator for memoizing the result of bind against a symbol on the instance.
       Object.defineProperty(this, propertyKey, {

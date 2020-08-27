@@ -26,9 +26,7 @@ import { DATA_ELEMENT_STYLES } from './data-element.css';
  * @since 0.0.2
  */
 @customElement('leaflet-tilelayer-wms')
-export class LeafletTileLayerWms extends LeafletILayerMixin(
-  LeafletTileLayerMixin(LeafletBase)
-) {
+export class LeafletTileLayerWms extends LeafletILayerMixin(LeafletTileLayerMixin(LeafletBase)) {
   static readonly is = 'leaflet-tilelayer-wms';
 
   static readonly styles = DATA_ELEMENT_STYLES;
@@ -67,16 +65,17 @@ export class LeafletTileLayerWms extends LeafletILayerMixin(
    */
   @property({ attribute: false }) crs: L.CRS;
 
-  updated(changed: PropertyValues) {
+  updated(changed: PropertyValues): void {
     super.updated(changed);
-    if (changed.has('url')) this.urlChanged();
+    if (changed.has('url'))
+      this.urlChanged();
   }
 
-  get container() {
+  get container(): L.Map | L.LayerGroup {
     return this._container;
   }
 
-  set container(v) {
+  set container(v: L.Map | L.LayerGroup) {
     this._container = v;
     if (!this.container) return;
 
@@ -112,9 +111,8 @@ export class LeafletTileLayerWms extends LeafletILayerMixin(
     this.layer.addTo(this.container);
   }
 
-  urlChanged() {
-    if (this.layer) {
+  urlChanged(): void {
+    if (this.layer)
       this.layer.setUrl(this.url);
-    }
   }
 }

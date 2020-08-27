@@ -30,14 +30,16 @@ import { DATA_ELEMENT_STYLES } from './data-element.css';
  */
 @customElement('leaflet-polyline')
 export class LeafletPolyline extends LeafletPathMixin(
-  LeafletPointContentMixin(LeafletPopupContentMixin(LeafletBase))
+  LeafletPointContentMixin(
+    LeafletPopupContentMixin(LeafletBase)
+  )
 ) {
   static readonly is = 'leaflet-polyline';
 
   static readonly styles = DATA_ELEMENT_STYLES;
 
   render(): TemplateResult {
-    return html` <slot id="points"></slot> `;
+    return html`<slot id="points"></slot>`;
   }
 
   /**
@@ -47,11 +49,11 @@ export class LeafletPolyline extends LeafletPathMixin(
 
   _container: L.Map;
 
-  get container() {
+  get container(): L.Map {
     return this._container;
   }
 
-  set container(v) {
+  set container(v: L.Map) {
     this._container = v;
     if (this.container) {
       this.feature = L.polyline([], this.getPathOptions());
@@ -67,9 +69,9 @@ export class LeafletPolyline extends LeafletPathMixin(
     }
   }
 
-  disconnectedCallback() {
-    if (this.container && this.feature) {
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if (this.container && this.feature)
       this.container.removeLayer(this.feature);
-    }
   }
 }

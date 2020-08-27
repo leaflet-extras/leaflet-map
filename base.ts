@@ -21,15 +21,15 @@ export class LeafletBase extends FireMixin(LitElement) {
 
   _container: L.Map | L.LayerGroup;
 
-  get container() {
+  get container(): L.Map | L.LayerGroup {
     return this._container;
   }
 
-  set container(v) {
+  set container(v: L.Map | L.LayerGroup) {
     this._container = v;
   }
 
-  @bound onLeafletEvent(e: L.LeafletEvent) {
+  @bound onLeafletEvent(e: L.LeafletEvent): void {
     this.fire(e.type, e);
   }
 }

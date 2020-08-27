@@ -56,11 +56,11 @@ export class LeafletControl extends LeafletBase {
 
   _container: L.Map;
 
-  get container() {
+  get container(): L.Map {
     return this._container;
   }
 
-  set container(v) {
+  set container(v: L.Map) {
     this._container = v;
 
     if (!this.container) return;
@@ -74,9 +74,8 @@ export class LeafletControl extends LeafletBase {
     this.control.addTo(this.container);
   }
 
-  disconnectedCallback() {
-    if (this.container && this.control) {
+  disconnectedCallback(): void {
+    if (this.container && this.control)
       this.container.removeControl(this.control);
-    }
   }
 }

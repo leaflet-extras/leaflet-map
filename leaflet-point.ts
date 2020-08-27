@@ -1,4 +1,4 @@
-import { LitElement, customElement, property } from 'lit-element';
+import { customElement, property } from 'lit-element';
 import * as L from 'leaflet';
 import { LeafletBase } from './base';
 
@@ -31,7 +31,7 @@ export class LeafletPoint extends LeafletBase {
 
   @property({ type: Number, reflect: true }) longitude = 0;
 
-  get latLng() {
+  get latLng(): L.LatLng {
     return L.latLng(this.latitude, this.longitude);
   }
 }

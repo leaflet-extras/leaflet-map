@@ -209,10 +209,10 @@ export const LeafletTileLayerMixin = dedupeMixin(function LeafletTileLayerMixin<
     @property({ type: String }) attribution = '';
 
     /**
-     * The `tms` attribute sets wether inverses Y axis numbering for tiles should be used (turn this on for TMS services).
+     * The `tms` attribute sets whether inverses Y axis numbering for tiles should be used (turn this on for TMS services).
      *
      */
-    @property({ type: Number, attribute: 'tms' }) tms = false;
+    @property({ type: Boolean }) tms = false;
 
     /**
      * The `continuous-world` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
@@ -278,9 +278,8 @@ export const LeafletTileLayerMixin = dedupeMixin(function LeafletTileLayerMixin<
 
     disconnectedCallback() {
       super.disconnectedCallback?.();
-      if (this.container && this.layer) {
+      if (this.container && this.layer)
         this.container.removeLayer(this.layer);
-      }
     }
   }
 

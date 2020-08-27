@@ -35,7 +35,9 @@ const EVENTS =
  */
 @customElement('leaflet-polygon')
 export class LeafletPolygon extends LeafletPathMixin(
-  LeafletPointContentMixin(LeafletPopupContentMixin(LeafletBase))
+  LeafletPointContentMixin(
+    LeafletPopupContentMixin(LeafletBase)
+  )
 ) {
   static readonly is = 'leaflet-polygon';
 
@@ -52,20 +54,20 @@ export class LeafletPolygon extends LeafletPathMixin(
 
   _container: L.Map;
 
-  get container() {
+  get container(): L.Map {
     return this._container;
   }
 
-  set container(v) {
+  set container(v: L.Map) {
     this._container = v;
 
     if (!v) return;
 
     const opt = this.getPathOptions();
 
-    if (typeof opt.fill === 'undefined' || opt.fill === null) {
+    if (typeof opt.fill === 'undefined' || opt.fill === null)
       opt.fill = true;
-    }
+
 
     this.feature = L.polygon([], opt);
     this.feature.addTo(this.container);
@@ -76,9 +78,9 @@ export class LeafletPolygon extends LeafletPathMixin(
     this.feature.on(EVENTS, this.onLeafletEvent);
   }
 
-  disconnectedCallback() {
-    if (this.container && this.feature) {
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if (this.container && this.feature)
       this.container.removeLayer(this.feature);
-    }
   }
 }

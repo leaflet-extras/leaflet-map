@@ -3,6 +3,8 @@ import { LeafletPopupContentMixin } from './mixins/popup-content';
 import * as L from 'leaflet';
 import { DATA_ELEMENT_STYLES } from './data-element.css';
 import { LeafletBase } from './base';
+import { LeafletIcon } from './leaflet-icon';
+import { LeafletDivicon } from './leaflet-divicon';
 
 const EVENTS = [
   'click',
@@ -207,7 +209,7 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
     return L.latLng(this.latitude, this.longitude);
   }
 
-  updated(changed: PropertyValues) {
+  updated(changed: PropertyValues): void {
     super.updated(changed);
     if (changed.has('icon')) this.iconChanged();
     if (changed.has('opacity')) this.opacityChanged();
@@ -216,11 +218,11 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
     if (changed.has('zIndexOffset')) this.zIndexOffsetChanged();
   }
 
-  get container() {
+  get container(): L.Map | L.LayerGroup {
     return this._container;
   }
 
-  set container(v) {
+  set container(v: L.Map | L.LayerGroup) {
     this._container = v;
     if (!this.container) return;
 
@@ -245,79 +247,68 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
     this.feature.addTo(this.container);
   }
 
-  iconChanged() {
-    let iconOption: L.Icon | L.DivIcon;
+  iconChanged(): void {
+    let icon: L.Icon | L.DivIcon;
 
-    if (this.icon) {
-      if (typeof this.icon === 'string') {
-        let host = this.shadowRoot;
-        let iconElement = host.getElementById(this.icon);
-        if (!iconElement) {
-          // @ts-expect-error
-          while ((host = host.getRootNode().host)) {
-            // eslint-disable-line no-cond-assign
-            // @ts-expect-error
-            iconElement = host.shadowRoot.getElementById(this.icon);
-            if (iconElement) break;
-          }
-        }
+    if (typeof this.icon === 'string')
+      icon = this.walkDOMForIcon(this.icon);
+    else if (this.icon?.options)
+      ({ icon } = this);
+    else if (this.icon)
+      icon = L.icon(this.icon as unknown as L.IconOptions);
+    else
+      icon = new L.Icon.Default();
 
-        if (iconElement != null) {
-          // @ts-expect-error
-          if (iconElement.getIcon) {
-            // @ts-expect-error
-            iconOption = iconElement.getIcon();
-          }
-        } else {
-          try {
-            iconOption = L.icon(JSON.parse(this.icon));
-          } catch (e) {
-            iconOption = new L.Icon.Default();
-          }
-        }
-      }
+    if (this.feature)
+      this.feature.setIcon(icon);
+  }
 
-      if (typeof this.icon == 'object') {
-        if (this.icon.options) {
-          iconOption = this.icon;
-        } else {
-          // @ts-expect-error
-          iconOption = L.icon(this.icon);
-        }
+  private walkDOMForIcon(icon: string): L.Icon | L.DivIcon {
+    let iconElement =
+      this.shadowRoot.getElementById(icon) as LeafletIcon | LeafletDivicon;
+
+    let root = this.getRootNode();
+
+    // eslint-disable-next-line no-loops/no-loops
+    while (!iconElement) {
+      if (root instanceof ShadowRoot) {
+        iconElement = root.getElementById(icon) as LeafletIcon | LeafletDivicon;
+        root = root.host.getRootNode();
+      } else if (root instanceof Document) {
+        iconElement = root.getElementById(icon) as LeafletIcon | LeafletDivicon;
+        break;
       }
     }
 
-    if (!iconOption) {
-      iconOption = new L.Icon.Default();
-    }
-
-    if (this.feature) {
-      this.feature.setIcon(iconOption);
+    if (iconElement instanceof LeafletIcon || iconElement instanceof LeafletDivicon)
+      return iconElement.getIcon();
+    else {
+      try {
+        return L.icon(JSON.parse(icon));
+      } catch (e) {
+        return new L.Icon.Default();
+      }
     }
   }
 
-  positionChanged() {
-    if (this.feature) {
+  positionChanged(): void {
+    if (this.feature)
       this.feature.setLatLng(this.latLng);
-    }
   }
 
-  zIndexOffsetChanged() {
-    if (this.feature) {
+  zIndexOffsetChanged(): void {
+    if (this.feature)
       this.feature.setZIndexOffset(this.zIndexOffset);
-    }
   }
 
-  opacityChanged() {
-    if (this.feature) {
+  opacityChanged(): void {
+    if (this.feature)
       this.feature.setOpacity(this.opacity);
-    }
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback?.();
-    if (this.container && this.feature) {
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if (this.container && this.feature)
       this.container.removeLayer(this.feature);
-    }
   }
 }

@@ -51,7 +51,7 @@ export class LeafletDivicon extends LeafletBase {
 
   private icon: L.DivIcon;
 
-  getIcon() {
+  getIcon(): L.DivIcon {
     if (this.icon) return this.icon;
 
     const {
@@ -66,8 +66,8 @@ export class LeafletDivicon extends LeafletBase {
     const iconSize =
       iconWidth && iconHeight ? L.point(iconWidth, iconHeight) : undefined;
     const iconAnchor =
-      iconAnchorX && iconAnchorY
-        ? L.point(iconAnchorX, iconAnchorY)
+      iconAnchorX && iconAnchorY ?
+        L.point(iconAnchorX, iconAnchorY)
         : undefined;
 
     this.icon = L.divIcon({
@@ -80,7 +80,7 @@ export class LeafletDivicon extends LeafletBase {
     return this.icon;
   }
 
-  updated(changed: PropertyValues) {
+  updated(changed: PropertyValues): void {
     super.updated(changed);
     this.icon = null;
   }

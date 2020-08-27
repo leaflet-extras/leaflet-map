@@ -43,16 +43,14 @@ export const LeafletPopupContentMixin = dedupeMixin(
         const content = this.innerHTML
           .replace(/<\/?leaflet-point[^>]*>/g, '')
           .trim();
-        if (content) {
+        if (content)
           this.feature.bindPopup(content);
-        }
       }
 
       disconnectedCallback() {
         super.disconnectedCallback();
-        if (this._popupMO) {
+        if (this._popupMO)
           this._popupMO.disconnect();
-        }
       }
     }
 

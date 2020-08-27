@@ -106,7 +106,7 @@ export class LeafletIcon extends LeafletBase {
 
   private icon: L.Icon = null;
 
-  getIcon() {
+  getIcon(): L.Icon {
     if (this.icon) return this.icon;
 
     const {
@@ -128,22 +128,28 @@ export class LeafletIcon extends LeafletBase {
     } = this;
 
     const iconSize =
-      iconWidth && iconHeight ? L.point(iconWidth, iconHeight) : undefined;
+      iconWidth && iconHeight ?
+        L.point(iconWidth, iconHeight)
+        : undefined;
+
     const iconAnchor =
-      iconAnchorX && iconAnchorY
-        ? L.point(iconAnchorX, iconAnchorY)
+      iconAnchorX && iconAnchorY ?
+        L.point(iconAnchorX, iconAnchorY)
         : undefined;
+
     const shadowSize =
-      shadowWidth && shadowHeight
-        ? L.point(shadowWidth, shadowHeight)
+      shadowWidth && shadowHeight ?
+        L.point(shadowWidth, shadowHeight)
         : undefined;
+
     const shadowAnchor =
-      shadowAnchorX && shadowAnchorY
-        ? L.point(shadowAnchorX, shadowAnchorY)
+      shadowAnchorX && shadowAnchorY ?
+        L.point(shadowAnchorX, shadowAnchorY)
         : undefined;
+
     const popupAnchor =
-      popupAnchorX && popupAnchorY
-        ? L.point(popupAnchorX, popupAnchorY)
+      popupAnchorX && popupAnchorY ?
+        L.point(popupAnchorX, popupAnchorY)
         : undefined;
 
     this.icon = L.icon({
@@ -162,7 +168,7 @@ export class LeafletIcon extends LeafletBase {
     return this.icon;
   }
 
-  updated(changed: PropertyValues) {
+  updated(changed: PropertyValues): void {
     super.updated(changed);
     this.icon = null;
   }

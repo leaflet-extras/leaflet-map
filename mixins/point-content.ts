@@ -47,9 +47,8 @@ export const LeafletPointContentMixin = dedupeMixin(
       }
 
       disconnectedCallback() {
-        if (this._pointMutationObserver) {
+        if (this._pointMutationObserver)
           this._pointMutationObserver.disconnect();
-        }
       }
     }
 

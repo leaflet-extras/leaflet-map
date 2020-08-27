@@ -6,11 +6,14 @@ import {
   query,
   PropertyValues,
   TemplateResult,
+  internalProperty,
 } from 'lit-element';
 
 import { LeafletBase } from './base';
 
 import { bound } from './bound-decorator';
+
+import ResizeObserver from 'resize-observer-polyfill';
 
 import * as L from 'leaflet';
 
@@ -18,6 +21,19 @@ interface FeatureElement extends LeafletBase {
   feature: L.LayerGroup | L.Polyline | L.Polygon | L.Marker;
   layer: L.LayerGroup | L.Layer;
 }
+
+interface LayerElement extends LeafletBase {
+  isLayer?(): boolean;
+}
+
+const DEFAULT_TILE_LAYER_URL =
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+const DEFAULT_TILE_LAYER_ATTRIBUTION =
+  'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>';
+
+const DEFAULT_TILE_LAYER_MAX_ZOOM =
+  18;
 
 function isLeafletElement(x: Node): x is LeafletBase {
   return x && 'container' in x;
@@ -29,6 +45,18 @@ function isFeatureElement(x: Node): x is FeatureElement {
 
 function isSlot(node: ChildNode): node is HTMLSlotElement {
   return node instanceof HTMLSlotElement;
+}
+
+function isIntersecting(x: IntersectionObserverEntry): boolean {
+  return x.isIntersecting;
+}
+
+function isLayer(x: LayerElement): x is FeatureElement {
+  return x.isLayer?.();
+}
+
+function hasHeight(x: IntersectionObserverEntry): boolean {
+  return x.boundingClientRect.height > 0;
 }
 
 const EVENTS = [
@@ -84,13 +112,13 @@ const EVENTS = [
 
 /**
  * @typedef {Event} LeafletResizeEvent
- * @param {Point}	oldSize	The old size before resize event.
- * @param {Point}	newSize	The new size after the resize event.
+ * @param {Point} oldSize The old size before resize event.
+ * @param {Point} newSize The new size after the resize event.
  */
 
 /**
  * @typedef {Event} LeafletLayerEvent
- * @param {ILayer}	layer	The layer that was added or removed.
+ * @param {ILayer} layer The layer that was added or removed.
  */
 
 /**
@@ -356,6 +384,8 @@ export class LeafletMap extends LeafletBase {
   @property({ type: Boolean, attribute: 'fit-to-markers' })
   fitToMarkers = false;
 
+  @internalProperty() private mapReady = false;
+
   @query('#map') mapContainer: HTMLDivElement;
 
   features?: { feature: L.LayerGroup | L.Polyline | L.Marker }[];
@@ -370,22 +400,39 @@ export class LeafletMap extends LeafletBase {
 
   private get elements(): LeafletBase[] {
     return [...this.children]
-      .reduce(
-        (acc, child) => [
-          ...acc,
-          ...(isSlot(child) ? child.assignedElements() : [child]),
-        ],
-        []
-      )
+      .flatMap(child => isSlot(child) ? child.assignedElements() : [child])
       .filter(isLeafletElement);
   }
 
-  _ignoreViewChange: boolean;
+  private _ignoreViewChange: boolean;
 
-  _mutationObserver: MutationObserver;
+  private io: IntersectionObserver;
+
+  private mo: MutationObserver;
+
+  private ro: ResizeObserver;
+
+  constructor() {
+    super();
+    L.Icon.Default.imagePath = this.guessLeafletImagePath();
+    this.io = new IntersectionObserver(this.onIntersection, { rootMargin: '50%' });
+    this.mo = new MutationObserver(this.onMutation);
+    this.ro = new ResizeObserver(this.onResize);
+
+    this.mo.observe(this, { childList: true });
+    this.ro.observe(this);
+    this.io.observe(this);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.mo.disconnect();
+    this.ro.disconnect();
+    this.io.disconnect();
+  }
 
   render(): TemplateResult {
-    const url = L.Icon.Default.imagePath + '../leaflet.css';
+    const url = `${L.Icon.Default.imagePath}../leaflet.css`;
     return html`
       <link rel="stylesheet" href="${url}"></link>
       <div id="map"></div>
@@ -393,55 +440,20 @@ export class LeafletMap extends LeafletBase {
     `;
   }
 
-  updated(changed: PropertyValues) {
+  updated(changed: PropertyValues): void {
     super.updated(changed);
-    if (changed.has('fitToMarkers')) this.fitToMarkersChanged();
-    if (
-      changed.has('latitude') ||
-      changed.has('longitude') ||
-      changed.has('zoom')
-    )
+    if (changed.has('fitToMarkers'))
+      this.fitToMarkersChanged();
+
+    if (changed.has('latitude') || changed.has('longitude') || changed.has('zoom'))
       this.viewChanged();
   }
 
-  async fitToMarkersChanged() {
-    if (this.map && this.fitToMarkers) {
-      const features = this.elements.filter(isFeatureElement);
-      if (!features.length) return;
-      await Promise.race([
-        new Promise(r => setTimeout(r, 100)),
-        Promise.all(features.map(x => x.updateComplete)),
-      ]);
-      const group = L.featureGroup(features.map(x => x.feature ?? x.layer));
-      const bounds = group.getBounds();
-      this.map.fitBounds(bounds);
-      this.map.invalidateSize();
-    }
-  }
+  initMap(): void {
+    if (this.map)
+      this.map.remove();
 
-  viewChanged() {
-    if (this.map && !this._ignoreViewChange) {
-      setTimeout(this.setView, 1);
-    }
-  }
-
-  @bound setView() {
-    this.map.setView(this.latLng, this.zoom);
-  }
-
-  guessLeafletImagePath() {
-    L.Icon.Default.imagePath =
-      this.imagePath ||
-      L.Icon.Default.imagePath ||
-      // assuming that `leaflet-element` is installed in `/node_modules`, as a sibling of `leaflet`
-      new URL('../leaflet/dist/images/', import.meta.url).pathname;
-    return L.Icon.Default.imagePath;
-  }
-
-  firstUpdated() {
-    this.guessLeafletImagePath();
-
-    this.map = L.map(this.mapContainer, {
+    const map = L.map(this.mapContainer, {
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
       dragging: !this.noDragging,
@@ -464,52 +476,114 @@ export class LeafletMap extends LeafletBase {
       zoomAnimationThreshold: this.zoomAnimationThreshold,
     });
 
-    this.fitToMarkersChanged();
+    this.map = map;
 
-    // fire an event for when this.map is defined and ready.
-    // (needed for components that talk to this.map directly)
-    this.fire('map-ready');
-
-    const { map } = this;
-
-    // forward events
+    // forward all leaflet events to DOM
     map.on(EVENTS, this.onLeafletEvent);
+
+    map.whenReady(this.onLoad);
+    map.on('moveend', this.onMoveend);
+    map.on('zoomend', this.onZoomend);
 
     // set map view after registering events so viewreset and load events can be caught
     map.setView([this.latitude, this.longitude], this.zoom);
 
-    // update attributes
-    map.on('moveend', this.onMoveend);
-    map.on('zoomend', this.onZoomend);
-
-    if (this.zoom == -1) {
-      this.map.fitWorld();
-    }
-
     // add a default layer if there are no layers defined
-    let defaultLayerRequired = true;
+    if (!Array.from(this.children).some(isLayer))
+      this.initDefaultLayer();
 
-    for (const child of this.children) {
-      if (child.isLayer?.()) {
-        defaultLayerRequired = false;
-      }
-    }
+    for (const child of this.elements)
+      child.container = this.map;
 
-    if (defaultLayerRequired) {
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution:
-          'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 18,
-      }).addTo(this.map);
-    }
+    if (this.fitToMarkers)
+      this.fitBoundsToMarkers();
 
-    this.registerMapOnChildren();
-
-    this._mutationObserver = new MutationObserver(this.registerMapOnChildren);
-    this._mutationObserver.observe(this, { childList: true });
+    else if (this.zoom === -1)
+      map.fitWorld();
   }
 
-  @bound async onMoveend() {
+  /**
+   * Returns a GeoJSON including all the features of the map
+   */
+  public toGeoJSON(): { type: 'FeatureCollection', features: unknown } {
+    const features =
+      this.features?.map?.(f => f.feature.toGeoJSON()) ?? [];
+
+    const type =
+      'FeatureCollection';
+
+    return { type, features };
+  }
+
+  public async fitBoundsToMarkers(): Promise<void> {
+    const features =
+      this.elements.filter(isFeatureElement);
+
+    if (!features.length) return;
+
+    await Promise.race([
+      new Promise(r => setTimeout(r, 100)),
+      Promise.all(features.map(x => x.updateComplete)),
+    ]);
+
+    const group =
+      L.featureGroup(features.map(x => x.feature ?? x.layer));
+
+    const bounds =
+      group.getBounds();
+
+    this.map.fitBounds(bounds);
+  }
+
+  private invalidateSize(): void {
+    if (!this.map) return;
+    this.map.invalidateSize();
+  }
+
+  private fitToMarkersChanged() {
+    if (!this.mapReady && this.fitToMarkers) return;
+    this.fitBoundsToMarkers();
+    this.invalidateSize();
+  }
+
+  private viewChanged() {
+    if (!this.mapReady || this._ignoreViewChange) return;
+    setTimeout(() => {
+      this.map.setView(this.latLng, this.zoom);
+    }, 1);
+  }
+
+  private guessLeafletImagePath() {
+    return (
+      // Let user override the assets path per-element
+      this.imagePath ||
+      // Let user override the assets path globally
+      L.Icon.Default.imagePath ||
+      // fallback to default assets path,
+      // assumes that `leaflet-element` is a sibling of `leaflet`, i.e. in `/node_modules`.
+      new URL('../leaflet/dist/images/', import.meta.url).pathname
+    );
+  }
+
+  private initDefaultLayer(): void {
+    const attribution =
+      DEFAULT_TILE_LAYER_ATTRIBUTION;
+
+    const maxZoom =
+      DEFAULT_TILE_LAYER_MAX_ZOOM;
+
+    L.tileLayer(DEFAULT_TILE_LAYER_URL, { attribution, maxZoom })
+      .addTo(this.map);
+  }
+
+  @bound private onLoad(): void {
+    // fire an event for when this.map is defined and ready.
+    // (needed for components that talk to this.map directly)
+    this.mapReady = true;
+    this.fire('map-ready');
+  }
+
+  @bound private async onMoveend() {
     this._ignoreViewChange = true;
     this.longitude = this.map.getCenter().lng;
     this.latitude = this.map.getCenter().lat;
@@ -517,26 +591,30 @@ export class LeafletMap extends LeafletBase {
     this._ignoreViewChange = false;
   }
 
-  @bound onZoomend() {
+  @bound private onZoomend() {
     this.zoom = this.map.getZoom();
   }
 
-  disconnectedCallback() {
-    this._mutationObserver.disconnect();
+  @bound private async onIntersection(records: IntersectionObserverEntry[]) {
+    if (this.mapReady) return;
+    if (records.some(isIntersecting) && records.some(hasHeight)) {
+      await this.updateComplete;
+      this.initMap();
+      this.io.disconnect();
+    }
   }
 
-  @bound async registerMapOnChildren() {
-    for (const child of this.elements) child.container = this.map;
-    this.fitToMarkersChanged();
+  @bound private onResize(): void {
+    this.invalidateSize();
+    if (this.fitToMarkers && this.mapReady)
+      this.fitBoundsToMarkers();
   }
 
-  /**
-   * Returns a GeoJSON including all the features of the map
-   */
-  toGeoJSON() {
-    return {
-      type: 'FeatureCollection',
-      features: this.features?.map?.(f => f.feature.toGeoJSON()) ?? [],
-    };
+  @bound private onMutation(records: MutationRecord[]): void {
+    if (!this.map) return;
+    records.forEach(({ addedNodes, removedNodes }) => {
+      [...removedNodes].filter(isLayer).forEach(l => this.map.removeLayer(l.feature));
+      [...addedNodes as NodeListOf<LayerElement>].forEach(x => x.container = this.map);
+    });
   }
 }

@@ -29,17 +29,16 @@ export class LeafletLayerGroup extends LeafletBase {
 
   readonly children: HTMLCollectionOf<LeafletMarker>;
 
-  firstUpdated() {
-    this._mutationObserver = new MutationObserver(
-      this.registerContainerOnChildren
-    );
+  firstUpdated(): void {
+    this._mutationObserver = new MutationObserver(this.registerContainerOnChildren);
     this._mutationObserver.observe(this, { childList: true });
   }
 
-  get container() {
+  get container(): L.Map | L.LayerGroup {
     return this._container;
   }
-  set container(v) {
+
+  set container(v: L.Map | L.LayerGroup) {
     this._container = v;
     if (!this.container) return;
     this.feature = L.layerGroup();
@@ -47,14 +46,16 @@ export class LeafletLayerGroup extends LeafletBase {
     this.registerContainerOnChildren();
   }
 
-  disconnectedCallback() {
-    if (this.container && this.feature) {
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if (this.container && this.feature)
       this.container.removeLayer(this.feature);
-    }
+
     this._mutationObserver.disconnect();
   }
 
-  @bound registerContainerOnChildren() {
-    for (const child of this.children) child.container = this.feature;
+  @bound registerContainerOnChildren(): void {
+    for (const child of this.children)
+      child.container = this.feature;
   }
 }

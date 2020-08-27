@@ -3,6 +3,7 @@ import { DATA_ELEMENT_STYLES } from './data-element.css';
 import { LeafletBase } from './base';
 
 import type * as L from 'leaflet';
+import bound from './bound-decorator';
 
 /**
  * Element which controls geo location (<a href="http://leafletjs.com/reference.html#map">Leaflet Reference</a>).
@@ -128,30 +129,16 @@ export class LeafletGeolocation extends LeafletBase {
 
   _container: L.Map;
 
-  get container() {
+  get container(): L.Map {
     return this._container;
   }
 
-  set container(v) {
+  set container(v: L.Map) {
     this._container = v;
     if (this.container) {
       this.container.on('locationfound locationerror', this.onLeafletEvent);
 
-      this.container.on(
-        'locationfound',
-        function (e) {
-          this.latitude = e.latlng.lat;
-          this.longitude = e.latlng.lng;
-          this.bounds = e.bounds;
-          this.accuracy = e.accuracy;
-          this.altitude = e.altitude;
-          this.altitudeAccuracy = e.altitudeAccuracy;
-          this.heading = e.heading;
-          this.speed = e.speed;
-          this.timestamp = e.timestamp;
-        },
-        this
-      );
+      this.container.on('locationfound', this.onLocationfound);
 
       this.container.locate({
         watch: this.watch,
@@ -162,5 +149,17 @@ export class LeafletGeolocation extends LeafletBase {
         enableHighAccuracy: this.enableHighAccuracy,
       });
     }
+  }
+
+  @bound onLocationfound(e: L.LocationEvent): void {
+    this.latitude = e.latlng.lat;
+    this.longitude = e.latlng.lng;
+    this.bounds = e.bounds;
+    this.accuracy = e.accuracy;
+    this.altitude = e.altitude;
+    this.altitudeAccuracy = e.altitudeAccuracy;
+    this.heading = e.heading;
+    this.speed = e.speed;
+    this.timestamp = e.timestamp;
   }
 }

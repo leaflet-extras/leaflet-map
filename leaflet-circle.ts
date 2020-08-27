@@ -56,7 +56,7 @@ export class LeafletCircle extends LeafletPathMixin(
    */
   @property({ type: Number }) radius = 100;
 
-  updated(changed: PropertyValues) {
+  updated(changed: PropertyValues): void {
     super.updated(changed);
     if (changed.has('radius')) this.updateRadius();
     if (changed.has('latitude') || changed.has('longitude'))
@@ -65,11 +65,11 @@ export class LeafletCircle extends LeafletPathMixin(
 
   _container: L.Map;
 
-  get container() {
+  get container(): L.Map {
     return this._container;
   }
 
-  set container(v) {
+  set container(v: L.Map) {
     this._container = v;
 
     if (this.latitude && this.longitude && this.container) {
@@ -88,15 +88,13 @@ export class LeafletCircle extends LeafletPathMixin(
     }
   }
 
-  updatePosition() {
-    if (this.feature && this.latitude != null && this.longitude != null) {
+  updatePosition(): void {
+    if (this.feature && this.latitude != null && this.longitude != null)
       this.feature.setLatLng(L.latLng(this.latitude, this.longitude));
-    }
   }
 
-  updateRadius() {
-    if (this.feature && this.radius != null) {
+  updateRadius(): void {
+    if (this.feature && this.radius != null)
       this.feature.setRadius(this.radius);
-    }
   }
 }
