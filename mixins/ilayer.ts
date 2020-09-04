@@ -12,11 +12,9 @@ export interface LeafletILayerMixinElement extends LeafletBase {
 export const LeafletILayerMixin = dedupeMixin(function LeafletILayerMixin<
   TBase extends Constructor<LeafletBase>
 >(superclass: TBase): TBase & Constructor<LeafletILayerMixinElement> {
-  class LeafletILayerElement extends superclass {
-    isLayer() {
+  return class LeafletILayerElement extends superclass {
+    isLayer(): boolean {
       return true;
     }
-  }
-
-  return LeafletILayerElement;
+  };
 });

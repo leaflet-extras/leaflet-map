@@ -1,6 +1,6 @@
 import { customElement, property, PropertyValues } from 'lit-element';
 import * as L from 'leaflet';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
+import DATA_ELEMENT_STYLES from './data-element.css';
 import { LeafletBase } from './base';
 
 /**
@@ -49,7 +49,7 @@ export class LeafletDivicon extends LeafletBase {
    */
   @property({ attribute: 'class-name', type: String }) className = '';
 
-  private icon: L.DivIcon;
+  declare private icon: L.DivIcon;
 
   getIcon(): L.DivIcon {
     if (this.icon) return this.icon;
@@ -65,6 +65,7 @@ export class LeafletDivicon extends LeafletBase {
 
     const iconSize =
       iconWidth && iconHeight ? L.point(iconWidth, iconHeight) : undefined;
+
     const iconAnchor =
       iconAnchorX && iconAnchorY ?
         L.point(iconAnchorX, iconAnchorY)

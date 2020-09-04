@@ -6,7 +6,7 @@ import { LeafletPathMixin } from './mixins/path';
 import { LeafletPointContentMixin } from './mixins/point-content';
 import { LeafletPopupContentMixin } from './mixins/popup-content';
 import { LeafletBase } from './base';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
+import DATA_ELEMENT_STYLES from './data-element.css';
 
 /**
  * The `leaflet-polyline` element represents a polyline on the map and is used as
@@ -38,35 +38,37 @@ export class LeafletPolyline extends LeafletPathMixin(
 
   static readonly styles = DATA_ELEMENT_STYLES;
 
-  render(): TemplateResult {
-    return html`<slot id="points"></slot>`;
-  }
+  static readonly events = [
+    'click',
+    'dblclick',
+    'mousedown',
+    'mouseover',
+    'mouseout',
+    'contextmenu',
+    'add',
+    'remove',
+    'popupopen',
+    'popupclose',
+  ].join(' ');
 
   /**
    * A Leaflet [Polyline](http://leafletjs.com/reference.html#polyline) object
    */
   @property({ attribute: false }) feature: L.Polyline = null;
 
-  _container: L.Map;
-
-  get container(): L.Map {
-    return this._container;
+  render(): TemplateResult {
+    return html`<slot id="points"></slot>`;
   }
 
-  set container(v: L.Map) {
-    this._container = v;
-    if (this.container) {
-      this.feature = L.polyline([], this.getPathOptions());
-      this.feature.addTo(this.container);
-      this.updatePointContent();
-      this.updatePopupContent();
+  containerChanged(): void {
+    if (!this.container) return;
+    this.feature = L.polyline([], this.getPathOptions());
+    this.feature.addTo(this.container);
+    this.updatePointContent();
+    this.updatePopupContent();
 
-      // forward events
-      this.feature.on(
-        'click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose',
-        this.onLeafletEvent
-      );
-    }
+    // forward events
+    this.feature.on(LeafletPolyline.events, this.onLeafletEvent);
   }
 
   disconnectedCallback(): void {

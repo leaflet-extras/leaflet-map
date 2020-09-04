@@ -154,7 +154,7 @@ export const LeafletTileLayerMixin = dedupeMixin(function LeafletTileLayerMixin<
   TBase extends Constructor<LeafletBase>
 >(superclass: TBase): TBase & Constructor<LeafletTileLayerMixinElement> {
   class LeafletTileLayerElement extends superclass {
-    layer: L.TileLayer;
+    declare layer: L.TileLayer;
 
     /**
      * The `url` attribute sets the address template for tilesets.
@@ -218,8 +218,7 @@ export const LeafletTileLayerMixin = dedupeMixin(function LeafletTileLayerMixin<
      * The `continuous-world` attribute sets the wether tile coordinates won't be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that don't reflect the real world (e.g. game, indoor or photo maps).
      *
      */
-    @property({ type: Boolean, attribute: 'continuous-world' })
-    continuousWorld = false;
+    @property({ type: Boolean, attribute: 'continuous-world' }) continuousWorld = false;
 
     /**
      * The `nowrap` attribute sets wether the tiles just won't load outside the world width (-180 to 180 longitude) instead of repeating.
@@ -253,8 +252,7 @@ export const LeafletTileLayerMixin = dedupeMixin(function LeafletTileLayerMixin<
      * The `detect-retina` attribute sets whether if user is on a retina display, it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution.
      *
      */
-    @property({ type: Boolean, attribute: 'detect-retina' })
-    detectRetina = false;
+    @property({ type: Boolean, attribute: 'detect-retina' }) detectRetina = false;
 
     /**
      * The `reuse-tiles` attribute sets whether all the tiles that are not visible after panning are placed in a reuse queue from which they will be fetched when new tiles become visible (as opposed to dynamically creating new ones). This will in theory keep memory usage low and eliminate the need for reserving new memory whenever a new tile is needed.

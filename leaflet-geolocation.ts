@@ -1,8 +1,8 @@
 import { customElement, property } from 'lit-element';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
+import DATA_ELEMENT_STYLES from './data-element.css';
 import { LeafletBase } from './base';
 
-import type * as L from 'leaflet';
+import * as L from 'leaflet';
 import bound from './bound-decorator';
 
 /**
@@ -44,6 +44,9 @@ export class LeafletGeolocation extends LeafletBase {
 
   static readonly styles = DATA_ELEMENT_STYLES;
 
+  // @ts-expect-error: ambient property. see https://github.com/microsoft/TypeScript/issues/40220
+  declare container: L.Map;
+
   /**
    * The `watch` attribute sets wether location changes should be continous watching (instead of detecting it once) using W3C watchPosition method. You can later stop watching using map.stopLocate() method.
    */
@@ -59,8 +62,7 @@ export class LeafletGeolocation extends LeafletBase {
    * The `max-zoom` attribute sets the maximum zoom for automatic view setting when using `setView` option.
    *
    */
-  @property({ type: Number, attribute: 'max-zoom' }) maxZoom =
-    Number.MAX_SAFE_INTEGER;
+  @property({ type: Number, attribute: 'max-zoom' }) maxZoom = Number.MAX_SAFE_INTEGER;
 
   /**
    * The `timeout` attribute sets the number of milliseconds to wait for a response from geolocation before firing a locationerror event.
@@ -77,8 +79,7 @@ export class LeafletGeolocation extends LeafletBase {
    * The `enable-high-accuracy` attribute sets whether high accuracy is enabled, see description in the W3C spec.
    *
    */
-  @property({ type: Boolean, attribute: 'enable-high-accuracy' })
-  enableHighAccuracy = false;
+  @property({ type: Boolean, attribute: 'enable-high-accuracy' }) enableHighAccuracy = false;
 
   /**
    * The `latitude` attribute returns the detected geographical location of the user.
@@ -109,8 +110,7 @@ export class LeafletGeolocation extends LeafletBase {
    * The `altitude-accuracy` attribute returns the accuracy of altitude in meters.
    *
    */
-  @property({ type: Number, attribute: 'altitude-accuracy' })
-  altitudeAccuracy = null;
+  @property({ type: Number, attribute: 'altitude-accuracy' }) altitudeAccuracy = null;
 
   /**
    * The `heading` attribute returns the direction of travel in degrees counting clockwise from true North.
@@ -127,28 +127,20 @@ export class LeafletGeolocation extends LeafletBase {
    */
   @property({ type: Number }) timestamp = null;
 
-  _container: L.Map;
+  containerChanged(): void {
+    if (!this.container) return;
+    this.container.on('locationfound locationerror', this.onLeafletEvent);
 
-  get container(): L.Map {
-    return this._container;
-  }
+    this.container.on('locationfound', this.onLocationfound);
 
-  set container(v: L.Map) {
-    this._container = v;
-    if (this.container) {
-      this.container.on('locationfound locationerror', this.onLeafletEvent);
-
-      this.container.on('locationfound', this.onLocationfound);
-
-      this.container.locate({
-        watch: this.watch,
-        setView: this.setView,
-        maxZoom: this.maxZoom,
-        timeout: this.timeout,
-        maximumAge: this.maximumAge,
-        enableHighAccuracy: this.enableHighAccuracy,
-      });
-    }
+    this.container.locate({
+      watch: this.watch,
+      setView: this.setView,
+      maxZoom: this.maxZoom,
+      timeout: this.timeout,
+      maximumAge: this.maximumAge,
+      enableHighAccuracy: this.enableHighAccuracy,
+    });
   }
 
   @bound onLocationfound(e: L.LocationEvent): void {

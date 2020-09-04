@@ -25,21 +25,16 @@ import type { LeafletMarker } from './leaflet-marker';
 export class LeafletLayerGroup extends LeafletBase {
   static readonly is = 'leaflet-layer-group';
 
-  feature: L.LayerGroup;
+  declare feature: L.LayerGroup;
 
-  readonly children: HTMLCollectionOf<LeafletMarker>;
+  declare readonly children: HTMLCollectionOf<LeafletMarker>;
 
   firstUpdated(): void {
-    this._mutationObserver = new MutationObserver(this.registerContainerOnChildren);
-    this._mutationObserver.observe(this, { childList: true });
+    this.mo = new MutationObserver(this.registerContainerOnChildren);
+    this.mo.observe(this, { childList: true });
   }
 
-  get container(): L.Map | L.LayerGroup {
-    return this._container;
-  }
-
-  set container(v: L.Map | L.LayerGroup) {
-    this._container = v;
+  containerChanged(): void {
     if (!this.container) return;
     this.feature = L.layerGroup();
     this.feature.addTo(this.container);
@@ -51,7 +46,7 @@ export class LeafletLayerGroup extends LeafletBase {
     if (this.container && this.feature)
       this.container.removeLayer(this.feature);
 
-    this._mutationObserver.disconnect();
+    this.mo.disconnect();
   }
 
   @bound registerContainerOnChildren(): void {

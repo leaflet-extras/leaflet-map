@@ -64,8 +64,7 @@ export class LeafletIcon extends LeafletBase {
   /**
    * The `shadow-retina-url` attribute sets the URL to the retina sized version of the icon shadow image. If not specified, no shadow image will be created. Used for Retina screen devices.
    */
-  @property({ type: String, attribute: 'shadow-retina-url' })
-  shadowRetinaUrl: string;
+  @property({ type: String, attribute: 'shadow-retina-url' }) shadowRetinaUrl: string;
 
   /**
    * The `shadow-width` attribute sets the size of the shadow image in pixels.
@@ -80,14 +79,12 @@ export class LeafletIcon extends LeafletBase {
   /**
    * The `shadow-anchor-x` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
    */
-  @property({ type: Number, attribute: 'shadow-anchor-x' })
-  shadowAnchorX: number;
+  @property({ type: Number, attribute: 'shadow-anchor-x' }) shadowAnchorX: number;
 
   /**
    * The `shadow-anchor-y` attribute sets the coordinates of the "tip" of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).
    */
-  @property({ type: Number, attribute: 'shadow-anchor-y' })
-  shadowAnchorY: number;
+  @property({ type: Number, attribute: 'shadow-anchor-y' }) shadowAnchorY: number;
 
   /**
    * The `popup-anchor-x` attribute sets the coordinates of the point from which popups will "open", relative to the icon anchor.

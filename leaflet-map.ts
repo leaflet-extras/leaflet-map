@@ -1,13 +1,6 @@
-import {
-  html,
-  css,
-  customElement,
-  property,
-  query,
-  PropertyValues,
-  TemplateResult,
-  internalProperty,
-} from 'lit-element';
+import type { PropertyValues, TemplateResult } from 'lit-element';
+
+import { html, customElement, property, query, internalProperty } from 'lit-element';
 
 import { LeafletBase } from './base';
 
@@ -16,6 +9,14 @@ import { bound } from './bound-decorator';
 import ResizeObserver from 'resize-observer-polyfill';
 
 import * as L from 'leaflet';
+
+import MAP_STYLES from './leaflet-map.css';
+
+/**
+ * Best guess, assuming `leaflet-element` is installed alongside `leaflet` in `node_modules`
+ */
+const NODE_MODULES_LEAFLET_IMAGE_PATH =
+  new URL('../../node_modules/leaflet/dist/images/', import.meta.url).pathname;
 
 interface FeatureElement extends LeafletBase {
   feature: L.LayerGroup | L.Polyline | L.Polygon | L.Marker;
@@ -58,43 +59,6 @@ function isLayer(x: LayerElement): x is FeatureElement {
 function hasHeight(x: IntersectionObserverEntry): boolean {
   return x.boundingClientRect.height > 0;
 }
-
-const EVENTS = [
-  'click',
-  'dblclick',
-  'mousedown',
-  'mouseup',
-  'mouseover',
-  'mouseout',
-  'mousemove',
-  'contextmenu',
-  'focus',
-  'blur',
-  'preclick',
-  'load',
-  'unload',
-  'viewreset',
-  'movestart',
-  'move',
-  'moveend',
-  'dragstart',
-  'drag',
-  'dragend',
-  'zoomstart',
-  'zoomend',
-  'zoomlevelschange',
-  'resize',
-  'autopanstart',
-  'layeradd',
-  'layerremove',
-  'baselayerchange',
-  'overlayadd',
-  'overlayremove',
-  'locationfound',
-  'locationerror',
-  'popupopen',
-  'popupclose',
-].join(' ');
 
 /**
  * @typedef {LeafletMouseEvent}
@@ -219,20 +183,45 @@ const EVENTS = [
 export class LeafletMap extends LeafletBase {
   static readonly is = 'leaflet-map';
 
-  static readonly styles = [
-    css`
-      :host {
-        display: block;
-        height: 480px;
-      }
+  static readonly styles = MAP_STYLES;
 
-      #map {
-        height: 100%;
-        width: 100%;
-        position: relative;
-      }
-    `,
-  ];
+  static readonly events = [
+    'click',
+    'dblclick',
+    'mousedown',
+    'mouseup',
+    'mouseover',
+    'mouseout',
+    'mousemove',
+    'contextmenu',
+    'focus',
+    'blur',
+    'preclick',
+    'load',
+    'unload',
+    'viewreset',
+    'movestart',
+    'move',
+    'moveend',
+    'dragstart',
+    'drag',
+    'dragend',
+    'zoomstart',
+    'zoomend',
+    'zoomlevelschange',
+    'resize',
+    'autopanstart',
+    'layeradd',
+    'layerremove',
+    'baselayerchange',
+    'overlayadd',
+    'overlayremove',
+    'locationfound',
+    'locationerror',
+    'popupopen',
+    'popupclose',
+  ].join(' ');
+
 
   /**
    * reference to the leaflet map
@@ -253,7 +242,7 @@ export class LeafletMap extends LeafletBase {
    * Whether the map should display a fullscreen control
    */
   @property({ type: Boolean, reflect: true, attribute: 'fullscreen-control' })
-  fullscreenControl = false;
+    fullscreenControl = false;
 
   /**
    * The `zoom` attribute sets the map zoom.
@@ -268,8 +257,7 @@ export class LeafletMap extends LeafletBase {
   /**
    * The `maxZoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.
    */
-  @property({ type: Number, attribute: 'max-zoom' }) maxZoom =
-    Number.MAX_SAFE_INTEGER;
+  @property({ type: Number, attribute: 'max-zoom' }) maxZoom = Number.MAX_SAFE_INTEGER;
 
   /**
    * The `no-dragging` attribute disables whether the map is draggable with mouse/touch or not.
@@ -284,14 +272,12 @@ export class LeafletMap extends LeafletBase {
   /**
    * The `no-scroll-wheel-zoom` attribute disables whether the map can be zoomed by using the mouse wheel. If passed 'center', it will zoom to the center of the view regardless of where the mouse was.
    */
-  @property({ type: Boolean, attribute: 'no-scroll-wheel-zoom' })
-  noScrollWheelZoom = false;
+  @property({ type: Boolean, attribute: 'no-scroll-wheel-zoom' }) noScrollWheelZoom = false;
 
   /**
    * The `no-double-click-zoom` attribute disables the whether the map can be zoomed in by double clicking on it and zoomed out by double clicking while holding shift. If passed 'center', double-click zoom will zoom to the center of the view regardless of where the mouse was.
    */
-  @property({ type: Boolean, attribute: 'no-double-click-zoom' })
-  noDoubleClickZoom = false;
+  @property({ type: Boolean, attribute: 'no-double-click-zoom' }) noDoubleClickZoom = false;
 
   /**
    * The `no-box-zoom` attribute disable the whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.
@@ -311,26 +297,22 @@ export class LeafletMap extends LeafletBase {
   /**
    * The `no-track-resize` attribute disables whether the map automatically handles browser window resize to update itself.
    */
-  @property({ type: Boolean, attribute: 'no-track-resize' })
-  noTrackResize = false;
+  @property({ type: Boolean, attribute: 'no-track-resize' }) noTrackResize = false;
 
   /**
    * The `world-copy-jump` attribute sets whether the map tracks when you pan to another "copy" of the world and seamlessly jumps to the original one so that all overlays like markers and vector layers are still visible.
    */
-  @property({ type: Boolean, attribute: 'world-copy-jump' })
-  worldCopyJump = false;
+  @property({ type: Boolean, attribute: 'world-copy-jump' }) worldCopyJump = false;
 
   /**
    * The `no-close-popup-on-click` attribute disables whether popups are closed when user clicks the map.
    */
-  @property({ type: Boolean, attribute: 'no-close-popup-on-click' })
-  noClosePopupOnClick = false;
+  @property({ type: Boolean, attribute: 'no-close-popup-on-click' }) noClosePopupOnClick = false;
 
   /**
    * The `no-bounce-at-zoom-limits` attribute disables whether the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
    */
-  @property({ type: Boolean, attribute: 'no-bounce-at-zoom-limits' })
-  noBounceAtZoomLimits = false;
+  @property({ type: Boolean, attribute: 'no-bounce-at-zoom-limits' }) noBounceAtZoomLimits = false;
 
   /**
    * The `no-keyboard` attribute disables whether the map is focusable and allows users to navigate the map with keyboard arrows and +/- keys.
@@ -345,52 +327,62 @@ export class LeafletMap extends LeafletBase {
   /**
    * The `inertia-deceleration` attribute sets the rate with which the inertial movement slows down, in pixels/second2.
    */
-  @property({ type: Number, attribute: 'inertia-deceleration' })
-  inertiaDeceleration = 3000;
+  @property({ type: Number, attribute: 'inertia-deceleration' }) inertiaDeceleration = 3000;
 
   /**
    * The `inertia-max-speed` attribute sets the max speed of the inertial movement, in pixels/second.
    */
-  @property({ type: Number, attribute: 'inertia-max-speed' })
-  inertiaMaxSpeed = 1500;
+  @property({ type: Number, attribute: 'inertia-max-speed' }) inertiaMaxSpeed = 1500;
 
   /**
    * The `no-zoom-control` attribute disables the zoom control is added to the map by default.
    */
-  @property({ type: Boolean, attribute: 'no-zoom-control' })
-  noZoomControl = false;
+  @property({ type: Boolean, attribute: 'no-zoom-control' }) noZoomControl = false;
 
   /**
    * The `no-attribution-control` attribute disable the attribution control is added to the map by default.
    */
-  @property({ type: Boolean, attribute: 'no-attribution-control' })
-  noAttributionControl = false;
+  @property({ type: Boolean, attribute: 'no-attribution-control' }) noAttributionControl = false;
 
   /**
    * The `zoom-animation-threshold` attribute sets the maximum number of zoom level differences that still use animation
    */
-  @property({ type: Number, attribute: 'zoom-animation-threshold' })
-  zoomAnimationThreshold = 4;
+  @property({ type: Number, attribute: 'zoom-animation-threshold' }) zoomAnimationThreshold = 4;
 
   /**
    * `L.Icon.Default.imagePath` url. When unset, the element will attempt to guess using `import.meta.url`.
    */
   @property({ reflect: true, attribute: 'image-path' })
-  imagePath: string;
+  get imagePath(): string {
+    return (
+      // Let user override the assets path per-element
+      this.__imagePath ||
+      // Let user override the assets path globally
+      L.Icon.Default.imagePath ||
+      // fallback to default assets path,
+      // assumes that `leaflet-element` is a sibling of `leaflet`, i.e. in `/node_modules`.
+      NODE_MODULES_LEAFLET_IMAGE_PATH
+    );
+  }
+
+  set imagePath(path: string) {
+    this.__imagePath = path;
+  }
+
+  declare __imagePath: string;
 
   /**
    * If set, the map is zoomed such that all elements in it are visible
    */
-  @property({ type: Boolean, attribute: 'fit-to-markers' })
-  fitToMarkers = false;
+  @property({ type: Boolean, attribute: 'fit-to-markers' }) fitToMarkers = false;
 
   @internalProperty() private mapReady = false;
 
   @query('#map') mapContainer: HTMLDivElement;
 
-  features?: { feature: L.LayerGroup | L.Polyline | L.Marker }[];
+  declare features?: { feature: L.LayerGroup | L.Polyline | L.Marker }[];
 
-  readonly children: HTMLCollectionOf<
+  declare readonly children: HTMLCollectionOf<
     LeafletBase & Partial<FeatureElement> & { isLayer?(): boolean }
   >;
 
@@ -404,17 +396,18 @@ export class LeafletMap extends LeafletBase {
       .filter(isLeafletElement);
   }
 
-  private _ignoreViewChange: boolean;
+  declare private _ignoreViewChange: boolean;
 
-  private io: IntersectionObserver;
+  declare protected io: IntersectionObserver;
 
-  private mo: MutationObserver;
+  declare protected mo: MutationObserver;
 
-  private ro: ResizeObserver;
+  declare protected ro: ResizeObserver;
 
   constructor() {
     super();
-    L.Icon.Default.imagePath = this.guessLeafletImagePath();
+    // TODO: We should be able to do this for every component that registers this Map as their container, without assigning to the shared state
+    L.Icon.Default.imagePath = this.imagePath;
     this.io = new IntersectionObserver(this.onIntersection, { rootMargin: '50%' });
     this.mo = new MutationObserver(this.onMutation);
     this.ro = new ResizeObserver(this.onResize);
@@ -432,7 +425,7 @@ export class LeafletMap extends LeafletBase {
   }
 
   render(): TemplateResult {
-    const url = `${L.Icon.Default.imagePath}../leaflet.css`;
+    const url = `${this.imagePath}../leaflet.css`;
     return html`
       <link rel="stylesheet" href="${url}"></link>
       <div id="map"></div>
@@ -479,7 +472,7 @@ export class LeafletMap extends LeafletBase {
     this.map = map;
 
     // forward all leaflet events to DOM
-    map.on(EVENTS, this.onLeafletEvent);
+    map.on(LeafletMap.events, this.onLeafletEvent);
 
     map.whenReady(this.onLoad);
     map.on('moveend', this.onMoveend);
@@ -551,18 +544,6 @@ export class LeafletMap extends LeafletBase {
     setTimeout(() => {
       this.map.setView(this.latLng, this.zoom);
     }, 1);
-  }
-
-  private guessLeafletImagePath() {
-    return (
-      // Let user override the assets path per-element
-      this.imagePath ||
-      // Let user override the assets path globally
-      L.Icon.Default.imagePath ||
-      // fallback to default assets path,
-      // assumes that `leaflet-element` is a sibling of `leaflet`, i.e. in `/node_modules`.
-      new URL('../leaflet/dist/images/', import.meta.url).pathname
-    );
   }
 
   private initDefaultLayer(): void {

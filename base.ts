@@ -1,7 +1,7 @@
 import { FireMixin } from '@pwrs/mixins/fire';
 import { LitElement } from 'lit-element';
 import { bound } from './bound-decorator';
-import type * as L from 'leaflet';
+import * as L from 'leaflet';
 
 type LeafletFeature =
   | null
@@ -15,21 +15,24 @@ type LeafletFeature =
   | L.Point;
 
 export class LeafletBase extends FireMixin(LitElement) {
-  _mutationObserver?: MutationObserver;
+  declare feature: LeafletFeature;
 
-  feature: LeafletFeature;
+  declare protected mo?: MutationObserver;
 
-  _container: L.Map | L.LayerGroup;
+  declare private _container: L.Map | L.LayerGroup;
 
   get container(): L.Map | L.LayerGroup {
     return this._container;
   }
 
-  set container(v: L.Map | L.LayerGroup) {
-    this._container = v;
+  set container(container: L.Map | L.LayerGroup) {
+    this._container = container;
+    this.containerChanged?.(container);
   }
 
   @bound onLeafletEvent(e: L.LeafletEvent): void {
     this.fire(e.type, e);
   }
+
+  containerChanged?(container?: L.Map | L.LayerGroup): void
 }

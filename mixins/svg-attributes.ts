@@ -2,7 +2,7 @@ import { LitElement, property } from 'lit-element';
 import type { Constructor } from 'lit-element';
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 
-import { LineCapShape, LineJoinShape } from 'leaflet';
+import type { LineCapShape, LineJoinShape } from 'leaflet';
 
 export interface SVGAttributesMixinElement extends LitElement {
   /**
@@ -93,8 +93,7 @@ export const SVGAttributesMixin = dedupeMixin(function SVGAttributesMixin<
     /**
      * The attribute `fill-color` sets the fill color.
      */
-    @property({ type: String, attribute: 'fill-color' })
-    fillColor: string = null;
+    @property({ type: String, attribute: 'fill-color' }) fillColor: string = null;
 
     /**
      * The attribute `fill-opacity` sets the fill opacity.
@@ -104,8 +103,7 @@ export const SVGAttributesMixin = dedupeMixin(function SVGAttributesMixin<
     /**
      * The attribute `dash-array` sets a string that defines the stroke dash pattern. Doesn't work on canvas-powered layers (e.g. Android 2).
      */
-    @property({ type: String, attribute: 'dash-array' })
-    dashArray: string = null;
+    @property({ type: String, attribute: 'dash-array' }) dashArray: string = null;
 
     /**
      * The attribute `line-cap` defines the shape to be used at the end of the stroke.
@@ -120,8 +118,7 @@ export const SVGAttributesMixin = dedupeMixin(function SVGAttributesMixin<
     /**
      * The attribute `pointer-events` sets the pointer-events attribute on the path if SVG backend is used.
      */
-    @property({ type: String, attribute: 'pointer-events' })
-    pointerEvents = null;
+    @property({ type: String, attribute: 'pointer-events' }) pointerEvents = null;
   }
 
   return LeafletSVGAttributesElement;

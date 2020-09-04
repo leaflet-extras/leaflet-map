@@ -1,7 +1,7 @@
 import { customElement, property, PropertyValues } from 'lit-element';
 import { LeafletPopupContentMixin } from './mixins/popup-content';
 import * as L from 'leaflet';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
+import DATA_ELEMENT_STYLES from './data-element.css';
 import { LeafletBase } from './base';
 import { LeafletIcon } from './leaflet-icon';
 import { LeafletDivicon } from './leaflet-divicon';
@@ -145,7 +145,7 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
     return node instanceof LeafletMarker;
   }
 
-  feature: L.Marker;
+  declare feature: L.Marker;
 
   /**
    * The `latitude` attribute sets the positions of the marker.
@@ -218,12 +218,7 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
     if (changed.has('zIndexOffset')) this.zIndexOffsetChanged();
   }
 
-  get container(): L.Map | L.LayerGroup {
-    return this._container;
-  }
-
-  set container(v: L.Map | L.LayerGroup) {
-    this._container = v;
+  containerChanged(): void {
     if (!this.container) return;
 
     this.feature = L.marker([this.latitude, this.longitude], {

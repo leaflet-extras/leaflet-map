@@ -5,7 +5,7 @@ import { LeafletILayerMixin } from './mixins/ilayer';
 import * as L from 'leaflet';
 import { SVGAttributesMixin } from './mixins/svg-attributes';
 import { LeafletBase } from './base';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
+import DATA_ELEMENT_STYLES from './data-element.css';
 
 /**
  * A [GeoJSON layer](http://leafletjs.com/reference.html#geojson).
@@ -36,20 +36,19 @@ import { DATA_ELEMENT_STYLES } from './data-element.css';
  * @homepage https://leaflet-extras.github.io/leaflet-map/
  */
 @customElement('leaflet-geojson')
-export class LeafletGeoJSON extends SVGAttributesMixin(
-  LeafletILayerMixin(LeafletBase)
-) {
+export class LeafletGeoJSON
+  extends SVGAttributesMixin(LeafletILayerMixin(LeafletBase)) {
   static readonly is = 'leaflet-geojson';
 
   static readonly styles = DATA_ELEMENT_STYLES;
 
-  feature: L.GeoJSON;
+  declare feature: L.GeoJSON;
 
-  fill: boolean;
+  declare fill: boolean;
 
-  private _data: GeoJsonObject;
+  declare private _data: GeoJsonObject;
 
-  parseError: Error;
+  declare parseError: Error;
 
   /**
    * data as geojson object
@@ -75,20 +74,10 @@ export class LeafletGeoJSON extends SVGAttributesMixin(
   updated(changed: PropertyValues): void {
     super.updated(changed);
     if (changed.has('data'))
-      this.dataChanged();
+      this.containerChanged();
   }
 
-  get container(): L.Map | L.LayerGroup {
-    return this._container;
-  }
-
-  set container(v: L.Map | L.LayerGroup) {
-    this._container = v;
-    if (this.container && this.data)
-      this.dataChanged();
-  }
-
-  dataChanged(): void {
+  containerChanged(): void {
     if (!this.container || !this.data) return;
 
     if (this.feature) this.container.removeLayer(this.feature);

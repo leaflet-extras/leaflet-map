@@ -1,5 +1,7 @@
-import { customElement, property } from 'lit-element';
 import * as L from 'leaflet';
+
+import { customElement, property } from 'lit-element';
+
 import { LeafletBase } from './base';
 
 /**

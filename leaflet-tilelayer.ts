@@ -3,7 +3,7 @@ import { LeafletILayerMixin } from './mixins/ilayer';
 import { LeafletTileLayerMixin } from './mixins/tile-layer';
 import * as L from 'leaflet';
 import { LeafletBase } from './base';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
+import DATA_ELEMENT_STYLES from './data-element.css';
 
 /**
  * Element which defines a [tile layer](http://leafletjs.com/reference.html#tilelayer).
@@ -30,7 +30,9 @@ export class LeafletTileLayer extends LeafletILayerMixin(LeafletTileLayerMixin(L
 
   static readonly styles = DATA_ELEMENT_STYLES;
 
-  layer: L.TileLayer;
+  static readonly events = 'loading load tileloadstart tileload tileunload';
+
+  declare layer: L.TileLayer;
 
   @property() url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
@@ -38,12 +40,7 @@ export class LeafletTileLayer extends LeafletILayerMixin(LeafletTileLayerMixin(L
     return this.url.replace(/%7B([sxyz])%7D/g, '{$1}');
   }
 
-  get container(): L.Map|L.LayerGroup {
-    return this._container;
-  }
-
-  set container(v: L.Map|L.LayerGroup) {
-    this._container = v;
+  containerChanged(): void {
     if (!this.container) return;
 
     this.layer = L.tileLayer(this.cleanedUrl, {
@@ -64,7 +61,7 @@ export class LeafletTileLayer extends LeafletILayerMixin(LeafletTileLayerMixin(L
     });
 
     // forward events
-    this.layer.on('loading load tileloadstart tileload tileunload', this.onLeafletEvent);
+    this.layer.on(LeafletTileLayer.events, this.onLeafletEvent);
 
     this.layer.addTo(this.container);
   }

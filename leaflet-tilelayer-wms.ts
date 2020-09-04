@@ -3,7 +3,7 @@ import { LeafletILayerMixin } from './mixins/ilayer';
 import { LeafletTileLayerMixin } from './mixins/tile-layer';
 import * as L from 'leaflet';
 import { LeafletBase } from './base';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
+import DATA_ELEMENT_STYLES from './data-element.css';
 
 /**
  * Element which defines a [tile layer for wms](http://leafletjs.com/reference.html#tilelayer-wms)
@@ -31,7 +31,9 @@ export class LeafletTileLayerWms extends LeafletILayerMixin(LeafletTileLayerMixi
 
   static readonly styles = DATA_ELEMENT_STYLES;
 
-  layer: L.TileLayer.WMS;
+  static readonly events = 'loading load tileloadstart tileload tileunload';
+
+  declare layer: L.TileLayer.WMS;
 
   @property() url = '';
 
@@ -71,12 +73,7 @@ export class LeafletTileLayerWms extends LeafletILayerMixin(LeafletTileLayerMixi
       this.urlChanged();
   }
 
-  get container(): L.Map | L.LayerGroup {
-    return this._container;
-  }
-
-  set container(v: L.Map | L.LayerGroup) {
-    this._container = v;
+  containerChanged(): void {
     if (!this.container) return;
 
     this.layer = L.tileLayer.wms(this.url, {
@@ -103,10 +100,7 @@ export class LeafletTileLayerWms extends LeafletILayerMixin(LeafletTileLayerMixi
     });
 
     // forward events
-    this.layer.on(
-      'loading load tileloadstart tileload tileunload',
-      this.onLeafletEvent
-    );
+    this.layer.on(LeafletTileLayerWms.events, this.onLeafletEvent);
 
     this.layer.addTo(this.container);
   }

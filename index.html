@@ -5,14 +5,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>leaflet-map web-component demo</title>
+
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
   <script src="https://unpkg.com/@pwrs/zero-md@1.4.0/build/zero-md.min.js"></script>
+
   <script type="module">
     import 'api-viewer-element';
-    import * as L from 'leaflet';
-    window.L = L;
-    L.Icon.Default.imagePath = `${location.origin}/node_modules/leaflet/dist/images/`;
-    import '/index.js';
+    import '.';
   </script>
   <style type="text/css">
     body {
@@ -398,7 +397,7 @@
           <leaflet-marker latitude="51.5" longitude="-0.8" title="L.icon()"></leaflet-marker>
         </leaflet-map>
         <script type="module">
-            /* global L */
+            import * as L from 'leaflet/dist/leaflet-src.esm.js';
             const iconUrl = 'https://stendhalgame.org/images/mapmarker/npc.png';
             const iconSize = L.point(26, 25);
             const iconAnchor = L.point(0, 0);

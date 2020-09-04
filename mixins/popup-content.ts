@@ -7,7 +7,7 @@ import { bound } from '../bound-decorator';
 
 export interface LeafletPopupContentMixinElement extends LeafletBase {
   feature: L.Popup | L.Polygon | L.Polyline | L.Circle | L.Marker;
-  _popupMO: MutationObserver;
+  popupMO: MutationObserver;
   updatePopupContent(): void;
 }
 
@@ -16,15 +16,16 @@ export const LeafletPopupContentMixin = dedupeMixin(
     superclass: TBase
   ): TBase & Constructor<LeafletPopupContentMixinElement> {
     class LeafletPopupContentElement extends superclass {
-      feature: L.Popup | L.Polygon | L.Polyline | L.Circle | L.Marker;
+      declare feature: L.Popup | L.Polygon | L.Polyline | L.Circle | L.Marker;
 
-      _popupMO: MutationObserver;
+      /** @private */
+      declare popupMO: MutationObserver;
 
       connectedCallback() {
         super.connectedCallback();
-        if (MutationObserver && !this._popupMO) {
-          this._popupMO = new MutationObserver(this.updatePopupContent);
-          this._popupMO.observe(this, {
+        if (MutationObserver && !this.popupMO) {
+          this.popupMO = new MutationObserver(this.updatePopupContent);
+          this.popupMO.observe(this, {
             childList: true,
             characterData: true,
             attributes: true,
@@ -39,18 +40,18 @@ export const LeafletPopupContentMixin = dedupeMixin(
         this.feature.unbindPopup();
 
         // TODO: Hack, ignore <leaflet-point>-tag
-        // const content = Polymer.dom(this).innerHTML.replace(/<\/?leaflet-point[^>]*>/g, "").trim();
         const content = this.innerHTML
           .replace(/<\/?leaflet-point[^>]*>/g, '')
           .trim();
+
         if (content)
           this.feature.bindPopup(content);
       }
 
       disconnectedCallback() {
         super.disconnectedCallback();
-        if (this._popupMO)
-          this._popupMO.disconnect();
+        if (this.popupMO)
+          this.popupMO.disconnect();
       }
     }
 

@@ -1,11 +1,13 @@
 import type { PropertyValues } from 'lit-element';
 
-import { customElement, property } from 'lit-element';
 import * as L from 'leaflet';
+
+import { customElement, property } from 'lit-element';
 import { LeafletPathMixin } from './mixins/path';
 import { LeafletPopupContentMixin } from './mixins/popup-content';
 import { LeafletBase } from './base';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
+
+import DATA_ELEMENT_STYLES from './data-element.css';
 
 /**
  * The `leaflet-circle` element represents a circle on the map and is used as
@@ -25,9 +27,8 @@ import { DATA_ELEMENT_STYLES } from './data-element.css';
  * @homepage https://leaflet-extras.github.io/leaflet-map/
  */
 @customElement('leaflet-circle')
-export class LeafletCircle extends LeafletPathMixin(
-  LeafletPopupContentMixin(LeafletBase)
-) {
+export class LeafletCircle
+  extends LeafletPathMixin(LeafletPopupContentMixin(LeafletBase)) {
   static readonly is = 'leaflet-circle';
 
   static readonly styles = DATA_ELEMENT_STYLES;
@@ -36,10 +37,13 @@ export class LeafletCircle extends LeafletPathMixin(
     return node instanceof LeafletCircle;
   }
 
+  static readonly events =
+    'click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose';
+
   /**
    * A Leaflet circle object
    */
-  feature: L.Circle;
+  declare feature: L.Circle;
 
   /**
    * The circle's longitude coordinate
@@ -63,29 +67,14 @@ export class LeafletCircle extends LeafletPathMixin(
       this.updatePosition();
   }
 
-  _container: L.Map;
+  containerChanged(): void {
+    if (!(this.latitude && this.longitude && this.container)) return;
 
-  get container(): L.Map {
-    return this._container;
-  }
+    this.feature = L.circle([this.latitude, this.longitude], this.radius, this.getPathOptions());
+    this.feature.addTo(this.container);
+    this.updatePopupContent();
 
-  set container(v: L.Map) {
-    this._container = v;
-
-    if (this.latitude && this.longitude && this.container) {
-      this.feature = L.circle(
-        [this.latitude, this.longitude],
-        this.radius,
-        this.getPathOptions()
-      );
-      this.feature.addTo(this.container);
-      this.updatePopupContent();
-
-      this.feature.on(
-        'click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose',
-        this.onLeafletEvent
-      );
-    }
+    this.feature.on(LeafletCircle.events, this.onLeafletEvent);
   }
 
   updatePosition(): void {

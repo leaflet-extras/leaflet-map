@@ -1,15 +1,14 @@
-import type { TemplateResult } from 'lit-element';
+import type { LeafletPoint } from './leaflet-point';
 
-import { html, customElement, property } from 'lit-element';
 import * as L from 'leaflet';
+
+import { html, customElement, property, queryAssignedNodes, TemplateResult } from 'lit-element';
 import { LeafletPathMixin } from './mixins/path';
 import { LeafletPointContentMixin } from './mixins/point-content';
 import { LeafletPopupContentMixin } from './mixins/popup-content';
 import { LeafletBase } from './base';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
 
-const EVENTS =
-  'click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose';
+import DATA_ELEMENT_STYLES from './data-element.css';
 
 /**
  * The `leaflet-polygon` element represents a polygon on the map and is used as
@@ -34,40 +33,33 @@ const EVENTS =
  * @homepage https://leaflet-extras.github.io/leaflet-map/
  */
 @customElement('leaflet-polygon')
-export class LeafletPolygon extends LeafletPathMixin(
-  LeafletPointContentMixin(
-    LeafletPopupContentMixin(LeafletBase)
-  )
-) {
+export class LeafletPolygon
+  extends LeafletPathMixin(LeafletPointContentMixin(LeafletPopupContentMixin(LeafletBase))) {
   static readonly is = 'leaflet-polygon';
 
   static readonly styles = DATA_ELEMENT_STYLES;
+
+  static readonly events =
+    'click dblclick mousedown mouseover mouseout contextmenu add remove popupopen popupclose';
 
   /**
    * A Leaflet [Polygon](http://leafletjs.com/reference.html#polygon) object
    */
   @property({ attribute: false }) feature: L.Polygon = null;
 
+  @queryAssignedNodes('points') points: LeafletPoint[];
+
   render(): TemplateResult {
-    return html`<slot id="points"></slot>`;
+    return html`
+      <slot id="points"></slot>
+    `;
   }
 
-  _container: L.Map;
-
-  get container(): L.Map {
-    return this._container;
-  }
-
-  set container(v: L.Map) {
-    this._container = v;
-
-    if (!v) return;
-
+  containerChanged(): void {
     const opt = this.getPathOptions();
 
     if (typeof opt.fill === 'undefined' || opt.fill === null)
       opt.fill = true;
-
 
     this.feature = L.polygon([], opt);
     this.feature.addTo(this.container);
@@ -75,7 +67,7 @@ export class LeafletPolygon extends LeafletPathMixin(
     this.updatePopupContent();
 
     // forward events
-    this.feature.on(EVENTS, this.onLeafletEvent);
+    this.feature.on(LeafletPolygon.events, this.onLeafletEvent);
   }
 
   disconnectedCallback(): void {

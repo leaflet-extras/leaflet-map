@@ -8,7 +8,7 @@ import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import type * as L from 'leaflet';
 
 export interface LeafletPointContentMixinElement extends LeafletBase {
-  _pointMutationObserver: MutationObserver;
+  pointMO: MutationObserver;
   feature: L.Polygon | L.Polyline;
   updatePointContent(): void;
 }
@@ -18,16 +18,15 @@ export const LeafletPointContentMixin = dedupeMixin(
     superclass: TBase
   ): TBase & Constructor<LeafletPointContentMixinElement> {
     class LeafletPointContentElement extends superclass {
-      _pointMutationObserver: MutationObserver;
+      /** @private */
+      declare pointMO: MutationObserver;
 
-      feature: L.Polygon | L.Polyline;
+      declare feature: L.Polygon | L.Polyline;
 
       connectedCallback() {
-        if (MutationObserver && !this._pointMutationObserver) {
-          this._pointMutationObserver = new MutationObserver(
-            this.updatePointContent
-          );
-          this._pointMutationObserver.observe(this, {
+        if (MutationObserver && !this.pointMO) {
+          this.pointMO = new MutationObserver(this.updatePointContent);
+          this.pointMO.observe(this, {
             childList: true,
             characterData: true,
             attributes: true,
@@ -47,8 +46,8 @@ export const LeafletPointContentMixin = dedupeMixin(
       }
 
       disconnectedCallback() {
-        if (this._pointMutationObserver)
-          this._pointMutationObserver.disconnect();
+        if (this.pointMO)
+          this.pointMO.disconnect();
       }
     }
 

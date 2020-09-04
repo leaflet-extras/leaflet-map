@@ -1,7 +1,10 @@
-import { customElement, property } from 'lit-element';
 import * as L from 'leaflet';
-import { DATA_ELEMENT_STYLES } from './data-element.css';
+
+import { customElement, property } from 'lit-element';
+
 import { LeafletBase } from './base';
+
+import DATA_ELEMENT_STYLES from './data-element.css';
 
 /**
  * Scale control that shows the scale of the current center of screen in metric (m/km) and imperial (mi/ft) systems. (<a href="http://leafletjs.com/reference.html#control-scale">Leaflet Reference</a>).
@@ -26,6 +29,11 @@ export class LeafletControl extends LeafletBase {
 
   static readonly styles = DATA_ELEMENT_STYLES;
 
+  // @ts-expect-error: ambient property. see https://github.com/microsoft/TypeScript/issues/40220
+  declare container: L.Map;
+
+  declare control: L.Control.Scale;
+
   /**
    * The `position` attribute sets the position of the control (one of the map corners). See control positions.
    */
@@ -49,20 +57,9 @@ export class LeafletControl extends LeafletBase {
   /**
    * The `update-when-idle` attribute sets whether the control is updated on moveend, otherwise it's always up-to-date (updated on move).
    */
-  @property({ type: Boolean, attribute: 'update-when-idle' })
-  updateWhenIdle = false;
+  @property({ type: Boolean, attribute: 'update-when-idle' }) updateWhenIdle = false;
 
-  control: L.Control.Scale;
-
-  _container: L.Map;
-
-  get container(): L.Map {
-    return this._container;
-  }
-
-  set container(v: L.Map) {
-    this._container = v;
-
+  containerChanged(): void {
     if (!this.container) return;
     this.control = L.control.scale({
       position: this.position,

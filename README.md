@@ -76,10 +76,11 @@ Please have a look at the [change log](https://github.com/nhnb/leaflet-map/blob/
 
 ## Notes for implementing child elements
 
-Child elements like markers or layers will be initialized by the surrounding container (the map or a layer)
-by setting a "container" javascript property.
-Therefore the child element should define a _containerChanged method and use that as initializer.
-Don't forget to define a detached method to support removal of elements. The leaflet-marker element is a good template.
+Child elements like markers or layers will be initialized by the surrounding container
+(the map or a layer) by setting a "container" javascript property.
+Therefore the child element should define a `containerChanged` method and use that as initializer.
+Don't forget to define a `disconnectedCallback` method that calls `super.disconnectedCallback`
+to perform any necessary clean up. The leaflet-marker element is a good template.
 
 
 ## License
