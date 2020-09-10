@@ -3,6 +3,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+    "importHelpers": true,
     "sourceMap": true,
     "declaration": true,
     "module": "ESNext",
