@@ -37,11 +37,13 @@ const DEFAULT_TILE_LAYER_MAX_ZOOM =
   18;
 
 function isLeafletElement(x: Node): x is LeafletBase {
-  return x && 'container' in x;
+  return x instanceof HTMLElement && x.tagName.toLowerCase().startsWith('leaflet-');
 }
 
 function isFeatureElement(x: Node): x is FeatureElement {
-  return x && 'feature' in x;
+  if (!isLeafletElement(x)) return false;
+  const tag = x.tagName.toLowerCase();
+  return !!(tag.match(/(circle|geojson|layer-group|marker|polygon|polyline)$/));
 }
 
 function isSlot(node: ChildNode): node is HTMLSlotElement {
@@ -514,10 +516,13 @@ export class LeafletMap extends LeafletBase {
 
     if (!features.length) return;
 
-    await Promise.race([
-      new Promise(r => setTimeout(r, 100)),
-      Promise.all(features.map(x => x.updateComplete)),
-    ]);
+    await Promise.all(features.map(async x => {
+      // @ts-expect-error: trust me i'm good for it
+      const tag = x.constructor.is;
+      await customElements.whenDefined(tag);
+      if (!x.feature) x.container = this.map;
+      await x.updateComplete;
+    }));
 
     const group =
       L.featureGroup(features.map(x => x.feature ?? x.layer));

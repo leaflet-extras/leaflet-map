@@ -15,6 +15,8 @@ type LeafletFeature =
   | L.Point;
 
 export class LeafletBase extends FireMixin(LitElement) {
+  declare static is: string;
+
   declare feature: LeafletFeature;
 
   declare protected mo?: MutationObserver;
