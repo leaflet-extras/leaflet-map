@@ -525,7 +525,7 @@ export class LeafletMap extends LeafletBase {
     }));
 
     const group =
-      L.featureGroup(features.map(x => x.feature ?? x.layer));
+      L.featureGroup(features.map(x => x.feature ?? x.layer).filter(Boolean));
 
     const bounds =
       group.getBounds();

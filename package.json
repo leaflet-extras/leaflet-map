@@ -35,28 +35,28 @@
     "test:watch": "wtr --watch"
   },
   "devDependencies": {
-    "@open-wc/testing": "^2.5.25",
-    "@pwrs/eslint-config": "0.0.9",
-    "@rollup/plugin-commonjs": "^15.0.0",
-    "@types/leaflet": "^1.5.17",
-    "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "@typescript-eslint/parser": "^4.0.1",
-    "@web/dev-server": "0.0.5",
+    "@open-wc/testing": "^2.5.29",
+    "@pwrs/eslint-config": "0.0.14",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@types/leaflet": "^1.5.18",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "@web/dev-server": "0.0.13",
     "@web/dev-server-esbuild": "^0.2.4",
     "@web/dev-server-import-maps": "0.0.3",
-    "@web/dev-server-rollup": "^0.2.5",
-    "@web/test-runner": "^0.7.17",
+    "@web/dev-server-rollup": "^0.2.9",
+    "@web/test-runner": "^0.9.0",
     "api-viewer-element": "^0.4.4",
     "concurrently": "^5.3.0",
     "deepmerge": "^4.2.2",
-    "eslint": "^7.8.1",
-    "eslint-plugin-html": "^6.0.3",
+    "eslint": "^7.11.0",
+    "eslint-plugin-html": "^6.1.0",
     "geojson": "^0.5.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.3.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
     "patch-package": "^6.2.2",
     "rimraf": "^3.0.2",
-    "typescript": "^4.0.2",
+    "typescript": "^4.0.3",
     "web-component-analyzer": "^1.1.6"
   },
   "husky": {
@@ -72,10 +72,10 @@
   },
   "dependencies": {
     "@open-wc/dedupe-mixin": "^1.3.0",
-    "@pwrs/mixins": "0.0.9",
+    "@pwrs/mixins": "^0.1.0",
     "leaflet": "^1.7.1",
     "lit-element": "^2.4.0",
     "resize-observer-polyfill": "^1.5.1",
-    "tslib": "^2.0.1"
+    "tslib": "^2.0.3"
   }
 }
