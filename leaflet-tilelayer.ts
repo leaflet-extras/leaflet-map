@@ -63,6 +63,9 @@ export class LeafletTileLayer extends LeafletILayerMixin(LeafletTileLayerMixin(L
     // forward events
     this.layer.on(LeafletTileLayer.events, this.onLeafletEvent);
 
+    if (this.container instanceof L.Map)
+      this.container.setMaxZoom(this.maxZoom);
+
     this.layer.addTo(this.container);
   }
 

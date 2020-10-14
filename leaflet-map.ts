@@ -259,7 +259,7 @@ export class LeafletMap extends LeafletBase {
   /**
    * The `maxZoom` attribute sets the maximum zoom level of the map. This overrides any maxZoom set on map layers.
    */
-  @property({ type: Number, attribute: 'max-zoom' }) maxZoom = Number.MAX_SAFE_INTEGER;
+  @property({ type: Number, attribute: 'max-zoom' }) maxZoom = DEFAULT_TILE_LAYER_MAX_ZOOM;
 
   /**
    * The `no-dragging` attribute disables whether the map is draggable with mouse/touch or not.

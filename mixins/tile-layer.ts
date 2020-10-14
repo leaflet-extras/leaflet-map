@@ -184,7 +184,7 @@ export const LeafletTileLayerMixin = dedupeMixin(function LeafletTileLayerMixin<
      * The `maxnativezoom` attribute sets the maximum zoom number the tiles source has available. If it is specified, the tiles on all zoom levels higher than maxNativeZoom will be loaded from maxZoom level and auto-scaled.
      *
      */
-    @property({ type: Number, attribute: 'max-native-zoom' }) maxNativeZoom;
+    @property({ type: Number, attribute: 'max-native-zoom' }) maxNativeZoom: number;
 
     /**
      * The `tile-size` attribute sets the tile size (width and height in pixels, assuming tiles are square).
