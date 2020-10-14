@@ -12,20 +12,23 @@ import * as L from 'leaflet';
 
 import MAP_STYLES from './leaflet-map.css';
 
-/**
- * Best guess, assuming `leaflet-element` is installed alongside `leaflet` in `node_modules`
- */
-const NODE_MODULES_LEAFLET_IMAGE_PATH =
-  new URL('../../node_modules/leaflet/dist/images/', import.meta.url).pathname;
-
 interface FeatureElement extends LeafletBase {
   feature: L.LayerGroup | L.Polyline | L.Polygon | L.Marker;
   layer: L.LayerGroup | L.Layer;
 }
 
+type Feature =
+  FeatureElement['feature'] | FeatureElement['layer'];
+
 interface LayerElement extends LeafletBase {
   isLayer?(): boolean;
 }
+
+/**
+ * Best guess, assuming `leaflet-element` is installed alongside `leaflet` in `node_modules`
+ */
+const NODE_MODULES_LEAFLET_IMAGE_PATH =
+  new URL('../../node_modules/leaflet/dist/images/', import.meta.url).pathname;
 
 const DEFAULT_TILE_LAYER_URL =
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -56,6 +59,17 @@ function isIntersecting(x: IntersectionObserverEntry): boolean {
 
 function isLayer(x: LayerElement): x is FeatureElement {
   return x.isLayer?.();
+}
+
+function isMarker(x: L.Layer): x is L.Marker {
+  return (
+    !!x &&
+    typeof x === 'object' &&
+    // @ts-expect-error: disambiguating type
+    typeof x.getLatLng === 'function' &&
+    // @ts-expect-error: disambiguating type
+    typeof x.getIcon === 'function'
+  );
 }
 
 function hasHeight(x: IntersectionObserverEntry): boolean {
@@ -511,37 +525,41 @@ export class LeafletMap extends LeafletBase {
   }
 
   public async fitBoundsToMarkers(): Promise<void> {
-    const features =
+    const featureElements =
       this.elements.filter(isFeatureElement);
 
-    if (!features.length) return;
-
-    // Make sure all child feature-elements are defined and updated before proceeding.
-    await Promise.all(features.map(async x => {
-      // @ts-expect-error: trust me i'm good for it
-      const tag = x.constructor.is;
-      await customElements.whenDefined(tag);
-      if (!x.feature)
-        x.container = this.map;
-      return await x.updateComplete;
-    }));
+    if (!featureElements.length) return;
 
     // Get the Leaflet feature from each feature-element child
-    const featuresToGroup =
-      features
-        .map(x => x.feature ?? x.layer)
+    const features =
+      (await Promise.all(featureElements
+        .map(this.getFeatureFromElement)))
         .filter(Boolean);
 
     // short-circuit if there are no relevant features
-    if (!featuresToGroup.length) return;
+    if (features.length < 1)
+      return;
+    else if (features.length === 1 && features.every(isMarker))
+      this.panToMarker(features[0]);
+    else
+      this.map.fitBounds(L.featureGroup(features).getBounds());
+  }
 
-    const group =
-      L.featureGroup(featuresToGroup);
+  panToMarker(marker: L.Marker): void {
+    this.map.setZoom(this.map.getMaxZoom());
+    this.map.panTo(marker.getLatLng());
+  }
 
-    const bounds =
-      group.getBounds();
-
-    this.map.fitBounds(bounds);
+  /**
+   * Get the element's feature or layer,
+   * first ensuring that the element is defined and registered on the map.
+   */
+  @bound private async getFeatureFromElement(element: FeatureElement): Promise<Feature> {
+    await customElements.whenDefined(element.tagName.toLowerCase());
+    if (!element.feature)
+      element.container = this.map;
+    await element.updateComplete;
+    return element.feature ?? element.layer;
   }
 
   private invalidateSize(): void {

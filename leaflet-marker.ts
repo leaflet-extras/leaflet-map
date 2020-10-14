@@ -206,7 +206,7 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
   @property({ type: Number, attribute: 'rise-offset' }) riseOffset = 250;
 
   get latLng(): L.LatLng {
-    return L.latLng(this.latitude, this.longitude);
+    return this.feature?.getLatLng?.() ?? null;
   }
 
   updated(changed: PropertyValues): void {
@@ -236,6 +236,7 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
 
     // forward events
     this.feature.on(EVENTS, this.onLeafletEvent);
+    this.feature.on('move', this.onMove);
 
     this.updatePopupContent();
 
@@ -287,9 +288,17 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
     }
   }
 
+  onMove(event: L.LeafletEvent): void {
+    const marker: L.Marker = event.target;
+    const position = marker.getLatLng();
+    this.latitude = position.lat;
+    this.longitude = position.lng;
+  }
+
   positionChanged(): void {
-    if (this.feature)
-      this.feature.setLatLng(this.latLng);
+    const position = L.latLng(this.latitude, this.longitude);
+    if (this.feature && !this.latLng?.equals?.(position))
+      this.feature.setLatLng(position);
   }
 
   zIndexOffsetChanged(): void {
