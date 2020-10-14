@@ -516,16 +516,27 @@ export class LeafletMap extends LeafletBase {
 
     if (!features.length) return;
 
+    // Make sure all child feature-elements are defined and updated before proceeding.
     await Promise.all(features.map(async x => {
       // @ts-expect-error: trust me i'm good for it
       const tag = x.constructor.is;
       await customElements.whenDefined(tag);
-      if (!x.feature) x.container = this.map;
-      await x.updateComplete;
+      if (!x.feature)
+        x.container = this.map;
+      return await x.updateComplete;
     }));
 
+    // Get the Leaflet feature from each feature-element child
+    const featuresToGroup =
+      features
+        .map(x => x.feature ?? x.layer)
+        .filter(Boolean);
+
+    // short-circuit if there are no relevant features
+    if (!featuresToGroup.length) return;
+
     const group =
-      L.featureGroup(features.map(x => x.feature ?? x.layer).filter(Boolean));
+      L.featureGroup(featuresToGroup);
 
     const bounds =
       group.getBounds();

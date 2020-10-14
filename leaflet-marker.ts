@@ -264,7 +264,8 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
 
     let root = this.getRootNode();
 
-    // eslint-disable-next-line no-loops/no-loops
+    // permitting a complex loop body here in order to break when we get to the document
+    // eslint-disable-next-line easy-loops/easy-loops
     while (!iconElement) {
       if (root instanceof ShadowRoot) {
         iconElement = root.getElementById(icon) as LeafletIcon | LeafletDivicon;
