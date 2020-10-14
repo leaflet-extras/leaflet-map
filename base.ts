@@ -1,6 +1,7 @@
 import { FireMixin } from '@pwrs/mixins/fire';
 import { LitElement } from 'lit-element';
 import { bound } from './bound-decorator';
+import type { LeafletMap } from 'leaflet-map';
 import * as L from 'leaflet';
 
 type LeafletFeature =
@@ -30,6 +31,13 @@ export class LeafletBase extends FireMixin(LitElement) {
   set container(container: L.Map | L.LayerGroup) {
     this._container = container;
     this.containerChanged?.(container);
+  }
+
+  get mapElement(): LeafletMap {
+    return (
+        !(this.container instanceof L.Map) ? null
+      : (this.container.getContainer().getRootNode() as ShadowRoot).host as LeafletMap
+    );
   }
 
   @bound onLeafletEvent(e: L.LeafletEvent): void {

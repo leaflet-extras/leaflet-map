@@ -260,12 +260,15 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
   }
 
   private walkDOMForIcon(icon: string): L.Icon | L.DivIcon {
-    let iconElement =
-      this.shadowRoot.getElementById(icon) as LeafletIcon | LeafletDivicon;
+    let iconElement = (
+      this.shadowRoot.getElementById(icon) ||
+        // edge case: <leaflet-map> is wrapped by another element, and slots in this marker
+      this.mapElement ? (this.mapElement.getRootNode() as ShadowRoot).getElementById(icon) : null
+    ) as LeafletIcon | LeafletDivicon;
 
     let root = this.getRootNode();
 
-    // permitting a complex loop body here in order to break when we get to the document
+    // permitting a complex loop body here because it's better than building up a collection
     // eslint-disable-next-line easy-loops/easy-loops
     while (!iconElement) {
       if (root instanceof ShadowRoot) {
