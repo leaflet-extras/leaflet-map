@@ -23,6 +23,10 @@ const EVENTS = [
   'popupclose',
 ].join(' ');
 
+function isRealNumber(x: any): x is number {
+  return (typeof x === 'number' && !Number.isNaN(x));
+}
+
 /**
  * Element which defines a [marker](http://leafletjs.com/reference.html#marker)
  *
@@ -211,6 +215,7 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
 
   updated(changed: PropertyValues): void {
     super.updated(changed);
+    if (changed.has('draggable')) this.draggableChanged();
     if (changed.has('icon')) this.iconChanged();
     if (changed.has('opacity')) this.opacityChanged();
     if (changed.has('latitude') || changed.has('longitude'))
@@ -241,6 +246,15 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
     this.updatePopupContent();
 
     this.feature.addTo(this.container);
+  }
+
+  draggableChanged(): void {
+    if (!this.feature)
+      return;
+    this.feature.off(EVENTS);
+    if (this.container instanceof L.Map)
+      this.feature.removeFrom(this.container);
+    this.containerChanged();
   }
 
   iconChanged(): void {
@@ -299,6 +313,7 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
   }
 
   positionChanged(): void {
+    if (!isRealNumber(this.latitude) || !isRealNumber(this.longitude)) return;
     const position = L.latLng(this.latitude, this.longitude);
     if (this.feature && !this.latLng?.equals?.(position))
       this.feature.setLatLng(position);
