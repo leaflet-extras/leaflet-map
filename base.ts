@@ -1,7 +1,7 @@
 import { FireMixin } from '@pwrs/mixins/fire';
 import { LitElement } from 'lit-element';
 import { bound } from './bound-decorator';
-import type { LeafletMap } from 'leaflet-map';
+import type { LeafletMap } from './leaflet-map';
 import * as L from 'leaflet';
 
 type LeafletFeature =

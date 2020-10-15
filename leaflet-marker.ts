@@ -276,7 +276,7 @@ export class LeafletMarker extends LeafletPopupContentMixin(LeafletBase) {
   private walkDOMForIcon(icon: string): L.Icon | L.DivIcon {
     let iconElement = (
       this.shadowRoot.getElementById(icon) ||
-        // edge case: <leaflet-map> is wrapped by another element, and slots in this marker
+      // edge case: <leaflet-map> is wrapped by another element, and slots in this marker
       this.mapElement ? (this.mapElement.getRootNode() as ShadowRoot).getElementById(icon) : null
     ) as LeafletIcon | LeafletDivicon;
 
