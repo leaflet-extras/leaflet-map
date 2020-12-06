@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "sourceMap": true,
+    "declaration": true,
+    "module": "ESNext",
+    "target": "ES2020",
+    "baseUrl": ".",
+    "paths": {
+      "leaflet": ["leaflet/dist/leaflet-src.esm.js", "leaflet"]
+    }
+  },
+}
