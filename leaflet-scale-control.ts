@@ -24,7 +24,7 @@ import DATA_ELEMENT_STYLES from './data-element.css';
  * @demo https://leaflet-extras.github.io/leaflet-map/demo.html
  */
 @customElement('leaflet-scale-control')
-export class LeafletControl extends LeafletBase {
+export class LeafletScaleControl extends LeafletBase {
   static readonly is = 'leaflet-scale-control';
 
   static readonly styles = DATA_ELEMENT_STYLES;
